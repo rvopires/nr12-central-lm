@@ -9069,10 +9069,18 @@ html body #demo-indicator {
     opacity: 0 !important;
 }
 
-/* Atalho secreto: digitar qa1010 revela o botão */
+/* Atalho secreto: digitar qa1010 (ou simulação ativa) revela o botão */
 html body #btn-demo.demo-shortcut-visible {
     display: inline-flex !important;
     visibility: visible !important;
     pointer-events: auto !important;
+    opacity: 1 !important;
+}
+
+/* Indicador permanece visível entre módulos enquanto a simulação estiver ligada */
+html body #demo-indicator.demo-shortcut-visible {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: none !important;
     opacity: 1 !important;
 }

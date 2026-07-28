@@ -330,10 +330,27 @@ window.demoMode = (function () {
     try { return sessionStorage.getItem('nr11-demoMode') === '1'; } catch (e) { return false; }
 })();
 
+function isDemoBtnRevealed() {
+    try { return sessionStorage.getItem('nr11-demoBtnVisible') === '1'; } catch (e) { return false; }
+}
+
+function setDemoBtnRevealed(visible) {
+    try { sessionStorage.setItem('nr11-demoBtnVisible', visible ? '1' : '0'); } catch (e) { }
+}
+
 function applyDemoModeUI() {
     const btn = document.getElementById('btn-demo');
     const ind = document.getElementById('demo-indicator');
+    // Visível só com simulação ligada, ou se o atalho qa1010 revelou (antes de ligar)
+    var revealBtn = !!window.demoMode || isDemoBtnRevealed();
+
+    if (window.demoMode) {
+        setDemoBtnRevealed(true);
+        revealBtn = true;
+    }
+
     if (btn) {
+        btn.classList.toggle('demo-shortcut-visible', !!revealBtn);
         btn.classList.toggle('is-demo-on', !!window.demoMode);
         btn.classList.toggle('is-demo-off', !window.demoMode);
         if (window.matchMedia('(min-width: 769px)').matches) {
@@ -347,13 +364,12 @@ function applyDemoModeUI() {
             btn.style.removeProperty('box-shadow');
         }
     }
-    if (window.demoMode) {
-        if (ind) {
+    if (ind) {
+        ind.classList.toggle('demo-shortcut-visible', !!window.demoMode);
+        if (window.demoMode) {
             ind.style.opacity = '1';
             ind.style.transform = 'translateY(0)';
-        }
-    } else {
-        if (ind) {
+        } else {
             ind.style.opacity = '0';
             ind.style.transform = 'translateY(-20px)';
         }
@@ -365,6 +381,8 @@ function applyDemoModeUI() {
 function toggleDemoMode() {
     window.demoMode = !window.demoMode;
     try { sessionStorage.setItem('nr11-demoMode', window.demoMode ? '1' : '0'); } catch (e) { }
+    // Liga: mantém visível entre módulos. Desliga: esconde o atalho de novo.
+    setDemoBtnRevealed(!!window.demoMode);
     applyDemoModeUI();
 }
 
@@ -386,7 +404,17 @@ window.addEventListener('keydown', (e) => {
         seq = (seq + e.key.toLowerCase()).slice(-target.length);
         if (seq !== target) return;
         var btn = document.getElementById('btn-demo');
-        if (btn) btn.classList.toggle('demo-shortcut-visible');
+        if (btn) {
+            btn.classList.toggle('demo-shortcut-visible');
+            var visible = btn.classList.contains('demo-shortcut-visible');
+            setDemoBtnRevealed(visible);
+            // Se esconder o atalho com simulação ainda ligada, desliga para não ficar "fantasma"
+            if (!visible && window.demoMode) {
+                window.demoMode = false;
+                try { sessionStorage.setItem('nr11-demoMode', '0'); } catch (err) { }
+            }
+            applyDemoModeUI();
+        }
         seq = '';
     });
 })();
@@ -606,25 +634,38 @@ function pauseSlideVideoIframe(iframe) {
 function unloadSlideVideoIframe(iframe) {
     pauseSlideVideoIframe(iframe);
     if (!iframe.dataset.videoSrc) return;
+    var wrap = iframe.closest('.video-wrap');
     iframe.setAttribute('src', SLIDE_VIDEO_BLANK);
-    setVideoPosterVisible(iframe.closest('.video-wrap'), true);
+    setVideoPosterVisible(wrap, true);
+    // Permite reiniciar o player quando o slide voltar a ficar ativo
+    if (wrap) {
+        try { _videoWrapInited.delete(wrap); } catch (e) { }
+        if (iframe.dataset) {
+            delete iframe.dataset.pandaMsgBound;
+        }
+    }
 }
 
 function loadSlideVideoIframe(iframe) {
     var src = iframe.dataset.videoSrc;
     if (!src) return;
+    var wrap = iframe.closest('.video-wrap');
     var current = iframe.getAttribute('src') || '';
+
+    function onLoaded() {
+        setVideoPosterVisible(wrap, false);
+        initVideoWrapPlayer(wrap);
+    }
+
+    // Já está com o src certo: só garante o bind do player
     if (current === src) {
-        initVideoWrapPlayer(iframe.closest('.video-wrap'));
+        onLoaded();
         return;
     }
-    if (!current || current === SLIDE_VIDEO_BLANK) {
-        iframe.addEventListener('load', function () {
-            setVideoPosterVisible(iframe.closest('.video-wrap'), false);
-            initVideoWrapPlayer(iframe.closest('.video-wrap'));
-        }, { once: true });
-        iframe.setAttribute('src', src);
-    }
+
+    // Sempre (re)carrega quando o src ainda não é o do vídeo
+    iframe.addEventListener('load', onLoaded, { once: true });
+    iframe.setAttribute('src', src);
 }
 
 function ensureVideoWarn(wrap) {
@@ -659,7 +700,7 @@ function initPandaWrapPlayer(wrap) {
     var iframe = wrap.querySelector('iframe');
     if (!iframe || !isLoadedPandaIframe(iframe)) return;
 
-    _videoWrapInited.add(wrap);
+    // Só marca como iniciado depois que o player estiver pronto
     wrap.classList.add('req-item');
     wrap.style.cursor = 'default';
     var warn = ensureVideoWarn(wrap);
@@ -691,6 +732,7 @@ function initPandaWrapPlayer(wrap) {
     }, complete);
 
     function bindPlayer(player) {
+        _videoWrapInited.add(wrap);
         try {
             var d = player.getDuration && player.getDuration();
             if (typeof d === 'number' && d > 0) duration = d;
@@ -743,7 +785,13 @@ function initPandaWrapPlayer(wrap) {
                 var player = new PandaPlayer(iframe.id, {
                     onReady: function () { bindPlayer(player); }
                 });
-            } catch (e) { }
+                // Fallback: se onReady não vier, ainda marca para não ficar em loop
+                setTimeout(function () {
+                    if (!_videoWrapInited.has(wrap)) _videoWrapInited.add(wrap);
+                }, 4000);
+            } catch (e) {
+                _videoWrapInited.add(wrap);
+            }
         });
     }
 
@@ -892,7 +940,8 @@ function syncSlideVideos(activeIdx) {
     lockAllVideoWraps();
     slides.forEach(function (slide, i) {
         slide.querySelectorAll('.video-wrap iframe').forEach(prepareSlideVideoIframe);
-        var shouldLoad = Math.abs(i - activeIdx) <= 1;
+        // Só carrega no slide ativo (iframes em display:none quebram o Panda)
+        var shouldLoad = (i === activeIdx);
         slide.querySelectorAll('.video-wrap iframe[data-video-prepared]').forEach(function (iframe) {
             if (shouldLoad) loadSlideVideoIframe(iframe);
             else unloadSlideVideoIframe(iframe);
