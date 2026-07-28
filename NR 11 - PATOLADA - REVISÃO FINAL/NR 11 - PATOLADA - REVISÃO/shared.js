@@ -485,17 +485,32 @@ window.addEventListener('keydown', (e) => {
 function isSlideCompleted(idx) {
     if (window.demoMode) return true;
     const slide = document.querySelectorAll('.slide')[idx];
+    if (!slide) return true;
     const resultPanel = slide.querySelector('[id$="-result-panel"]');
     if (resultPanel && resultPanel.style.display === 'none') return false;
     if (resultPanel && resultPanel.style.display === 'block') {
         const status = resultPanel.querySelector('.r-status');
         if (status && status.classList.contains('ref')) return false;
     }
+    // Vídeos bloqueiam o PRÓXIMO até assistir (mesmo antes do player marcar req-item)
+    const videoWraps = slide.querySelectorAll('.video-wrap');
+    for (let i = 0; i < videoWraps.length; i++) {
+        if (!videoWraps[i].classList.contains('req-done')) return false;
+    }
     const reqs = slide.querySelectorAll('.req-item');
     for (let i = 0; i < reqs.length; i++) {
         if (!reqs[i].classList.contains('req-done')) return false;
     }
     return true;
+}
+
+function lockAllVideoWraps() {
+    document.querySelectorAll('.slide .video-wrap').forEach(function (wrap) {
+        if (wrap.classList.contains('req-done')) return;
+        wrap.classList.add('req-item');
+        wrap.style.cursor = 'default';
+        ensureVideoWarn(wrap);
+    });
 }
 
 function updateNextButton() {
@@ -510,7 +525,7 @@ function updateNextButton() {
     }
 }
 
-/* ── Slide video lazy load (Vimeo iframes + video preload) ── */
+/* ── Slide video lazy load (Panda / Vimeo) ── */
 var SLIDE_VIDEO_BLANK = 'about:blank';
 var _videoWrapInited = new WeakSet();
 
@@ -519,14 +534,28 @@ function getVimeoIdFromSrc(src) {
     return m ? m[1] : null;
 }
 
+function getPandaIdFromSrc(src) {
+    var m = (src || '').match(/[?&]v=([0-9a-f-]{36})/i);
+    return m ? m[1] : null;
+}
+
 function isLoadedVimeoIframe(iframe) {
     var src = iframe.getAttribute('src') || '';
     return src.indexOf('vimeo') !== -1 && src !== SLIDE_VIDEO_BLANK;
 }
 
-function ensureVideoPoster(wrap, vimeoSrc) {
+function isLoadedPandaIframe(iframe) {
+    var src = iframe.getAttribute('src') || '';
+    return src.indexOf('pandavideo') !== -1 && src !== SLIDE_VIDEO_BLANK;
+}
+
+function isSlideVideoSrc(src) {
+    return (src || '').indexOf('vimeo') !== -1 || (src || '').indexOf('pandavideo') !== -1;
+}
+
+function ensureVideoPoster(wrap, videoSrc) {
     if (!wrap || wrap.querySelector('.video-poster')) return;
-    var id = getVimeoIdFromSrc(vimeoSrc);
+    var id = getVimeoIdFromSrc(videoSrc);
     if (!id) return;
     var poster = document.createElement('img');
     poster.className = 'video-poster';
@@ -543,34 +572,46 @@ function setVideoPosterVisible(wrap, visible) {
     if (poster) poster.style.display = visible ? 'block' : 'none';
 }
 
-function prepareVimeoIframe(iframe) {
-    if (!iframe || iframe.dataset.vimeoPrepared) return;
+function prepareSlideVideoIframe(iframe) {
+    if (!iframe || iframe.dataset.videoPrepared) return;
     var src = iframe.getAttribute('src');
-    if (!src || src === SLIDE_VIDEO_BLANK || src.indexOf('vimeo') === -1) return;
-    iframe.dataset.vimeoSrc = src;
+    if (!src || src === SLIDE_VIDEO_BLANK || !isSlideVideoSrc(src)) return;
+    iframe.dataset.videoSrc = src;
+    iframe.dataset.videoKind = src.indexOf('pandavideo') !== -1 ? 'panda' : 'vimeo';
+    if (!iframe.id && iframe.dataset.videoKind === 'panda') {
+        var pid = getPandaIdFromSrc(src);
+        if (pid) iframe.id = 'panda-' + pid;
+    }
     iframe.removeAttribute('src');
-    iframe.dataset.vimeoPrepared = '1';
+    iframe.dataset.videoPrepared = '1';
     var wrap = iframe.closest('.video-wrap');
-    if (wrap) ensureVideoPoster(wrap, src);
+    if (wrap) {
+        wrap.classList.add('req-item');
+        wrap.style.cursor = 'default';
+        ensureVideoWarn(wrap);
+        if (iframe.dataset.videoKind === 'vimeo') ensureVideoPoster(wrap, src);
+    }
 }
 
-function pauseVimeoIframe(iframe) {
+function pauseSlideVideoIframe(iframe) {
     try {
-        if (typeof Vimeo !== 'undefined' && isLoadedVimeoIframe(iframe)) {
+        if (isLoadedVimeoIframe(iframe) && typeof Vimeo !== 'undefined') {
             new Vimeo.Player(iframe).pause().catch(function () { });
+        } else if (isLoadedPandaIframe(iframe) && iframe.contentWindow) {
+            iframe.contentWindow.postMessage({ type: 'pause' }, '*');
         }
     } catch (e) { }
 }
 
-function unloadVimeoIframe(iframe) {
-    pauseVimeoIframe(iframe);
-    if (!iframe.dataset.vimeoSrc) return;
+function unloadSlideVideoIframe(iframe) {
+    pauseSlideVideoIframe(iframe);
+    if (!iframe.dataset.videoSrc) return;
     iframe.setAttribute('src', SLIDE_VIDEO_BLANK);
     setVideoPosterVisible(iframe.closest('.video-wrap'), true);
 }
 
-function loadVimeoIframe(iframe) {
-    var src = iframe.dataset.vimeoSrc;
+function loadSlideVideoIframe(iframe) {
+    var src = iframe.dataset.videoSrc;
     if (!src) return;
     var current = iframe.getAttribute('src') || '';
     if (current === src) {
@@ -586,7 +627,175 @@ function loadVimeoIframe(iframe) {
     }
 }
 
-function initVideoWrapPlayer(wrap) {
+function ensureVideoWarn(wrap) {
+    var warn = wrap.querySelector('.video-warn');
+    if (!warn) {
+        warn = document.createElement('div');
+        warn.className = 'video-warn';
+        warn.textContent = 'Assista até o final';
+        wrap.appendChild(warn);
+    }
+    if (!wrap.classList.contains('req-done')) {
+        warn.style.display = '';
+        warn.style.opacity = '1';
+        warn.style.pointerEvents = 'auto';
+    }
+    return warn;
+}
+
+function markWrapVideoComplete(wrap, warn) {
+    if (wrap.classList.contains('req-done')) return;
+    wrap.classList.add('req-done');
+    if (warn) {
+        warn.style.display = 'none';
+        warn.style.opacity = '0';
+        warn.style.pointerEvents = 'none';
+    }
+    updateNextButton();
+}
+
+function initPandaWrapPlayer(wrap) {
+    if (!wrap || _videoWrapInited.has(wrap)) return;
+    var iframe = wrap.querySelector('iframe');
+    if (!iframe || !isLoadedPandaIframe(iframe)) return;
+
+    _videoWrapInited.add(wrap);
+    wrap.classList.add('req-item');
+    wrap.style.cursor = 'default';
+    var warn = ensureVideoWarn(wrap);
+
+    if (!iframe.id) {
+        var pid = getPandaIdFromSrc(iframe.getAttribute('src') || iframe.dataset.videoSrc || '');
+        if (pid) iframe.id = 'panda-' + pid;
+    }
+
+    var maxWatched = 0;
+    var duration = 0;
+    var completed = false;
+
+    function complete() {
+        if (completed) return;
+        completed = true;
+        markWrapVideoComplete(wrap, warn);
+    }
+
+    // Sempre escuta postMessage (mais confiável no embed Panda)
+    initPandaPostMessageFallback(wrap, iframe, warn, function (t, dur) {
+        if (completed) return;
+        if (typeof dur === 'number' && dur > 0) duration = dur;
+        if (typeof t === 'number') {
+            if (t > maxWatched + 2.5) return 'seek:' + maxWatched;
+            if (t > maxWatched) maxWatched = t;
+            if (duration > 0 && maxWatched >= Math.max(0, duration - 3)) complete();
+        }
+    }, complete);
+
+    function bindPlayer(player) {
+        try {
+            var d = player.getDuration && player.getDuration();
+            if (typeof d === 'number' && d > 0) duration = d;
+        } catch (e) { }
+
+        player.onEvent(function (e) {
+            if (!e || completed) return;
+            var msg = e.message;
+            var t = typeof e.currentTime === 'number' ? e.currentTime : null;
+
+            if (msg === 'panda_play') {
+                warn.style.opacity = '0';
+                warn.style.pointerEvents = 'none';
+            }
+            if (msg === 'panda_pause' && !wrap.classList.contains('req-done')) {
+                warn.style.opacity = '1';
+                warn.style.pointerEvents = 'auto';
+            }
+            if (msg === 'panda_ended') {
+                complete();
+                try { player.pause(); player.setCurrentTime(0); } catch (err) { }
+                return;
+            }
+            if (msg === 'panda_timeupdate' && t !== null) {
+                try {
+                    var dd = player.getDuration && player.getDuration();
+                    if (typeof dd === 'number' && dd > 0) duration = dd;
+                } catch (err) { }
+                if (t > maxWatched + 2.5) {
+                    try { player.setCurrentTime(maxWatched); } catch (err) { }
+                    return;
+                }
+                if (t > maxWatched) maxWatched = t;
+                if (duration > 0 && maxWatched >= Math.max(0, duration - 3)) complete();
+            }
+            if ((msg === 'panda_seeking' || msg === 'panda_seeked') && t !== null && t > maxWatched + 1.25) {
+                try { player.setCurrentTime(maxWatched); } catch (err) { }
+            }
+        });
+    }
+
+    function startPanda() {
+        if (typeof PandaPlayer === 'undefined') {
+            setTimeout(startPanda, 120);
+            return;
+        }
+        window.pandascripttag = window.pandascripttag || [];
+        window.pandascripttag.push(function () {
+            try {
+                var player = new PandaPlayer(iframe.id, {
+                    onReady: function () { bindPlayer(player); }
+                });
+            } catch (e) { }
+        });
+    }
+
+    startPanda();
+}
+
+function initPandaPostMessageFallback(wrap, iframe, warn, onTime, onEnded) {
+    if (iframe.dataset.pandaMsgBound) return;
+    iframe.dataset.pandaMsgBound = '1';
+    var videoId = getPandaIdFromSrc(iframe.getAttribute('src') || iframe.dataset.videoSrc || '') || (iframe.id || '').replace(/^panda-/, '');
+    if (!videoId) return;
+    var maxWatched = 0;
+    var duration = 0;
+    var completed = false;
+    window.addEventListener('message', function (event) {
+        var data = event.data;
+        if (!data || !data.message) return;
+        if (data.video && String(data.video) !== String(videoId)) return;
+        if (completed || wrap.classList.contains('req-done')) return;
+        var t = typeof data.currentTime === 'number' ? data.currentTime : null;
+        if (data.message === 'panda_play') {
+            warn.style.opacity = '0';
+            warn.style.pointerEvents = 'none';
+        }
+        if (data.message === 'panda_pause' && !wrap.classList.contains('req-done')) {
+            warn.style.opacity = '1';
+            warn.style.pointerEvents = 'auto';
+        }
+        if (data.message === 'panda_ended') {
+            completed = true;
+            if (typeof onEnded === 'function') onEnded();
+            else markWrapVideoComplete(wrap, warn);
+            return;
+        }
+        if (data.message === 'panda_timeupdate' && t !== null) {
+            if (typeof data.duration === 'number' && data.duration > 0) duration = data.duration;
+            if (t > maxWatched + 2.5) {
+                try { iframe.contentWindow.postMessage({ type: 'currentTime', parameter: maxWatched }, '*'); } catch (e) { }
+                return;
+            }
+            if (t > maxWatched) maxWatched = t;
+            if (typeof onTime === 'function') {
+                onTime(t, duration);
+            } else if (duration > 0 && maxWatched >= Math.max(0, duration - 3)) {
+                completed = true;
+                markWrapVideoComplete(wrap, warn);
+            }
+        }
+    });
+}
+
+function initVimeoWrapPlayer(wrap) {
     if (!wrap || _videoWrapInited.has(wrap)) return;
     var iframe = wrap.querySelector('iframe');
     if (!iframe || !isLoadedVimeoIframe(iframe)) return;
@@ -595,14 +804,7 @@ function initVideoWrapPlayer(wrap) {
     _videoWrapInited.add(wrap);
     wrap.classList.add('req-item');
     wrap.style.cursor = 'default';
-
-    var warn = wrap.querySelector('.video-warn');
-    if (!warn) {
-        warn = document.createElement('div');
-        warn.className = 'video-warn';
-        warn.textContent = 'Assista até o final';
-        wrap.appendChild(warn);
-    }
+    var warn = ensureVideoWarn(wrap);
 
     var player = new Vimeo.Player(iframe);
     var maxWatched = 0;
@@ -610,16 +812,9 @@ function initVideoWrapPlayer(wrap) {
     var completed = false;
 
     function markVideoComplete() {
-        if (completed || wrap.classList.contains('req-done')) {
-            completed = true;
-            return;
-        }
+        if (completed) return;
         completed = true;
-        wrap.classList.add('req-done');
-        warn.style.display = 'none';
-        warn.style.opacity = '0';
-        warn.style.pointerEvents = 'none';
-        updateNextButton();
+        markWrapVideoComplete(wrap, warn);
     }
 
     player.getDuration().then(function (d) {
@@ -638,7 +833,6 @@ function initVideoWrapPlayer(wrap) {
         if (typeof data.duration === 'number' && data.duration > 0) {
             duration = data.duration;
         }
-        // Evita pular para frente, mas aceita avanço normal mesmo com gaps de buffer
         if (data.seconds > maxWatched + 2.5) {
             player.setCurrentTime(maxWatched);
             return;
@@ -646,8 +840,7 @@ function initVideoWrapPlayer(wrap) {
         if (data.seconds > maxWatched) {
             maxWatched = data.seconds;
         }
-        // Fallback: libera perto do fim (alguns embeds não disparam "ended")
-        if (duration > 0 && maxWatched >= Math.max(0, duration - 1.5)) {
+        if (duration > 0 && maxWatched >= Math.max(0, duration - 3)) {
             markVideoComplete();
         }
     });
@@ -680,15 +873,29 @@ function initVideoWrapPlayer(wrap) {
     });
 }
 
+function initVideoWrapPlayer(wrap) {
+    if (!wrap) return;
+    var iframe = wrap.querySelector('iframe');
+    if (!iframe) return;
+    if (isLoadedPandaIframe(iframe)) {
+        initPandaWrapPlayer(wrap);
+        return;
+    }
+    if (isLoadedVimeoIframe(iframe)) {
+        initVimeoWrapPlayer(wrap);
+    }
+}
+
 function syncSlideVideos(activeIdx) {
     var slides = document.querySelectorAll('.slide');
     if (!slides.length) return;
+    lockAllVideoWraps();
     slides.forEach(function (slide, i) {
-        slide.querySelectorAll('iframe').forEach(prepareVimeoIframe);
+        slide.querySelectorAll('.video-wrap iframe').forEach(prepareSlideVideoIframe);
         var shouldLoad = Math.abs(i - activeIdx) <= 1;
-        slide.querySelectorAll('iframe[data-vimeo-prepared]').forEach(function (iframe) {
-            if (shouldLoad) loadVimeoIframe(iframe);
-            else unloadVimeoIframe(iframe);
+        slide.querySelectorAll('.video-wrap iframe[data-video-prepared]').forEach(function (iframe) {
+            if (shouldLoad) loadSlideVideoIframe(iframe);
+            else unloadSlideVideoIframe(iframe);
         });
         slide.querySelectorAll('video').forEach(function (v) {
             v.setAttribute('preload', 'metadata');
@@ -697,6 +904,7 @@ function syncSlideVideos(activeIdx) {
             }
         });
     });
+    updateNextButton();
 }
 
 function goTo(idx, force = false, skipHistory = false) {
@@ -753,13 +961,15 @@ function goTo(idx, force = false, skipHistory = false) {
     }
     const btnFwd = document.getElementById('btn-fwd');
     if (btnFwd) {
-        btnFwd.disabled = currentSlide === TOTAL - 1;
         btnFwd.style.visibility = 'visible';
         btnFwd.style.display = (currentSlide === TOTAL - 1) ? 'none' : 'flex';
+        // Trava imediatamente; updateNextButton libera se a página estiver completa
+        btnFwd.disabled = true;
     }
-    updateNextButton();
     buildDots();
+    try { lockAllVideoWraps(); } catch (e) { }
     try { syncSlideVideos(currentSlide); } catch (e) { }
+    updateNextButton();
     try { window.updateQuizAudioHelper(); } catch (e) { }
     // Slide index not persisted
 }
@@ -1635,13 +1845,15 @@ if (btnBackInit) {
 const btnFwdInit = document.getElementById('btn-fwd');
 if (btnFwdInit) {
     btnFwdInit.style.visibility = 'visible';
+    btnFwdInit.disabled = true;
 }
 
 buildDots();
 if (document.getElementById('q1-question-panel')) quiz1.render();
 if (document.getElementById('q3-question-panel')) quiz3.render();
-updateNextButton();
+try { lockAllVideoWraps(); } catch (e) { }
 try { syncSlideVideos(currentSlide); } catch (e) { }
+updateNextButton();
 try { window.updateQuizAudioHelper(); } catch (e) { }
 
 // removed persistence
@@ -2860,13 +3072,18 @@ function resetQuiz6() { quiz6.reset(); }
             if (isLast && hasNextModule) {
                 // Last slide of non-final module: "PRÓXIMO MÓDULO"
                 btnFwd.style.display = 'flex';
-                btnFwd.disabled = !isSlideCompleted(currentSlide);
                 if (label) label.textContent = 'PRÓXIMO MÓDULO';
                 btnFwd.classList.add('btn-next-module');
             } else {
                 // Restore default label "PRÓXIMO"
                 if (label) label.textContent = 'PRÓXIMO';
                 btnFwd.classList.remove('btn-next-module');
+            }
+
+            // Sempre reaplica o estado do botão (vídeos / requisitos)
+            if (!(isLast && !hasNextModule)) {
+                btnFwd.disabled = !isSlideCompleted(currentSlide);
+                if (!isLast) btnFwd.style.display = 'flex';
             }
 
             // Cover slide (index, slide 0): hide nav completely - "INICIAR" handles it

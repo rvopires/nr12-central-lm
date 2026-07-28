@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script src="https://player.pandavideo.com.br/api.v2.js"></script>
     <link rel="stylesheet" href="shared.css?v=70">
     <script>
         window.MODULE_NAV = {
@@ -83,9 +83,7 @@
                     style="align-items: center; text-align: center; justify-content: flex-start; position: relative; z-index: 2;">
                     <div class="video-wrap video-wrap--std"
                         style="max-width: 1240px; box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 60px rgba(46,204,113,0.3); border: 1px solid rgba(46,204,113,0.4); border-radius: 12px; transform: translateZ(0);">
-                        <iframe
-                            src="https://player.vimeo.com/video/1210599248?h=0&controls=1&title=0&byline=0&portrait=0&badge=0&autopause=0&transparent=0&dnt=1"
-                            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="panda-cd71fa69-048e-42f2-b743-5a185f3da203" src="https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=cd71fa69-048e-42f2-b743-5a185f3da203" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
                     </div>
                 </div>
                 <div class="wave" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;"><svg
@@ -120,9 +118,7 @@
                     style="align-items: center; text-align: center; justify-content: flex-start; position: relative; z-index: 2;">
                     <div class="video-wrap video-wrap--std"
                         style="max-width: 1240px; box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 60px rgba(46,204,113,0.3); border: 1px solid rgba(46,204,113,0.4); border-radius: 12px; transform: translateZ(0);">
-                        <iframe
-                            src="https://player.vimeo.com/video/1210599247?h=0&controls=1&title=0&byline=0&portrait=0&badge=0&autopause=0&transparent=0&dnt=1"
-                            frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="panda-50405d31-ffb0-465b-95e7-82949b1d8927" src="https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=50405d31-ffb0-465b-95e7-82949b1d8927" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
                     </div>
                 </div>
                 <div class="wave" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;"><svg
@@ -632,7 +628,7 @@
                 </svg>
                 ANTERIOR
             </button>
-            <button class="nav-btn" id="btn-fwd" onclick="moduleNext()">
+            <button class="nav-btn" id="btn-fwd" onclick="moduleNext()" disabled>
                 PRÓXIMO
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                     stroke-linejoin="round">
@@ -651,7 +647,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=42"></script>
+    <script src="shared.js?v=45"></script>
 </body>
 
 </html>
