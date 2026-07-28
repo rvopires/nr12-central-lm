@@ -672,7 +672,7 @@
 
                     <div class="video-wrap"
                         style="max-width: 1240px; margin-top: 40px; box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 60px rgba(46,204,113,0.3); border: 1px solid rgba(46,204,113,0.4); border-radius: 12px; transform: translateZ(0);">
-                        <iframe id="panda-829cfc6b-f675-4084-815c-cb50951141a7" src="https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=829cfc6b-f675-4084-815c-cb50951141a7" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
+                        <iframe id="panda-829cfc6b-f675-4084-815c-cb50951141a7" src="https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=829cfc6b-f675-4084-815c-cb50951141a7&saveProgress=false" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
                     </div>
 
 
@@ -796,7 +796,7 @@
                 <!-- VIDEO -->
                 <div
                     style="padding:56.25% 0 0 0;position:relative; border-radius: 8px; overflow: hidden; margin: 5px 0;">
-                    <iframe id="panda-58c2b207-5c32-4336-acba-6df97de39825" src="https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=58c2b207-5c32-4336-acba-6df97de39825" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
+                    <iframe id="panda-58c2b207-5c32-4336-acba-6df97de39825" src="https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=58c2b207-5c32-4336-acba-6df97de39825&saveProgress=false" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
                 </div>
                 <script src="https://player.pandavideo.com.br/api.v2.js"></script>
 
@@ -822,95 +822,9 @@
             </div>
         </div>
 
-        <!-- Modal de Atenção (após o tutorial) -->
-        <div class="img-modal-overlay" id="sessionWarningModal" style="z-index: 10001; background: rgba(0,0,0,0.92);">
-            <div class="img-modal-content" role="dialog" aria-labelledby="sessionWarningTitle" aria-modal="true">
-                <div class="sw-accent" aria-hidden="true"></div>
-                <div class="sw-inner" id="sessionWarningScroll">
-                    <div class="sw-header">
-                        <div class="sw-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 9v4" />
-                                <path d="M12 17h.01" />
-                                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-                            </svg>
-                        </div>
-                        <span class="sw-badge">Aviso importante</span>
-                        <h2 class="sw-title" id="sessionWarningTitle">Atenção</h2>
-                    </div>
-
-                    <div class="sw-body">
-                        <p>Para garantir o registro correto da sua conclusão, este treinamento deve ser assistido e
-                            concluído integralmente em uma única sessão.</p>
-                        <p>Caso o treinamento seja fechado antes da conclusão, o progresso poderá não ser salvo, sendo
-                            necessário iniciá-lo novamente.</p>
-                        <p>Antes de iniciar, certifique-se de que possui tempo suficiente para concluir o treinamento e
-                            uma conexão estável com a internet, evitando interrupções durante a realização.</p>
-                    </div>
-
-                    <div class="sw-footer">
-                        <button type="button" class="sw-btn" id="btnSessionWarningClose"
-                            onclick="try{if(window.playTechClick) playTechClick();}catch(e){} closeSessionWarningModal()">
-                            Eu compreendo
-                        </button>
-                    </div>
-                </div>
-                <button type="button" class="sw-scroll-hint" id="swScrollHint"
-                    aria-label="Rolar para baixo" title="Descer"
-                    onclick="scrollSessionWarningDown()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                </button>
-            </div>
-        </div>
+        <!-- Modal de Atenção removido -->
 
         <script>
-            function isSessionWarningMobile() {
-                return window.matchMedia('(max-width: 768px)').matches;
-            }
-
-            function updateSessionWarningScrollHint() {
-                const scroller = document.getElementById('sessionWarningScroll');
-                const hint = document.getElementById('swScrollHint');
-                if (!scroller || !hint) return;
-                if (!isSessionWarningMobile()) {
-                    hint.classList.add('is-hidden');
-                    return;
-                }
-                const nearBottom = scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 18;
-                hint.classList.toggle('is-hidden', nearBottom);
-            }
-
-            function scrollSessionWarningDown() {
-                const scroller = document.getElementById('sessionWarningScroll');
-                if (!scroller) return;
-                try { if (window.playTechClick) playTechClick(); } catch (e) { }
-                scroller.scrollBy({ top: Math.max(160, scroller.clientHeight * 0.6), behavior: 'smooth' });
-                setTimeout(updateSessionWarningScrollHint, 280);
-            }
-
-            function openSessionWarningModal() {
-                const modal = document.getElementById('sessionWarningModal');
-                const scroller = document.getElementById('sessionWarningScroll');
-                const hint = document.getElementById('swScrollHint');
-                if (modal) modal.classList.add('active');
-                if (scroller) scroller.scrollTop = 0;
-                if (hint && isSessionWarningMobile()) hint.classList.remove('is-hidden');
-                setTimeout(updateSessionWarningScrollHint, 80);
-                setTimeout(updateSessionWarningScrollHint, 300);
-            }
-
-            function closeSessionWarningModal() {
-                const modal = document.getElementById('sessionWarningModal');
-                if (modal) modal.classList.remove('active');
-            }
-
-            // Só no fluxo inicial: fechar tutorial → abrir aviso.
-            // Depois disso, cada botão abre só o próprio modal.
-            let chainWarningAfterTutorial = true;
             let tutorialUnlockTimer = null;
 
             function setTutorialButtonLocked(locked) {
@@ -938,37 +852,39 @@
                 }, 5000);
             }
 
+            function resetTutorialVideoToStart() {
+                const iframe = document.querySelector('#tutorialModal iframe');
+                if (!iframe) return;
+                let src = iframe.getAttribute('src') || iframe.src || '';
+                if (!src || src === 'about:blank') {
+                    src = 'https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=58c2b207-5c32-4336-acba-6df97de39825&saveProgress=false';
+                }
+                if (/[?&]saveProgress=/i.test(src)) {
+                    src = src.replace(/([?&]saveProgress=)[^&]*/i, '$1false');
+                } else {
+                    src += (src.indexOf('?') === -1 ? '?' : '&') + 'saveProgress=false';
+                }
+                iframe.src = 'about:blank';
+                setTimeout(function () { iframe.src = src; }, 30);
+            }
+
             function closeTutorialModal(e) {
                 const btn = document.getElementById('btnTutorialClose');
                 if (btn && btn.disabled) return;
                 const modal = document.getElementById('tutorialModal');
                 if (modal) {
                     modal.classList.remove('active');
-                    // Stop iframe video when closed
-                    const iframe = modal.querySelector('iframe');
-                    if (iframe) {
-                        const src = iframe.src;
-                        iframe.src = src;
-                    }
-                }
-                if (chainWarningAfterTutorial) {
-                    chainWarningAfterTutorial = false;
-                    openSessionWarningModal();
+                    resetTutorialVideoToStart();
                 }
             }
 
             // Abrir TODA VEZ que a página carrega
             document.addEventListener('DOMContentLoaded', () => {
-                const scroller = document.getElementById('sessionWarningScroll');
-                if (scroller) {
-                    scroller.addEventListener('scroll', updateSessionWarningScrollHint, { passive: true });
-                }
-                window.addEventListener('resize', updateSessionWarningScrollHint);
                 setTimeout(() => {
                     const modal = document.getElementById('tutorialModal');
                     if (modal) {
-                        chainWarningAfterTutorial = true;
                         modal.classList.add('active');
+                        resetTutorialVideoToStart();
                         startTutorialUnlockTimer();
                     }
                 }, 800);
@@ -979,7 +895,7 @@
     </div><!-- fecha #app -->
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=48"></script>
+    <script src="shared.js?v=50"></script>
 </body>
 
 </html>
