@@ -145,7 +145,7 @@ if (_scrollBtnMq.addEventListener) {
     _scrollBtnMq.addListener(refreshActiveSlideScrollBtn);
 }
 
-const _CAROUSEL_NAV_BTN = '.s10-nav-btn, .m1o-nav-btn, .m4p-nav-btn, .m5c-nav-btn, .m5f-nav-btn, .m5e-nav-btn, .m6c-nav-btn, .m6p-nav-btn';
+const _CAROUSEL_NAV_BTN = '.s10-nav-btn, .m1o-nav-btn, .m4p-nav-btn, .m5c-nav-btn, .m5f-nav-btn, .m5e-nav-btn, .m6c-nav-btn, .m6p-nav-btn, .s2-nav-btn';
 
 function initCarouselNavTouchFix() {
     document.addEventListener('touchend', function (e) {
@@ -375,6 +375,113 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
+(function initDemoShortcutReveal() {
+    var seq = '';
+    var target = 'qa1010';
+    window.addEventListener('keydown', function (e) {
+        if (e.ctrlKey || e.altKey || e.metaKey) return;
+        var tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+        if (tag === 'input' || tag === 'textarea' || (e.target && e.target.isContentEditable)) return;
+        if (!e.key || e.key.length !== 1) return;
+        seq = (seq + e.key.toLowerCase()).slice(-target.length);
+        if (seq !== target) return;
+        var btn = document.getElementById('btn-demo');
+        if (btn) btn.classList.toggle('demo-shortcut-visible');
+        seq = '';
+    });
+})();
+
+(function initGoPageShortcut() {
+    var buf = '';
+    var timer = null;
+    var modules = [
+        { id: 'index', offset: 0, file: 'index.html' },
+        { id: 'modulo-1', offset: 3, file: 'modulo-1.html' },
+        { id: 'modulo-2', offset: 10, file: 'modulo-2.html' },
+        { id: 'modulo-3', offset: 16, file: 'modulo-3.html' },
+        { id: 'modulo-4', offset: 22, file: 'modulo-4.html' },
+        { id: 'modulo-5', offset: 27, file: 'modulo-5.html' },
+        { id: 'modulo-6', offset: 36, file: 'modulo-6.html' }
+    ];
+
+    function clearBuf() {
+        buf = '';
+        if (timer) {
+            clearTimeout(timer);
+            timer = null;
+        }
+    }
+
+    function resolveGlobalPage(pageNum) {
+        if (!pageNum || pageNum < 1 || pageNum > NR11_TOTAL_SLIDES) return null;
+        for (var i = modules.length - 1; i >= 0; i--) {
+            if (pageNum > modules[i].offset) {
+                return {
+                    id: modules[i].id,
+                    file: modules[i].file,
+                    local: pageNum - modules[i].offset - 1
+                };
+            }
+        }
+        return null;
+    }
+
+    function jumpToGlobalPage(pageNum) {
+        var target = resolveGlobalPage(pageNum);
+        if (!target) return;
+        clearBuf();
+        var currentId = (window.MODULE_NAV && window.MODULE_NAV.id) || 'index';
+        if (target.id === currentId) {
+            if (typeof goTo === 'function') goTo(target.local, true);
+            return;
+        }
+        window.location.href = target.file + '?restoreslide=' + target.local;
+    }
+
+    function tryCommitGo() {
+        var m = buf.match(/^go(\d{1,2})$/);
+        if (!m) return;
+        var pageNum = parseInt(m[1], 10);
+        if (pageNum >= 1 && pageNum <= NR11_TOTAL_SLIDES) jumpToGlobalPage(pageNum);
+        else clearBuf();
+    }
+
+    window.addEventListener('keydown', function (e) {
+        if (e.ctrlKey || e.altKey || e.metaKey) return;
+        var tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+        if (tag === 'input' || tag === 'textarea' || (e.target && e.target.isContentEditable)) return;
+
+        if (e.key === 'Enter' && /^go\d{1,2}$/.test(buf)) {
+            e.preventDefault();
+            tryCommitGo();
+            return;
+        }
+        if (e.key === 'Escape') {
+            clearBuf();
+            return;
+        }
+        if (!e.key || e.key.length !== 1) return;
+
+        var ch = e.key.toLowerCase();
+        if (ch === 'g') {
+            clearBuf();
+            buf = 'g';
+            return;
+        }
+        if (buf === 'g' && ch === 'o') {
+            buf = 'go';
+            return;
+        }
+        if (buf.indexOf('go') === 0 && /^\d$/.test(ch) && buf.length < 4) {
+            buf += ch;
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(function () { tryCommitGo(); }, 700);
+            return;
+        }
+        clearBuf();
+    });
+})();
+
 function isSlideCompleted(idx) {
     if (window.demoMode) return true;
     const slide = document.querySelectorAll('.slide')[idx];
@@ -499,20 +606,49 @@ function initVideoWrapPlayer(wrap) {
 
     var player = new Vimeo.Player(iframe);
     var maxWatched = 0;
+    var duration = 0;
+    var completed = false;
+
+    function markVideoComplete() {
+        if (completed || wrap.classList.contains('req-done')) {
+            completed = true;
+            return;
+        }
+        completed = true;
+        wrap.classList.add('req-done');
+        warn.style.display = 'none';
+        warn.style.opacity = '0';
+        warn.style.pointerEvents = 'none';
+        updateNextButton();
+    }
+
+    player.getDuration().then(function (d) {
+        duration = d || 0;
+    }).catch(function () { });
 
     var enforceTime = function (data) {
-        if (data.seconds > maxWatched + 1) {
+        if (completed) return;
+        if (data.seconds > maxWatched + 1.25) {
             player.setCurrentTime(maxWatched);
         }
     };
 
     player.on('timeupdate', function (data) {
-        if (data.seconds > maxWatched + 1) {
+        if (completed) return;
+        if (typeof data.duration === 'number' && data.duration > 0) {
+            duration = data.duration;
+        }
+        // Evita pular para frente, mas aceita avanço normal mesmo com gaps de buffer
+        if (data.seconds > maxWatched + 2.5) {
             player.setCurrentTime(maxWatched);
             return;
         }
-        if (data.seconds > maxWatched && (data.seconds - maxWatched) < 1.5) {
+        if (data.seconds > maxWatched) {
             maxWatched = data.seconds;
+        }
+        // Fallback: libera perto do fim (alguns embeds não disparam "ended")
+        if (duration > 0 && maxWatched >= Math.max(0, duration - 1.5)) {
+            markVideoComplete();
         }
     });
 
@@ -523,7 +659,7 @@ function initVideoWrapPlayer(wrap) {
         warn.style.opacity = '0';
         warn.style.pointerEvents = 'none';
         player.getCurrentTime().then(function (seconds) {
-            if (seconds > maxWatched + 1) player.setCurrentTime(maxWatched);
+            if (!completed && seconds > maxWatched + 1.25) player.setCurrentTime(maxWatched);
         });
     });
 
@@ -535,9 +671,7 @@ function initVideoWrapPlayer(wrap) {
     });
 
     player.on('ended', function () {
-        wrap.classList.add('req-done');
-        warn.style.display = 'none';
-        updateNextButton();
+        markVideoComplete();
         try {
             player.pause().then(function () {
                 return player.setCurrentTime(0);

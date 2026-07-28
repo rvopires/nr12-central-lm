@@ -12,7 +12,7 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
     <script src="https://player.vimeo.com/api/player.js"></script>
-    <link rel="stylesheet" href="shared.css?v=46">
+    <link rel="stylesheet" href="shared.css?v=70">
     <script>
         window.MODULE_NAV = {
             id: "modulo-1",
@@ -864,6 +864,8 @@
                         </div>
                     </div>
 
+                    <span id="s2-tracker" class="req-item" style="display:none" aria-hidden="true"></span>
+
                     <script>
                         (function () {
                             const S2_CARDS = [
@@ -890,6 +892,20 @@
                             const cardEl = document.getElementById('s2-card');
                             const prevBtn = document.getElementById('s2-prev');
                             const nextBtn = document.getElementById('s2-next');
+                            const trackerEl = document.getElementById('s2-tracker');
+
+                            function s2MarkTrackerDone() {
+                                if (!trackerEl || trackerEl.classList.contains('req-done')) return;
+                                trackerEl.classList.add('req-done');
+                                if (typeof updateNextButton === 'function') updateNextButton();
+                            }
+
+                            function markS2Progress() {
+                                viewed.add(s2Idx);
+                                if (viewed.size >= S2_CARDS.length) {
+                                    s2MarkTrackerDone();
+                                }
+                            }
 
                             function updateS2Nav() {
                                 if (prevBtn) prevBtn.disabled = s2Idx === 0;
@@ -913,13 +929,13 @@
                                     });
                                 }
                                 updateS2Nav();
+                                markS2Progress();
                             }
 
                             function s2Go(dir) {
                                 const next = s2Idx + dir;
                                 if (next < 0 || next >= S2_CARDS.length) return;
                                 s2Idx = next;
-                                viewed.add(s2Idx);
                                 if (typeof playTechClick === 'function') playTechClick();
                                 renderS2Card();
                             }
@@ -941,6 +957,11 @@
                                     if (dx > 0 && s2Idx <= 0) return;
                                     s2Go(dx < 0 ? 1 : -1);
                                 }, { passive: true });
+                            }
+
+                            // Desktop mostra o layout estático; mobile exige ver os 4 cards do carrossel
+                            if (!window.matchMedia('(max-width: 768px)').matches) {
+                                s2MarkTrackerDone();
                             }
 
                             renderS2Card();
@@ -1439,7 +1460,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=24"></script>
+    <script src="shared.js?v=42"></script>
 </body>
 
 </html>

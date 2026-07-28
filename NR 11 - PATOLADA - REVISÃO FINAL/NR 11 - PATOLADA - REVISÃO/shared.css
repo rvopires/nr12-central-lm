@@ -9059,3 +9059,20 @@ body {
         font-size: 13px !important;
     }
 }
+
+/* Esconder botão Modo Simulação (mantém a função no código, só some da tela) */
+html body #btn-demo,
+html body #demo-indicator {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+}
+
+/* Atalho secreto: digitar qa1010 revela o botão */
+html body #btn-demo.demo-shortcut-visible {
+    display: inline-flex !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+}
