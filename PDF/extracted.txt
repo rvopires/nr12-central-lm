@@ -1,0 +1,533 @@
+              Máquina Central de Cores
+
+  NR 12- SEGURANÇA NA
+OPERAÇÃO DE MÁQUINAS
+Conteúdo Programático da Capacitação
+
+         1. Conceitos de máquina e NR 12.
+         2. Conteúdo Programático para Capacitação (anexo II da NR 12):
+         a) descrição e identificação dos riscos associados com cada máquina e equipamento e
+
+               as proteções específicas contra cada um deles;
+         b) funcionamento das proteções; como e por que devem ser usadas;
+         c) como e em que circunstâncias uma proteção pode ser removida, e por quem;
+         d) o que fazer, por exemplo, contatar o supervisor, se uma proteção foi danificada ou se
+
+               perdeu sua função, deixando de garantir uma segurança adequada;
+         e) os princípios de segurança na utilização da máquina ou equipamento;
+         f) segurança para riscos mecânicos, elétricos e outros relevantes;.
+         g) método de trabalho seguro;
+         h) permissão de trabalho; e
+         i) sistema de bloqueio de funcionamento da máquina e equipamento durante
+
+               operações de inspeção, limpeza, lubrificação e manutenção.
+Conceitos
+
+                                           O que é uma máquina?
+
+          Máquina é um dispositivo artificial que utiliza a conversão de energia para atingir objetivos
+          predeterminados.
+
+                                      O que é um dosador de tintas?
+
+          Também conhecido como dosificador é uma máquina para dosagem automática de
+          corantes fluidos em recipientes (vasilhames, latas ou galões de plástico ou de metal) de
+          variados tamanhos, de 0,5 até 18 litros, preenchidos com base, para produzir produtos
+          acabados tais como tintas, tinturas, esmaltes e tintas de determinada coloração,
+          escolhidos pelo programa aplicativo de gestão da máquina, composto por área de
+          dosagem e sistema/serviço de posicionamento das embalagens e área de enchimento
+          dos canisters, que são recipientes com tampa de fechamento para colocação dos
+          produtos a serem dosados.
+Conceitos
+
+                                    O que é um misturador de tintas?
+
+          Também conhecido como agitador giroscópico é uma máquina com sistema de
+          fechamento manual através de porta tipo cortina deslizante, utilizada para mistura de
+          tintas e vernizes contidas em latas metálicas ou de plástico de variados tamanhos (0,9 a
+          18 litros), fixados em mecanismos de travamento e pratos de fechamento, que garantem
+          a fixação segura da embalagem, sendo seu funcionamento realizado eletronicamente
+          através do acionamento do painel com comandos de acionamento liga/desliga e de
+          programação de tempo de agitação (timer), e condicionado a um dispositivo de
+          segurança que impede sua ligação quando a porta está aberta, causando a parada
+          imediata da mistura.
+Sobre a NR12
+
+      É uma das normas regulamentadoras do Ministério do Trabalho e Emprego que trata da
+      Segurança do Trabalho em Máquinas e Equipamentos, e junto com seus anexos definem
+      referências técnicas, princípios fundamentais e medidas de proteção para resguardar a saúde
+      e a integridade física dos trabalhadores e estabelece requisitos mínimos para a prevenção de
+      acidentes e doenças do trabalho nas fases de projeto e de utilização de máquinas e
+      equipamentos, e ainda à sua fabricação, importação, comercialização, exposição e cessão a
+      qualquer título, em todas as atividades econômicas, sem prejuízo da observância do disposto
+      nas demais NRs aprovadas pela Portaria MTb n.º 3.214, de 8 de junho de 1978, nas normas
+      técnicas oficiais ou nas normas internacionais aplicáveis e, na ausência ou omissão destas,
+      opcionalmente, nas normas Europeias tipo “C” harmonizadas.
+Sobre a NR12
+
+             DISPOSIÇÃO DA NR 12 (ANEXOS)
+
+        Anexo I - Requisitos para o uso de detectores de presença optoeletrônicos.
+        Anexo II - Conteúdo programático da capacitação.
+        Anexo III - Meios de acesso a máquinas e equipamentos.
+        Anexo IV - Glossário.
+        Anexo V - Motosserras.
+        Anexo VI - Máquinas para panificação e confeitaria.
+        Anexo VII - Máquinas para açougue, mercearia, bares e restaurantes.
+        Anexo VIII - Prensas e similares.
+        Anexo IX - Injetora de materiais plásticos.
+        Anexo X - Máquinas para fabricação de calçados e afins.
+        Anexo XI - Máquinas e implementos para uso agrícola e florestal.
+        Anexo XII - Equipamentos de guindar para elevação de pessoas e realização de
+        trabalho em altura.
+NR 12 não se aplica
+
+        12.1.4 Esta NR não se aplica:
+        a) às máquinas e equipamentos movidos ou impulsionados por força animal;
+NR 12 não se aplica
+
+  12.1.4 Esta NR não se aplica:
+  b) às máquinas e equipamentos movidos ou impulsionados por força humana (Paleteiras
+  manuais)
+NR 12 não se aplica
+
+     12.1.4 Esta NR não se aplica:
+     c) às máquinas e equipamentos movidos ou impulsionados por força humana
+
+     a) às máquinas e equipamentos expostos em museus, feiras e eventos, para fins históricos
+     ou que sejam considerados como antiguidades e não sejam mais empregados com fins
+     produtivos, desde que sejam adotadas medidas que garantam a preservação da
+     integridade física dos visitantes e expositores;
+     b) às máquinas e equipamentos classificados como eletrodomésticos com selo do
+     IMMETRO.
+NR 12 não se aplica                                                     Caldeiras
+
+       d) equipamentos estáticos;                Tubulações sobre pressão
+
+                                   Auto - Forno
+
+ T
+ a
+ n
+ q
+ u
+ e
+ s
+NR 12 não se aplica
+
+        e) ferramentas portáteis e ferramentas transportáveis (semiestacionárias), operadas
+        eletricamente, que atendam aos princípios construtivos estabelecidos em norma técnica
+        tipo “C” (parte geral e específica) nacional ou, na ausência desta, em norma técnica
+        internacional aplicável;
+
+        f) máquinas certificadas pelo INMETRO, desde que atendidos todos os requisitos técnicos
+        de construção relacionados à segurança.
+
+                                                                   Furadeiras e Serras tico - tico
+Central de Cores
+
+             Seguir corretamente as indicações de operações contidas na Instrução de Trabalho
+        Central de Cores.
+
+Dosador de tintas  Misturador de tintas
+Dosador / Dosificador de Tintas
+
+COROB – Modelo D200  COROB – Modelo Tatocolor  Accutinter – Modelo 1600
+Componentes Principais
+
+1. Área de          dosagem e
+sistema/serviço de  posicionamento
+das embalagens.
+
+2. Área de enchimento dos canisters.
+Componentes Principais
+
+1. Placa de identificação do
+dosador.
+
+2. Etiqueta “Advertências gerais”
+
+3. Etiqueta “Perigo Laser” Evite
+retirar ou tornar ilegíveis as
+etiquetas de segurança ou
+instrução. Substitua toda a
+etiqueta que não seja mais
+legível ou em falta, mediante
+solicitação ao fabricante.
+Componentes Principais
+
+       1. Interruptor geral.
+       2. Caixa dos fusíveis.
+       3. Tomada de alimentação.
+       4. Tomadas auxiliares.
+       5. Porta serial USB.
+       6. Porta serial.
+Misturador de Tintas
+
+Junqueira – Modelo MJ 51.3  COROB – Modelo  Tintomatic – Modelo T6000
+                             CLEVERmix 20
+Componentes Principais
+
+1. Lâmpada ON ou botão de
+início de ciclo de agitação.
+Quando acesa indica que a
+máquina está ligada.
+2. Timer. Permite ajuste do
+tempo de mistura (máximo 6
+minutos).
+3. Botão de emergência.
+4. Porta tipo cortina deslizante.
+Componentes Principais
+
+                                                                                                                           1
+     1. Mecanismo de travamento (Rotor).
+
+                                                                                                                           2
+     2. Prato de fechamento superior.
+     3. Prato de fechamento inferior.
+
+                                                                                                                            3
+Cabe aos trabalhadores
+
+     ⮚ item 12.1.10 da NR 12 - Cumprir todas as orientações relativas aos procedimentos seguros
+        de operação, alimentação, abastecimento, limpeza, manutenção, inspeção, transporte,
+        desativação, desmonte e descarte das máquinas e equipamentos;
+
+     ⮚ não realizar qualquer tipo de alteração nas proteções mecânicas ou dispositivos de
+        segurança de máquinas e equipamentos, de maneira que possa colocar em risco a sua
+        saúde e integridade física ou de terceiros;
+
+    ⮚ comunicar seu superior imediato se uma proteção ou dispositivo de segurança foi removido,
+        danificado ou se perdeu sua função;
+
+     ⮚ participar dos treinamentos fornecidos pelo empregador para atender às
+        exigências/requisitos descritos na NR 12;
+
+     ⮚ colaborar com o empregador na implementação das disposições contidas na NR 12.
+
+         É obrigatória a formação de NR 12 para utilização de máquina dosadora e máquina
+                                                     misturadora de tintas.
+ Instrução de trabalho
+
+     Antes de operar as máquinas da Central de Cores, ler e observar a Instrução de Trabalho
+disponível no PORTAL 3PIR dentro do ServiceNow.
+ Instrução de trabalho
+
+     Após clicar no ícone do PORTAL 3PIR dentro do ServiceNow, pesquisar por “central de cores” e
+escolher a Instrução de Trabalho para uso das máquinas da Central de Cores e clicar na lupinha.
+ Instrução de trabalho
+
+     Em seguida, aparecerá a Página Inicial de Documentos, onde estará o nome da Instrução de
+Trabalho Central de Cores, bastando apenas clicar no nome para acessar.
+ Instrução de trabalho
+
+     Dentro da Instrução de Trabalho Central de Cores está a descrição das operações com o passo
+a passo para operação segura do equipamento. O vídeo abaixo demonstra cada um deles.
+SEGURANÇA
+Advertências de segurança e usos não permitidos
+
+  OBRIGATÓRIO
+  Leia o manual do usuário atenciosamente antes de executar qualquer operação na máquina.
+
+  ➢ A máquina deve ser utilizada somente em operações para as quais foi fabricada.
+
+  ➢ Preste muita atenção às sinalizações colocadas na máquina.
+
+  ➢ Quando indicado, utilize os equipamentos de proteção individual.
+
+  ➢ Somente pessoal qualificado e treinado adequadamente (TÉCNICOS DE MANUTENÇÃO)
+      estão autorizados a acessar as partes da máquina protegidas por painéis para operações de
+      manutenção extraordinária e consertos.
+SEGURANÇA
+Advertências de segurança e usos não permitidos
+
+   ➢ Toda intervenção de manutenção ordinária do operador deve ser efetuada com a máquina
+       desligada e com o cabo de alimentação desconectado da tomada de energia elétrica.
+
+   ➢ A máquina deve ser utilizada por um único operador; é proibida a presença de outras
+       pessoas, além do operador, que possam ter acesso e tocar partes da máquina durante a
+       utilização.
+
+   ➢ A máquina deve ser utilizada por um operador que tenha maioridade e que esteja em
+       condições psicofísicas, definidas idôneas por um médico do trabalho.
+
+   ➢ As substâncias que podem ser utilizadas na máquina como corantes, tintas, solventes,
+       lubrificantes e detergentes podem ser nocivas à saúde; deve-se manusear, armazenar e
+       eliminar estas substâncias conforme as normas em vigor e com as instruções fornecidas com o
+       produto.
+SEGURANÇA
+Advertências de segurança e usos não permitidos
+
+  PROIBIDO
+
+  ➢ A máquina não deve ser utilizada com embalagens que ultrapassem o limite definido pelo
+      fabricante, embalagens usadas e com corantes diferentes daqueles indicados na tabela dos
+      dados técnicos constantes no manual da máquina.
+
+  ➢ A MÁQUINA NÃO DEVE SER UTILIZADA EM AMBIENTES COM PERIGO DE EXPLOSÃO.
+
+  ➢ A máquina não deve ser utilizada para uso alimentar.
+
+  ➢ É proibido utilizar o fechamento dos pratos do misturador para fechar a tampa da lata ou
+      recipiente de tinta.
+
+  ➢ Somente pessoal qualificado e treinado adequadamente (TÉCNICOS DE MANUTENÇÃO)
+      estão autorizados a acessar as partes da máquina protegidas por painéis para operações de
+      manutenção extraordinária e consertos.
+SEGURANÇA
+Advertências de segurança e usos não permitidos
+
+  PROIBIDO
+
+  ➢ É proibido utilizar a máquina sem proteções ou com os eventuais dispositivos de proteção
+      presentes na máquina desativados, em avaria ou em falta. Os painéis devem ser mantidos
+      fechados todo o tempo.
+
+  ➢ Caso o dosador possua o item opcional, batoque de laser, não olhe fixamente para o
+      centralizador deste.
+
+  ➢ Se a máquina pegar fogo, nunca use água. Utilize somente extintores com pó químico seco ou
+      de gás carbônico e siga com atenção as instruções de uso e as advertências indicadas pelo
+      fabricante e transcritas no extintor.
+
+  OBS: Caso não tenha um brigadista no setor, solicite o apoio de um brigadista próximo à
+  área da Central de Cores para extinção do fogo.
+Perigo Elétrico
+
+    ➢ ALIMENTE SEMPRE A MÁQUINA COM UMA TOMADA CAPAZ DE GARANTIR A LIGAÇÃO
+        À TERRA. A linha deve ser protegida de sobrecargas, curtos-circuitos e contatos diretos de
+        acordo com as normas em vigor para a prevenção de acidentes. Uma execução incorreta de
+        ligação à terra pode conduzir ao risco de choque elétrico.
+
+    ➢ A máquina não deve ser alimentada eletricamente por meio de uma fonte de alimentação que
+        tenha especificações diferentes daquelas relacionadas na placa de identificação.
+
+    ➢ Em caso de interrupção repentina da alimentação de energia elétrica, ao retornar a energia, a
+        máquina é ligada automaticamente para permitir que sejam feitos os processos automáticos
+        que evitem a secagem dos produtos.
+
+    ➢ Para prevenir qualquer risco de choque elétrico ou ferimentos, a máquina deve ser usada
+        apenas em ambientes internos. É proibido utilizar a máquina em ambiente externo onde possa
+        estar exposta à chuva ou a muita umidade.
+Perigo Elétrico
+
+    ➢ Sempre desconecte o cabo de alimentação de energia da tomada de corrente elétrica, antes de
+        executar qualquer operação de manutenção.
+
+    ➢ A máquina é isolada da linha de alimentação de energia elétrica quando o cabo de alimentação
+        é desconectado; por isso deve ser instalada próxima a uma tomada de corrente elétrica
+        facilmente acessível.
+
+    ➢ Não utilize cabos de extensão para fornecer energia elétrica para a máquina.
+
+    ➢ Não utilize tomadas múltiplas (benjamins, filtros de linha) para conectar outros
+        equipamentos à mesma tomada que forneça energia elétrica para a máquina. Para os
+        dosadores, certifique-se de que a alimentação elétrica dos equipamentos conectados à máquina
+        de modo serial como o computador, seja equipotencial (que tenha uma única referência de
+        ligação à terra) pois diferenças de potencial causam distúrbios e/ou danos às portas seriais.
+
+    ➢ Verificar periodicamente a condição do cabo de alimentação de energia; se estiver danificado,
+        troque-o por um novo cabo fornecido pelo fabricante.
+Advertências sobre o uso de corantes
+
+     PERIGO
+
+          A máquina é adequada para o uso com produtos corantes em geral. Siga estritamente as
+     instruções de uso fornecidos na embalagem do corante e leia cuidadosamente as FICHAS DE
+     SEGURANÇA (FDS – Ficha de Segurança) que o comerciante ou o fabricante do produto deve
+     fornecer.
+
+          Siga todas as disposições de segurança indicadas. Quando obrigatório, utilize equipamento
+     de proteção pessoal para olhos e mãos.
+
+          A seguir, estão mencionadas algumas entre as mais comuns advertências e precauções de
+     segurança fornecidas pelos produtores do corante.
+Advertências sobre o uso de corantes
+
+     1. Nocivo se for ingerido.
+
+     2. Evite o contato com a pele e olhos. Em caso de contato com a pele ou com os olhos, enxágue
+     abundantemente com água.
+
+     3. Mantenha fora do alcance de crianças.
+
+     4. Quando for obrigatório, utilize o equipamento de proteção indicado.
+
+     5. Em caso de vazamento, derramamento ou queda acidental do produto, ventile bem a área e
+     proceda como indicado no manual da máquina, nas instruções fornecidas no produto e no
+     treinamento de NR 20 – Produtos Químicos.
+
+     6. Não descartar o corante no esgoto. Para eliminação e tratamento dos resíduos, siga as
+     disposições de leis locais relativas à matéria e o Procedimento PR0002587 - Segregação de
+     resíduos, solicitação de coleta, venda de sucata (resíduos recicláveis) e disponibilização de
+     equipamentos para separação de resíduos, disponível no PORTAL 3PIR dentro do ServiceNow.
+EPI – Equipamentos de Proteção Individual
+
+           Durante o uso do dosador ou do misturador de tintas é necessário que o operador utilize
+     os seguintes equipamentos de proteção individual:
+
+Calçado de segurança  Luva tricotada
+
+Para atividade de purga/limpeza, além dos equipamentos acima, utilizar também:
+
+Óculos de segurança
+
+                      Luvas de látex
+Advertências gerais quanto ao uso
+
+     PERIGO!
+
+           A máquina deve ser utilizada por um único operador; é proibida a presença de outras
+     pessoas além do operador que possam alcançar e tocar partes da máquina durante o
+     funcionamento.
+
+           É proibido utilizar a máquina sem proteções ou com os eventuais dispositivos de proteção
+     presentes na máquina desativados, em avaria ou em falta. Os painéis devem ser mantidos
+     fechados todo o tempo.
+
+           Não coloque por motivo algum as mãos na área de dosagem ou de mistura durante o
+     funcionamento da máquina, exceto para carregar e descarregar as embalagens.
+
+           É proibido utilizar a máquina como mesa de trabalho, bem como, deixar objetos apoiados
+     durante o funcionamento.
+
+           Durante a movimentação dos recipientes, não supere os limites de peso impostos pelas
+     normas vigentes (25 kg).
+Advertências gerais - Misturador de Tintas
+
+      ➢ Nunca usar latas abaixo de 100 mm ou pesando mais de 35 kg.
+      ➢ Não colocar uma lata sobre a outra.
+      ➢ Não utilizar a máquina com latas danificadas ou não corretamente fechadas. Certificar-se
+
+          sempre de que a tampa está perfeitamente fechada.
+      ➢ Não colocar a máquina em operação sem uma lata em seu interior, exceto durante a
+
+          realização de breves testes no funcionamento do dispositivo de segurança ao abrir a porta.
+      ➢ Colocar as latas a serem misturadas no centro da placa de aperto do fundo (prato de
+
+          fechamento inferior).
+Advertências gerais - Misturador de Tintas
+
+            Recomenda-se fixar cuidadosamente os pegadores ou manípulos das latas de tinta com fita
+      adesiva ou elástico para evitar danos à lata de tinta e à máquina.
+Advertências gerais - Dosador de Tintas
+
+      No início de cada dia de trabalho
+
+      Execute sempre as seguintes operações:
+
+      ➢ Controle se o centro dos bicos de dosagem está limpo.
+
+      ➢ Checar se a esponja está limpa e saturada; se for necessário saturar, use apenas líquido
+          apropriado (a escolha do líquido depende da natureza dos colorantes, e deve ser feito
+          diretamente pelo fabricante do produto usado).
+
+      ➢ Execute a inicialização do sistema e a purga.
+
+      Na condução
+
+            O operador é guiado para a condução da máquina pelo programa aplicativo de gestão que
+      exibe as instruções a serem executadas e as ações desempenhadas pela máquina.
+Manutenção ordinária e Limpeza
+
+     PERIGO
+
+           Antes de executar quaisquer operações de manutenção, deve-se desligar a máquina e
+     desconectar o cabo de alimentação de energia elétrica da tomada de corrente.
+
+           Durante as operações de manutenção da máquina, é alto o risco de contato com o corante.
+
+           É PROIBIDO O USO DE PRODUTOS QUÍMICOS INFLAMÁVEIS E Á BASE DE
+     SOLVENTES, TAIS COMO ÁLCOOL, AGUARRÁS, DESENGRAXANTE (WD 40), THINNER.
+
+     LIMPEZA DO MISTURADOR DE TINTAS
+
+           Para limpeza dos misturadores na parte externa, usar um pano macio e seco ou levemente
+     umedecido com uma solução suave de limpeza; e na parte externa, em caso de vazamento de
+     tinta dentro da máquina, limpar imediatamente com pano úmido ou uma espátula. Os líquidos de
+     descarregamento são coletados no fundo e podem ser escoados pelos furos de drenagem
+     inclinando levemente a máquina.
+Manutenção ordinária e Limpeza
+
+     LIMPEZA DO DOSADOR DE TINTAS
+
+     Para limpeza dos dosadores na parte externa:
+
+     ➢ NUNCA USE ÁGUA OU PRODUTOS DE LIMPEZA À BASE DE SOLVENTE PARA LIMPAR
+         A MÁQUINA.
+
+     ➢ No caso do corante derramado dentro da máquina, não tente limpar; desligue a máquina
+         imediatamente e contate um serviço técnico autorizado.
+
+     ➢ No caso de derramamento de produto, limpe a máquina imediatamente pela seguinte ordem:
+         1) Desconecte a alimentação elétrica. 2) Limpe revestimentos, painéis e comandos da
+         máquina, para remover a sujeira, poeira e quaisquer manchas de corante, utilizando um pano
+         macio e seco ou levemente umedecido com uma solução suave de limpeza. 3) Conecte o
+         cabo de força e ligue a máquina.
+Limpeza de componentes - Dosador de Tintas
+
+     Limpeza do centro dos bicos de dosagem
+
+     1. Desconecte a alimentação elétrica;
+     2. Abra a tampa empurrando com a mão a
+
+           barra de abertura;
+     3. Limpe cuidadosamente o centro dos bicos
+
+           de dosagem com um instrumento
+           pontiagudo; remova com cuidado os
+           eventuais resíduos secos de corante para
+           não danificar as terminações dos
+           circuitos;
+     4. Recoloque a tampa na posição de
+           fechamento;
+     5. Conecte o cabo de força e ligue a
+           máquina;
+     6. Descarregue.
+Limpeza de componentes - Dosador de Tintas
+
+     Limpeza e umidificação da esponja
+
+     1. Desconecte a alimentação elétrica;
+     2. Abra a tampa empurrando com a mão a barra
+
+           de abertura;
+     3. Desencaixe o copinho que contém a esponja e
+
+           retire-o de sua sede;
+     4. Recoloque a tampa na posição de fechamento;
+     5. Lave o copinho, controle o estado da esponja e
+
+           faça a umidificação. O nível do líquido não
+           deve superar a altura da esponja. Se estiver
+           muito suja, retire a esponja da tampa e lave-a
+           cuidadosamente. Substitua a esponja se
+           estiver muito danificada;
+     6. Abra a tampa com a mão e introduza de novo
+           o copinho encaixando-o.
+     7. Conecte o cabo de força e ligue a máquina.
+Organização e Limpeza da Central de Cores
+
+           Mantenha limpo e organizado o ambiente de trabalho, para evitar sujeiras ou acúmulo de
+     papéis e etiquetas atrás das máquinas, colocando resíduos de tinta em recipiente / palete
+     plástico de contenção para destinação correta, a fim de evitar riscos de incêndio.
+Demais recomendações de segurança para
+ uso do dosador e do misturador de tintas
+
+    ➢ Realizar manutenções preventivas regularmente;
+
+    ➢ Em caso de falha da máquina, não faça nenhuma intervenção, comunique o seu líder
+        para acionar a manutenção corretiva;
+
+    ➢ Utilizar equipamentos de segurança durante a operação;
+
+    ➢ Seguir as instruções de uso do fabricante;
+
+    ➢ Capacitar os operadores para a utilização correta dos equipamentos e não permitir o
+        uso do dosador ou do misturador de tintas por pessoas não autorizadas ou
+        capacitadas;
+
+    ➢ Realizar testes e inspeções periódicas.
+"Segurança no trabalho não é apenas uma
+ regra, é uma atitude de respeito à vida."
+
