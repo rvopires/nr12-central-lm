@@ -30,7 +30,7 @@ const newSlide = `                        if (typeof updateNextButton === 'funct
                         border-top: 4px solid #ff4757;
                     }
                     #s-mod6-comp-preventiva .comp-card-modern:nth-child(2) {
-                        border-top: 4px solid #C6F963;
+                        border-top: 4px solid #E7A0FE;
                     }
                     #s-mod6-comp-preventiva .comp-card-modern:nth-child(1):hover {
                         transform: translateY(-5px);
@@ -39,21 +39,21 @@ const newSlide = `                        if (typeof updateNextButton === 'funct
                     }
                     #s-mod6-comp-preventiva .comp-card-modern:nth-child(2):hover {
                         transform: translateY(-5px);
-                        box-shadow: 0 20px 40px rgba(198, 249, 99, 0.2), inset 0 2px 15px rgba(198, 249, 99, 0.08) !important;
-                        border-color: rgba(198, 249, 99, 0.3) !important;
+                        box-shadow: 0 20px 40px rgba(231, 160, 254, 0.2), inset 0 2px 15px rgba(231, 160, 254, 0.08) !important;
+                        border-color: rgba(231, 160, 254, 0.3) !important;
                     }
                     #s-mod6-comp-preventiva .comp-card-modern:nth-child(1).req-done {
-                        background: linear-gradient(145deg, rgba(255, 71, 87, 0.12), rgba(30, 54, 50, 0.95)) !important;
+                        background: linear-gradient(145deg, rgba(255, 71, 87, 0.12), rgba(0, 0, 64, 0.95)) !important;
                         box-shadow: 0 15px 40px rgba(255, 71, 87, 0.25), inset 0 0 25px rgba(255, 71, 87, 0.1) !important;
                         border: 1px solid rgba(255, 71, 87, 0.4) !important;
                         border-top: 4px solid #ff4757 !important;
                         transform: scale(1.02);
                     }
                     #s-mod6-comp-preventiva .comp-card-modern:nth-child(2).req-done {
-                        background: linear-gradient(145deg, rgba(198, 249, 99, 0.12), rgba(30, 54, 50, 0.95)) !important;
-                        box-shadow: 0 15px 40px rgba(198, 249, 99, 0.25), inset 0 0 25px rgba(198, 249, 99, 0.1) !important;
-                        border: 1px solid rgba(198, 249, 99, 0.4) !important;
-                        border-top: 4px solid #C6F963 !important;
+                        background: linear-gradient(145deg, rgba(231, 160, 254, 0.12), rgba(0, 0, 64, 0.95)) !important;
+                        box-shadow: 0 15px 40px rgba(231, 160, 254, 0.25), inset 0 0 25px rgba(231, 160, 254, 0.1) !important;
+                        border: 1px solid rgba(231, 160, 254, 0.4) !important;
+                        border-top: 4px solid #E7A0FE !important;
                         transform: scale(1.02);
                     }
                     #s-mod6-comp-preventiva .comp-card-img-wrap img {
@@ -91,8 +91,8 @@ const newSlide = `                        if (typeof updateNextButton === 'funct
                 </style>
 
                 <div class="top-bar">
-                    <div class="section-tag" style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(198, 249, 99, 0.4);">🏁 MÓDULO 6</div>
-                    <h2 class="slide-title" style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(198, 249, 99, 0.4);">Atitudes Preventivas<br><span>Salvam Vidas</span></h2>
+                    <div class="section-tag" style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(231, 160, 254, 0.4);">🏁 MÓDULO 6</div>
+                    <h2 class="slide-title" style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(231, 160, 254, 0.4);">Atitudes Preventivas<br><span>Salvam Vidas</span></h2>
                 </div>
 
                 <script>
@@ -121,10 +121,10 @@ const newSlide = `                        if (typeof updateNextButton === 'funct
 
                 <div class="content-area" style="padding-top: 15px; max-width: 900px; margin: 0 auto; width: 100%;">
                     <div id="prev-hint-wrapper" style="margin-top: 0; margin-bottom: 25px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;">
-                        <div style="font-family: var(--font-h); font-size: 14px; color: var(--green); text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 10px rgba(198, 249, 99, 0.5); animation: pulse-soft 2s infinite;">Toque nas imagens para comparar os comportamentos ✔</div>
-                        <div style="font-family: var(--font-h); font-size: 13px; color: rgba(198, 249, 99, 0.8); margin-top: 10px; letter-spacing: 1px; text-transform: uppercase;"><span id="prev-counter-text">Veja os dois lados para avançar</span></div>
+                        <div style="font-family: var(--font-h); font-size: 14px; color: var(--green); text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 10px rgba(231, 160, 254, 0.5); animation: pulse-soft 2s infinite;">Toque nas imagens para comparar os comportamentos ✔</div>
+                        <div style="font-family: var(--font-h); font-size: 13px; color: rgba(231, 160, 254, 0.8); margin-top: 10px; letter-spacing: 1px; text-transform: uppercase;"><span id="prev-counter-text">Veja os dois lados para avançar</span></div>
                     </div>
-                    <div class="comp-success" id="prev-success-msg" style="font-family: var(--font-h); font-size: 16px; color: var(--green); text-transform: uppercase; letter-spacing: 2px; margin-top: 0; margin-bottom: 25px; text-shadow: 0 0 15px rgba(198, 249, 99, 0.8); opacity: 0; transform: translateY(10px); transition: all 0.5s ease; display: none; text-align: center;">✅ Análise concluída</div>
+                    <div class="comp-success" id="prev-success-msg" style="font-family: var(--font-h); font-size: 16px; color: var(--green); text-transform: uppercase; letter-spacing: 2px; margin-top: 0; margin-bottom: 25px; text-shadow: 0 0 15px rgba(231, 160, 254, 0.8); opacity: 0; transform: translateY(10px); transition: all 0.5s ease; display: none; text-align: center;">✅ Análise concluída</div>
 
                     <div class="comp-cards-grid hud-anim-enter">
                         <!-- LADO ESQUERDO: INCORRETO -->
@@ -146,7 +146,7 @@ const newSlide = `                        if (typeof updateNextButton === 'funct
                         <!-- LADO DIREITO: CORRETO -->
                         <div class="comp-card-modern req-item" onclick="activatePreventiva(this)" style="cursor: pointer; position: relative;">
                             <div class="comp-card-content">
-                                <div class="comp-card-img-wrap" style="height: 250px; border-bottom: 2px solid #C6F963; overflow: hidden;">
+                                <div class="comp-card-img-wrap" style="height: 250px; border-bottom: 2px solid #E7A0FE; overflow: hidden;">
                                     <img src="https://i.imgur.com/7BJLUgg.png" alt="Operador Atento" style="object-fit: cover; width: 100%; height: 100%; opacity: 0.9;">
                                 </div>
                                 <div class="comp-card-body" style="padding: 20px;">
@@ -163,7 +163,7 @@ const newSlide = `                        if (typeof updateNextButton === 'funct
                 </div>
 
                 <div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-                    <path d="M0,65 C360,20 720,90 1080,40 C1260,15 1390,70 1440,60 L1440,100 L0,100 Z" fill="rgba(198, 249, 99,0.07)" />
+                    <path d="M0,65 C360,20 720,90 1080,40 C1260,15 1390,70 1440,60 L1440,100 L0,100 Z" fill="rgba(231, 160, 254,0.07)" />
                 </svg></div>
             </div>`;
 

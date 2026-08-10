@@ -535,6 +535,19 @@ function isSlideCompleted(idx) {
 function lockAllVideoWraps() {
     document.querySelectorAll('.slide .video-wrap').forEach(function (wrap) {
         if (wrap.classList.contains('req-done')) return;
+        var iframe = wrap.querySelector('iframe');
+        var src = '';
+        if (iframe) {
+            src = iframe.getAttribute('src') || iframe.dataset.videoSrc || '';
+        }
+        // Sem vídeo linkado (placeholder): libera navegação até substituir
+        if (!iframe || !src || src === SLIDE_VIDEO_BLANK || !isSlideVideoSrc(src)) {
+            wrap.classList.add('req-done');
+            wrap.classList.remove('req-item');
+            var warn = wrap.querySelector('.video-warn');
+            if (warn) warn.style.display = 'none';
+            return;
+        }
         wrap.classList.add('req-item');
         wrap.style.cursor = 'default';
         ensureVideoWarn(wrap);
@@ -1089,7 +1102,7 @@ function createPremiumConfetti() {
     const container = document.getElementById('c-confetti');
     if (!container) return;
     container.innerHTML = '';
-    const colors = ['#C6F963', '#345C55', '#f1c40f', '#f39c12', '#ffffff'];
+    const colors = ['#E7A0FE', '#000180', '#f1c40f', '#f39c12', '#ffffff'];
     for (let i = 0; i < 60; i++) {
         const c = document.createElement('div');
         c.className = 'confetti';
@@ -1956,7 +1969,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const styleHUD = document.createElement('style');
 styleHUD.textContent = `
         .hud-glow-correct {
-          box-shadow: 0 0 30px rgba(198, 249, 99, 0.4) !important;
+          box-shadow: 0 0 30px rgba(231, 160, 254, 0.4) !important;
           transform: scale(1.01);
           transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           border-radius: 12px;
