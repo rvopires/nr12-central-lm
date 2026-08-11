@@ -14,7 +14,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=79">
+<link rel="stylesheet" href="shared.css?v=90">
     <script>
         window.MODULE_NAV = {
             id: "index",
@@ -49,7 +49,7 @@
             top: 0;
             left: 0;
             right: 0;
-            background: #E7A0FE;
+            background: #00FFFF;
         }
 
         #tutorialModal h2 {
@@ -151,8 +151,8 @@
             position: relative;
             background:
                 radial-gradient(ellipse at 12% 0%, rgba(241, 196, 15, 0.18) 0%, transparent 42%),
-                radial-gradient(ellipse at 100% 100%, rgba(231, 160, 254, 0.12) 0%, transparent 45%),
-                linear-gradient(160deg, #00005C 0%, #000040 55%, #000028 100%) !important;
+                radial-gradient(ellipse at 100% 100%, rgba(0, 255, 255, 0.12) 0%, transparent 45%),
+                linear-gradient(160deg, #5C1FC0 0%, #3A1480 55%, #1F0A45 100%) !important;
             border-radius: 20px !important;
             border: 1px solid rgba(241, 196, 15, 0.28) !important;
             box-shadow:
@@ -179,7 +179,7 @@
         #sessionWarningModal .sw-accent {
             height: 4px;
             width: 100%;
-            background: linear-gradient(90deg, #f1c40f 0%, #f39c12 40%, #E7A0FE 100%);
+            background: linear-gradient(90deg, #f1c40f 0%, #f39c12 40%, #00FFFF 100%);
             flex-shrink: 0;
         }
 
@@ -215,7 +215,7 @@
             margin-bottom: 4px;
             font-size: 0;
             line-height: 1;
-            background: #00005C;
+            background: #5C1FC0;
             border: 2px solid #f1c40f;
             color: #f1c40f;
             box-shadow:
@@ -288,7 +288,7 @@
         }
 
         #sessionWarningModal .sw-body p:last-child {
-            border-left-color: rgba(231, 160, 254, 0.65);
+            border-left-color: rgba(0, 255, 255, 0.65);
         }
 
         #sessionWarningModal .sw-footer {
@@ -301,8 +301,8 @@
         #sessionWarningModal .sw-btn {
             width: 100%;
             max-width: 280px;
-            background: #E7A0FE;
-            color: #000028;
+            background: #00FFFF;
+            color: #1F0A45;
             border: none;
             padding: 12px 24px;
             border-radius: 8px;
@@ -310,13 +310,13 @@
             font-size: 15px;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
-            box-shadow: 0 8px 24px rgba(231, 160, 254, 0.35);
+            box-shadow: 0 8px 24px rgba(0, 255, 255, 0.35);
         }
 
         #sessionWarningModal .sw-btn:hover {
             transform: translateY(-2px);
             filter: brightness(1.05);
-            box-shadow: 0 12px 28px rgba(231, 160, 254, 0.45);
+            box-shadow: 0 12px 28px rgba(0, 255, 255, 0.45);
         }
 
         #sessionWarningModal .sw-btn:active {
@@ -352,7 +352,7 @@
                 overscroll-behavior: contain;
                 touch-action: pan-y;
                 scrollbar-width: thin;
-                scrollbar-color: rgba(231, 160, 254, 0.55) transparent;
+                scrollbar-color: rgba(0, 255, 255, 0.55) transparent;
             }
 
             #sessionWarningModal .sw-inner::-webkit-scrollbar {
@@ -360,7 +360,7 @@
             }
 
             #sessionWarningModal .sw-inner::-webkit-scrollbar-thumb {
-                background: rgba(231, 160, 254, 0.55);
+                background: rgba(0, 255, 255, 0.55);
                 border-radius: 99px;
             }
 
@@ -428,9 +428,9 @@
                 padding: 0;
                 border: none;
                 border-radius: 50%;
-                background: #E7A0FE;
-                color: #000028;
-                box-shadow: 0 6px 18px rgba(231, 160, 254, 0.55);
+                background: #00FFFF;
+                color: #1F0A45;
+                box-shadow: 0 6px 18px rgba(0, 255, 255, 0.55);
                 cursor: pointer;
                 opacity: 1;
                 pointer-events: auto;
@@ -474,12 +474,12 @@
             }
         }
 
-        /* Ícone de aviso na capa — ao lado do tutorial */
+        /* Ações secundárias da capa */
         #s1 .s1-secondary-actions {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-top: 18px;
+            margin-top: 0;
             align-self: flex-start;
         }
 
@@ -536,16 +536,16 @@
 
         @media (max-width: 768px) {
             #s1 .s1-secondary-actions {
-                margin-top: 14px;
+                margin-top: 0;
                 gap: 8px;
                 flex-wrap: nowrap;
-                align-self: center !important;
-                justify-content: center;
-                width: 100%;
+                align-self: flex-start !important;
+                justify-content: flex-start;
+                width: auto;
             }
 
             #s1 .s1-secondary-actions .btn-tutorial {
-                align-self: center !important;
+                align-self: flex-start !important;
                 margin-left: 0 !important;
                 margin-top: 0 !important;
             }
@@ -591,42 +591,74 @@
                 <div class="s1-hero-img" aria-hidden="true">
                     <img src="assets/fotos/capa.png" alt="">
                 </div>
-                <div class="s1-inner">
-                    <div class="s1-tag">⚙️ Treinamento · Proteção de Máquinas e Equipamentos</div>
-                    <h1><em>NR 12</em> — Segurança na<br>Operação de Máquinas</h1>
-                    <p>Aprenda a identificar riscos, aplicar proteções e operar máquinas com segurança no dia a dia.
-                    </p>
-                    <button class="btn-start" onclick="startCourse()">
-                        <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
-                            <polygon points="5,3 17,10 5,17" />
-                        </svg>
-                        <span>INICIAR O TREINAMENTO</span>
-                    </button>
-                </div>
-                <div class="wave">
+                <div class="s1-veil" aria-hidden="true"></div>
+
+                <aside class="s1-panel" aria-label="Abertura do treinamento">
+                    <div class="s1-panel-shine" aria-hidden="true"></div>
+                    <div class="s1-panel-dots" aria-hidden="true"></div>
+                    <div class="s1-panel-wave" aria-hidden="true"></div>
+
+                    <div class="s1-inner">
+                        <div class="s1-tag">
+                            <svg class="s1-tag-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+                                <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M5.1 18.9l1.6-1.6M17.3 6.7l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            </svg>
+                            <span>TREINAMENTO · PROTEÇÃO DE MÁQUINAS E EQUIPAMENTOS</span>
+                        </div>
+
+                        <h1>
+                            <span class="s1-title-kicker">NR 12 —</span>
+                            <span class="s1-title-main">Segurança na Operação de Máquinas</span>
+                        </h1>
+
+                        <p>Aprenda a identificar riscos, aplicar proteções e operar máquinas com segurança no dia a dia.</p>
+
+                        <div class="s1-actions">
+                            <button class="btn-start" type="button" onclick="startCourse()">
+                                <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
+                                    <polygon points="5,3 17,10 5,17" />
+                                </svg>
+                                <span>INICIAR O TREINAMENTO</span>
+                            </button>
+
+                            <div class="s1-secondary-actions">
+                                <button class="btn-tutorial tutorial-replay" type="button"
+                                    onclick="var m=document.getElementById('tutorialModal'); if(m) m.classList.add('active');">
+                                    <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                                        <polygon points="5,3 17,10 5,17" />
+                                    </svg>
+                                    <span>Ver tutorial</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="wave" aria-hidden="true">
                     <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
                         <defs>
                             <linearGradient id="s1WaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stop-color="rgba(0, 1, 128, 0.55)" />
-                                <stop offset="50%" stop-color="rgba(231, 160, 254,0.55)" />
-                                <stop offset="100%" stop-color="rgba(231, 160, 254,0.4)" />
+                                <stop offset="0%" stop-color="rgba(126, 54, 227, 0.45)" />
+                                <stop offset="45%" stop-color="rgba(0, 255, 255, 0.28)" />
+                                <stop offset="100%" stop-color="rgba(0, 255, 255, 0.22)" />
                             </linearGradient>
                             <filter id="s1WaveBlur" x="-20%" y="-80%" width="140%" height="220%">
-                                <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
                             </filter>
                         </defs>
                         <path d="M0,50 C360,10 720,90 1080,40 C1260,15 1380,65 1440,50 L1440,100 L0,100 Z"
-                            fill="url(#s1WaveGrad)" filter="url(#s1WaveBlur)" opacity="0.85" />
+                            fill="url(#s1WaveGrad)" filter="url(#s1WaveBlur)" opacity="0.7" />
                         <path d="M0,50 C360,10 720,90 1080,40 C1260,15 1380,65 1440,50 L1440,100 L0,100 Z"
-                            fill="rgba(231, 160, 254,0.28)" />
+                            fill="rgba(126, 54, 227, 0.12)" />
                         <path d="M0,70 C240,30 600,100 960,55 C1200,25 1380,80 1440,70 L1440,100 L0,100 Z"
-                            fill="rgba(0, 1, 128, 0.35)" />
+                            fill="rgba(0, 255, 255, 0.3)" />
                     </svg>
                 </div>
             </div>
 
             <div class="slide" id="s1b"
-                style="background: radial-gradient(circle at center, rgba(0, 1, 128, 1) 0%, rgba(0, 0, 40, 1) 100%); overflow: hidden;">
+                style="background: radial-gradient(circle at center, rgba(126, 54, 227, 1) 0%, rgba(31, 10, 64, 1) 100%); overflow: hidden;">
                 <style>
                     @keyframes s1b-smoke {
                         0% {
@@ -652,10 +684,10 @@
                 </style>
                 <!-- Fundo HUD Cinematográfico -->
                 <div
-                    style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 50% 50%, rgba(231, 160, 254, 0.12) 0%, transparent 65%);">
+                    style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 50% 50%, rgba(0, 255, 255, 0.12) 0%, transparent 65%);">
                 </div>
                 <div
-                    style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(231, 160, 254, 0.03) 3px, rgba(231, 160, 254, 0.03) 4px);">
+                    style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 255, 0.03) 3px, rgba(0, 255, 255, 0.03) 4px);">
                 </div>
                 <div
                     style="display: none;">
@@ -663,10 +695,10 @@
 
                 <div class="top-bar" style="position: relative; z-index: 2;">
                     <div class="section-tag"
-                        style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(231, 160, 254, 0.4);">
+                        style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);">
                         🎬 Apresentação</div>
                     <h2 class="slide-title"
-                        style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(231, 160, 254, 0.4);">
+                        style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
                         Introdução a NR 12 —
                         <span>Segurança na Operação de Máquinas</span>
                     </h2>
@@ -675,7 +707,7 @@
                     style="align-items: center; text-align: center; justify-content: flex-start; position: relative; z-index: 2;">
 
                     <div class="video-wrap"
-                        style="max-width: 1240px; margin-top: 40px; box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 60px rgba(231, 160, 254,0.3); border: 1px solid rgba(231, 160, 254,0.4); border-radius: 12px; transform: translateZ(0);">
+                        style="max-width: 1240px; margin-top: 40px; box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 60px rgba(0, 255, 255,0.3); border: 1px solid rgba(0, 255, 255,0.4); border-radius: 12px; transform: translateZ(0);">
                         <iframe id="panda-829cfc6b-f675-4084-815c-cb50951141a7" src="about:blank" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
                     </div>
 
@@ -684,17 +716,17 @@
                 <div class="wave" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;"><svg
                         viewBox="0 0 1440 100" preserveAspectRatio="none">
                         <path d="M0,60 C360,20 720,90 1080,35 L1440,55 L1440,100 L0,100 Z"
-                            fill="rgba(231, 160, 254,0.07)" />
+                            fill="rgba(0, 255, 255,0.07)" />
                     </svg></div>
             </div>
 
             <div class="slide" id="s-sumario">
                 <div class="top-bar">
                     <div class="section-tag"
-                        style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(231, 160, 254, 0.4);">
+                        style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);">
                         📑 Sumário</div>
                     <h2 class="slide-title"
-                        style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(231, 160, 254, 0.4);">
+                        style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
                         Conteúdo <span>Programático</span></h2>
                 </div>
                 <div class="content-area">
@@ -751,7 +783,7 @@
                 </div>
                 <div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none">
                         <path d="M0,50 C360,10 720,90 1080,40 L1440,50 L1440,100 L0,100 Z"
-                            fill="rgba(231, 160, 254,0.07)" />
+                            fill="rgba(0, 255, 255,0.07)" />
                     </svg></div>
             </div>
 
@@ -775,20 +807,20 @@
         </div>
 
         <!-- Modal do Tutorial Obrigatório -->
-        <div class="img-modal-overlay" id="tutorialModal" style="z-index: 10000; background: rgba(0,0,0,0.9);">
+        <div class="img-modal-overlay" id="tutorialModal" style="z-index: 10000; background: rgba(20, 8, 40, 0.9);">
             <div class="img-modal-content"
-                style="width: 90vw; max-width: 900px; padding: 30px; background: radial-gradient(ellipse at 15% 0%, rgba(231, 160, 254, 0.18) 0%, transparent 48%), radial-gradient(ellipse at 100% 100%, rgba(0, 1, 128, 0.9) 0%, transparent 50%), #000180; border-radius: 16px; box-shadow: 0 20px 80px rgba(0,0,0,0.8), 0 0 50px rgba(0, 1, 128, 0.45), inset 0 1px 0 rgba(255,255,255,0.06); border: 1px solid rgba(231, 160, 254, 0.22); display: flex; flex-direction: column; gap: 20px;">
+                style="width: 90vw; max-width: 900px; padding: 30px; background: radial-gradient(ellipse at 15% 0%, rgba(0, 255, 255, 0.18) 0%, transparent 48%), radial-gradient(ellipse at 100% 100%, rgba(126, 54, 227, 0.55) 0%, transparent 50%), #7E36E3; border-radius: 16px; box-shadow: 0 20px 80px rgba(0,0,0,0.8), 0 0 50px rgba(126, 54, 227, 0.45), 0 0 40px rgba(0, 255, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.06); border: 1px solid rgba(0, 255, 255, 0.35); display: flex; flex-direction: column; gap: 20px;">
                 <div class="tut-accent" aria-hidden="true"></div>
 
                 <!-- HEADER -->
                 <div style="display: flex; flex-direction: column; gap: 10px;">
                     <div
-                        style="display: inline-block; align-self: flex-start; background: rgba(231, 160, 254,0.15); color: #E7A0FE; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;">
+                        style="display: inline-block; align-self: flex-start; background: rgba(0, 255, 255, 0.12); color: #00FFFF; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; border: 1px solid rgba(0, 255, 255, 0.4);">
                         ▶ TUTORIAL - OBRIGATÓRIO
                     </div>
                     <h2
                         style="font-size: clamp(24px, 4vw, 32px); color: #fff; margin: 0; font-weight: 800; letter-spacing: -0.5px;">
-                        Antes de começar — <span style="color: #E7A0FE;">Orientações iniciais do treinamento</span>
+                        Antes de começar — <span style="color: #00FFFF;">Orientações iniciais do treinamento</span>
                     </h2>
                     <p
                         style="color: rgba(255,255,255,0.7); font-size: clamp(14px, 2vw, 16px); margin: 0; line-height: 1.5;">
@@ -808,16 +840,16 @@
                     style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 5px;">
                     <div
                         style="color: rgba(255,255,255,0.5); font-size: 13px; display: flex; align-items: center; gap: 8px;">
-                        <span style="color: #E7A0FE; font-size: 10px;">●</span>
+                        <span style="color: #00FFFF; font-size: 10px;">●</span>
                         <span id="tutorialUnlockHint">Aguarde 5 segundos para liberar o botão</span>
                     </div>
                     <button id="btnTutorialClose"
                         onclick="try{if(window.playTechClick) playTechClick();}catch(e){} closeTutorialModal()"
                         disabled
                         aria-disabled="true"
-                        style="background: #E7A0FE; color: #000; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: not-allowed; transition: all 0.2s; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(231, 160, 254,0.3); opacity: 0.45; pointer-events: none;"
-                        onmouseover="if(!this.disabled){this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(231, 160, 254,0.4)'}"
-                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(231, 160, 254,0.3)'">
+                        style="background: linear-gradient(135deg, #00FFFF 0%, #7af5f5 100%); color: #7E36E3; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: not-allowed; transition: all 0.2s; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(0, 255, 255, 0.35); opacity: 0.45; pointer-events: none;"
+                        onmouseover="if(!this.disabled){this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0, 255, 255, 0.5)'}"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 255, 255, 0.35)'">
                         ✓ Entendi, vamos começar
                     </button>
                 </div>
