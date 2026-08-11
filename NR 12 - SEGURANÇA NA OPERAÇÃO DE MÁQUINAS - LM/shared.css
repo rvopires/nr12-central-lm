@@ -262,6 +262,8 @@ img {
         right: 12px;
         width: auto;
         max-width: none;
+        max-height: none;
+        transform: none;
         border-radius: 20px;
     }
 
@@ -1768,11 +1770,13 @@ img {
 .s1-panel {
     position: absolute;
     z-index: 3;
-    top: clamp(72px, 11vh, 100px);
-    bottom: clamp(56px, 10vh, 88px);
+    top: 50%;
+    bottom: auto;
     left: clamp(48px, 7vw, 96px);
-    width: min(560px, 48vw);
+    width: min(520px, 44vw);
     max-width: calc(100% - 48px);
+    max-height: min(640px, calc(100% - clamp(120px, 18vh, 168px)));
+    transform: translateY(-50%);
     border-radius: var(--s1-radius);
     overflow: hidden;
     display: flex;
@@ -1877,34 +1881,35 @@ img {
     flex-direction: column;
     justify-content: center;
     gap: 0;
-    padding: clamp(36px, 4.5vh, 48px) clamp(32px, 3vw, 44px);
+    padding: clamp(28px, 3.2vh, 36px) clamp(28px, 2.8vw, 38px);
     max-width: none;
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 0;
     box-sizing: border-box;
-    overflow-y: auto;
-    scrollbar-width: thin;
+    overflow: visible;
 }
 
 /* Selo superior */
 .s1-tag {
     font-family: var(--font-h);
-    font-size: clamp(10px, 1vw, 12px);
+    font-size: clamp(10px, 0.95vw, 11px);
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     color: rgba(255, 255, 255, 0.92);
     text-transform: uppercase;
-    margin: 0 0 28px;
+    margin: 0 0 18px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     background: rgba(0, 255, 255, 0.08);
     border: 1px solid rgba(0, 255, 255, 0.42);
-    padding: 6px 14px 6px 12px;
+    padding: 7px 14px 7px 12px;
     border-radius: 999px;
     align-self: flex-start;
     max-width: 100%;
-    line-height: 1.25;
+    box-sizing: border-box;
+    line-height: 1.35;
     box-shadow:
         0 0 24px rgba(126, 54, 227, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -1928,10 +1933,10 @@ img {
 .s1-inner h1 {
     font-family: var(--font-h);
     font-weight: 900;
-    font-size: clamp(34px, 4.2vw, 56px);
-    line-height: 1.02;
+    font-size: clamp(30px, 3.5vw, 46px);
+    line-height: 1.06;
     color: var(--s1-white);
-    margin: 0 0 36px;
+    margin: 0 0 18px;
     letter-spacing: -0.02em;
     text-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
     display: flex;
@@ -1962,13 +1967,13 @@ img {
 
 .s1-inner p {
     font-family: var(--font-b);
-    font-size: clamp(15px, 1.45vw, 18px);
+    font-size: clamp(14px, 1.35vw, 17px);
     font-weight: 400;
     color: rgba(255, 255, 255, 0.82);
     max-width: 38ch;
-    line-height: 1.55;
+    line-height: 1.5;
     letter-spacing: 0.01em;
-    margin: 0 0 52px;
+    margin: 0 0 28px;
     text-shadow: none;
 }
 
@@ -2171,7 +2176,9 @@ img {
         right: 14px;
         width: auto;
         max-width: none;
+        max-height: none;
         min-height: auto;
+        transform: none;
         border-radius: 24px;
     }
 
@@ -2205,12 +2212,20 @@ img {
 
 @media screen and (max-height: 480px) {
     .s1-panel {
-        top: 48px;
+        top: auto;
         bottom: 12px;
+        transform: none;
+        max-height: calc(100% - 56px);
     }
 
     .s1-inner {
         padding: 16px 18px !important;
+        overflow-y: auto;
+        scrollbar-width: none;
+    }
+
+    .s1-inner::-webkit-scrollbar {
+        display: none;
     }
 
     .s1-tag {
@@ -5242,7 +5257,7 @@ body {
         opacity: 0.35;
     }
 
-    /* â”€â”€â”€ CAPA (S1): painel glass inferior em mobile â”€â”€â”€ */
+    /* ――― CAPA (S1): painel glass inferior em mobile ――― */
     #s1 .s1-panel {
         top: auto !important;
         bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
@@ -5250,6 +5265,8 @@ body {
         right: 12px !important;
         width: auto !important;
         max-width: none !important;
+        max-height: none !important;
+        transform: none !important;
     }
 
     #s1 .s1-inner {
