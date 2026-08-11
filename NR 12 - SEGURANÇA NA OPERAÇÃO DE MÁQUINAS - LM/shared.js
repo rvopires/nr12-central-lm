@@ -207,19 +207,19 @@ function _saveReqState(arr) {
 const NR11_MODULE_OFFSETS = {
     'index': 0,
     'modulo-1': 3,
-    'modulo-2': 10,
-    'modulo-3': 16,
-    'modulo-4': 22,
-    'modulo-5': 27,
-    'modulo-6': 36
+    'modulo-2': 9,
+    'modulo-3': 15,
+    'modulo-4': 21,
+    'modulo-5': 26,
+    'modulo-6': 35
 };
-const NR11_TOTAL_SLIDES = 45;
+const NR11_TOTAL_SLIDES = 44;
 function nr11GlobalSlide() {
     if (typeof currentSlide === 'undefined') return 1;
     const offset = NR11_MODULE_OFFSETS[(window.MODULE_NAV && window.MODULE_NAV.id) || 'index'] || 0;
     return offset + currentSlide + 1;
 }
-const QUIZ_AUDIO_HELPER_PAGES = [10, 16, 19, 22, 27, 36, 44];
+const QUIZ_AUDIO_HELPER_PAGES = [9, 15, 18, 21, 26, 35, 43];
 const QUIZ_AUDIO_HELPER_PANELS = {
     sq1: 'q1-question-panel',
     sq2: 'sq2-question-panel',
@@ -420,11 +420,11 @@ window.addEventListener('keydown', (e) => {
     var modules = [
         { id: 'index', offset: 0, file: 'index.html' },
         { id: 'modulo-1', offset: 3, file: 'modulo-1.html' },
-        { id: 'modulo-2', offset: 10, file: 'modulo-2.html' },
-        { id: 'modulo-3', offset: 16, file: 'modulo-3.html' },
-        { id: 'modulo-4', offset: 22, file: 'modulo-4.html' },
-        { id: 'modulo-5', offset: 27, file: 'modulo-5.html' },
-        { id: 'modulo-6', offset: 36, file: 'modulo-6.html' }
+        { id: 'modulo-2', offset: 9, file: 'modulo-2.html' },
+        { id: 'modulo-3', offset: 15, file: 'modulo-3.html' },
+        { id: 'modulo-4', offset: 21, file: 'modulo-4.html' },
+        { id: 'modulo-5', offset: 26, file: 'modulo-5.html' },
+        { id: 'modulo-6', offset: 35, file: 'modulo-6.html' }
     ];
 
     function clearBuf() {
@@ -534,6 +534,9 @@ function lockAllVideoWraps() {
         var src = '';
         if (iframe) {
             src = iframe.getAttribute('src') || iframe.dataset.videoSrc || '';
+            if ((!src || src === SLIDE_VIDEO_BLANK || !isSlideVideoSrc(src)) && getPandaIdFromIframe(iframe)) {
+                src = buildPandaEmbedSrc(getPandaIdFromIframe(iframe));
+            }
         }
         // Sem vídeo linkado (placeholder): libera navegação até substituir
         if (!iframe || !src || src === SLIDE_VIDEO_BLANK || !isSlideVideoSrc(src)) {
@@ -573,6 +576,19 @@ function getVimeoIdFromSrc(src) {
 function getPandaIdFromSrc(src) {
     var m = (src || '').match(/[?&]v=([0-9a-f-]{36})/i);
     return m ? m[1] : null;
+}
+
+function getPandaIdFromIframe(iframe) {
+    if (!iframe) return null;
+    var fromSrc = getPandaIdFromSrc(iframe.getAttribute('src') || iframe.dataset.videoSrc || '');
+    if (fromSrc) return fromSrc;
+    var m = (iframe.id || '').match(/^panda-([0-9a-f-]{36})$/i);
+    return m ? m[1] : null;
+}
+
+function buildPandaEmbedSrc(videoId) {
+    if (!videoId) return '';
+    return 'https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=' + videoId + '&saveProgress=false';
 }
 
 function isLoadedVimeoIframe(iframe) {
@@ -619,13 +635,18 @@ function ensurePandaNoProgressSrc(src) {
 function prepareSlideVideoIframe(iframe) {
     if (!iframe || iframe.dataset.videoPrepared) return;
     var src = iframe.getAttribute('src');
-    if (!src || src === SLIDE_VIDEO_BLANK || !isSlideVideoSrc(src)) return;
+    if (!src || src === SLIDE_VIDEO_BLANK || !isSlideVideoSrc(src)) {
+        var pid = getPandaIdFromIframe(iframe);
+        if (!pid) return;
+        src = buildPandaEmbedSrc(pid);
+        iframe.setAttribute('src', src);
+    }
     src = ensurePandaNoProgressSrc(src);
     iframe.dataset.videoSrc = src;
     iframe.dataset.videoKind = src.indexOf('pandavideo') !== -1 ? 'panda' : 'vimeo';
     if (!iframe.id && iframe.dataset.videoKind === 'panda') {
-        var pid = getPandaIdFromSrc(src);
-        if (pid) iframe.id = 'panda-' + pid;
+        var idFromSrc = getPandaIdFromSrc(src);
+        if (idFromSrc) iframe.id = 'panda-' + idFromSrc;
     }
     iframe.removeAttribute('src');
     iframe.dataset.videoPrepared = '1';
@@ -1418,15 +1439,6 @@ window.playTechClick = function () {
     window.addEventListener('click', unlock, { once: true, passive: true });
 })();
 
-function initFlipCardInteractions() {
-    const cards = document.querySelectorAll('#s7 .flip-card');
-    cards.forEach(card => {
-        card.addEventListener('click', () => playBeep('flip'));
-    });
-}
-
-initFlipCardInteractions();
-
 /* ── Reset de estado visual das respostas (quizzes/atividades) ── */
 var ANSWER_STATE_CLASSES = ['selected', 'active', 'correct', 'wrong', 'checked', 'selected-true', 'selected-false', 'selected-visual', 'answered', 'muted'];
 
@@ -1798,28 +1810,40 @@ function createQuizEngine(prefix, questions, numDots) {
    ════════════════════════════════════════ */
 const q1_questions = [
     {
-        q: 'O que a NR-11 regulamenta?',
-        opts: ['Segurança elétrica industrial', 'Ergonomia no trabalho', 'Transporte, movimentação e armazenagem de materiais', 'Saúde ocupacional geral'],
-        correct: 2,
-        topic: 'O que é a NR-11 (definição e abrangência)',
-        feedback_ok: '✅ Correto! A NR-11 trata de transporte, movimentação e armazenagem de materiais.',
-        feedback_nok: '❌ Incorreto. A NR-11 regulamenta transporte, movimentação e armazenagem de materiais.'
-    },
-    {
-        q: 'Qual documento o operador de empilhadeira patolada deve portar durante a operação?',
-        opts: ['Apenas o crachá da empresa', 'Cartão de identificação de operador autorizado', 'CNH — Carteira Nacional de Habilitação', 'Diploma de conclusão de curso'],
+        q: 'Qual é o objetivo principal da NR-12 na Central de Cores?',
+        opts: [
+            'Ensinar os operadores a realizarem misturas de cores personalizadas para os clientes da loja.',
+            'Estabelecer referências técnicas e medidas de proteção para resguardar a saúde e a integridade física dos trabalhadores.',
+            'Definir quais marcas de tintas e corantes químicos podem ser comercializados na loja.'
+        ],
         correct: 1,
-        topic: 'Autorização e documentação do operador',
-        feedback_ok: '✅ Exato! O cartão de operador autorizado é obrigatório durante a operação.',
-        feedback_nok: '❌ Incorreto. O operador deve portar o cartão de identificação de operador autorizado.'
+        topic: 'Objetivo principal da NR-12',
+        feedback_ok: '✅ Excelente! O propósito central da NR-12 é definir os requisitos mínimos de proteção para prevenir acidentes e doenças do trabalho durante a utilização de máquinas e equipamentos.',
+        feedback_nok: '❌ Incorreto. O propósito central da NR-12 é definir os requisitos mínimos de proteção para prevenir acidentes e doenças do trabalho durante a utilização de máquinas e equipamentos.'
     },
     {
-        q: 'Com que frequência deve ser renovada a autorização do operador de empilhadeira?',
-        opts: ['A cada 2 anos', 'A cada 5 anos', 'Apenas uma vez na carreira', 'Anualmente — a cada 12 meses'],
-        correct: 3,
-        topic: 'Renovação da autorização do operador',
-        feedback_ok: '✅ Correto! A autorização deve ser renovada anualmente, a cada 12 meses.',
-        feedback_nok: '❌ Incorreto. A autorização deve ser renovada anualmente (a cada 12 meses).'
+        q: 'De acordo com o item 12.1.4 da norma, a NR-12 NÃO se aplica a qual dos seguintes itens da loja?',
+        opts: [
+            'Ao dosador automático computadorizado de corantes da Central.',
+            'Às paleteiras manuais (movidas por força humana) e ferramentas elétricas portáteis (como furadeiras).',
+            'Ao misturador mecânico giroscópico utilizado para homogeneizar as tintas.'
+        ],
+        correct: 1,
+        topic: 'Limites de aplicação da NR-12 (item 12.1.4)',
+        feedback_ok: '✅ Muito bem! A NR-12 deixa claro que equipamentos impulsionados por força humana ou animal, ferramentas portáteis elétricas e eletrodomésticos com selo do INMETRO estão fora do escopo de aplicação da norma.',
+        feedback_nok: '❌ Incorreto. A NR-12 deixa claro que equipamentos impulsionados por força humana ou animal, ferramentas portáteis elétricas e eletrodomésticos com selo do INMETRO estão fora do escopo de aplicação da norma.'
+    },
+    {
+        q: 'Segundo as exigências do Anexo II da NR-12, quem está legalmente autorizado a utilizar o dosador e o misturador de tintas?',
+        opts: [
+            'Qualquer colaborador da loja que precise preparar uma tinta de forma rápida.',
+            'Apenas clientes, desde que acompanhados por um operador de caixa.',
+            'Exclusivamente os colaboradores capacitados e aprovados no treinamento de segurança.'
+        ],
+        correct: 2,
+        topic: 'Capacitação e autorização para operação (Anexo II)',
+        feedback_ok: '✅ Correto! A formação de NR-12 é obrigatória para a utilização das máquinas da Central de Cores. Permitir que pessoas não autorizadas ou sem capacitação utilizem os equipamentos é proibido.',
+        feedback_nok: '❌ Incorreto. A formação de NR-12 é obrigatória para a utilização das máquinas da Central de Cores. Permitir que pessoas não autorizadas ou sem capacitação utilizem os equipamentos é proibido.'
     }
 ];
 const quiz1 = createQuizEngine('q1', q1_questions, 3);

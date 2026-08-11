@@ -16,10 +16,10 @@
 }(typeof self !== 'undefined' ? self : this, function () {
 
     /* Ordem dos slides em cada HTML — DEVE bater com NR11_MODULE_OFFSETS.
-       Soma das slides = NR11_TOTAL_SLIDES (45).                              */
+       Soma das slides = NR11_TOTAL_SLIDES (44).                              */
     const SLIDE_ORDER = {
         'index.html': ['s1', 's1b', 's-sumario'],
-        'modulo-1.html': ['intro-m1', 's3', 's2', 's4', 's6', 's7', 'sq1'],
+        'modulo-1.html': ['intro-m1', 's3', 's2', 's4', 's6', 'sq1'],
         'modulo-2.html': ['intro-m2', 's-equipamento', 's10', 's9', 's8', 'sq2'],
         'modulo-3.html': ['intro-m3', 's-bateria', 's-conducao', 's-rampas', 's-bateria-troca', 's-quiz3'],
         'modulo-4.html': ['s-mod4-intro', 's-mod4-video', 's-mod4-inspecao', 's-mod4-video-finalizacao', 's-quiz4'],
@@ -36,19 +36,17 @@
          intro / result:   texto narrado para esses estados
          questions[]:      texto narrado para cada pergunta (i+1 = Q1, Q2 …)                */
     const MULTI_STATE = {
-        // ─── QUIZ 1 (slide global 10, modulo-1.html, sq1) ─────────────────────
+        // ─── QUIZ 1 (slide global 9, modulo-1.html, sq1) ──────────────────────
         'sq1': {
             panels: { intro: '#q1-intro-panel', question: '#q1-question-panel', result: '#q1-result-panel' },
             counterSelector: '#q1-counter',
-            intro: 'Hora do desafio. Quiz do Módulo 1. Mostre que você domina os principais procedimentos da operação segura. Esta avaliação contém cinco perguntas com mínimo de setenta por cento de acertos. Toque em Iniciar Desafio para começar.',
+            intro: 'Hora do desafio. Quiz do Módulo 1. Mostre que você domina os principais conteúdos da NR-12 na Central de Cores. Esta avaliação contém três perguntas. É necessário acertar pelo menos duas para avançar. Toque em Iniciar Desafio para começar.',
             questions: [
-                'Pergunta 1 de 5. O que a Norma Regulamentadora 11, NR 11, regulamenta? Opção A: Segurança elétrica industrial. Opção B: Ergonomia no trabalho. Opção C: Transporte, movimentação e armazenagem de materiais. Opção D: Saúde ocupacional geral.',
-                'Pergunta 2 de 5. Qual documento o operador de empilhadeira patolada deve portar durante a operação? Opção A: Apenas o crachá da empresa. Opção B: Cartão de identificação de operador autorizado. Opção C: CNH, Carteira Nacional de Habilitação. Opção D: Diploma de conclusão de curso.',
-                'Pergunta 3 de 5. Com que frequência deve ser renovada a autorização do operador de empilhadeira? Opção A: A cada dois anos. Opção B: A cada cinco anos. Opção C: Apenas uma vez na carreira. Opção D: Anualmente, a cada doze meses.',
-                'Pergunta 4 de 5. Qual requisito é obrigatório antes de operar a empilhadeira patolada? Opção A: Possuir autorização e treinamento. Opção B: Apenas conhecer o equipamento. Opção C: Trabalhar no estoque. Opção D: Ter experiência informal.',
-                'Pergunta 5 de 5. A reciclagem periódica do treinamento tem como objetivo: Opção A: Substituir o exame médico. Opção B: Aumentar velocidade da operação. Opção C: Atualizar conhecimentos de segurança. Opção D: Liberar operadores sem avaliação.'
+                'Pergunta 1 de 3. Qual é o objetivo principal da NR-12 na Central de Cores? Opção A: Ensinar os operadores a realizarem misturas de cores personalizadas para os clientes da loja. Opção B: Estabelecer referências técnicas e medidas de proteção para resguardar a saúde e a integridade física dos trabalhadores. Opção C: Definir quais marcas de tintas e corantes químicos podem ser comercializados na loja.',
+                'Pergunta 2 de 3. De acordo com o item 12.1.4 da norma, a NR-12 NÃO se aplica a qual dos seguintes itens da loja? Opção A: Ao dosador automático computadorizado de corantes da Central. Opção B: Às paleteiras manuais, movidas por força humana, e ferramentas elétricas portáteis, como furadeiras. Opção C: Ao misturador mecânico giroscópico utilizado para homogeneizar as tintas.',
+                'Pergunta 3 de 3. Segundo as exigências do Anexo II da NR-12, quem está legalmente autorizado a utilizar o dosador e o misturador de tintas? Opção A: Qualquer colaborador da loja que precise preparar uma tinta de forma rápida. Opção B: Apenas clientes, desde que acompanhados por um operador de caixa. Opção C: Exclusivamente os colaboradores capacitados e aprovados no treinamento de segurança.'
             ],
-            result: 'Resultado do Quiz do Módulo 1. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.'
+            result: 'Resultado do Quiz do Módulo 1. Veja sua pontuação na tela. Toque em Jogar Novamente para refazer ou siga para o próximo módulo.'
         },
 
         // ─── QUIZ 2 (slide global 16, modulo-2.html, sq2) — Verdadeiro/Falso ──
@@ -157,9 +155,9 @@
        nome do arquivo HTML e do índice interno do slide. Mantém em sintonia
        com NR11_MODULE_OFFSETS de shared.js.                                    */
     const MODULE_OFFSETS = {
-        'index.html': 0, 'modulo-1.html': 3, 'modulo-2.html': 10,
-        'modulo-3.html': 16, 'modulo-4.html': 22, 'modulo-5.html': 27,
-        'modulo-6.html': 36
+        'index.html': 0, 'modulo-1.html': 3, 'modulo-2.html': 9,
+        'modulo-3.html': 15, 'modulo-4.html': 21, 'modulo-5.html': 26,
+        'modulo-6.html': 35
     };
 
     function globalSlideOf(file, slideId) {

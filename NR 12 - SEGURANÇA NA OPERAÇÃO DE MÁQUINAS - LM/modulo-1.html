@@ -1555,352 +1555,36 @@
                     </svg></div>
             </div>
 
-<div class="slide" id="s6">
-                <div class="top-bar">
+            <div class="slide" id="s6"
+                style="background: radial-gradient(circle at center, rgba(126, 54, 227, 1) 0%, rgba(31, 10, 64, 1) 100%); overflow: hidden;">
+                <div
+                    style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 50% 50%, rgba(0, 255, 255, 0.12) 0%, transparent 65%);">
+                </div>
+                <div
+                    style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 255, 0.03) 3px, rgba(0, 255, 255, 0.03) 4px);">
+                </div>
+                <div class="top-bar" style="position: relative; z-index: 2;">
                     <div class="section-tag"
                         style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);">
                         🎯 Módulo 1</div>
                     <h2 class="slide-title"
                         style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
-                        Cartão de <span>Identificação</span></h2>
-
+                        Diretrizes de <span>Proteção</span></h2>
                 </div>
-                <div class="content-area" style="align-items: center; text-align: center; justify-content: center;">
-                    <div class="badge-scene">
-                        <div class="badge-lanyard" style="top: -40px; height: 60px;"></div>
-                        <div class="badge-img-wrapper">
-                            <img src="https://imgur.com/B83Zchf.png" alt="Cartão de Identificação" />
-                            <button type="button" class="badge-img-expand"
-                                aria-label="Ampliar imagem" title="Ampliar imagem"
-                                onclick="event.stopPropagation(); openImageModal('https://imgur.com/B83Zchf.png')">🔍</button>
-                        </div>
-                    </div>
-                    <p style="font-size: 16px; color: rgba(255,255,255,0.6); max-width: 400px; margin: 30px auto 0;">A
-                        carteirinha
-                        <strong>pessoal, intransferível</strong> e deve permanecer visível em seu uniforme durante todo
-                        o
-                        expediente.
-                    </p>
-                </div>
-                <div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-                        <path d="M0,55 C480,10 960,90 1440,40 L1440,100 L0,100 Z" fill="rgba(0, 255, 255,0.07)" />
-                    </svg></div>
-            </div>
-
-            <div class="slide" id="s7">
-                <div class="top-bar">
-                    <div class="section-tag"
-                        style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);">
-                        🎯 Módulo 1</div>
-                    <h2 class="slide-title"
-                        style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
-                        Validade da <span>Autorização</span></h2>
-
-                </div>
-                <div class="content-area" style="justify-content:center;align-items:center;">
-                    <style>
-                        #s7 .s7-hint-banner {
-                            width: 100%;
-                            text-align: center;
-                            margin-bottom: 22px;
-                            font-size: 16px;
-                            color: var(--green-lt);
-                            font-weight: 700;
-                            letter-spacing: 0.4px;
-                            text-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
-                            animation: pulse 2s infinite;
-                        }
-
-                        #s7 .s7-cards {
-                            display: flex;
-                            gap: 20px;
-                            flex-wrap: wrap;
-                            justify-content: center;
-                            width: 100%;
-                            max-width: 860px;
-                        }
-
-                        #s7 .flip-card {
-                            width: 250px;
-                            height: 270px;
-                            isolation: isolate;
-                        }
-
-                        #s7 .flip-card::after {
-                            content: '';
-                            position: absolute;
-                            inset: -12px -8px;
-                            border-radius: 28px;
-                            background: radial-gradient(ellipse at 30% 40%,
-                                    rgba(0, 255, 255, 0.32) 0%,
-                                    rgba(0, 255, 255, 0.14) 45%,
-                                    transparent 72%);
-                            z-index: -1;
-                            opacity: 0.75;
-                            pointer-events: none;
-                            filter: blur(2px);
-                            transition: opacity 0.35s ease;
-                        }
-
-                        #s7 .flip-card:hover::after {
-                            opacity: 1;
-                        }
-
-                        #s7 .flip-card .flip-inner {
-                            background: transparent;
-                            border: none;
-                            box-shadow: none;
-                            overflow: visible;
-                        }
-
-                        #s7 .flip-front,
-                        #s7 .flip-back {
-                            gap: 10px;
-                            padding: 22px 18px 20px;
-                            overflow: hidden;
-                            background:
-                                linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 42%),
-                                #7E36E3;
-                            border: 1px solid rgba(120, 170, 240, 0.28);
-                            border-top-color: rgba(150, 195, 255, 0.5);
-                            box-shadow:
-                                inset 4px 0 0 0 #00FFFF,
-                                inset 8px 0 18px -6px rgba(0, 255, 255, 0.5),
-                                inset 0 1px 0 rgba(255, 255, 255, 0.16),
-                                inset 0 -18px 30px -18px rgba(0, 0, 0, 0.65),
-                                0 18px 34px rgba(0, 0, 0, 0.5),
-                                0 0 28px rgba(0, 255, 255, 0.16);
-                        }
-
-                        #s7 .s7-accent {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            right: 0;
-                            height: 3px;
-                            background: linear-gradient(90deg, transparent, #00FFFF, transparent);
-                            opacity: 0.9;
-                        }
-
-                        #s7 .s7-num {
-                            position: absolute;
-                            top: 14px;
-                            right: 14px;
-                            font-family: var(--font-h);
-                            font-size: 11px;
-                            font-weight: 800;
-                            letter-spacing: 1.5px;
-                            color: rgba(0, 255, 255, 0.85);
-                            background: rgba(0, 255, 255, 0.12);
-                            border: 1px solid rgba(0, 255, 255, 0.35);
-                            border-radius: 99px;
-                            padding: 3px 9px;
-                        }
-
-                        #s7 .s7-icon {
-                            width: 64px;
-                            height: 64px;
-                            border-radius: 50%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 30px;
-                            line-height: 1;
-                            margin-top: 8px;
-                            background: radial-gradient(circle at 35% 30%, rgba(0, 255, 255, 0.28), rgba(126, 54, 227, 0.9));
-                            border: 1.5px solid rgba(0, 255, 255, 0.55);
-                            box-shadow:
-                                0 0 18px rgba(0, 255, 255, 0.35),
-                                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-                            transition: transform 0.35s ease, filter 0.35s ease;
-                        }
-
-                        #s7 .s7-icon-sm {
-                            width: 44px;
-                            height: 44px;
-                            font-size: 22px;
-                            margin-top: 4px;
-                        }
-
-                        #s7 .flip-card:hover .s7-icon {
-                            transform: translateY(-3px) scale(1.06);
-                            filter: drop-shadow(0 10px 18px rgba(0, 255, 255, 0.35));
-                        }
-
-                        #s7 .s7-title {
-                            font-family: var(--font-h);
-                            font-size: 17px;
-                            font-weight: 800;
-                            color: #fff;
-                            text-align: center;
-                            line-height: 1.25;
-                            letter-spacing: 0.2px;
-                            margin: 2px 0 0;
-                        }
-
-                        #s7 .s7-hint {
-                            display: inline-flex;
-                            align-items: center;
-                            gap: 6px;
-                            margin-top: 6px;
-                            font-size: 11px;
-                            font-weight: 600;
-                            letter-spacing: 0.6px;
-                            text-transform: uppercase;
-                            color: rgba(255, 255, 255, 0.55);
-                            background: rgba(255, 255, 255, 0.06);
-                            border: 1px solid rgba(255, 255, 255, 0.1);
-                            border-radius: 99px;
-                            padding: 5px 12px;
-                        }
-
-                        #s7 .s7-title-back {
-                            font-family: var(--font-h);
-                            font-size: 15px;
-                            font-weight: 800;
-                            color: #00FFFF;
-                            margin: 0;
-                            text-align: center;
-                            line-height: 1.25;
-                        }
-
-                        #s7 .s7-desc {
-                            font-size: 13.5px;
-                            line-height: 1.5;
-                            color: rgba(255, 255, 255, 0.88);
-                            text-align: center;
-                            margin: 0;
-                            max-width: 210px;
-                        }
-
-                        #s7 .s7-desc strong {
-                            color: #7AF5F5;
-                            font-weight: 800;
-                        }
-
-                        #s7 .flip-card.req-done .flip-front,
-                        #s7 .flip-card.req-done .flip-back {
-                            background:
-                                linear-gradient(180deg, rgba(0, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 40%),
-                                #7E36E3 !important;
-                            border-color: rgba(0, 255, 255, 0.55) !important;
-                            box-shadow:
-                                inset 4px 0 0 0 #00FFFF,
-                                inset 8px 0 18px -6px rgba(0, 255, 255, 0.55),
-                                inset 0 1px 0 rgba(255, 255, 255, 0.12),
-                                0 18px 34px rgba(0, 0, 0, 0.45),
-                                0 0 32px rgba(0, 255, 255, 0.28) !important;
-                        }
-
-                        @media (max-width: 768px) {
-                            #s7 .s7-hint-banner {
-                                font-size: 14px;
-                                margin-bottom: 16px;
-                            }
-
-                            #s7 .s7-cards {
-                                flex-direction: column;
-                                align-items: center;
-                                gap: 14px;
-                            }
-
-                            #s7 .flip-card {
-                                width: 100%;
-                                max-width: 320px;
-                                height: 280px;
-                            }
-
-                            #s7 .s7-title {
-                                font-size: 16px;
-                            }
-
-                            #s7 .s7-desc {
-                                font-size: 13px;
-                                max-width: 240px;
-                            }
-                        }
-                    </style>
-
-                    <div class="s7-hint-banner">👆 Toque nos cards para avançar</div>
-                    <div class="s7-cards">
-
-                        <!-- Card 1 -->
-                        <div class="flip-card req-item"
-                            onclick="this.classList.toggle('flipped');this.classList.add('req-done');updateNextButton();">
-                            <div class="flip-inner">
-                                <div class="flip-front">
-                                    <div class="s7-accent" aria-hidden="true"></div>
-                                    <span class="s7-num">01</span>
-                                    <div class="s7-icon" aria-hidden="true">📅</div>
-                                    <div class="s7-title">Renovação Anual</div>
-                                    <div class="s7-hint">Toque para ver</div>
-                                </div>
-                                <div class="flip-back">
-                                    <div class="s7-accent" aria-hidden="true"></div>
-                                    <div class="s7-icon s7-icon-sm" aria-hidden="true">📅</div>
-                                    <h4 class="s7-title-back">Renovação Anual</h4>
-                                    <p class="s7-desc">A autorização deve ser renovada a cada
-                                        <strong>12 meses</strong> com reciclagem teórica, prática e exame médico
-                                        atualizado.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card 2 -->
-                        <div class="flip-card req-item"
-                            onclick="this.classList.toggle('flipped');this.classList.add('req-done');updateNextButton();">
-                            <div class="flip-inner">
-                                <div class="flip-front">
-                                    <div class="s7-accent" aria-hidden="true"></div>
-                                    <span class="s7-num">02</span>
-                                    <div class="s7-icon" aria-hidden="true">🩺</div>
-                                    <div class="s7-title">Exame Médico Periódico</div>
-                                    <div class="s7-hint">Toque para ver</div>
-                                </div>
-                                <div class="flip-back">
-                                    <div class="s7-accent" aria-hidden="true"></div>
-                                    <div class="s7-icon s7-icon-sm" aria-hidden="true">🩺</div>
-                                    <h4 class="s7-title-back">Exame Médico Periódico</h4>
-                                    <p class="s7-desc">Avaliação de saúde obrigatória para confirmar
-                                        <strong>aptidão física e mental</strong> do operador para continuar na função.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card 3 -->
-                        <div class="flip-card req-item"
-                            onclick="this.classList.toggle('flipped');this.classList.add('req-done');updateNextButton();">
-                            <div class="flip-inner">
-                                <div class="flip-front">
-                                    <div class="s7-accent" aria-hidden="true"></div>
-                                    <span class="s7-num">03</span>
-                                    <div class="s7-icon" aria-hidden="true">⏰</div>
-                                    <div class="s7-title">Controle de Validade</div>
-                                    <div class="s7-hint">Toque para ver</div>
-                                </div>
-                                <div class="flip-back">
-                                    <div class="s7-accent" aria-hidden="true"></div>
-                                    <div class="s7-icon s7-icon-sm" aria-hidden="true">⏰</div>
-                                    <h4 class="s7-title-back">Controle de Validade</h4>
-                                    <p class="s7-desc">A empresa é responsável por monitorar os vencimentos e notificar
-                                        os operadores com <strong>antecedência mínima de 30 dias</strong>.</p>
-                                </div>
-                            </div>
-                        </div>
-
+                <div class="content-area"
+                    style="align-items: center; text-align: center; justify-content: flex-start; position: relative; z-index: 2;">
+                    <div class="video-wrap video-wrap--std"
+                        style="max-width: 1240px; box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 60px rgba(0, 255, 255,0.3); border: 1px solid rgba(0, 255, 255,0.4); border-radius: 12px; transform: translateZ(0);">
+                        <!-- Substitua o ID do iframe pelo UUID do vídeo no Panda quando disponível -->
+                        <iframe id="panda-diretrizes-protecao" src="about:blank"
+                            style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;"
+                            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
+                            allowfullscreen="true" fetchpriority="high"></iframe>
                     </div>
                 </div>
-                <button type="button" id="s7-scroll-down" class="slide-scroll-btn"
-                    onclick="scrollSlideDown('s7')" aria-label="Rolar para baixo">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
-                        stroke-linejoin="round" aria-hidden="true">
-                        <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                </button>
-                <div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-                        <path d="M0,60 C360,20 720,90 1080,35 L1440,55 L1440,100 L0,100 Z"
+                <div class="wave" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;"><svg
+                        viewBox="0 0 1440 100" preserveAspectRatio="none">
+                        <path d="M0,55 C480,10 960,90 1440,40 L1440,100 L0,100 Z"
                             fill="rgba(0, 255, 255,0.07)" />
                     </svg></div>
             </div>
@@ -1997,7 +1681,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=51"></script>
+    <script src="shared.js?v=54"></script>
 </body>
 
 </html>
