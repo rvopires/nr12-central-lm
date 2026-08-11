@@ -60,11 +60,6 @@ function updateSlideScrollBtn(slideId) {
         cfg.btn.classList.add('is-hidden');
         return;
     }
-    const slide = document.getElementById(slideId);
-    if (slide && slide.querySelector('[class*="-carousel-nav"]')) {
-        cfg.btn.classList.add('is-hidden');
-        return;
-    }
     const needsScroll = cfg.area.scrollHeight > cfg.area.clientHeight + 8;
     const atBottom = cfg.area.scrollTop + cfg.area.clientHeight >= cfg.area.scrollHeight - 8;
     cfg.btn.classList.toggle('is-hidden', !needsScroll || atBottom);

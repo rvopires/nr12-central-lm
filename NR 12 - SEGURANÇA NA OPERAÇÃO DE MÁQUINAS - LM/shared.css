@@ -550,15 +550,13 @@ img {
     top: 14px;
     right: 16px;
     z-index: 901;
-    background: #fafafa;
+    background: transparent;
     border-radius: 14px;
-    padding: 7px 12px;
+    padding: 4px 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow:
-        0 8px 24px rgba(5, 8, 24, 0.2),
-        0 0 0 1px rgba(13, 21, 53, 0.05);
+    box-shadow: none;
 }
 
 #logo img {
@@ -5164,9 +5162,38 @@ body {
         pointer-events: none !important;
     }
 
+    /* Página 7 (#s4): mantém a setinha de scroll no mobile */
+    #s4 > .slide-scroll-btn {
+        display: flex !important;
+        z-index: 30 !important;
+        pointer-events: auto !important;
+        bottom: calc(118px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+
+    #s4 > .slide-scroll-btn.is-hidden {
+        opacity: 0 !important;
+        pointer-events: none !important;
+        animation: none !important;
+        transform: translateX(-50%) translateY(8px) !important;
+    }
+
     .slide:has([class*="-carousel-nav"]) .content-area {
         position: relative !important;
         z-index: 12 !important;
+    }
+
+    #s4 .content-area {
+        z-index: 1 !important;
+        padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+
+    #s4 .slide-title {
+        font-size: 18px !important;
+        line-height: 1.2 !important;
+    }
+
+    #s4 .top-bar {
+        padding-bottom: 4px !important;
     }
 
     /* â”€â”€â”€ NAV BOTTOM: padding e safe-area â”€â”€â”€ */
