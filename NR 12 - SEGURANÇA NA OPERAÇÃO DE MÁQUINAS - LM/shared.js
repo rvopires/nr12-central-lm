@@ -204,16 +204,19 @@ function _saveReqState(arr) {
 
 
 // === GLOBAL SLIDE INDEXING ===
-const NR11_MODULE_OFFSETS = {
-    'index': 0,
-    'modulo-1': 3,
-    'modulo-2': 9,
-    'modulo-3': 15,
-    'modulo-4': 21,
-    'modulo-5': 26,
-    'modulo-6': 35
-};
-const NR11_TOTAL_SLIDES = 44;
+const NR12_PREVIEW_M1_ONLY = !!window.NR12_PREVIEW_M1_ONLY;
+const NR11_MODULE_OFFSETS = NR12_PREVIEW_M1_ONLY
+    ? { 'index': 0, 'modulo-1': 3 }
+    : {
+        'index': 0,
+        'modulo-1': 3,
+        'modulo-2': 9,
+        'modulo-3': 15,
+        'modulo-4': 21,
+        'modulo-5': 26,
+        'modulo-6': 35
+    };
+const NR11_TOTAL_SLIDES = NR12_PREVIEW_M1_ONLY ? 9 : 44;
 function nr11GlobalSlide() {
     if (typeof currentSlide === 'undefined') return 1;
     const offset = NR11_MODULE_OFFSETS[(window.MODULE_NAV && window.MODULE_NAV.id) || 'index'] || 0;
@@ -417,15 +420,20 @@ window.addEventListener('keydown', (e) => {
 (function initGoPageShortcut() {
     var buf = '';
     var timer = null;
-    var modules = [
-        { id: 'index', offset: 0, file: 'index.html' },
-        { id: 'modulo-1', offset: 3, file: 'modulo-1.html' },
-        { id: 'modulo-2', offset: 9, file: 'modulo-2.html' },
-        { id: 'modulo-3', offset: 15, file: 'modulo-3.html' },
-        { id: 'modulo-4', offset: 21, file: 'modulo-4.html' },
-        { id: 'modulo-5', offset: 26, file: 'modulo-5.html' },
-        { id: 'modulo-6', offset: 35, file: 'modulo-6.html' }
-    ];
+    var modules = NR12_PREVIEW_M1_ONLY
+        ? [
+            { id: 'index', offset: 0, file: 'index.html' },
+            { id: 'modulo-1', offset: 3, file: 'modulo-1.html' }
+        ]
+        : [
+            { id: 'index', offset: 0, file: 'index.html' },
+            { id: 'modulo-1', offset: 3, file: 'modulo-1.html' },
+            { id: 'modulo-2', offset: 9, file: 'modulo-2.html' },
+            { id: 'modulo-3', offset: 15, file: 'modulo-3.html' },
+            { id: 'modulo-4', offset: 21, file: 'modulo-4.html' },
+            { id: 'modulo-5', offset: 26, file: 'modulo-5.html' },
+            { id: 'modulo-6', offset: 35, file: 'modulo-6.html' }
+        ];
 
     function clearBuf() {
         buf = '';
@@ -1797,7 +1805,9 @@ function createQuizEngine(prefix, questions, numDots) {
         if (sub) {
             if (isM1Quiz()) {
                 if (approved) {
-                    sub.textContent = `Você acertou ${score} de ${questions.length} questões. Parabéns! Pode avançar para a próxima etapa.`;
+                    sub.textContent = NR12_PREVIEW_M1_ONLY
+                        ? `Você acertou ${score} de ${questions.length} questões. Parabéns! Esta prévia do treinamento termina aqui — os próximos módulos serão liberados em breve.`
+                        : `Você acertou ${score} de ${questions.length} questões. Parabéns! Pode avançar para a próxima etapa.`;
                 } else {
                     sub.textContent = `Você acertou ${score} de ${questions.length} questões. É necessário acertar pelo menos ${minCorrect} questões. Estude e tente novamente.`;
                 }

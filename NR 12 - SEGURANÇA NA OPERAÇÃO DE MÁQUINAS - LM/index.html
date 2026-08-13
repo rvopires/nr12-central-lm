@@ -14,8 +14,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=105">
+<link rel="stylesheet" href="shared.css?v=106">
     <script>
+        /* Prévia pública: só index + Módulo 1 */
+        window.NR12_PREVIEW_M1_ONLY = true;
         window.MODULE_NAV = {
             id: "index",
             prev: null,
@@ -731,39 +733,31 @@
                     <style>
                         #s-sumario .sum-grid {
                             display: grid;
-                            grid-template-columns: repeat(6, 1fr);
+                            grid-template-columns: repeat(2, minmax(0, 1fr));
                             width: 100%;
-                            max-width: 1000px;
+                            max-width: 760px;
                             margin: 0 auto;
                             gap: 20px;
                         }
 
-                        #s-sumario .sum-item {
-                            grid-column: span 2;
+                        #s-sumario .sum-item--soon {
+                            opacity: 0.72;
+                            border-left-color: rgba(255, 255, 255, 0.25);
+                            pointer-events: none;
                         }
 
-                        /* Centraliza os 2 cards da segunda linha */
-                        #s-sumario .sum-item:nth-child(4) {
-                            grid-column: 2 / 4;
-                        }
-
-                        #s-sumario .sum-item:nth-child(5) {
-                            grid-column: 4 / 6;
+                        #s-sumario .sum-item--soon .sum-num-big {
+                            background: rgba(255, 255, 255, 0.08);
+                            color: rgba(255, 255, 255, 0.75);
                         }
 
                         @media (max-width: 768px) {
                             #s-sumario .sum-grid {
                                 grid-template-columns: 1fr;
                             }
-
-                            #s-sumario .sum-item,
-                            #s-sumario .sum-item:nth-child(4),
-                            #s-sumario .sum-item:nth-child(5) {
-                                grid-column: auto;
-                            }
                         }
                     </style>
-                    <div class="sum-grid">
+                    <div class="sum-grid sum-grid--preview">
                         <div class="sum-item">
                             <div class="sum-top">
                                 <div class="sum-num-big">Módulo 1</div>
@@ -772,36 +766,12 @@
                             <div class="sum-text">Abertura e Conceitos</div>
                         </div>
 
-                        <div class="sum-item">
+                        <div class="sum-item sum-item--soon" aria-disabled="true">
                             <div class="sum-top">
-                                <div class="sum-num-big">Módulo 2</div>
-                                <div class="sum-icon">⚙️</div>
+                                <div class="sum-num-big">Em breve</div>
+                                <div class="sum-icon">🚧</div>
                             </div>
-                            <div class="sum-text">Fundamentos da NR 12</div>
-                        </div>
-
-                        <div class="sum-item">
-                            <div class="sum-top">
-                                <div class="sum-num-big">Módulo 3</div>
-                                <div class="sum-icon">🛡️</div>
-                            </div>
-                            <div class="sum-text">Máquinas da Central de Cores</div>
-                        </div>
-
-                        <div class="sum-item">
-                            <div class="sum-top">
-                                <div class="sum-num-big">Módulo 4</div>
-                                <div class="sum-icon">📋</div>
-                            </div>
-                            <div class="sum-text">Segurança e Advertências</div>
-                        </div>
-
-                        <div class="sum-item">
-                            <div class="sum-top">
-                                <div class="sum-num-big">Módulo 5</div>
-                                <div class="sum-icon">📦</div>
-                            </div>
-                            <div class="sum-text">Manutenção e Limpeza</div>
+                            <div class="sum-text">Módulos 2 a 5 — em desenvolvimento</div>
                         </div>
                     </div>
                 </div>
@@ -968,7 +938,7 @@
     </div><!-- fecha #app -->
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=70"></script>
+    <script src="shared.js?v=71"></script>
 </body>
 
 </html>
