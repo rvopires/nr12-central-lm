@@ -204,16 +204,19 @@ function _saveReqState(arr) {
 
 
 // === GLOBAL SLIDE INDEXING ===
-const NR11_MODULE_OFFSETS = {
-    'index': 0,
-    'modulo-1': 3,
-    'modulo-2': 9,
-    'modulo-3': 15,
-    'modulo-4': 21,
-    'modulo-5': 26,
-    'modulo-6': 35
-};
-const NR11_TOTAL_SLIDES = 44;
+const NR12_PREVIEW_M1_ONLY = !!window.NR12_PREVIEW_M1_ONLY;
+const NR11_MODULE_OFFSETS = NR12_PREVIEW_M1_ONLY
+    ? { 'index': 0, 'modulo-1': 3 }
+    : {
+        'index': 0,
+        'modulo-1': 3,
+        'modulo-2': 9,
+        'modulo-3': 15,
+        'modulo-4': 21,
+        'modulo-5': 26,
+        'modulo-6': 35
+    };
+const NR11_TOTAL_SLIDES = NR12_PREVIEW_M1_ONLY ? 9 : 44;
 function nr11GlobalSlide() {
     if (typeof currentSlide === 'undefined') return 1;
     const offset = NR11_MODULE_OFFSETS[(window.MODULE_NAV && window.MODULE_NAV.id) || 'index'] || 0;
@@ -417,15 +420,20 @@ window.addEventListener('keydown', (e) => {
 (function initGoPageShortcut() {
     var buf = '';
     var timer = null;
-    var modules = [
-        { id: 'index', offset: 0, file: 'index.html' },
-        { id: 'modulo-1', offset: 3, file: 'modulo-1.html' },
-        { id: 'modulo-2', offset: 9, file: 'modulo-2.html' },
-        { id: 'modulo-3', offset: 15, file: 'modulo-3.html' },
-        { id: 'modulo-4', offset: 21, file: 'modulo-4.html' },
-        { id: 'modulo-5', offset: 26, file: 'modulo-5.html' },
-        { id: 'modulo-6', offset: 35, file: 'modulo-6.html' }
-    ];
+    var modules = NR12_PREVIEW_M1_ONLY
+        ? [
+            { id: 'index', offset: 0, file: 'index.html' },
+            { id: 'modulo-1', offset: 3, file: 'modulo-1.html' }
+        ]
+        : [
+            { id: 'index', offset: 0, file: 'index.html' },
+            { id: 'modulo-1', offset: 3, file: 'modulo-1.html' },
+            { id: 'modulo-2', offset: 9, file: 'modulo-2.html' },
+            { id: 'modulo-3', offset: 15, file: 'modulo-3.html' },
+            { id: 'modulo-4', offset: 21, file: 'modulo-4.html' },
+            { id: 'modulo-5', offset: 26, file: 'modulo-5.html' },
+            { id: 'modulo-6', offset: 35, file: 'modulo-6.html' }
+        ];
 
     function clearBuf() {
         buf = '';
@@ -555,12 +563,57 @@ function lockAllVideoWraps() {
 function updateNextButton() {
     const btnFwd = document.getElementById('btn-fwd');
     if (!btnFwd) return;
-    if (currentSlide === TOTAL - 1) {
+
+    const isLast = currentSlide === TOTAL - 1;
+    const hasNextModule = !!(window.MODULE_NAV && window.MODULE_NAV.next);
+
+    // Preserva o SVG da seta ao montar o rótulo
+    let label = btnFwd.querySelector('.fwd-label');
+    let svg = btnFwd.querySelector('svg');
+    if (!svg) {
+        svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', '0 0 24 24');
+        svg.setAttribute('fill', 'none');
+        svg.setAttribute('stroke', 'currentColor');
+        svg.setAttribute('stroke-width', '2.5');
+        svg.setAttribute('stroke-linecap', 'round');
+        svg.setAttribute('stroke-linejoin', 'round');
+        svg.innerHTML = '<polyline points="9 18 15 12 9 6" />';
+    }
+    if (!label) {
+        label = document.createElement('span');
+        label.className = 'fwd-label';
+        btnFwd.textContent = '';
+        btnFwd.appendChild(label);
+        btnFwd.appendChild(svg);
+    } else if (!btnFwd.contains(svg)) {
+        btnFwd.appendChild(svg);
+    }
+
+    // Último slide sem próximo módulo (ex.: conclusão): esconde
+    if (isLast && !hasNextModule) {
         btnFwd.disabled = true;
         btnFwd.style.display = 'none';
-    } else {
-        btnFwd.disabled = !isSlideCompleted(currentSlide);
-        btnFwd.style.display = 'flex';
+        btnFwd.classList.remove('btn-next-module');
+        return;
+    }
+
+    // Mesmo pill redondo — "PRÓXIMO MÓDULO" só nos módulos (não na capa/sumário)
+    const showNextModuleLabel = isLast && hasNextModule && window.MODULE_NAV.id !== 'index';
+    btnFwd.style.setProperty('display', 'flex', 'important');
+    btnFwd.style.setProperty('visibility', 'visible', 'important');
+    btnFwd.style.borderRadius = '999px';
+    btnFwd.disabled = !isSlideCompleted(currentSlide);
+    label.textContent = showNextModuleLabel ? 'PRÓXIMO MÓDULO' : 'PRÓXIMO';
+    btnFwd.classList.toggle('btn-next-module', showNextModuleLabel);
+
+    const navEl = document.getElementById('nav');
+    if (navEl) {
+        if (window.MODULE_NAV && window.MODULE_NAV.id === 'index' && currentSlide === 0) {
+            navEl.classList.add('nav-hidden-cover');
+        } else {
+            navEl.classList.remove('nav-hidden-cover');
+        }
     }
 }
 
@@ -588,7 +641,9 @@ function getPandaIdFromIframe(iframe) {
 
 function buildPandaEmbedSrc(videoId) {
     if (!videoId) return '';
-    return 'https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=' + videoId + '&saveProgress=false';
+    return 'https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=' + videoId
+        + '&saveProgress=false'
+        + '&disableForward=true';
 }
 
 function isLoadedVimeoIframe(iframe) {
@@ -627,9 +682,42 @@ function setVideoPosterVisible(wrap, visible) {
 function ensurePandaNoProgressSrc(src) {
     if (!src || src.indexOf('pandavideo') === -1) return src;
     if (/[?&]saveProgress=/i.test(src)) {
-        return src.replace(/([?&]saveProgress=)[^&]*/i, '$1false');
+        src = src.replace(/([?&]saveProgress=)[^&]*/i, '$1false');
+    } else {
+        src += (src.indexOf('?') === -1 ? '?' : '&') + 'saveProgress=false';
     }
-    return src + (src.indexOf('?') === -1 ? '?' : '&') + 'saveProgress=false';
+    if (/[?&]disableForward=/i.test(src)) {
+        src = src.replace(/([?&]disableForward=)[^&]*/i, '$1true');
+    } else {
+        src += '&disableForward=true';
+    }
+    return src;
+}
+
+function ensurePandaApiScript(cb) {
+    if (typeof PandaPlayer !== 'undefined') {
+        if (typeof cb === 'function') cb();
+        return;
+    }
+    var src = 'https://player.pandavideo.com.br/api.v2.js';
+    var existing = document.querySelector('script[src="' + src + '"]');
+    if (!existing) {
+        var s = document.createElement('script');
+        s.src = src;
+        s.async = true;
+        document.head.appendChild(s);
+        existing = s;
+    }
+    if (typeof cb !== 'function') return;
+    var tries = 0;
+    (function waitApi() {
+        if (typeof PandaPlayer !== 'undefined') {
+            cb();
+            return;
+        }
+        if (tries++ > 80) return;
+        setTimeout(waitApi, 100);
+    })();
 }
 
 function prepareSlideVideoIframe(iframe) {
@@ -738,7 +826,6 @@ function initPandaWrapPlayer(wrap) {
     var iframe = wrap.querySelector('iframe');
     if (!iframe || !isLoadedPandaIframe(iframe)) return;
 
-    // Só marca como iniciado depois que o player estiver pronto
     wrap.classList.add('req-item');
     wrap.style.cursor = 'default';
     var warn = ensureVideoWarn(wrap);
@@ -748,40 +835,63 @@ function initPandaWrapPlayer(wrap) {
         if (pid) iframe.id = 'panda-' + pid;
     }
 
-    var maxWatched = 0;
-    var duration = 0;
-    var completed = false;
+    var state = {
+        maxWatched: 0,
+        duration: 0,
+        completed: false,
+        seekingBack: false
+    };
+    var SEEK_TOLERANCE = 1.0;
 
     function complete() {
-        if (completed) return;
-        completed = true;
+        if (state.completed) return;
+        state.completed = true;
         markWrapVideoComplete(wrap, warn);
     }
 
-    // Sempre escuta postMessage (mais confiável no embed Panda)
-    initPandaPostMessageFallback(wrap, iframe, warn, function (t, dur) {
-        if (completed) return;
-        if (typeof dur === 'number' && dur > 0) duration = dur;
-        if (typeof t === 'number') {
-            if (t > maxWatched + 2.5) return 'seek:' + maxWatched;
-            if (t > maxWatched) maxWatched = t;
-            if (duration > 0 && maxWatched >= Math.max(0, duration - 3)) complete();
+    function snapBack(player) {
+        if (state.completed || wrap.classList.contains('req-done')) return;
+        state.seekingBack = true;
+        var target = Math.max(0, state.maxWatched);
+        try {
+            if (player && player.setCurrentTime) player.setCurrentTime(target);
+        } catch (e) { }
+        try {
+            if (iframe.contentWindow) {
+                iframe.contentWindow.postMessage({ type: 'currentTime', parameter: target }, '*');
+            }
+        } catch (e) { }
+        setTimeout(function () { state.seekingBack = false; }, 350);
+    }
+
+    function handleTime(t, dur, player) {
+        if (state.completed || wrap.classList.contains('req-done')) return;
+        if (typeof dur === 'number' && dur > 0) state.duration = dur;
+        if (typeof t !== 'number' || isNaN(t)) return;
+        if (state.seekingBack) return;
+        if (t > state.maxWatched + SEEK_TOLERANCE) {
+            snapBack(player);
+            return;
         }
-    }, complete);
+        if (t > state.maxWatched) state.maxWatched = t;
+        if (state.duration > 0 && state.maxWatched >= Math.max(0, state.duration - 3)) complete();
+    }
+
+    // postMessage: funciona mesmo sem PandaPlayer API
+    initPandaPostMessageFallback(wrap, iframe, warn, state, handleTime, complete, snapBack);
 
     function bindPlayer(player) {
         _videoWrapInited.add(wrap);
         try {
-            // Sempre inicia do zero (não usa o resume do Panda)
             if (player.setCurrentTime) player.setCurrentTime(0);
         } catch (e) { }
         try {
             var d = player.getDuration && player.getDuration();
-            if (typeof d === 'number' && d > 0) duration = d;
+            if (typeof d === 'number' && d > 0) state.duration = d;
         } catch (e) { }
 
         player.onEvent(function (e) {
-            if (!e || completed) return;
+            if (!e || state.completed) return;
             var msg = e.message;
             var t = typeof e.currentTime === 'number' ? e.currentTime : null;
 
@@ -798,62 +908,56 @@ function initPandaWrapPlayer(wrap) {
                 try { player.pause(); player.setCurrentTime(0); } catch (err) { }
                 return;
             }
-            if (msg === 'panda_timeupdate' && t !== null) {
+            if (msg === 'panda_timeupdate') {
                 try {
                     var dd = player.getDuration && player.getDuration();
-                    if (typeof dd === 'number' && dd > 0) duration = dd;
+                    if (typeof dd === 'number' && dd > 0) state.duration = dd;
                 } catch (err) { }
-                if (t > maxWatched + 2.5) {
-                    try { player.setCurrentTime(maxWatched); } catch (err) { }
-                    return;
-                }
-                if (t > maxWatched) maxWatched = t;
-                if (duration > 0 && maxWatched >= Math.max(0, duration - 3)) complete();
+                handleTime(t, state.duration, player);
             }
-            if ((msg === 'panda_seeking' || msg === 'panda_seeked') && t !== null && t > maxWatched + 1.25) {
-                try { player.setCurrentTime(maxWatched); } catch (err) { }
+            if (msg === 'panda_seeking' || msg === 'panda_seeked') {
+                if (t !== null && t > state.maxWatched + SEEK_TOLERANCE) snapBack(player);
             }
         });
     }
 
     function startPanda() {
-        if (typeof PandaPlayer === 'undefined') {
-            setTimeout(startPanda, 120);
-            return;
-        }
-        window.pandascripttag = window.pandascripttag || [];
-        window.pandascripttag.push(function () {
-            try {
-                var player = new PandaPlayer(iframe.id, {
-                    onReady: function () { bindPlayer(player); }
-                });
-                // Fallback: se onReady não vier, ainda marca para não ficar em loop
-                setTimeout(function () {
-                    if (!_videoWrapInited.has(wrap)) _videoWrapInited.add(wrap);
-                }, 4000);
-            } catch (e) {
-                _videoWrapInited.add(wrap);
-            }
+        ensurePandaApiScript(function () {
+            window.pandascripttag = window.pandascripttag || [];
+            window.pandascripttag.push(function () {
+                try {
+                    var player = new PandaPlayer(iframe.id, {
+                        onReady: function () { bindPlayer(player); }
+                    });
+                    setTimeout(function () {
+                        if (!_videoWrapInited.has(wrap)) _videoWrapInited.add(wrap);
+                    }, 4000);
+                } catch (e) {
+                    _videoWrapInited.add(wrap);
+                }
+            });
         });
     }
 
     startPanda();
 }
 
-function initPandaPostMessageFallback(wrap, iframe, warn, onTime, onEnded) {
+function initPandaPostMessageFallback(wrap, iframe, warn, state, onTime, onEnded, snapBack) {
     if (iframe.dataset.pandaMsgBound) return;
     iframe.dataset.pandaMsgBound = '1';
-    var videoId = getPandaIdFromSrc(iframe.getAttribute('src') || iframe.dataset.videoSrc || '') || (iframe.id || '').replace(/^panda-/, '');
+    var videoId = getPandaIdFromSrc(iframe.getAttribute('src') || iframe.dataset.videoSrc || '')
+        || (iframe.id || '').replace(/^panda-/, '');
     if (!videoId) return;
-    var maxWatched = 0;
-    var duration = 0;
-    var completed = false;
+
     window.addEventListener('message', function (event) {
         var data = event.data;
         if (!data || !data.message) return;
         if (data.video && String(data.video) !== String(videoId)) return;
-        if (completed || wrap.classList.contains('req-done')) return;
+        if (state.completed || wrap.classList.contains('req-done')) return;
+
         var t = typeof data.currentTime === 'number' ? data.currentTime : null;
+        var dur = typeof data.duration === 'number' ? data.duration : null;
+
         if (data.message === 'panda_play') {
             warn.style.opacity = '0';
             warn.style.pointerEvents = 'none';
@@ -863,24 +967,19 @@ function initPandaPostMessageFallback(wrap, iframe, warn, onTime, onEnded) {
             warn.style.pointerEvents = 'auto';
         }
         if (data.message === 'panda_ended') {
-            completed = true;
+            state.completed = true;
             if (typeof onEnded === 'function') onEnded();
             else markWrapVideoComplete(wrap, warn);
             return;
         }
+        if (data.message === 'panda_seeking' || data.message === 'panda_seeked') {
+            if (t !== null && t > state.maxWatched + 1.0) {
+                if (typeof snapBack === 'function') snapBack(null);
+            }
+            return;
+        }
         if (data.message === 'panda_timeupdate' && t !== null) {
-            if (typeof data.duration === 'number' && data.duration > 0) duration = data.duration;
-            if (t > maxWatched + 2.5) {
-                try { iframe.contentWindow.postMessage({ type: 'currentTime', parameter: maxWatched }, '*'); } catch (e) { }
-                return;
-            }
-            if (t > maxWatched) maxWatched = t;
-            if (typeof onTime === 'function') {
-                onTime(t, duration);
-            } else if (duration > 0 && maxWatched >= Math.max(0, duration - 3)) {
-                completed = true;
-                markWrapVideoComplete(wrap, warn);
-            }
+            if (typeof onTime === 'function') onTime(t, dur, null);
         }
     });
 }
@@ -1053,7 +1152,8 @@ function goTo(idx, force = false, skipHistory = false) {
     const btnFwd = document.getElementById('btn-fwd');
     if (btnFwd) {
         btnFwd.style.visibility = 'visible';
-        btnFwd.style.display = (currentSlide === TOTAL - 1) ? 'none' : 'flex';
+        const hideFwd = currentSlide === TOTAL - 1 && !(window.MODULE_NAV && window.MODULE_NAV.next);
+        btnFwd.style.display = hideFwd ? 'none' : 'flex';
         // Trava imediatamente; updateNextButton libera se a página estiver completa
         btnFwd.disabled = true;
     }
@@ -1705,7 +1805,9 @@ function createQuizEngine(prefix, questions, numDots) {
         if (sub) {
             if (isM1Quiz()) {
                 if (approved) {
-                    sub.textContent = `Você acertou ${score} de ${questions.length} questões. Parabéns! Pode avançar para a próxima etapa.`;
+                    sub.textContent = NR12_PREVIEW_M1_ONLY
+                        ? `Você acertou ${score} de ${questions.length} questões. Parabéns! Esta prévia do treinamento termina aqui — os próximos módulos serão liberados em breve.`
+                        : `Você acertou ${score} de ${questions.length} questões. Parabéns! Pode avançar para a próxima etapa.`;
                 } else {
                     sub.textContent = `Você acertou ${score} de ${questions.length} questões. É necessário acertar pelo menos ${minCorrect} questões. Estude e tente novamente.`;
                 }
@@ -3154,42 +3256,7 @@ function resetQuiz6() { quiz6.reset(); }
         }
     })();
 
-    const origUpdate = window.updateNextButton;
-    window.updateNextButton = function () {
-        if (typeof origUpdate === 'function') origUpdate();
-        try {
-            const total = document.querySelectorAll('.slide').length;
-            const label = btnFwd.querySelector('.fwd-label');
-            const isLast = currentSlide === total - 1;
-            const hasNextModule = window.MODULE_NAV && window.MODULE_NAV.next;
-
-            if (isLast && hasNextModule) {
-                // Last slide of non-final module: "PRÓXIMO MÓDULO"
-                btnFwd.style.display = 'flex';
-                if (label) label.textContent = 'PRÓXIMO MÓDULO';
-                btnFwd.classList.add('btn-next-module');
-            } else {
-                // Restore default label "PRÓXIMO"
-                if (label) label.textContent = 'PRÓXIMO';
-                btnFwd.classList.remove('btn-next-module');
-            }
-
-            // Sempre reaplica o estado do botão (vídeos / requisitos)
-            if (!(isLast && !hasNextModule)) {
-                btnFwd.disabled = !isSlideCompleted(currentSlide);
-                if (!isLast) btnFwd.style.display = 'flex';
-            }
-
-            // Cover slide (index, slide 0): hide nav completely - "INICIAR" handles it
-            const navEl = document.getElementById('nav');
-            if (window.MODULE_NAV && window.MODULE_NAV.id === 'index' && currentSlide === 0) {
-                if (navEl) navEl.classList.add('nav-hidden-cover');
-            } else {
-                if (navEl) navEl.classList.remove('nav-hidden-cover');
-            }
-        } catch (e) { }
-    };
-    try { window.updateNextButton(); } catch (e) { }
+    try { updateNextButton(); } catch (e) { }
 })();
 
 

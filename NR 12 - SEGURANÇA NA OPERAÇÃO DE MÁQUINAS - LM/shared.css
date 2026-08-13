@@ -678,6 +678,45 @@ img {
     pointer-events: auto;
 }
 
+/* Último slide com próximo módulo: mantém o mesmo pill redondo do PRÓXIMO */
+.nav-btn.btn-next-module {
+    display: flex !important;
+    visibility: visible !important;
+    border-radius: 999px !important;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    background: var(--red);
+    color: var(--black);
+    box-shadow: 0 4px 16px rgba(0, 255, 255, 0.35);
+}
+
+.nav-btn.btn-next-module:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    background: var(--red);
+    color: var(--black);
+    box-shadow: 0 4px 14px rgba(0, 255, 255, 0.22);
+    filter: saturate(0.85);
+}
+
+.nav-btn.btn-next-module .fwd-label {
+    font-size: 15px;
+    letter-spacing: 0.04em;
+}
+
+/* Garante o pill redondo na página 6 (#s4) e nos quizzes */
+body:has(#s4.active) #btn-fwd,
+body:has(#sq1.active) #btn-fwd,
+body:has(#sq2.active) #btn-fwd,
+body:has(#s-quiz3.active) #btn-fwd,
+body:has(#s-quiz4.active) #btn-fwd,
+body:has(#s-quiz5.active) #btn-fwd {
+    display: flex !important;
+    visibility: visible !important;
+    border-radius: 999px !important;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .nav-btn:hover:not(:disabled) {
         filter: brightness(1.1);
@@ -691,11 +730,12 @@ img {
 }
 
 .nav-btn:disabled {
-    background: var(--red-dk);
-    opacity: 0.4;
+    background: var(--red);
+    opacity: 0.55;
     cursor: not-allowed;
-    box-shadow: none;
-    color: var(--white);
+    box-shadow: 0 4px 14px rgba(0, 255, 255, 0.22);
+    color: var(--black);
+    filter: saturate(0.85);
 }
 
 .nav-btn svg {
@@ -5254,7 +5294,10 @@ body {
     }
 
     .nav-btn:disabled {
-        opacity: 0.35;
+        opacity: 0.55;
+        background: var(--red);
+        color: var(--black);
+        box-shadow: 0 4px 14px rgba(0, 255, 255, 0.22);
     }
 
     /* ――― CAPA (S1): painel glass inferior em mobile ――― */
@@ -7643,7 +7686,7 @@ body {
 }
 
 #sq1 #q1-question-panel .q-opt:nth-child(1) {
-    background: #00FFFF !important;
+    background: #0A3D6B !important;
 }
 
 #sq1 #q1-question-panel .q-opt:nth-child(2) {
@@ -7656,7 +7699,7 @@ body {
 }
 
 #sq1 #q1-question-panel .q-opt:nth-child(4) {
-    background: #00FFFF !important;
+    background: #0A3D6B !important;
 }
 
 #sq1 #q1-question-panel .q-opt:hover:not(.answered) {

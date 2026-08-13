@@ -19,7 +19,7 @@
        Soma das slides = NR11_TOTAL_SLIDES (44).                              */
     const SLIDE_ORDER = {
         'index.html': ['s1', 's1b', 's-sumario'],
-        'modulo-1.html': ['intro-m1', 's3', 's2', 's4', 's6', 'sq1'],
+        'modulo-1.html': ['intro-m1', 's2', 's4', 's6', 's-central-cores', 'sq1'],
         'modulo-2.html': ['intro-m2', 's-equipamento', 's10', 's9', 's8', 'sq2'],
         'modulo-3.html': ['intro-m3', 's-bateria', 's-conducao', 's-rampas', 's-bateria-troca', 's-quiz3'],
         'modulo-4.html': ['s-mod4-intro', 's-mod4-video', 's-mod4-inspecao', 's-mod4-video-finalizacao', 's-quiz4'],
@@ -36,7 +36,7 @@
          intro / result:   texto narrado para esses estados
          questions[]:      texto narrado para cada pergunta (i+1 = Q1, Q2 …)                */
     const MULTI_STATE = {
-        // ─── QUIZ 1 (slide global 9, modulo-1.html, sq1) ──────────────────────
+        // ─── QUIZ 1 (slide global 9, modulo-1.html, sq1) ─────────────────────
         'sq1': {
             panels: { intro: '#q1-intro-panel', question: '#q1-question-panel', result: '#q1-result-panel' },
             counterSelector: '#q1-counter',
@@ -49,7 +49,7 @@
             result: 'Resultado do Quiz do Módulo 1. Veja sua pontuação na tela. Toque em Jogar Novamente para refazer ou siga para o próximo módulo.'
         },
 
-        // ─── QUIZ 2 (slide global 16, modulo-2.html, sq2) — Verdadeiro/Falso ──
+        // ─── QUIZ 2 (slide global 15, modulo-2.html, sq2) — Verdadeiro/Falso ──
         'sq2': {
             panels: { intro: '#sq2-intro-panel', question: '#sq2-question-panel', result: '#sq2-result-panel' },
             counterSelector: '#sq2-counter',
@@ -67,7 +67,7 @@
             result: 'Resultado do Quiz do Módulo 2. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.'
         },
 
-        // ─── MICRO-QUIZ CONDUÇÃO (slide global 19, modulo-3.html, s-conducao) ─
+        // ─── MICRO-QUIZ CONDUÇÃO (slide global 18, modulo-3.html, s-conducao) ─
         's-conducao': {
             panels: { intro: null, question: '#conducao-question-panel', result: null },
             counterSelector: '#conducao-counter',
@@ -82,7 +82,7 @@
             ]
         },
 
-        // ─── QUIZ 3 (slide global 22, modulo-3.html, s-quiz3) ─────────────────
+        // ─── QUIZ 3 (slide global 21, modulo-3.html, s-quiz3) ─────────────────
         's-quiz3': {
             panels: { intro: '#q3-intro-panel', question: '#q3-question-panel', result: '#q3-result-panel' },
             counterSelector: '#q3-counter',
@@ -97,7 +97,7 @@
             result: 'Resultado do Quiz do Módulo 3. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.'
         },
 
-        // ─── QUIZ 4 (slide global 27, modulo-4.html, s-quiz4) ─────────────────
+        // ─── QUIZ 4 (slide global 26, modulo-4.html, s-quiz4) ─────────────────
         's-quiz4': {
             panels: { intro: '#q4-intro-panel', question: '#q4-question-panel', result: '#q4-result-panel' },
             counterSelector: '#q4-counter',
@@ -112,7 +112,7 @@
             result: 'Resultado do Quiz do Módulo 4. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.'
         },
 
-        // ─── QUIZ 5 (slide global 36, modulo-5.html, s-quiz5) ─────────────────
+        // ─── QUIZ 5 (slide global 35, modulo-5.html, s-quiz5) ─────────────────
         's-quiz5': {
             panels: { intro: '#q5-intro-panel', question: '#q5-question-panel', result: '#q5-result-panel' },
             counterSelector: '#q5-counter',
@@ -127,7 +127,7 @@
             result: 'Resultado do Quiz do Módulo 5. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.'
         },
 
-        // ─── QUIZ 6 (slide global 44, modulo-6.html, s-quiz6) — Liberar/Não ───
+        // ─── QUIZ 6 (slide global 43, modulo-6.html, s-quiz6) — Liberar/Não ───
         's-quiz6': {
             panels: { intro: '#q6-intro-panel', question: '#q6-question-panel', result: '#q6-result-panel' },
             counterSelector: '#q6-counter',

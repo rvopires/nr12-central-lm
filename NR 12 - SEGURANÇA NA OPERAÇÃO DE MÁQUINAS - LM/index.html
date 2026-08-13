@@ -14,8 +14,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=94">
+<link rel="stylesheet" href="shared.css?v=105">
     <script>
+        /* Prévia empresa: só index + Módulo 1 */
+        window.NR12_PREVIEW_M1_ONLY = true;
         window.MODULE_NAV = {
             id: "index",
             prev: null,
@@ -698,7 +700,6 @@
                         🎬 Apresentação</div>
                     <h2 class="slide-title"
                         style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
-                        Introdução a NR 12 —
                         <span>Segurança na Operação de Máquinas</span>
                     </h2>
                 </div>
@@ -729,54 +730,48 @@
                         Conteúdo <span>Programático</span></h2>
                 </div>
                 <div class="content-area">
-                    <div class="sum-grid"
-                        style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); width: 100%; max-width: 1000px; margin: 0 auto; gap: 20px;">
+                    <style>
+                        #s-sumario .sum-grid {
+                            display: grid;
+                            grid-template-columns: repeat(2, minmax(0, 1fr));
+                            width: 100%;
+                            max-width: 760px;
+                            margin: 0 auto;
+                            gap: 20px;
+                        }
+
+                        #s-sumario .sum-item--soon {
+                            opacity: 0.72;
+                            border-left-color: rgba(255, 255, 255, 0.25);
+                            pointer-events: none;
+                        }
+
+                        #s-sumario .sum-item--soon .sum-num-big {
+                            background: rgba(255, 255, 255, 0.08);
+                            color: rgba(255, 255, 255, 0.75);
+                        }
+
+                        @media (max-width: 768px) {
+                            #s-sumario .sum-grid {
+                                grid-template-columns: 1fr;
+                            }
+                        }
+                    </style>
+                    <div class="sum-grid sum-grid--preview">
                         <div class="sum-item">
                             <div class="sum-top">
                                 <div class="sum-num-big">Módulo 1</div>
                                 <div class="sum-icon">📄</div>
                             </div>
-                            <div class="sum-text">Introdução e Legislação</div>
+                            <div class="sum-text">Abertura e Conceitos</div>
                         </div>
 
-                        <div class="sum-item">
+                        <div class="sum-item sum-item--soon" aria-disabled="true">
                             <div class="sum-top">
-                                <div class="sum-num-big">Módulo 2</div>
-                                <div class="sum-icon">⚙️</div>
+                                <div class="sum-num-big">Em breve</div>
+                                <div class="sum-icon">🚧</div>
                             </div>
-                            <div class="sum-text">Sistemas e Controles</div>
-                        </div>
-
-                        <div class="sum-item">
-                            <div class="sum-top">
-                                <div class="sum-num-big">Módulo 3</div>
-                                <div class="sum-icon">🛡️</div>
-                            </div>
-                            <div class="sum-text">Operação Segura</div>
-                        </div>
-
-                        <div class="sum-item">
-                            <div class="sum-top">
-                                <div class="sum-num-big">Módulo 4</div>
-                                <div class="sum-icon">📋</div>
-                            </div>
-                            <div class="sum-text">Procedimentos Operacionais</div>
-                        </div>
-
-                        <div class="sum-item">
-                            <div class="sum-top">
-                                <div class="sum-num-big">Módulo 5</div>
-                                <div class="sum-icon">📦</div>
-                            </div>
-                            <div class="sum-text">Armazenagem e Emergências</div>
-                        </div>
-
-                        <div class="sum-item">
-                            <div class="sum-top">
-                                <div class="sum-num-big">Módulo 6</div>
-                                <div class="sum-icon">🏆</div>
-                            </div>
-                            <div class="sum-text">Encerramento</div>
+                            <div class="sum-text">Módulos 2 a 5 — em desenvolvimento</div>
                         </div>
                     </div>
                 </div>
@@ -912,16 +907,30 @@
                 }
             }
 
-            // Abrir TODA VEZ que a página carrega
+            function shouldAutoOpenTutorial() {
+                const params = new URLSearchParams(window.location.search);
+                // Voltou de outro módulo (cai no sumário) — não abrir
+                if (params.get('last') === '1' || params.get('restoreslide') !== null) return false;
+                const s1 = document.getElementById('s1');
+                if (!s1 || !s1.classList.contains('active')) return false;
+                if (typeof currentSlide === 'number' && currentSlide !== 0) return false;
+                return true;
+            }
+
+            function openTutorialModalAuto() {
+                if (!shouldAutoOpenTutorial()) return;
+                const modal = document.getElementById('tutorialModal');
+                if (!modal) return;
+                modal.classList.add('active');
+                resetTutorialVideoToStart();
+                startTutorialUnlockTimer();
+            }
+
+            // Abrir só na capa (página 1), não ao voltar pro index pelo Anterior
             document.addEventListener('DOMContentLoaded', () => {
-                setTimeout(() => {
-                    const modal = document.getElementById('tutorialModal');
-                    if (modal) {
-                        modal.classList.add('active');
-                        resetTutorialVideoToStart();
-                        startTutorialUnlockTimer();
-                    }
-                }, 800);
+                // Limpa flag antiga que impedia o popup de reabrir
+                try { sessionStorage.removeItem('nr12_tutorial_seen'); } catch (err) { }
+                setTimeout(openTutorialModalAuto, 800);
             });
 
         </script>
@@ -929,7 +938,7 @@
     </div><!-- fecha #app -->
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=57"></script>
+    <script src="shared.js?v=69"></script>
 </body>
 
 </html>

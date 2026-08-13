@@ -7,17 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Módulo 1 - Introdução e Legislação</title>
+    <title>Módulo 1 - Abertura e Conceitos</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=94">
+<link rel="stylesheet" href="shared.css?v=105">
     <script>
+        /* Prévia empresa: só index + Módulo 1 */
+        window.NR12_PREVIEW_M1_ONLY = true;
         window.MODULE_NAV = {
             id: "modulo-1",
             prev: "index.html",
-            next: "modulo-2.html",
-            label: "Módulo 1 - Introdução e Legislação"
+            next: null,
+            label: "Módulo 1 - Abertura e Conceitos"
         };
     </script>
 </head>
@@ -48,923 +50,318 @@
                 <div class="mod-intro">
                     <div class="mod-intro-pill">INÍCIO</div>
                     <div class="mod-intro-num">MÓDULO 1</div>
-                    <div class="mod-intro-title">Introdução e Legislação</div>
+                    <div class="mod-intro-title">Abertura e Conceitos</div>
                 </div>
                 <div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none">
                         <path d="M0,50 C480,10 960,85 1440,30 L1440,100 L0,100 Z" fill="rgba(0, 255, 255,0.07)" />
                     </svg></div>
             </div>
 
-            <div class="slide" id="s3">
+            <div class="slide" id="s2">
                 <div class="top-bar">
                     <div class="section-tag"
                         style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);">
                         🎯 Módulo 1</div>
-                    <h2 class="slide-title"
-                        style="font-size: clamp(22px, 3.2vw, 34px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
-                        Conteúdo Programático para Capacitação</h2>
-
                 </div>
                 <div class="content-area">
                     <style>
-                        #s3 .m1o-mobile-wrap {
-                            display: none;
+                        #s2 .content-area {
+                            justify-content: flex-start !important;
+                            align-items: stretch !important;
+                            padding-top: 10px !important;
                         }
 
-                        @media (max-width: 768px) {
-                            #s3 .grid-2x2 {
-                                display: none !important;
-                            }
-
-                            #s3 .m1o-mobile-wrap {
-                                display: block;
-                                width: 100%;
-                                position: relative;
-                                z-index: 3;
-                            }
-
-                            #s3 .content-area {
-                                justify-content: flex-start !important;
-                                align-items: center !important;
-                                padding-top: 12px !important;
-                                padding-bottom: calc(108px + env(safe-area-inset-bottom, 0px)) !important;
-                                overflow: hidden !important;
-                            }
-
-                            #s3 .m1o-layout {
-                                width: 100%;
-                                padding: 28px 14px 8px;
-                                display: flex;
-                                flex-direction: column;
-                                align-items: center;
-                                gap: 12px;
-                            }
-
-                            #s3 .m1o-carousel {
-                                width: 100%;
-                                display: flex;
-                                flex-direction: column;
-                                align-items: center;
-                                gap: 12px;
-                            }
-
-                            #s3 .m1o-card {
-                                width: 100%;
-                                position: relative;
-                                background: linear-gradient(145deg, #3A1480, #1F0A45);
-                                border: 1px solid rgba(0, 255, 255, 0.45);
-                                border-radius: 14px;
-                                overflow: hidden;
-                                box-shadow: 0 20px 55px rgba(0, 255, 255, 0.18), 0 12px 40px rgba(0, 0, 0, 0.55);
-                                touch-action: pan-y;
-                            }
-
-                            #s3 .m1o-card-accent {
-                                height: 4px;
-                                background: linear-gradient(90deg, transparent, var(--green) 30%, var(--green-lt) 70%, transparent);
-                                opacity: 0.85;
-                            }
-
-                            #s3 .m1o-card-inner {
-                                padding: 22px 18px 24px;
-                                text-align: center;
-                            }
-
-                            #s3 .m1o-card-icon {
-                                font-size: 44px;
-                                line-height: 1;
-                                margin-bottom: 14px;
-                                filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.4));
-                            }
-
-                            #s3 .m1o-card-title {
-                                font-family: var(--font-h);
-                                font-size: 18px;
-                                font-weight: 800;
-                                color: var(--gold);
-                                margin-bottom: 10px;
-                                text-transform: uppercase;
-                                letter-spacing: 1px;
-                            }
-
-                            #s3 .m1o-card-divider {
-                                width: 48px;
-                                height: 2px;
-                                margin: 0 auto 12px;
-                                border-radius: 2px;
-                                background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.7), transparent);
-                            }
-
-                            #s3 .m1o-card-desc {
-                                font-size: 15px;
-                                line-height: 1.5;
-                                color: rgba(255, 255, 255, 0.78);
-                                margin: 0 auto;
-                                max-width: 320px;
-                            }
-
-                            #s3 .m1o-progress {
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                gap: 8px;
-                            }
-
-                            #s3 .m1o-dot {
-                                width: 8px;
-                                height: 8px;
-                                border-radius: 50%;
-                                background: rgba(255, 255, 255, 0.2);
-                                border: 1px solid rgba(255, 255, 255, 0.15);
-                                transition: all 0.3s ease;
-                            }
-
-                            #s3 .m1o-dot.is-active {
-                                width: 22px;
-                                border-radius: 4px;
-                                background: rgba(0, 255, 255, 0.7);
-                                border-color: rgba(0, 255, 255, 0.9);
-                            }
-
-                            #s3 .m1o-dot.is-done {
-                                background: rgba(0, 255, 255, 0.35);
-                                border-color: rgba(0, 255, 255, 0.5);
-                            }
-
-                            #s3 .m1o-carousel-nav {
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                gap: 14px;
-                                position: relative;
-                                z-index: 20;
-                                pointer-events: auto;
-                                padding-bottom: 4px;
-                            }
-
-                            #s3 .m1o-nav-btn:disabled {
-                                opacity: 0.35;
-                                cursor: not-allowed;
-                                pointer-events: none;
-                            }
-
-                            #s3 .m1o-counter {
-                                font-family: var(--font-h);
-                                font-size: 15px;
-                                font-weight: 700;
-                                color: #fff;
-                                min-width: 40px;
-                                text-align: center;
-                            }
-
-                            #s3 .wave {
-                                z-index: 0;
-                                pointer-events: none;
-                            }
-                        }
-                    </style>
-                    <style>
-                        #s3 .grid-2x2 {
-                            width: min(1180px, 100%);
-                            max-width: 1180px;
-                            margin: 0 auto;
-                            gap: 22px;
-                        }
-
-                        #s3 .grid-2x2 .icon-card {
-                            flex-direction: row;
-                            align-items: center;
-                            text-align: left;
-                            padding: 26px 28px;
-                            gap: 20px;
-                            min-height: 118px;
-                            position: relative;
-                            isolation: isolate;
-                            background:
-                                linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 45%),
-                                #7E36E3;
-                            border: 1px solid rgba(120, 170, 240, 0.28);
-                            border-top-color: rgba(150, 195, 255, 0.5);
-                            border-radius: 14px;
-                            box-shadow:
-                                inset 4px 0 0 0 #00FFFF,
-                                inset 8px 0 18px -6px rgba(0, 255, 255, 0.55),
-                                inset 0 1px 0 rgba(255, 255, 255, 0.18),
-                                inset 0 -18px 30px -18px rgba(0, 0, 0, 0.7),
-                                0 18px 34px rgba(0, 0, 0, 0.55),
-                                0 6px 14px rgba(0, 0, 0, 0.4),
-                                0 0 30px rgba(0, 255, 255, 0.18);
-                        }
-
-                        #s3 .grid-2x2 .icon-card::before {
-                            content: '';
-                            position: absolute;
-                            inset: -10px -6px;
-                            border-radius: 18px;
-                            background: radial-gradient(ellipse at 20% 50%,
-                                    rgba(0, 255, 255, 0.38) 0%,
-                                    rgba(0, 255, 255, 0.18) 42%,
-                                    transparent 72%);
-                            filter: blur(18px);
-                            z-index: -1;
-                            pointer-events: none;
-                        }
-
-                        #s3 .grid-2x2 .ic-circle {
-                            width: 64px;
-                            height: 64px;
-                            font-size: 34px;
-                            background: radial-gradient(circle at 35% 30%, rgba(30, 58, 110, 0.95), rgba(8, 18, 42, 0.98));
-                            border: 1.5px solid rgba(0, 255, 255, 0.45);
-                            box-shadow: 0 0 16px rgba(0, 255, 255, 0.25);
-                        }
-
-                        #s3 .grid-2x2 .ic-text {
-                            margin-top: 0;
-                        }
-
-                        #s3 .grid-2x2 .ic-text h4 {
-                            color: #00FFFF;
-                            font-size: 20px;
-                            margin-bottom: 6px;
-                        }
-
-                        #s3 .grid-2x2 .ic-text p {
-                            color: rgba(255, 255, 255, 0.88);
-                            font-size: 15px;
-                            line-height: 1.45;
-                        }
-                    </style>
-                    <div class="grid-2x2">
-                        <div class="icon-card">
-                            <div class="ic-circle">📘</div>
-                            <div class="ic-text">
-                                <h4>Conceitos básicos</h4>
-                                <p>Definição de máquina e objetivos da NR 12</p>
-                            </div>
-                        </div>
-                        <div class="icon-card">
-                            <div class="ic-circle">⚠️</div>
-                            <div class="ic-text">
-                                <h4>Identificação de Riscos e Proteções</h4>
-                                <p>Riscos de cada máquina, proteções específicas e como/por que devem ser usadas</p>
-                            </div>
-                        </div>
-                        <div class="icon-card">
-                            <div class="ic-circle">🔧</div>
-                            <div class="ic-text">
-                                <h4>Gestão de Proteções e Falhas</h4>
-                                <p>Quando e por quem uma proteção pode ser removida e o que fazer se estiver danificada</p>
-                            </div>
-                        </div>
-                        <div class="icon-card">
-                            <div class="ic-circle">👷</div>
-                            <div class="ic-text">
-                                <h4>Práticas de Trabalho Seguro</h4>
-                                <p>Princípios de segurança, permissão de trabalho e bloqueio durante manutenção</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="m1o-mobile-wrap">
-                        <div class="m1o-layout">
-                            <div class="m1o-carousel">
-                                <div class="m1o-card" id="m1o-card">
-                                    <div class="m1o-card-accent" aria-hidden="true"></div>
-                                    <div class="m1o-card-inner">
-                                        <div class="m1o-card-icon" id="m1o-card-icon">📘</div>
-                                        <h3 class="m1o-card-title" id="m1o-card-title">Conceitos básicos</h3>
-                                        <div class="m1o-card-divider" aria-hidden="true"></div>
-                                        <p class="m1o-card-desc" id="m1o-card-desc">Definição de máquina e objetivos da NR 12</p>
-                                    </div>
-                                </div>
-
-                                <div class="m1o-progress" id="m1o-progress" aria-hidden="true">
-                                    <span class="m1o-dot is-active"></span>
-                                    <span class="m1o-dot"></span>
-                                    <span class="m1o-dot"></span>
-                                    <span class="m1o-dot"></span>
-                                </div>
-
-                                <div class="m1o-carousel-nav">
-                                    <button type="button" class="m1o-nav-btn" id="m1o-prev"
-                                        aria-label="Tópico anterior">‹</button>
-                                    <span class="m1o-counter" id="m1o-counter">1/4</span>
-                                    <button type="button" class="m1o-nav-btn" id="m1o-next"
-                                        aria-label="Próximo tópico">›</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <span id="m1o-tracker" class="req-item" style="display:none" aria-hidden="true"></span>
-
-                    <script>
-                        (function () {
-                            const M1O_CARDS = [
-                                { icon: '📘', title: 'Conceitos básicos', desc: 'Definição de máquina e objetivos da NR 12' },
-                                { icon: '⚠️', title: 'Identificação de Riscos e Proteções', desc: 'Riscos de cada máquina, proteções específicas e como/por que devem ser usadas' },
-                                { icon: '🔧', title: 'Gestão de Proteções e Falhas', desc: 'Quando e por quem uma proteção pode ser removida e o que fazer se estiver danificada' },
-                                { icon: '👷', title: 'Práticas de Trabalho Seguro', desc: 'Princípios de segurança, permissão de trabalho e bloqueio durante manutenção' }
-                            ];
-
-                            let m1oIdx = 0;
-                            const viewed = new Set([0]);
-
-                            const iconEl = document.getElementById('m1o-card-icon');
-                            const titleEl = document.getElementById('m1o-card-title');
-                            const descEl = document.getElementById('m1o-card-desc');
-                            const counterEl = document.getElementById('m1o-counter');
-                            const progressEl = document.getElementById('m1o-progress');
-                            const cardEl = document.getElementById('m1o-card');
-                            const prevBtn = document.getElementById('m1o-prev');
-                            const nextBtn = document.getElementById('m1o-next');
-
-                            function m1oMarkTrackerDone() {
-                                const tracker = document.getElementById('m1o-tracker');
-                                if (!tracker || tracker.classList.contains('req-done')) return;
-                                tracker.classList.add('req-done');
-                                if (typeof updateNextButton === 'function') updateNextButton();
-                            }
-
-                            function markM1oProgress() {
-                                if (!window.matchMedia('(max-width: 768px)').matches) return;
-                                viewed.add(m1oIdx);
-                                if (viewed.size >= M1O_CARDS.length) {
-                                    m1oMarkTrackerDone();
-                                }
-                            }
-
-                            function updateM1oNav() {
-                                if (prevBtn) prevBtn.disabled = m1oIdx === 0;
-                                if (nextBtn) nextBtn.disabled = m1oIdx >= M1O_CARDS.length - 1;
-                            }
-
-                            function renderM1oCard() {
-                                const c = M1O_CARDS[m1oIdx];
-                                if (iconEl) iconEl.textContent = c.icon;
-                                if (titleEl) titleEl.textContent = c.title;
-                                if (descEl) descEl.textContent = c.desc;
-                                if (counterEl) counterEl.textContent = (m1oIdx + 1) + '/' + M1O_CARDS.length;
-                                if (progressEl) {
-                                    progressEl.querySelectorAll('.m1o-dot').forEach(function (dot, i) {
-                                        dot.classList.toggle('is-active', i === m1oIdx);
-                                        dot.classList.toggle('is-done', viewed.has(i) && i !== m1oIdx);
-                                    });
-                                }
-                                updateM1oNav();
-                                markM1oProgress();
-                            }
-
-                            function m1oGo(dir) {
-                                const next = m1oIdx + dir;
-                                if (next < 0 || next >= M1O_CARDS.length) return;
-                                m1oIdx = next;
-                                if (typeof playTechClick === 'function') playTechClick();
-                                renderM1oCard();
-                            }
-
-                            if (prevBtn) prevBtn.addEventListener('click', function () { m1oGo(-1); });
-                            if (nextBtn) nextBtn.addEventListener('click', function () { m1oGo(1); });
-
-                            let touchX = null;
-                            if (cardEl) {
-                                cardEl.addEventListener('touchstart', function (e) {
-                                    touchX = e.touches[0].clientX;
-                                }, { passive: true });
-                                cardEl.addEventListener('touchend', function (e) {
-                                    if (touchX === null) return;
-                                    const dx = e.changedTouches[0].clientX - touchX;
-                                    touchX = null;
-                                    if (Math.abs(dx) < 40) return;
-                                    if (dx < 0 && m1oIdx >= M1O_CARDS.length - 1) return;
-                                    if (dx > 0 && m1oIdx <= 0) return;
-                                    m1oGo(dx < 0 ? 1 : -1);
-                                }, { passive: true });
-                            }
-
-                            if (!window.matchMedia('(max-width: 768px)').matches) {
-                                m1oMarkTrackerDone();
-                            }
-
-                            renderM1oCard();
-                        })();
-                    </script>
-                </div>
-                <div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-                        <path d="M0,50 C480,10 960,85 1440,30 L1440,100 L0,100 Z" fill="rgba(0, 255, 255,0.07)" />
-                    </svg></div>
-            </div>
-
-<div class="slide" id="s2">
-                <div class="top-bar">
-                    <div class="section-tag"
-                        style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);">
-                        🎯 Módulo 1</div>
-                    <h2 class="slide-title"
-                        style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
-                        O que é a <span>NR-12?</span></h2>
-
-                </div>
-                <div class="content-area">
-                    <style>
                         #s2 .s2-layout {
-                            width: min(1180px, 100%);
-                            margin: 0 auto;
-                            display: flex;
-                            flex-direction: column;
-                            gap: 18px;
+                            width: 100%;
+                            flex: 1 1 auto;
+                            height: 100%;
+                            min-height: 0;
+                            display: grid;
+                            grid-template-columns: minmax(280px, 400px) minmax(320px, 600px);
+                            gap: clamp(16px, 2vw, 26px);
+                            align-items: center;
+                            justify-content: center;
                         }
 
-                        #s2 .s2-pillars-label {
-                            font-family: var(--font-h);
-                            font-size: 13px;
-                            font-weight: 700;
-                            letter-spacing: 0.12em;
-                            text-transform: uppercase;
-                            color: rgba(0, 255, 255, 0.9);
-                            text-align: center;
-                            margin: 2px 0 0;
-                        }
-
-                        #s2 .def-banner,
-                        #s2 .three-col .icon-card {
+                        #s2 .s2-panel {
                             position: relative;
                             isolation: isolate;
+                            height: auto;
+                            max-height: 100%;
+                            min-height: 0;
+                            align-self: center;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-start;
+                            gap: 16px;
+                            padding: 22px 20px 18px;
+                            border-radius: 20px;
+                            overflow: hidden;
                             background:
-                                linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 45%),
-                                #7E36E3;
-                            border: 1px solid rgba(120, 170, 240, 0.28);
-                            border-top-color: rgba(150, 195, 255, 0.5);
-                            border-radius: 14px;
+                                linear-gradient(
+                                    160deg,
+                                    rgba(0, 255, 255, 0.14) 0%,
+                                    rgba(6, 16, 24, 0.55) 36%,
+                                    rgba(31, 10, 69, 0.72) 70%,
+                                    rgba(126, 54, 227, 0.42) 100%
+                                ),
+                                #2a0d5c;
+                            border: 1px solid rgba(0, 255, 255, 0.42);
                             box-shadow:
                                 inset 4px 0 0 0 #00FFFF,
-                                inset 8px 0 18px -6px rgba(0, 255, 255, 0.55),
-                                inset 0 1px 0 rgba(255, 255, 255, 0.18),
-                                inset 0 -18px 30px -18px rgba(0, 0, 0, 0.7),
-                                0 18px 34px rgba(0, 0, 0, 0.55),
-                                0 6px 14px rgba(0, 0, 0, 0.4),
-                                0 0 30px rgba(0, 255, 255, 0.18);
+                                inset 10px 0 22px -8px rgba(0, 255, 255, 0.35),
+                                inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                                0 18px 40px rgba(0, 0, 0, 0.4),
+                                0 0 28px rgba(0, 255, 255, 0.12);
+                            backdrop-filter: blur(18px) saturate(1.15);
+                            -webkit-backdrop-filter: blur(18px) saturate(1.15);
                         }
 
-                        #s2 .def-banner::before,
-                        #s2 .three-col .icon-card::before {
+                        #s2 .s2-panel::before {
                             content: '';
                             position: absolute;
-                            inset: -10px -6px;
-                            border-radius: 18px;
-                            background: radial-gradient(ellipse at 20% 50%,
-                                    rgba(0, 255, 255, 0.38) 0%,
-                                    rgba(0, 255, 255, 0.18) 42%,
-                                    transparent 72%);
-                            filter: blur(18px);
-                            z-index: -1;
+                            inset: 0;
+                            border-radius: inherit;
                             pointer-events: none;
+                            box-shadow: inset 0 0 0 1px rgba(126, 54, 227, 0.12);
                         }
 
-                        #s2 .def-banner {
-                            display: flex;
-                            align-items: flex-start;
-                            gap: 20px;
-                            padding: 26px 28px;
-                            margin-bottom: 0;
-                        }
-
-                        #s2 .def-banner .ic-circle,
-                        #s2 .three-col .ic-circle {
-                            width: 64px;
-                            height: 64px;
-                            font-size: 34px;
-                            background: radial-gradient(circle at 35% 30%, rgba(30, 58, 110, 0.95), rgba(8, 18, 42, 0.98));
-                            border: 1.5px solid rgba(0, 255, 255, 0.45);
-                            box-shadow: 0 0 16px rgba(0, 255, 255, 0.25);
-                            color: #fff;
-                        }
-
-                        #s2 .def-banner .ic-text h4 {
-                            color: #00FFFF;
-                            font-size: 24px;
-                        }
-
-                        #s2 .def-banner .ic-text p {
-                            color: rgba(255, 255, 255, 0.88);
-                            font-size: 17px;
-                            line-height: 1.55;
-                        }
-
-                        #s2 .three-col {
-                            gap: 18px;
-                            margin-top: 0;
-                        }
-
-                        #s2 .three-col .icon-card {
-                            flex-direction: column;
-                            align-items: flex-start;
-                            text-align: left;
-                            padding: 22px 22px 20px;
-                            gap: 14px;
-                            margin-bottom: 0;
-                        }
-
-                        #s2 .s2-card-num {
+                        #s2 .s2-panel-shine {
                             position: absolute;
-                            top: 14px;
-                            right: 16px;
+                            inset: -20% auto auto -16%;
+                            width: 78%;
+                            height: 54%;
+                            pointer-events: none;
+                            z-index: 0;
+                            background: radial-gradient(
+                                ellipse at 30% 20%,
+                                rgba(0, 255, 255, 0.22) 0%,
+                                rgba(126, 54, 227, 0.18) 42%,
+                                transparent 72%
+                            );
+                            filter: blur(12px);
+                        }
+
+                        #s2 .s2-panel-dots {
+                            position: absolute;
+                            inset: 0;
+                            pointer-events: none;
+                            z-index: 0;
+                            opacity: 0.2;
+                            background-image: radial-gradient(rgba(0, 255, 255, 0.7) 0.65px, transparent 0.75px);
+                            background-size: 16px 16px;
+                            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, transparent 60%);
+                            -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, transparent 60%);
+                        }
+
+                        #s2 .s2-panel-inner {
+                            position: relative;
+                            z-index: 1;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+                        }
+
+                        #s2 .s2-kicker {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 6px;
+                            align-self: flex-start;
+                            padding: 4px 10px;
+                            border-radius: 999px;
                             font-family: var(--font-h);
-                            font-size: 12px;
+                            font-size: 10px;
                             font-weight: 800;
-                            letter-spacing: 0.08em;
-                            color: rgba(0, 255, 255, 0.75);
-                        }
-
-                        #s2 .three-col .ic-text h4 {
+                            letter-spacing: 0.1em;
+                            text-transform: uppercase;
                             color: #00FFFF;
-                            font-size: 18px;
-                            margin-bottom: 6px;
+                            background: rgba(0, 255, 255, 0.1);
+                            border: 1px solid rgba(0, 255, 255, 0.35);
                         }
 
-                        #s2 .three-col .ic-text p {
-                            color: rgba(255, 255, 255, 0.88);
-                            font-size: 15px;
+                        #s2 .s2-title {
+                            margin: 0;
+                            font-family: var(--font-h);
+                            font-weight: 900;
+                            font-size: clamp(22px, 2.5vw, 30px);
+                            line-height: 1.15;
+                            letter-spacing: -0.02em;
+                            color: #fff;
+                            text-shadow: 0 0 14px rgba(0, 255, 255, 0.2);
+                        }
+
+                        #s2 .s2-title .s2-accent {
+                            color: #00FFFF;
+                        }
+
+                        #s2 .s2-lead {
+                            margin: 0;
+                            max-width: 38ch;
+                            font-size: clamp(14px, 1.3vw, 16px);
                             line-height: 1.45;
+                            color: rgba(255, 255, 255, 0.82);
                         }
 
-                        #s2 .s2-mobile-wrap {
+                        #s2 .s2-lead strong {
+                            color: #00FFFF;
+                            font-weight: 800;
+                        }
+
+                        #s2 .s2-points {
+                            position: relative;
+                            z-index: 1;
+                            display: grid;
+                            gap: 8px;
+                        }
+
+                        #s2 .s2-point {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            min-height: 40px;
+                            padding: 8px 10px;
+                            border-radius: 12px;
+                            background: rgba(0, 0, 0, 0.22);
+                            border: 1px solid rgba(255, 255, 255, 0.1);
+                            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+                        }
+
+                        #s2 .s2-point-ico {
+                            width: 28px;
+                            height: 28px;
+                            flex-shrink: 0;
+                            display: grid;
+                            place-items: center;
+                            border-radius: 50%;
+                            background: rgba(0, 255, 255, 0.12);
+                            border: 1px solid rgba(0, 255, 255, 0.4);
+                            box-shadow: 0 0 10px rgba(0, 255, 255, 0.18);
+                            font-size: 13px;
+                            line-height: 1;
+                        }
+
+                        #s2 .s2-point-txt {
+                            font-family: var(--font-h);
+                            font-size: clamp(12px, 1.1vw, 13px);
+                            font-weight: 700;
+                            line-height: 1.25;
+                            color: rgba(255, 255, 255, 0.92);
+                        }
+
+                        #s2 .s2-visual {
+                            position: relative;
+                            width: 100%;
+                            max-width: 600px;
+                            height: auto;
+                            max-height: min(480px, 64vh);
+                            align-self: center;
+                            justify-self: center;
+                            border-radius: 20px;
+                            overflow: hidden;
+                            border: 1px solid rgba(0, 255, 255, 0.4);
+                            background: #0d061c;
+                            box-shadow:
+                                0 18px 40px rgba(0, 0, 0, 0.45),
+                                0 0 28px rgba(0, 255, 255, 0.12);
+                        }
+
+                        #s2 .s2-visual::after {
+                            content: '';
+                            position: absolute;
+                            inset: 0;
+                            pointer-events: none;
+                            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+                        }
+
+                        #s2 .s2-visual img {
+                            width: 100%;
+                            height: auto;
+                            max-height: min(480px, 64vh);
+                            display: block;
+                            object-fit: contain;
+                            object-position: center;
+                            background: #0d061c;
+                        }
+
+                        #s2 .s2-visual-caption {
                             display: none;
                         }
 
-                        @media (max-width: 768px) {
+                        @media (max-width: 900px) {
                             #s2 .s2-layout {
+                                grid-template-columns: 1fr;
+                                height: auto;
                                 gap: 14px;
+                                justify-items: center;
                             }
 
-                            /* Esconde desktop: definição, pilares label, grid e dica */
-                            #s2 .def-banner,
-                            #s2 .s2-pillars-label,
-                            #s2 .three-col,
-                            #s2 .s2-acc-hint {
-                                display: none !important;
-                            }
-
-                            #s2 .s2-mobile-wrap {
-                                display: block;
+                            #s2 .s2-panel {
+                                height: auto;
                                 width: 100%;
+                                max-width: 460px;
                             }
 
-                            #s2 .s2-carousel {
-                                width: 100%;
-                                display: flex;
-                                flex-direction: column;
-                                align-items: center;
-                                gap: 12px;
+                            #s2 .s2-visual {
+                                width: min(100%, 460px);
+                                max-height: 320px;
                             }
 
-                            #s2 .s2-card {
-                                width: 100%;
-                                position: relative;
-                                isolation: isolate;
-                                background:
-                                    linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 45%),
-                                    #7E36E3;
-                                border: 1px solid rgba(120, 170, 240, 0.28);
-                                border-top-color: rgba(150, 195, 255, 0.5);
-                                border-radius: 14px;
-                                box-shadow:
-                                    inset 4px 0 0 0 #00FFFF,
-                                    inset 8px 0 18px -6px rgba(0, 255, 255, 0.55),
-                                    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-                                    inset 0 -18px 30px -18px rgba(0, 0, 0, 0.7),
-                                    0 18px 34px rgba(0, 0, 0, 0.55),
-                                    0 0 30px rgba(0, 255, 255, 0.18);
-                                touch-action: pan-y;
+                            #s2 .s2-visual img {
+                                max-height: 320px;
+                            }
+                        }
+
+                        @media (max-width: 768px) {
+                            #s2 .content-area {
+                                justify-content: flex-start !important;
+                                padding-top: 8px !important;
+                                padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px)) !important;
+                                overflow-y: auto !important;
                             }
 
-                            #s2 .s2-card-num {
-                                position: absolute;
-                                top: 14px;
-                                right: 16px;
-                                font-family: var(--font-h);
-                                font-size: 12px;
-                                font-weight: 800;
-                                letter-spacing: 0.08em;
-                                color: rgba(0, 255, 255, 0.75);
-                                z-index: 1;
+                            #s2 .s2-panel {
+                                padding: 18px;
+                                gap: 16px;
                             }
 
-                            #s2 .s2-card-inner {
-                                padding: 24px 18px 26px;
-                                text-align: center;
-                            }
-
-                            #s2 .s2-card-icon {
-                                font-size: 46px;
-                                line-height: 1;
-                                margin-bottom: 14px;
-                                filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.4));
-                            }
-
-                            #s2 .s2-card-title {
-                                font-family: var(--font-h);
-                                font-size: 18px;
-                                font-weight: 800;
-                                color: #00FFFF;
-                                margin-bottom: 10px;
-                                text-transform: uppercase;
-                                letter-spacing: 0.5px;
-                            }
-
-                            #s2 .s2-card-divider {
-                                width: 48px;
-                                height: 2px;
-                                margin: 0 auto 12px;
-                                border-radius: 2px;
-                                background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.7), transparent);
-                            }
-
-                            #s2 .s2-card-desc {
-                                font-size: 15px;
-                                line-height: 1.5;
-                                color: rgba(255, 255, 255, 0.85);
-                                margin: 0 auto;
-                                max-width: 300px;
-                            }
-
-                            #s2 .s2-progress {
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                gap: 8px;
-                            }
-
-                            #s2 .s2-dot {
-                                width: 8px;
-                                height: 8px;
-                                border-radius: 50%;
-                                background: rgba(255, 255, 255, 0.2);
-                                border: 1px solid rgba(255, 255, 255, 0.15);
-                                transition: all 0.3s ease;
-                            }
-
-                            #s2 .s2-dot.is-active {
-                                width: 22px;
-                                border-radius: 4px;
-                                background: rgba(0, 255, 255, 0.7);
-                                border-color: rgba(0, 255, 255, 0.9);
-                            }
-
-                            #s2 .s2-dot.is-done {
-                                background: rgba(0, 255, 255, 0.35);
-                                border-color: rgba(0, 255, 255, 0.5);
-                            }
-
-                            #s2 .s2-carousel-nav {
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                gap: 14px;
-                                position: relative;
-                                z-index: 20;
-                                pointer-events: auto;
-                            }
-
-                            #s2 .s2-nav-btn:disabled {
-                                opacity: 0.35;
-                                cursor: not-allowed;
-                                pointer-events: none;
-                            }
-
-                            #s2 .s2-counter {
-                                font-family: var(--font-h);
-                                font-size: 15px;
-                                font-weight: 700;
-                                color: #fff;
-                                min-width: 40px;
-                                text-align: center;
+                            #s2 .s2-title {
+                                font-size: 20px;
                             }
                         }
                     </style>
 
                     <div class="s2-layout">
-                        <p class="s2-acc-hint">👆 Toque em cada item para ver mais</p>
+                        <article class="s2-panel" aria-label="Introdução às máquinas">
+                            <div class="s2-panel-shine" aria-hidden="true"></div>
+                            <div class="s2-panel-dots" aria-hidden="true"></div>
 
-                        <div class="def-banner s2-acc-item">
-                            <div class="ic-circle">📖</div>
-                            <div class="ic-text">
-                                <button type="button" class="s2-acc-trigger" aria-expanded="false">
-                                    <h4>Definição</h4>
-                                    <span class="s2-acc-chevron" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <polyline points="6 9 12 15 18 9" />
-                                        </svg>
-                                    </span>
-                                </button>
-                                <div class="s2-acc-body">
-                                    <p>A NR-12 define medidas de proteção para garantir a saúde e a integridade física na
-                                        operação segura das máquinas da Central de Cores.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <p class="s2-pillars-label">A NR-12 se apoia em 3 pilares na Central de Cores</p>
-
-                        <div class="three-col">
-                            <div class="icon-card s2-acc-item">
-                                <span class="s2-card-num">01</span>
-                                <div class="ic-circle">🛡️</div>
-                                <div class="ic-text">
-                                    <button type="button" class="s2-acc-trigger" aria-expanded="false">
-                                        <h4>Proteções e Intertravamento</h4>
-                                        <span class="s2-acc-chevron" aria-hidden="true">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <polyline points="6 9 12 15 18 9" />
-                                            </svg>
-                                        </span>
-                                    </button>
-                                    <div class="s2-acc-body">
-                                        <p>Sensores e proteções que param a máquina imediatamente se tampas ou portas de
-                                            segurança forem abertas.</p>
-                                    </div>
-                                </div>
+                            <div class="s2-panel-inner">
+                                <span class="s2-kicker">⚙️ Máquinas · Introdução</span>
+                                <h2 class="s2-title">Máquinas da <span class="s2-accent">Central de Cores</span></h2>
+                                <p class="s2-lead">Conheça os equipamentos usados no dia a dia da loja e o papel da <strong>NR 12</strong> para operar com proteção, atenção e procedimento correto.</p>
                             </div>
 
-                            <div class="icon-card s2-acc-item">
-                                <span class="s2-card-num">02</span>
-                                <div class="ic-circle">🦺</div>
-                                <div class="ic-text">
-                                    <button type="button" class="s2-acc-trigger" aria-expanded="false">
-                                        <h4>Capacitação e Operação Segura</h4>
-                                        <span class="s2-acc-chevron" aria-hidden="true">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <polyline points="6 9 12 15 18 9" />
-                                            </svg>
-                                        </span>
-                                    </button>
-                                    <div class="s2-acc-body">
-                                        <p>Treinamento obrigatório (Anexo II) para identificar riscos, usar EPIs e
-                                            respeitar os limites de peso.</p>
-                                    </div>
+                            <div class="s2-points" aria-label="Pontos-chave">
+                                <div class="s2-point">
+                                    <span class="s2-point-ico" aria-hidden="true">🧪</span>
+                                    <span class="s2-point-txt">Dosador e misturador em operação real</span>
+                                </div>
+                                <div class="s2-point">
+                                    <span class="s2-point-ico" aria-hidden="true">🛡️</span>
+                                    <span class="s2-point-txt">Proteções e bloqueios sempre ativos</span>
+                                </div>
+                                <div class="s2-point">
+                                    <span class="s2-point-ico" aria-hidden="true">📋</span>
+                                    <span class="s2-point-txt">Só opera quem foi capacitado</span>
                                 </div>
                             </div>
+                        </article>
 
-                            <div class="icon-card s2-acc-item">
-                                <span class="s2-card-num">03</span>
-                                <div class="ic-circle">🔌</div>
-                                <div class="ic-text">
-                                    <button type="button" class="s2-acc-trigger" aria-expanded="false">
-                                        <h4>Isolamento Energético (Regra de Ouro)</h4>
-                                        <span class="s2-acc-chevron" aria-hidden="true">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <polyline points="6 9 12 15 18 9" />
-                                            </svg>
-                                        </span>
-                                    </button>
-                                    <div class="s2-acc-body">
-                                        <p>Antes de limpar ou fazer manutenção: desligar o interruptor geral e retirar o
-                                            cabo da tomada.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="s2-mobile-wrap">
-                            <div class="s2-carousel">
-                                <div class="s2-card" id="s2-card">
-                                    <span class="s2-card-num" id="s2-card-num"></span>
-                                    <div class="s2-card-inner">
-                                        <div class="s2-card-icon" id="s2-card-icon">📖</div>
-                                        <h3 class="s2-card-title" id="s2-card-title">Definição</h3>
-                                        <div class="s2-card-divider" aria-hidden="true"></div>
-                                        <p class="s2-card-desc" id="s2-card-desc">A NR-12 define medidas de proteção para
-                                            garantir a saúde e a integridade física na operação segura das máquinas da
-                                            Central de Cores.</p>
-                                    </div>
-                                </div>
-
-                                <div class="s2-progress" id="s2-progress" aria-hidden="true">
-                                    <span class="s2-dot is-active"></span>
-                                    <span class="s2-dot"></span>
-                                    <span class="s2-dot"></span>
-                                    <span class="s2-dot"></span>
-                                </div>
-
-                                <div class="s2-carousel-nav">
-                                    <button type="button" class="s2-nav-btn" id="s2-prev"
-                                        aria-label="Card anterior">‹</button>
-                                    <span class="s2-counter" id="s2-counter">1/4</span>
-                                    <button type="button" class="s2-nav-btn" id="s2-next"
-                                        aria-label="Próximo card">›</button>
-                                </div>
-                            </div>
+                        <div class="s2-visual">
+                            <img src="assets/fotos/maquinas-introdução.png" alt="Máquinas da Central de Cores — aberta e fechada">
+                            <div class="s2-visual-caption"><span>Central de Cores</span> · visão das máquinas</div>
                         </div>
                     </div>
-
-                    <span id="s2-tracker" class="req-item" style="display:none" aria-hidden="true"></span>
-
-                    <script>
-                        (function () {
-                            const S2_CARDS = [
-                                {
-                                    num: '',
-                                    icon: '📖',
-                                    title: 'Definição',
-                                    desc: 'A NR-12 define medidas de proteção para garantir a saúde e a integridade física na operação segura das máquinas da Central de Cores.'
-                                },
-                                { num: '01', icon: '🛡️', title: 'Proteções e Intertravamento', desc: 'Sensores e proteções que param a máquina imediatamente se tampas ou portas de segurança forem abertas.' },
-                                { num: '02', icon: '🦺', title: 'Capacitação e Operação Segura', desc: 'Treinamento obrigatório (Anexo II) para identificar riscos, usar EPIs e respeitar os limites de peso.' },
-                                { num: '03', icon: '🔌', title: 'Isolamento Energético (Regra de Ouro)', desc: 'Antes de limpar ou fazer manutenção: desligar o interruptor geral e retirar o cabo da tomada.' }
-                            ];
-
-                            let s2Idx = 0;
-                            const viewed = new Set([0]);
-
-                            const numEl = document.getElementById('s2-card-num');
-                            const iconEl = document.getElementById('s2-card-icon');
-                            const titleEl = document.getElementById('s2-card-title');
-                            const descEl = document.getElementById('s2-card-desc');
-                            const counterEl = document.getElementById('s2-counter');
-                            const progressEl = document.getElementById('s2-progress');
-                            const cardEl = document.getElementById('s2-card');
-                            const prevBtn = document.getElementById('s2-prev');
-                            const nextBtn = document.getElementById('s2-next');
-                            const trackerEl = document.getElementById('s2-tracker');
-
-                            function s2MarkTrackerDone() {
-                                if (!trackerEl || trackerEl.classList.contains('req-done')) return;
-                                trackerEl.classList.add('req-done');
-                                if (typeof updateNextButton === 'function') updateNextButton();
-                            }
-
-                            function markS2Progress() {
-                                viewed.add(s2Idx);
-                                if (viewed.size >= S2_CARDS.length) {
-                                    s2MarkTrackerDone();
-                                }
-                            }
-
-                            function updateS2Nav() {
-                                if (prevBtn) prevBtn.disabled = s2Idx === 0;
-                                if (nextBtn) nextBtn.disabled = s2Idx >= S2_CARDS.length - 1;
-                            }
-
-                            function renderS2Card() {
-                                const c = S2_CARDS[s2Idx];
-                                if (numEl) {
-                                    numEl.textContent = c.num;
-                                    numEl.style.display = c.num ? '' : 'none';
-                                }
-                                if (iconEl) iconEl.textContent = c.icon;
-                                if (titleEl) titleEl.textContent = c.title;
-                                if (descEl) descEl.textContent = c.desc;
-                                if (counterEl) counterEl.textContent = (s2Idx + 1) + '/' + S2_CARDS.length;
-                                if (progressEl) {
-                                    progressEl.querySelectorAll('.s2-dot').forEach(function (dot, i) {
-                                        dot.classList.toggle('is-active', i === s2Idx);
-                                        dot.classList.toggle('is-done', viewed.has(i) && i !== s2Idx);
-                                    });
-                                }
-                                updateS2Nav();
-                                markS2Progress();
-                            }
-
-                            function s2Go(dir) {
-                                const next = s2Idx + dir;
-                                if (next < 0 || next >= S2_CARDS.length) return;
-                                s2Idx = next;
-                                if (typeof playTechClick === 'function') playTechClick();
-                                renderS2Card();
-                            }
-
-                            if (prevBtn) prevBtn.addEventListener('click', function () { s2Go(-1); });
-                            if (nextBtn) nextBtn.addEventListener('click', function () { s2Go(1); });
-
-                            let touchX = null;
-                            if (cardEl) {
-                                cardEl.addEventListener('touchstart', function (e) {
-                                    touchX = e.touches[0].clientX;
-                                }, { passive: true });
-                                cardEl.addEventListener('touchend', function (e) {
-                                    if (touchX === null) return;
-                                    const dx = e.changedTouches[0].clientX - touchX;
-                                    touchX = null;
-                                    if (Math.abs(dx) < 40) return;
-                                    if (dx < 0 && s2Idx >= S2_CARDS.length - 1) return;
-                                    if (dx > 0 && s2Idx <= 0) return;
-                                    s2Go(dx < 0 ? 1 : -1);
-                                }, { passive: true });
-                            }
-
-                            // Desktop mostra o layout estático; mobile exige ver os 4 cards do carrossel
-                            if (!window.matchMedia('(max-width: 768px)').matches) {
-                                s2MarkTrackerDone();
-                            }
-
-                            renderS2Card();
-                        })();
-                    </script>
                 </div>
                 <button type="button" id="s2-scroll-down" class="slide-scroll-btn"
                     onclick="scrollSlideDown('s2')" aria-label="Rolar para baixo">
@@ -979,13 +376,13 @@
                     </svg></div>
             </div>
 
-                                                <div class="slide" id="s4">
+<div class="slide" id="s4">
                 <div class="top-bar">
                     <div class="section-tag"
                         style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);">
                         🎯 Módulo 1</div>
                     <h2 class="slide-title"
-                        style="font-size: clamp(20px, 2.8vw, 32px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
+                        style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
                         Limites de Atuação: Onde a NR 12 <span>NÃO</span> se aplica?</h2>
                 </div>
                 <div class="content-area">
@@ -1582,6 +979,275 @@
                     </svg></div>
             </div>
 
+
+            <div class="slide" id="s-central-cores">
+                <div class="top-bar">
+                    <div class="section-tag"
+                        style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);">
+                        🎯 Módulo 1</div>
+                    <h2 class="slide-title"
+                        style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
+                        Central de <span>Cores</span></h2>
+                </div>
+                <div class="content-area" style="justify-content:center;align-items:center;">
+                    <style>
+                        #s-central-cores .cc-layout {
+                            width: min(1180px, 100%);
+                            margin: 0 auto;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 0;
+                        }
+
+                        #s-central-cores .cc-grid {
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: stretch;
+                            gap: 32px;
+                            flex-wrap: wrap;
+                        }
+
+                        #s-central-cores .cc-card {
+                            position: relative;
+                            isolation: isolate;
+                            flex: 0 1 520px;
+                            width: min(520px, 100%);
+                            aspect-ratio: 5 / 6;
+                            max-height: min(560px, 64vh);
+                            border-radius: 22px;
+                            overflow: hidden;
+                            border: 1px solid rgba(0, 255, 255, 0.28);
+                            background: #14082a;
+                            box-shadow:
+                                0 24px 50px rgba(0, 0, 0, 0.55),
+                                0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+                                0 0 36px rgba(0, 255, 255, 0.1);
+                            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                                border-color 0.35s ease,
+                                box-shadow 0.35s ease;
+                        }
+
+                        #s-central-cores .cc-card::after {
+                            content: '';
+                            position: absolute;
+                            inset: 0;
+                            border-radius: inherit;
+                            pointer-events: none;
+                            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+                            z-index: 3;
+                        }
+
+                        #s-central-cores .cc-card:hover {
+                            transform: translateY(-4px);
+                            border-color: rgba(0, 255, 255, 0.55);
+                            box-shadow:
+                                0 30px 60px rgba(0, 0, 0, 0.6),
+                                0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+                                0 0 48px rgba(0, 255, 255, 0.22);
+                        }
+
+                        #s-central-cores .cc-photo {
+                            position: absolute;
+                            inset: 0;
+                            z-index: 0;
+                        }
+
+                        #s-central-cores .cc-photo img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: center;
+                            display: block;
+                            transform: scale(1.02);
+                            transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+                            filter: saturate(1.05) contrast(1.04);
+                        }
+
+                        #s-central-cores .cc-card:hover .cc-photo img {
+                            transform: scale(1.07);
+                        }
+
+                        #s-central-cores .cc-shade {
+                            position: absolute;
+                            inset: 0;
+                            z-index: 1;
+                            pointer-events: none;
+                            background:
+                                linear-gradient(180deg,
+                                    rgba(10, 6, 28, 0.12) 0%,
+                                    rgba(10, 6, 28, 0.05) 40%,
+                                    rgba(10, 6, 28, 0.55) 70%,
+                                    rgba(12, 6, 32, 0.92) 100%),
+                                radial-gradient(ellipse at 50% 100%, rgba(0, 255, 255, 0.16), transparent 55%);
+                        }
+
+                        #s-central-cores .cc-body {
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            z-index: 2;
+                            padding: 22px 22px 24px;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            gap: 8px;
+                            pointer-events: none;
+                        }
+
+                        #s-central-cores .cc-label {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 8px;
+                            font-family: var(--font-h);
+                            font-size: 11px;
+                            font-weight: 700;
+                            letter-spacing: 0.16em;
+                            text-transform: uppercase;
+                            color: rgba(0, 255, 255, 0.92);
+                        }
+
+                        #s-central-cores .cc-label::before {
+                            content: '';
+                            width: 18px;
+                            height: 2px;
+                            border-radius: 2px;
+                            background: linear-gradient(90deg, #00FFFF, transparent);
+                        }
+
+                        #s-central-cores .cc-title {
+                            margin: 0;
+                            font-family: var(--font-h);
+                            font-size: clamp(28px, 3.4vw, 40px);
+                            font-weight: 900;
+                            line-height: 1.05;
+                            letter-spacing: -0.03em;
+                            color: #fff;
+                            text-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+                        }
+
+                        #s-central-cores .cc-expand {
+                            position: absolute;
+                            top: 16px;
+                            right: 16px;
+                            z-index: 5;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 42px;
+                            height: 42px;
+                            padding: 0;
+                            border-radius: 50%;
+                            border: 1.5px solid rgba(255, 255, 255, 0.9);
+                            background: #00FFFF;
+                            box-shadow: 0 6px 18px rgba(0, 255, 255, 0.5);
+                            color: #1F0A45;
+                            font-size: 18px;
+                            line-height: 1;
+                            cursor: pointer;
+                            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+                        }
+
+                        #s-central-cores .cc-expand:hover {
+                            background: #7AF5F5;
+                            transform: translateY(-1px) scale(1.04);
+                            box-shadow: 0 8px 22px rgba(0, 255, 255, 0.65);
+                        }
+
+                        #s-central-cores .cc-expand:focus-visible {
+                            outline: 2px solid #fff;
+                            outline-offset: 3px;
+                        }
+
+                        @media (max-width: 768px) {
+                            #s-central-cores .content-area {
+                                justify-content: flex-start !important;
+                                padding-top: 8px !important;
+                                padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)) !important;
+                            }
+
+                            #s-central-cores .cc-grid {
+                                gap: 14px;
+                            }
+
+                            #s-central-cores .cc-card {
+                                flex: 1 1 100%;
+                                width: min(440px, 100%);
+                                aspect-ratio: 16 / 11;
+                                max-height: none;
+                            }
+
+                            #s-central-cores .cc-body {
+                                padding: 16px 16px 18px;
+                            }
+
+                            #s-central-cores .cc-title {
+                                font-size: 26px;
+                            }
+
+                            #s-central-cores .cc-expand {
+                                width: 38px;
+                                height: 38px;
+                                top: 12px;
+                                right: 12px;
+                                font-size: 16px;
+                            }
+                        }
+
+                        @media (prefers-reduced-motion: reduce) {
+                            #s-central-cores .cc-card,
+                            #s-central-cores .cc-photo img,
+                            #s-central-cores .cc-expand {
+                                transition: none;
+                            }
+                        }
+                    </style>
+
+                    <div class="cc-layout">
+                        <div class="cc-grid">
+                            <div class="cc-card">
+                                <div class="cc-photo">
+                                    <img src="assets/fotos/dosador.png" alt="Dosador da Central de Cores">
+                                </div>
+                                <div class="cc-shade" aria-hidden="true"></div>
+                                <button type="button" class="cc-expand" aria-label="Ampliar Dosador"
+                                    onclick="openImageModal('assets/fotos/dosador.png')">🔍</button>
+                                <div class="cc-body">
+                                    <span class="cc-label">Equipamento</span>
+                                    <h3 class="cc-title">Dosador</h3>
+                                </div>
+                            </div>
+                            <div class="cc-card">
+                                <div class="cc-photo">
+                                    <img src="assets/fotos/misturador.png" alt="Misturador da Central de Cores">
+                                </div>
+                                <div class="cc-shade" aria-hidden="true"></div>
+                                <button type="button" class="cc-expand" aria-label="Ampliar Misturador"
+                                    onclick="openImageModal('assets/fotos/misturador.png')">🔍</button>
+                                <div class="cc-body">
+                                    <span class="cc-label">Equipamento</span>
+                                    <h3 class="cc-title">Misturador</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" id="s-central-cores-scroll-down" class="slide-scroll-btn"
+                    onclick="scrollSlideDown('s-central-cores')" aria-label="Rolar para baixo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </button>
+                <div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+                        <path d="M0,60 C360,20 720,90 1080,35 L1440,55 L1440,100 L0,100 Z"
+                            fill="rgba(0, 255, 255,0.07)" />
+                    </svg></div>
+            </div>
+
+
             <div class="slide" id="sq1">
                 <div class="top-bar">
                     <div class="section-tag"
@@ -1674,7 +1340,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=57"></script>
+    <script src="shared.js?v=69"></script>
 </body>
 
 </html>
