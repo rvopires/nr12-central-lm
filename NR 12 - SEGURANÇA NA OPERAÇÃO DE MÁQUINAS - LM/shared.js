@@ -204,22 +204,14 @@ function _saveReqState(arr) {
 
 
 // === GLOBAL SLIDE INDEXING ===
-// Prévia pública (GitHub Pages): só index + Módulo 1 (9 páginas).
-// Curso completo: defina window.NR12_PREVIEW_M1_ONLY = false ANTES de carregar este arquivo.
-const NR12_PREVIEW_M1_ONLY = window.NR12_PREVIEW_M1_ONLY !== false;
-const NR11_MODULE_OFFSETS = NR12_PREVIEW_M1_ONLY
-    ? { 'index': 0, 'modulo-1': 3 }
-    : {
-        'index': 0,
-        'modulo-1': 3,
-        'modulo-2': 9,
-        'modulo-3': 15,
-        'modulo-4': 21,
-        'modulo-5': 26,
-        'modulo-6': 35
-    };
-const NR11_TOTAL_SLIDES = NR12_PREVIEW_M1_ONLY ? 9 : 44;
-if (NR12_PREVIEW_M1_ONLY && window.MODULE_NAV && window.MODULE_NAV.id === 'modulo-1') {
+// PRÉVIA PÚBLICA FIXA: só index + Módulo 1 (9 páginas).
+const NR12_PREVIEW_M1_ONLY = true;
+const NR11_MODULE_OFFSETS = {
+    'index': 0,
+    'modulo-1': 3
+};
+const NR11_TOTAL_SLIDES = 9;
+if (window.MODULE_NAV && window.MODULE_NAV.id === 'modulo-1') {
     window.MODULE_NAV.next = null;
 }
 function nr11GlobalSlide() {
