@@ -221,7 +221,7 @@ const NR12_UNLOCK_THROUGH = (function () {
         if (q != null && q !== '' && !isNaN(Number(q))) return Number(q);
     } catch (e) { }
     if (typeof window.NR12_UNLOCK_THROUGH !== 'undefined') return window.NR12_UNLOCK_THROUGH;
-    return 1; // ← prévia pública: só Módulo 1. Use null para curso completo.
+    return null; // curso completo. Para prévia pública use 1 ou 2.
 })();
 
 const NR11_MODULE_OFFSETS = {

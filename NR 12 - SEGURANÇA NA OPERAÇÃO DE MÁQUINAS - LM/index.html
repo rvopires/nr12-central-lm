@@ -624,7 +624,7 @@
 
                             <div class="s1-secondary-actions">
                                 <button class="btn-tutorial tutorial-replay" type="button"
-                                    onclick="var m=document.getElementById('tutorialModal'); if(m) m.classList.add('active');">
+                                    onclick="var m=document.getElementById('tutorialModal'); if(m){m.classList.add('active'); if(window.startTutorialUnlockTimer) startTutorialUnlockTimer(); if(window.resetTutorialVideoToStart) resetTutorialVideoToStart();}">
                                     <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
                                         <polygon points="5,3 17,10 5,17" />
                                     </svg>
@@ -699,7 +699,7 @@
                         🎬 Apresentação</div>
                     <h2 class="slide-title"
                         style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
-                        <span>Segurança na Operação de Máquinas</span>
+                        Segurança na Operação de <span>Máquinas</span>
                     </h2>
                 </div>
                 <div class="content-area"
@@ -897,8 +897,10 @@
 
         <script>
             let tutorialUnlockTimer = null;
+            const TUTORIAL_UNLOCK_SECS = 5;
+            const TUTORIAL_BTN_LABEL = '✓ Entendi, vamos começar';
 
-            function setTutorialButtonLocked(locked) {
+            function setTutorialButtonLocked(locked, secondsLeft) {
                 const btn = document.getElementById('btnTutorialClose');
                 const hint = document.getElementById('tutorialUnlockHint');
                 if (!btn) return;
@@ -907,23 +909,38 @@
                 btn.style.opacity = locked ? '0.45' : '1';
                 btn.style.cursor = locked ? 'not-allowed' : 'pointer';
                 btn.style.pointerEvents = locked ? 'none' : 'auto';
+                btn.textContent = TUTORIAL_BTN_LABEL;
                 if (hint) {
-                    hint.textContent = locked
-                        ? 'Aguarde 5 segundos para liberar o botão'
-                        : 'Botão liberado — você pode continuar';
+                    if (locked) {
+                        const s = Math.max(0, secondsLeft | 0);
+                        hint.textContent = s > 0
+                            ? ('Aguarde ' + s + (s === 1 ? ' segundo' : ' segundos') + ' para liberar o botão')
+                            : 'Liberando…';
+                    } else {
+                        hint.textContent = 'Botão liberado — você pode continuar';
+                    }
                 }
             }
 
             function startTutorialUnlockTimer() {
-                setTutorialButtonLocked(true);
-                if (tutorialUnlockTimer) clearTimeout(tutorialUnlockTimer);
-                tutorialUnlockTimer = setTimeout(function () {
-                    setTutorialButtonLocked(false);
-                    tutorialUnlockTimer = null;
-                }, 5000);
+                let left = TUTORIAL_UNLOCK_SECS;
+                setTutorialButtonLocked(true, left);
+                if (tutorialUnlockTimer) clearInterval(tutorialUnlockTimer);
+                tutorialUnlockTimer = setInterval(function () {
+                    left -= 1;
+                    if (left <= 0) {
+                        clearInterval(tutorialUnlockTimer);
+                        tutorialUnlockTimer = null;
+                        setTutorialButtonLocked(false, 0);
+                        return;
+                    }
+                    setTutorialButtonLocked(true, left);
+                }, 1000);
             }
+            window.startTutorialUnlockTimer = startTutorialUnlockTimer;
 
             function resetTutorialVideoToStart() {
+                window.resetTutorialVideoToStart = resetTutorialVideoToStart;
                 const iframe = document.querySelector('#tutorialModal iframe');
                 if (!iframe) return;
                 let src = iframe.getAttribute('src') || iframe.src || '';

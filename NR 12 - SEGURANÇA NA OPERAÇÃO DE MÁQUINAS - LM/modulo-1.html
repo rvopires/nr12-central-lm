@@ -60,6 +60,9 @@
                     <div class="section-tag"
                         style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);">
                         🎯 Módulo 1</div>
+                    <h2 class="slide-title"
+                        style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
+                        <span>Central de Cores</span></h2>
                 </div>
                 <div class="content-area">
                     <style>
@@ -285,6 +288,39 @@
                             display: none;
                         }
 
+                        #s2 .s2-expand {
+                            position: absolute;
+                            top: 14px;
+                            right: 14px;
+                            z-index: 5;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 42px;
+                            height: 42px;
+                            padding: 0;
+                            border-radius: 50%;
+                            border: 1.5px solid rgba(255, 255, 255, 0.9);
+                            background: #00FFFF;
+                            box-shadow: 0 6px 18px rgba(0, 255, 255, 0.5);
+                            color: #1F0A45;
+                            font-size: 18px;
+                            line-height: 1;
+                            cursor: pointer;
+                            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+                        }
+
+                        #s2 .s2-expand:hover {
+                            background: #7AF5F5;
+                            transform: translateY(-1px) scale(1.04);
+                            box-shadow: 0 8px 22px rgba(0, 255, 255, 0.65);
+                        }
+
+                        #s2 .s2-expand:focus-visible {
+                            outline: 2px solid #fff;
+                            outline-offset: 3px;
+                        }
+
                         @media (max-width: 900px) {
                             #s2 .s2-layout {
                                 grid-template-columns: 1fr;
@@ -357,6 +393,8 @@
 
                         <div class="s2-visual">
                             <img src="assets/fotos/maquinas-introdução.png" alt="Máquinas da Central de Cores — aberta e fechada">
+                            <button type="button" class="s2-expand" aria-label="Ampliar imagem" title="Ampliar imagem"
+                                onclick="openImageModal('assets/fotos/maquinas-introdução.png')">🔍</button>
                             <div class="s2-visual-caption"><span>Central de Cores</span> · visão das máquinas</div>
                         </div>
                     </div>
