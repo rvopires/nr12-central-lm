@@ -204,16 +204,69 @@ function _saveReqState(arr) {
 
 
 // === GLOBAL SLIDE INDEXING ===
-// PRÉVIA PÚBLICA FIXA: só index + Módulo 1 (9 páginas).
-const NR12_PREVIEW_M1_ONLY = true;
+/* ═══════════════════════════════════════════════════════════
+   ATALHO DE PRÉVIA PÚBLICA  ← mude SÓ esta linha
+   ───────────────────────────────────────────────────────────
+   null → curso completo (todas as páginas)
+   1    → libera index + Módulo 1
+   2    → libera até o Módulo 2
+   3…6  → idem até o módulo escolhido
+   O projeto inteiro permanece no Git; módulos acima do número
+   ficam ocultos no sumário ("Em breve") e não abrem.
+   ═══════════════════════════════════════════════════════════ */
+const NR12_UNLOCK_THROUGH = (function () {
+    try {
+        var q = new URLSearchParams(window.location.search).get('unlock');
+        if (q === 'all' || q === 'null') return null;
+        if (q != null && q !== '' && !isNaN(Number(q))) return Number(q);
+    } catch (e) { }
+    if (typeof window.NR12_UNLOCK_THROUGH !== 'undefined') return window.NR12_UNLOCK_THROUGH;
+    return 1; // ← prévia pública: só Módulo 1. Use null para curso completo.
+})();
+
 const NR11_MODULE_OFFSETS = {
     'index': 0,
-    'modulo-1': 3
+    'modulo-1': 3,
+    'modulo-2': 9,
+    'modulo-3': 15,
+    'modulo-4': 21,
+    'modulo-5': 26,
+    'modulo-6': 35
 };
-const NR11_TOTAL_SLIDES = 9;
-if (window.MODULE_NAV && window.MODULE_NAV.id === 'modulo-1') {
-    window.MODULE_NAV.next = null;
+const NR11_FULL_TOTAL_SLIDES = 44;
+const NR12_MODULE_END_PAGE = { 1: 9, 2: 15, 3: 21, 4: 26, 5: 35, 6: 44 };
+
+const NR12_PREVIEW_ACTIVE = NR12_UNLOCK_THROUGH != null
+    && NR12_UNLOCK_THROUGH >= 1
+    && NR12_UNLOCK_THROUGH < 6;
+const NR12_PREVIEW_M1_ONLY = NR12_PREVIEW_ACTIVE && NR12_UNLOCK_THROUGH === 1; // compat
+const NR11_TOTAL_SLIDES = NR12_PREVIEW_ACTIVE
+    ? (NR12_MODULE_END_PAGE[NR12_UNLOCK_THROUGH] || NR11_FULL_TOTAL_SLIDES)
+    : NR11_FULL_TOTAL_SLIDES;
+
+function nr12ModuleNumFromId(id) {
+    if (!id || id === 'index') return 0;
+    var m = String(id).match(/modulo-(\d+)/);
+    return m ? Number(m[1]) : 0;
 }
+
+function nr12IsModuleUnlocked(moduleNum) {
+    if (!NR12_PREVIEW_ACTIVE) return true;
+    return moduleNum <= NR12_UNLOCK_THROUGH;
+}
+
+(function applyPreviewNavClamp() {
+    if (!NR12_PREVIEW_ACTIVE || !window.MODULE_NAV) return;
+    var cur = nr12ModuleNumFromId(window.MODULE_NAV.id);
+    if (cur > NR12_UNLOCK_THROUGH) {
+        window.location.replace('index.html');
+        return;
+    }
+    if (cur === NR12_UNLOCK_THROUGH) {
+        window.MODULE_NAV.next = null;
+    }
+})();
+
 function nr11GlobalSlide() {
     if (typeof currentSlide === 'undefined') return 1;
     const offset = NR11_MODULE_OFFSETS[(window.MODULE_NAV && window.MODULE_NAV.id) || 'index'] || 0;
@@ -417,20 +470,17 @@ window.addEventListener('keydown', (e) => {
 (function initGoPageShortcut() {
     var buf = '';
     var timer = null;
-    var modules = NR12_PREVIEW_M1_ONLY
-        ? [
-            { id: 'index', offset: 0, file: 'index.html' },
-            { id: 'modulo-1', offset: 3, file: 'modulo-1.html' }
-        ]
-        : [
-            { id: 'index', offset: 0, file: 'index.html' },
-            { id: 'modulo-1', offset: 3, file: 'modulo-1.html' },
-            { id: 'modulo-2', offset: 9, file: 'modulo-2.html' },
-            { id: 'modulo-3', offset: 15, file: 'modulo-3.html' },
-            { id: 'modulo-4', offset: 21, file: 'modulo-4.html' },
-            { id: 'modulo-5', offset: 26, file: 'modulo-5.html' },
-            { id: 'modulo-6', offset: 35, file: 'modulo-6.html' }
-        ];
+    var modules = [
+        { id: 'index', offset: 0, file: 'index.html', module: 0 },
+        { id: 'modulo-1', offset: 3, file: 'modulo-1.html', module: 1 },
+        { id: 'modulo-2', offset: 9, file: 'modulo-2.html', module: 2 },
+        { id: 'modulo-3', offset: 15, file: 'modulo-3.html', module: 3 },
+        { id: 'modulo-4', offset: 21, file: 'modulo-4.html', module: 4 },
+        { id: 'modulo-5', offset: 26, file: 'modulo-5.html', module: 5 },
+        { id: 'modulo-6', offset: 35, file: 'modulo-6.html', module: 6 }
+    ].filter(function (m) {
+        return nr12IsModuleUnlocked(m.module);
+    });
 
     function clearBuf() {
         buf = '';
@@ -1802,7 +1852,9 @@ function createQuizEngine(prefix, questions, numDots) {
         if (sub) {
             if (isM1Quiz()) {
                 if (approved) {
-                    sub.textContent = NR12_PREVIEW_M1_ONLY
+                    var endsPreview = NR12_PREVIEW_ACTIVE
+                        && nr12ModuleNumFromId(window.MODULE_NAV && window.MODULE_NAV.id) === NR12_UNLOCK_THROUGH;
+                    sub.textContent = endsPreview
                         ? `Você acertou ${score} de ${questions.length} questões. Parabéns! Esta prévia do treinamento termina aqui — os próximos módulos serão liberados em breve.`
                         : `Você acertou ${score} de ${questions.length} questões. Parabéns! Pode avançar para a próxima etapa.`;
                 } else {
@@ -3637,3 +3689,29 @@ if (document.readyState === 'loading') {
 } else {
     applyDemoModeUI();
 }
+
+/* Preview: marca módulos travados no sumário */
+(function applySumarioPreview() {
+    function paint() {
+        var items = document.querySelectorAll('#s-sumario .sum-item[data-module]');
+        if (!items.length) return;
+        items.forEach(function (el) {
+            var n = Number(el.getAttribute('data-module'));
+            var locked = NR12_PREVIEW_ACTIVE && !nr12IsModuleUnlocked(n);
+            el.classList.toggle('sum-item--soon', locked);
+            if (locked) el.setAttribute('aria-disabled', 'true');
+            else el.removeAttribute('aria-disabled');
+            var num = el.querySelector('.sum-num-big');
+            if (!num) return;
+            if (!num.dataset.label) num.dataset.label = num.textContent.trim();
+            num.textContent = locked ? 'Em breve' : num.dataset.label;
+            var icon = el.querySelector('.sum-icon');
+            if (icon) {
+                if (!icon.dataset.icon) icon.dataset.icon = icon.textContent.trim();
+                icon.textContent = locked ? '🚧' : icon.dataset.icon;
+            }
+        });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', paint);
+    else paint();
+})();
