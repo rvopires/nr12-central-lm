@@ -16,11 +16,11 @@
 }(typeof self !== 'undefined' ? self : this, function () {
 
     /* Ordem dos slides em cada HTML — DEVE bater com NR11_MODULE_OFFSETS.
-       Soma das slides = NR11_TOTAL_SLIDES (44).                              */
+       Soma das slides = NR11_TOTAL_SLIDES (43).                              */
     const SLIDE_ORDER = {
         'index.html': ['s1', 's1b', 's-sumario'],
         'modulo-1.html': ['intro-m1', 's2', 's4', 's6', 's-central-cores', 'sq1'],
-        'modulo-2.html': ['intro-m2', 's-equipamento', 's10', 's9', 's8', 'sq2'],
+        'modulo-2.html': ['intro-m2', 's-equipamento', 's10', 's9', 'sq2'],
         'modulo-3.html': ['intro-m3', 's-bateria', 's-conducao', 's-rampas', 's-bateria-troca', 's-quiz3'],
         'modulo-4.html': ['s-mod4-intro', 's-mod4-video', 's-mod4-inspecao', 's-mod4-video-finalizacao', 's-quiz4'],
         'modulo-5.html': ['s-mod5-intro', 's-mod5-video1', 's-mod5-comp1', 's-mod5-video2', 's-mod5-distancia', 's-mod5-video3', 's-mod5-flip', 's-mod5-epi', 's-quiz5'],
@@ -49,20 +49,15 @@
             result: 'Resultado do Quiz do Módulo 1. Veja sua pontuação na tela. Toque em Jogar Novamente para refazer ou siga para o próximo módulo.'
         },
 
-        // ─── QUIZ 2 (slide global 15, modulo-2.html, sq2) — Verdadeiro/Falso ──
+        // ─── QUIZ 2 (slide global 14, modulo-2.html, sq2) — Verdadeiro / Falso ──
         'sq2': {
-            panels: { intro: '#sq2-intro-panel', question: '#sq2-question-panel', result: '#sq2-result-panel' },
-            counterSelector: '#sq2-counter',
-            intro: 'Quiz do Módulo 2. Verdadeiro ou Falso. Teste seus conhecimentos sobre operação segura. Esta avaliação contém oito afirmações com mínimo de setenta por cento de acertos. Toque em Começar para iniciar.',
+            panels: { intro: '#q2-intro-panel', question: '#q2-question-panel', result: '#q2-result-panel' },
+            counterSelector: '#q2-counter',
+            intro: 'Quiz do Módulo 2. Hora do desafio. Esta avaliação contém três perguntas de verdadeiro ou falso. É necessário acertar pelo menos duas para avançar. Toque em Iniciar Desafio para começar.',
             questions: [
-                'Pergunta 1 de 8. Afirmação: A inspeção visual do equipamento deve ser realizada antes da operação. Responda verdadeiro ou falso.',
-                'Pergunta 2 de 8. Afirmação: Os garfos podem permanecer elevados durante o deslocamento. Responda verdadeiro ou falso.',
-                'Pergunta 3 de 8. Afirmação: O botão de buzina auxilia na prevenção de colisões. Responda verdadeiro ou falso.',
-                'Pergunta 4 de 8. Afirmação: O timão possui sistema de frenagem automática nas posições extremas. Responda verdadeiro ou falso.',
-                'Pergunta 5 de 8. Afirmação: Curvas em alta velocidade aumentam o risco de tombamento. Responda verdadeiro ou falso.',
-                'Pergunta 6 de 8. Afirmação: A empilhadeira patolada é utilizada apenas para movimentação vertical. Responda verdadeiro ou falso.',
-                'Pergunta 7 de 8. Afirmação: A carga instável pode causar queda de materiais. Responda verdadeiro ou falso.',
-                'Pergunta 8 de 8. Afirmação: O operador pode utilizar o equipamento sem conhecer os comandos. Responda verdadeiro ou falso.'
+                'Pergunta 1 de 3. O timer do misturador permite ajustar o tempo de mistura em até 6 minutos. Opção A: Verdadeiro. Opção B: Falso.',
+                'Pergunta 2 de 3. A porta cortina do misturador pode ficar aberta durante o ciclo de mistura. Opção A: Verdadeiro. Opção B: Falso.',
+                'Pergunta 3 de 3. Os canisters ficam na área de enchimento do dosador. Opção A: Verdadeiro. Opção B: Falso.'
             ],
             result: 'Resultado do Quiz do Módulo 2. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.'
         },
@@ -156,8 +151,8 @@
        com NR11_MODULE_OFFSETS de shared.js.                                    */
     const MODULE_OFFSETS = {
         'index.html': 0, 'modulo-1.html': 3, 'modulo-2.html': 9,
-        'modulo-3.html': 15, 'modulo-4.html': 21, 'modulo-5.html': 26,
-        'modulo-6.html': 35
+        'modulo-3.html': 14, 'modulo-4.html': 20, 'modulo-5.html': 25,
+        'modulo-6.html': 34
     };
 
     function globalSlideOf(file, slideId) {

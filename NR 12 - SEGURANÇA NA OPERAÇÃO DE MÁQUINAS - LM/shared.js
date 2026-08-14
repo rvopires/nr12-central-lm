@@ -228,13 +228,13 @@ const NR11_MODULE_OFFSETS = {
     'index': 0,
     'modulo-1': 3,
     'modulo-2': 9,
-    'modulo-3': 15,
-    'modulo-4': 21,
-    'modulo-5': 26,
-    'modulo-6': 35
+    'modulo-3': 14,
+    'modulo-4': 20,
+    'modulo-5': 25,
+    'modulo-6': 34
 };
-const NR11_FULL_TOTAL_SLIDES = 44;
-const NR12_MODULE_END_PAGE = { 1: 9, 2: 15, 3: 21, 4: 26, 5: 35, 6: 44 };
+const NR11_FULL_TOTAL_SLIDES = 43;
+const NR12_MODULE_END_PAGE = { 1: 9, 2: 14, 3: 20, 4: 25, 5: 34, 6: 43 };
 
 const NR12_PREVIEW_ACTIVE = NR12_UNLOCK_THROUGH != null
     && NR12_UNLOCK_THROUGH >= 1
@@ -275,7 +275,7 @@ function nr11GlobalSlide() {
 const QUIZ_AUDIO_HELPER_PAGES = [9, 15, 18, 21, 26, 35, 43];
 const QUIZ_AUDIO_HELPER_PANELS = {
     sq1: 'q1-question-panel',
-    sq2: 'sq2-question-panel',
+    sq2: 'q2-question-panel',
     's-conducao': 'conducao-question-panel',
     's-quiz3': 'q3-question-panel',
     's-quiz4': 'q4-question-panel',
@@ -474,10 +474,10 @@ window.addEventListener('keydown', (e) => {
         { id: 'index', offset: 0, file: 'index.html', module: 0 },
         { id: 'modulo-1', offset: 3, file: 'modulo-1.html', module: 1 },
         { id: 'modulo-2', offset: 9, file: 'modulo-2.html', module: 2 },
-        { id: 'modulo-3', offset: 15, file: 'modulo-3.html', module: 3 },
-        { id: 'modulo-4', offset: 21, file: 'modulo-4.html', module: 4 },
-        { id: 'modulo-5', offset: 26, file: 'modulo-5.html', module: 5 },
-        { id: 'modulo-6', offset: 35, file: 'modulo-6.html', module: 6 }
+        { id: 'modulo-3', offset: 14, file: 'modulo-3.html', module: 3 },
+        { id: 'modulo-4', offset: 20, file: 'modulo-4.html', module: 4 },
+        { id: 'modulo-5', offset: 25, file: 'modulo-5.html', module: 5 },
+        { id: 'modulo-6', offset: 34, file: 'modulo-6.html', module: 6 }
     ].filter(function (m) {
         return nr12IsModuleUnlocked(m.module);
     });
@@ -1617,7 +1617,7 @@ function resetTfButtons(btnTrue, btnFalse) {
 function createQuizEngine(prefix, questions, numDots) {
     let idx = 0, answered = false, score = 0, selectedOptIdx = -1;
     let wrongTopics = [];
-    const isM1Quiz = () => prefix === 'q1' || prefix === 'q3' || prefix === 'q4' || prefix === 'q5';
+    const isM1Quiz = () => prefix === 'q1' || prefix === 'q2' || prefix === 'q3' || prefix === 'q4' || prefix === 'q5';
 
     const _stateKey = () => 'nr11_' + getPageKey() + '_' + prefix + '_state';
     function _saveState() {
@@ -1807,7 +1807,7 @@ function createQuizEngine(prefix, questions, numDots) {
     }
 
     function getMinCorrect() {
-        if (prefix === 'q1') return 2;
+        if (prefix === 'q1' || prefix === 'q2') return 2;
         if (prefix === 'q3') return 4;
         if (prefix === 'q4') return 3;
         if (prefix === 'q5') return 3;
@@ -1941,7 +1941,7 @@ function createQuizEngine(prefix, questions, numDots) {
 
         // Volta o scroll para o card inicial (sem ficar “embaixo”)
         try {
-            const slide = document.getElementById(prefix === 'q1' ? 'sq1' : prefix === 'q3' ? 's-quiz3' : prefix === 'q4' ? 's-quiz4' : prefix === 'q5' ? 's-quiz5' : null) ||
+            const slide = document.getElementById(prefix === 'q1' ? 'sq1' : prefix === 'q2' ? 'sq2' : prefix === 'q3' ? 's-quiz3' : prefix === 'q4' ? 's-quiz4' : prefix === 'q5' ? 's-quiz5' : null) ||
                 (introPanel && introPanel.closest('.slide'));
             const area = slide && slide.querySelector('.content-area');
             if (area) area.scrollTop = 0;
@@ -2134,7 +2134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNextButton();
 });
 // ==========================================
-// LÓGICA DO VERDADEIRO OU FALSO (MÓDULO 2)
+// ESTILOS HUD / TF (legado + quizzes)
 // ==========================================
 const styleHUD = document.createElement('style');
 styleHUD.textContent = `
@@ -2248,287 +2248,41 @@ function playHUDBeep(type) {
     } catch (e) { }
 }
 
-const q2Data = [
-    { q: "A inspeção visual do equipamento deve ser realizada antes da operação.", ans: true, exp: "A verificação ajuda a identificar falhas e prevenir acidentes.", topic: "Inspeção visual antes da operação" },
-    { q: "Os garfos podem permanecer elevados durante o deslocamento.", ans: false, exp: "O deslocamento deve ocorrer com os garfos baixos para maior estabilidade.", topic: "Posição dos garfos no deslocamento" },
-    { q: "O botão de buzina auxilia na prevenção de colisões.", ans: true, exp: "A buzina alerta pessoas próximas durante a movimentação.", topic: "Uso da buzina para prevenção" },
-    { q: "O timão possui sistema de frenagem automática nas posições extremas.", ans: true, exp: "O freio atua automaticamente para aumentar a segurança operacional.", topic: "Frenagem automática do timão" },
-    { q: "Curvas em alta velocidade aumentam o risco de tombamento.", ans: true, exp: "A velocidade excessiva compromete a estabilidade do equipamento.", topic: "Velocidade em curvas e risco de tombamento" },
-    { q: "A empilhadeira patolada é utilizada apenas para movimentação vertical.", ans: false, exp: "O equipamento realiza movimentação horizontal e elevação de cargas.", topic: "Função da empilhadeira patolada" },
-    { q: "A carga instável pode causar queda de materiais.", ans: true, exp: "O posicionamento incorreto da carga aumenta os riscos operacionais.", topic: "Estabilidade e posicionamento da carga" },
-    { q: "O operador pode utilizar o equipamento sem conhecer os comandos.", ans: false, exp: "O conhecimento dos comandos é essencial para uma operação segura.", topic: "Conhecimento dos comandos do equipamento" }
+const q2_questions = [
+    {
+        q: 'O timer do misturador permite ajustar o tempo de mistura em até 6 minutos.',
+        opts: ['Verdadeiro', 'Falso'],
+        correct: 0,
+        topic: 'Timer do misturador (máx. 6 min)',
+        feedback_ok: '✅ Correto! O timer do misturador permite ajustar o ciclo em até 6 minutos.',
+        feedback_nok: '❌ Incorreto. O timer do misturador permite ajustar o tempo de mistura em até 6 minutos.'
+    },
+    {
+        q: 'A porta cortina do misturador pode ficar aberta durante o ciclo de mistura.',
+        opts: ['Verdadeiro', 'Falso'],
+        correct: 1,
+        topic: 'Porta cortina fechada no ciclo',
+        feedback_ok: '✅ Correto! A porta cortina deve permanecer fechada; o dispositivo de segurança impede o funcionamento com ela aberta.',
+        feedback_nok: '❌ Incorreto. A porta cortina não pode ficar aberta durante o ciclo de mistura.'
+    },
+    {
+        q: 'Os canisters ficam na área de enchimento do dosador.',
+        opts: ['Verdadeiro', 'Falso'],
+        correct: 0,
+        topic: 'Área de enchimento dos canisters',
+        feedback_ok: '✅ Correto! Os canisters ficam na área de enchimento do dosador.',
+        feedback_nok: '❌ Incorreto. Os canisters ficam na área de enchimento do dosador.'
+    }
 ];
-
-let currentQ2 = 0;
-let scoreQ2 = 0;
-let selectedQ2Ans = null;
-let wrongTopicsQ2 = [];
-
-function uniqueTopicsQ2(list) {
-    const seen = {};
-    const out = [];
-    (list || []).forEach(function (t) {
-        if (!t || seen[t]) return;
-        seen[t] = true;
-        out.push(t);
-    });
-    return out;
-}
-
-function loadQuestion2(idx) {
-    if (idx >= q2Data.length) {
-        playHUDBeep('conclusion');
-        { const _p = document.getElementById('sq2-question-panel'); if (_p) _p.style.display = 'none'; }
-
-        const minCorrect = 5;
-        const approved = scoreQ2 >= minCorrect;
-        const pct = Math.round((scoreQ2 / q2Data.length) * 100);
-
-        const rPanel = document.getElementById('sq2-result-panel');
-        const pctEl = document.getElementById('sq2-pct');
-        const starsEl = document.getElementById('sq2-stars');
-        const statusEl = document.getElementById('sq2-status');
-        const subEl = document.getElementById('sq2-sub');
-        const iconEl = document.getElementById('sq2-result-icon');
-        const retryBtn = document.getElementById('sq2-retry-btn');
-        const reviewEl = document.getElementById('sq2-review');
-        const topics = uniqueTopicsQ2(wrongTopicsQ2);
-
-        if (rPanel) {
-            rPanel.style.display = 'block';
-            rPanel.classList.add('is-visible');
-            rPanel.classList.toggle('is-approved', approved);
-            rPanel.classList.toggle('is-failed', !approved);
-            rPanel.classList.remove('q-result-anim');
-            void rPanel.offsetWidth;
-            rPanel.classList.add('q-result-anim');
-        }
-
-        if (pctEl) {
-            pctEl.textContent = pct + '%';
-            pctEl.className = 'result-pct ' + (approved ? 'green' : 'try-c');
-        }
-
-        if (starsEl) {
-            starsEl.textContent = pct === 100 ? '⭐⭐⭐' : approved ? '⭐⭐' : '⭐';
-        }
-
-        if (statusEl) {
-            statusEl.textContent = approved ? 'Desafio Concluído!' : 'Desafio não concluído';
-            statusEl.className = 'quiz-result-title r-status ' + (approved ? 'ap' : 'ref');
-        }
-
-        if (subEl) {
-            if (approved) {
-                subEl.textContent = 'Você acertou ' + scoreQ2 + ' de ' + q2Data.length + ' questões. Parabéns! Pode avançar para a próxima etapa.';
-            } else {
-                subEl.textContent = 'Você acertou ' + scoreQ2 + ' de ' + q2Data.length + ' questões. É necessário acertar pelo menos ' + minCorrect + ' questões. Estude e tente novamente.';
-            }
-        }
-
-        if (iconEl) iconEl.textContent = approved ? '🏅' : '📚';
-
-        if (retryBtn) {
-            retryBtn.textContent = approved ? 'REVISAR DESAFIO' : 'JOGAR NOVAMENTE';
-            retryBtn.style.display = approved ? 'none' : 'inline-flex';
-        }
-
-        if (reviewEl) {
-            if (!approved && topics.length) {
-                reviewEl.hidden = false;
-                reviewEl.innerHTML = '<strong>Revise estes temas:</strong><ul>' +
-                    topics.map(function (t) { return '<li>' + t + '</li>'; }).join('') +
-                    '</ul>';
-            } else {
-                reviewEl.hidden = true;
-                reviewEl.innerHTML = '';
-            }
-        }
-
-        const slide = document.getElementById('sq2');
-        if (approved && slide && slide.classList.contains('req-item')) {
-            slide.classList.add('req-done');
-        }
-        updateNextButton();
-        try { window.updateQuizAudioHelper(); } catch (e) { }
-        scheduleScrollBtnRefresh();
-        return;
-    }
-
-    const data = q2Data[idx];
-    const counter = document.getElementById('sq2-counter');
-    if (counter) counter.textContent = 'Pergunta ' + (idx + 1) + ' de ' + q2Data.length;
-
-    const textElement = document.getElementById('sq2-text');
-    if (textElement) {
-        textElement.textContent = data.q;
-        textElement.classList.remove('hud-anim-enter');
-        void textElement.offsetWidth;
-        textElement.classList.add('hud-anim-enter');
-    }
-
-    // Remove glow
-    const fbPanel = document.getElementById('sq2-question-panel');
-    if (fbPanel) {
-        fbPanel.classList.remove('hud-glow-correct', 'hud-glow-error');
-    }
-
-    selectedQ2Ans = null;
-    const vContainer = document.getElementById('sq2-verify-container');
-    if (vContainer) {
-        vContainer.style.opacity = '0';
-        vContainer.style.visibility = 'hidden';
-        setTimeout(() => { vContainer.style.display = 'none'; }, 300);
-    }
-
-    // Reset buttons
-    const btnTrue = document.getElementById('btn-tf-true');
-    const btnFalse = document.getElementById('btn-tf-false');
-    resetTfButtons(btnTrue, btnFalse);
-    if (btnTrue) btnTrue.disabled = false;
-    if (btnFalse) btnFalse.disabled = false;
-
-    // Hide feedback
-    const fb = document.getElementById('sq2-feedback');
-    if (fb) {
-        fb.className = 'tf-feedback';
-        fb.style.display = 'none';
-    }
-    try { window.updateQuizAudioHelper(); } catch (e) { }
-}
-
-window.selectAnswer2 = function (isTrue) {
-    playHUDBeep('click');
-    selectedQ2Ans = isTrue;
-
-    const btnTrue = document.getElementById('btn-tf-true');
-    const btnFalse = document.getElementById('btn-tf-false');
-    resetTfButtons(btnTrue, btnFalse);
-
-    if (isTrue) {
-        if (btnTrue) btnTrue.classList.add('selected-visual');
-    } else {
-        if (btnFalse) btnFalse.classList.add('selected-visual');
-    }
-
-    const vContainer = document.getElementById('sq2-verify-container');
-    if (vContainer) {
-        vContainer.style.display = 'block';
-        setTimeout(() => {
-            vContainer.style.opacity = '1';
-            vContainer.style.visibility = 'visible';
-        }, 10);
-    }
-};
-
-window.verifyAnswer2 = function () {
-    if (selectedQ2Ans === null) return;
-
-    const data = q2Data[currentQ2];
-    const isCorrect = (data.ans === selectedQ2Ans);
-
-    if (isCorrect) scoreQ2++;
-    else if (data.topic) wrongTopicsQ2.push(data.topic);
-
-    // Som imediato no gesto do clique (sem setTimeout — evita bloqueio do browser)
-    try { playBeep(isCorrect ? 'ok' : 'nok'); } catch (e) { }
-
-    const vContainer = document.getElementById('sq2-verify-container');
-    if (vContainer) {
-        vContainer.style.opacity = '0';
-        vContainer.style.visibility = 'hidden';
-        setTimeout(() => { vContainer.style.display = 'none'; }, 300);
-    }
-
-    const fbPanel = document.getElementById('sq2-question-panel');
-    if (fbPanel) {
-        fbPanel.classList.remove('hud-glow-correct', 'hud-glow-error');
-        fbPanel.classList.add(isCorrect ? 'hud-glow-correct' : 'hud-glow-error');
-    }
-
-    const btnTrue = document.getElementById('btn-tf-true');
-    const btnFalse = document.getElementById('btn-tf-false');
-    resetTfButtons(btnTrue, btnFalse);
-    if (btnTrue) btnTrue.disabled = true;
-    if (btnFalse) btnFalse.disabled = true;
-
-    const selectedBtn = selectedQ2Ans ? btnTrue : btnFalse;
-    if (selectedBtn) selectedBtn.classList.add(isCorrect ? 'selected-true' : 'selected-false');
-
-    const fb = document.getElementById('sq2-feedback');
-    const fbTitle = document.getElementById('sq2-fb-title');
-    const fbText = document.getElementById('sq2-fb-text');
-
-    if (fb && fbTitle && fbText) {
-        fb.style.display = 'block';
-        fb.className = 'tf-feedback show';
-        if (isCorrect) {
-            fb.classList.add('success');
-            fb.classList.remove('error');
-        } else {
-            fb.classList.add('error');
-            fb.classList.remove('success');
-        }
-        fbTitle.textContent = isCorrect ? 'Correto!' : 'Incorreto!';
-        fbText.textContent = data.exp;
-
-        // Force reflow for animation
-        void fb.offsetWidth;
-        fb.classList.add('visible');
-        if (window.matchMedia('(max-width: 768px)').matches) {
-            setTimeout(function () {
-                fb.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-            }, 120);
-        }
-        scheduleScrollBtnRefresh();
-    }
-};
-
-window.nextQuestion2 = function () {
-    playHUDBeep('transition');
-    currentQ2++;
-    loadQuestion2(currentQ2);
-};
-
-window.resetQuiz2 = function () {
-    playHUDBeep('transition');
-    currentQ2 = 0;
-    scoreQ2 = 0;
-    selectedQ2Ans = null;
-    wrongTopicsQ2 = [];
-
-    const rPanel = document.getElementById('sq2-result-panel');
-    if (rPanel) {
-        rPanel.style.display = 'none';
-        rPanel.classList.remove('is-visible', 'is-approved', 'is-failed', 'q-result-anim');
-    }
-    const reviewEl = document.getElementById('sq2-review');
-    if (reviewEl) { reviewEl.hidden = true; reviewEl.innerHTML = ''; }
-
-    document.getElementById('sq2-question-panel').style.display = 'block';
-
-    loadQuestion2(currentQ2);
-};
-
-window.startQuiz2Intro = function () {
-    playHUDBeep('transition');
-    const introPanel = document.getElementById('sq2-intro-panel');
-    if (introPanel) introPanel.style.display = 'none';
-
-    const qPanel = document.getElementById('sq2-question-panel');
-    if (qPanel) {
-        qPanel.style.display = 'block';
-        qPanel.classList.remove('hud-anim-enter');
-        void qPanel.offsetWidth;
-        qPanel.classList.add('hud-anim-enter');
-    }
-
-    currentQ2 = 0;
-    scoreQ2 = 0;
-    wrongTopicsQ2 = [];
-    loadQuestion2(currentQ2);
-    try { window.updateQuizAudioHelper(); } catch (e) { }
-};
+const quiz2 = createQuizEngine('q2', q2_questions, 3);
+function startQuiz2Intro() { quiz2.start(); }
+function verifyAnswer2() { quiz2.verify(); }
+function nextQuestion2() { quiz2.next(); }
+function resetQuiz2() { quiz2.reset(); }
+window.startQuiz2Intro = startQuiz2Intro;
+window.verifyAnswer2 = verifyAnswer2;
+window.nextQuestion2 = nextQuestion2;
+window.resetQuiz2 = resetQuiz2;
 
 /* ════════════════════════════════════════
    ENGINE: CONDUÇÃO SEGURA (módulo 3) — layout igual ao quiz 1
@@ -2728,10 +2482,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
 // Initialize on load
 window.addEventListener('DOMContentLoaded', () => {
-    const introPanel = document.getElementById('sq2-intro-panel');
-    if (introPanel) introPanel.style.display = 'block';
+    const introPanel = document.getElementById('q2-intro-panel');
+    if (introPanel) introPanel.style.display = 'flex';
 
-    const qPanel = document.getElementById('sq2-question-panel');
+    const qPanel = document.getElementById('q2-question-panel');
     if (qPanel) qPanel.style.display = 'none';
 });
 
@@ -3597,7 +3351,7 @@ function resetQuiz6() { quiz6.reset(); }
         }
 
         window.updateQuizAudioHelper();
-        ['q1-question-panel', 'sq2-question-panel', 'conducao-question-panel', 'q3-question-panel', 'q4-question-panel', 'q5-question-panel', 'q6-question-panel'].forEach(function (id) {
+        ['q1-question-panel', 'q2-question-panel', 'conducao-question-panel', 'q3-question-panel', 'q4-question-panel', 'q5-question-panel', 'q6-question-panel'].forEach(function (id) {
             const panel = document.getElementById(id);
             if (panel) {
                 new MutationObserver(window.updateQuizAudioHelper).observe(panel, { attributes: true, attributeFilter: ['style', 'class'] });

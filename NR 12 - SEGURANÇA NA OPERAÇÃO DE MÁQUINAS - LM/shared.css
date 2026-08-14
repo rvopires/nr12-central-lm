@@ -4827,22 +4827,26 @@ body:has(#s-quiz5.active) #btn-fwd {
 
 /* OtimizaÃ§Ãµes Quiz 1 â€” pÃ¡gina 10 (sÃ³ painel de perguntas; intro mantÃ©m layout original) */
 #sq1 #q1-question-panel,
-#s-conducao #conducao-question-panel {
+#s-conducao #conducao-question-panel,
+#sq2 #q2-question-panel {
     margin-top: 12px !important;
 }
 
 #sq1 #q1-question-panel .q-meta,
-#s-conducao #conducao-question-panel .q-meta {
+#s-conducao #conducao-question-panel .q-meta,
+#sq2 #q2-question-panel .q-meta {
     margin-bottom: 10px !important;
 }
 
 #sq1 #q1-question-panel .q-lbl,
-#s-conducao #conducao-question-panel .q-lbl {
+#s-conducao #conducao-question-panel .q-lbl,
+#sq2 #q2-question-panel .q-lbl {
     font-size: 13px !important;
 }
 
 #sq1 #q1-question-panel .q-text,
-#s-conducao #conducao-question-panel .q-text {
+#s-conducao #conducao-question-panel .q-text,
+#sq2 #q2-question-panel .q-text {
     padding: 32px 18px 18px !important;
     margin-bottom: 12px !important;
     font-size: 18px !important;
@@ -4850,7 +4854,8 @@ body:has(#s-quiz5.active) #btn-fwd {
     min-height: auto !important;
 }
 
-#sq1 #q1-question-panel .q-text::before {
+#sq1 #q1-question-panel .q-text::before,
+#sq2 #q2-question-panel .q-text::before {
     font-size: 10px !important;
     letter-spacing: 2px !important;
     top: 10px !important;
@@ -4858,13 +4863,15 @@ body:has(#s-quiz5.active) #btn-fwd {
 }
 
 #sq1 #q1-question-panel .q-options,
-#s-conducao #conducao-question-panel .q-options {
+#s-conducao #conducao-question-panel .q-options,
+#sq2 #q2-question-panel .q-options {
     gap: 8px !important;
     margin-bottom: 0 !important;
 }
 
 #sq1 #q1-question-panel .q-opt,
-#s-conducao #conducao-question-panel .q-opt {
+#s-conducao #conducao-question-panel .q-opt,
+#sq2 #q2-question-panel .q-opt {
     padding: 10px 12px !important;
     font-size: 16px !important;
     gap: 10px !important;
@@ -4872,25 +4879,29 @@ body:has(#s-quiz5.active) #btn-fwd {
 }
 
 #sq1 #q1-question-panel .q-opt .opt-l,
-#s-conducao #conducao-question-panel .q-opt .opt-l {
+#s-conducao #conducao-question-panel .q-opt .opt-l,
+#sq2 #q2-question-panel .q-opt .opt-l {
     width: 30px !important;
     height: 30px !important;
     font-size: 14px !important;
 }
 
 #sq1 #q1-verify-container,
-#s-conducao #conducao-verify-container {
+#s-conducao #conducao-verify-container,
+#sq2 #q2-verify-container {
     margin-top: 8px !important;
 }
 
 #sq1 #q1-verify-container .btn-tf-verify,
-#s-conducao #conducao-verify-container .btn-tf-verify {
+#s-conducao #conducao-verify-container .btn-tf-verify,
+#sq2 #q2-verify-container .btn-tf-verify {
     padding: 10px 28px !important;
     font-size: 15px !important;
 }
 
 #sq1 #q1-question-panel .q-feedback,
-#s-conducao #conducao-question-panel .q-feedback {
+#s-conducao #conducao-question-panel .q-feedback,
+#sq2 #q2-question-panel .q-feedback {
     min-height: 28px !important;
     margin-top: 8px !important;
     padding: 6px 14px !important;
@@ -4898,48 +4909,57 @@ body:has(#s-quiz5.active) #btn-fwd {
 }
 
 #sq1 #q1-question-panel .btn-next-q,
-#s-conducao #conducao-question-panel .btn-next-q {
+#s-conducao #conducao-question-panel .btn-next-q,
+#sq2 #q2-question-panel .btn-next-q {
     margin-top: 8px !important;
     padding: 10px 24px !important;
     font-size: 15px !important;
 }
 
 #sq1 #q1-question-panel .q-feedback.nok,
-#sq1 #q1-question-panel .q-feedback.nok span {
+#sq1 #q1-question-panel .q-feedback.nok span,
+#sq2 #q2-question-panel .q-feedback.nok,
+#sq2 #q2-question-panel .q-feedback.nok span {
     color: #ff7085 !important;
 }
 
 @media (max-width: 768px) {
-    #sq1 #q1-question-panel,
-#s-conducao #conducao-question-panel {
+        #sq1 #q1-question-panel,
+    #s-conducao #conducao-question-panel,
+    #sq2 #q2-question-panel {
         margin-top: 18px !important;
         padding-top: 10px !important;
     }
 
-    #sq1 #q1-result-panel {
+        #sq1 #q1-result-panel,
+    #sq2 #q2-result-panel {
         padding-top: 12px !important;
     }
 
-    #sq1 #q1-question-panel .q-text,
-#s-conducao #conducao-question-panel .q-text {
+        #sq1 #q1-question-panel .q-text,
+    #s-conducao #conducao-question-panel .q-text,
+    #sq2 #q2-question-panel .q-text {
         font-size: 17px !important;
         padding: 28px 16px 16px !important;
     }
 
-    #sq1 #q1-question-panel .q-opt,
-#s-conducao #conducao-question-panel .q-opt {
+        #sq1 #q1-question-panel .q-opt,
+    #s-conducao #conducao-question-panel .q-opt,
+    #sq2 #q2-question-panel .q-opt {
         font-size: 15px !important;
         padding: 9px 10px !important;
     }
 
-    #sq1 #q1-question-panel .q-feedback,
-#s-conducao #conducao-question-panel .q-feedback {
+        #sq1 #q1-question-panel .q-feedback,
+    #s-conducao #conducao-question-panel .q-feedback,
+    #sq2 #q2-question-panel .q-feedback {
         font-size: 14px !important;
         line-height: 1.4 !important;
     }
 
-    #sq1 #q1-question-panel .btn-next-q,
-#s-conducao #conducao-question-panel .btn-next-q {
+        #sq1 #q1-question-panel .btn-next-q,
+    #s-conducao #conducao-question-panel .btn-next-q,
+    #sq2 #q2-question-panel .btn-next-q {
         margin-top: 6px !important;
         padding: 9px 22px !important;
         font-size: 14px !important;
@@ -7590,7 +7610,8 @@ body {
 }
 /* Quiz do módulo 1 — painel escuro com alternativas coloridas */
 #sq1 #q1-question-panel,
-#s-conducao #conducao-question-panel {
+#s-conducao #conducao-question-panel,
+#sq2 #q2-question-panel {
     width: min(820px, 100%) !important;
     margin: 0 auto !important;
     padding: 22px 28px 26px !important;
@@ -7603,18 +7624,21 @@ body {
 }
 
 #sq1 #q1-question-panel .q-meta,
-#s-conducao #conducao-question-panel .q-meta {
+#s-conducao #conducao-question-panel .q-meta,
+#sq2 #q2-question-panel .q-meta {
     align-items: center !important;
     margin-bottom: 12px !important;
 }
 
 #sq1 #q1-question-panel .q-dots,
-#s-conducao #conducao-question-panel .q-dots {
+#s-conducao #conducao-question-panel .q-dots,
+#sq2 #q2-question-panel .q-dots {
     gap: 9px !important;
 }
 
 #sq1 #q1-question-panel .qdot2,
-#s-conducao #conducao-question-panel .qdot2 {
+#s-conducao #conducao-question-panel .qdot2,
+#sq2 #q2-question-panel .qdot2 {
     width: 14px !important;
     height: 14px !important;
     border-radius: 50% !important;
@@ -7623,19 +7647,22 @@ body {
     box-shadow: none !important;
 }
 
-#sq1 #q1-question-panel .qdot2.cur {
+#sq1 #q1-question-panel .qdot2.cur,
+#sq2 #q2-question-panel .qdot2.cur {
     background: #00FFFF !important;
     border-color: #7AF5F5 !important;
     box-shadow: 0 0 14px rgba(0, 255, 255, 0.75) !important;
 }
 
-#sq1 #q1-question-panel .qdot2.done {
+#sq1 #q1-question-panel .qdot2.done,
+#sq2 #q2-question-panel .qdot2.done {
     background: #7E36E3 !important;
     border-color: #7AF5F5 !important;
 }
 
 #sq1 #q1-question-panel .q-lbl,
-#s-conducao #conducao-question-panel .q-lbl {
+#s-conducao #conducao-question-panel .q-lbl,
+#sq2 #q2-question-panel .q-lbl {
     color: rgba(255, 255, 255, 0.82) !important;
     font-size: 14px !important;
     font-weight: 800 !important;
@@ -7644,7 +7671,8 @@ body {
 }
 
 #sq1 #q1-question-panel .q-text,
-#s-conducao #conducao-question-panel .q-text {
+#s-conducao #conducao-question-panel .q-text,
+#sq2 #q2-question-panel .q-text {
     min-height: 0 !important;
     display: flex !important;
     align-items: center !important;
@@ -7661,17 +7689,20 @@ body {
     text-shadow: none !important;
 }
 
-#sq1 #q1-question-panel .q-text::before {
+#sq1 #q1-question-panel .q-text::before,
+#sq2 #q2-question-panel .q-text::before {
     display: none !important;
 }
 
 #sq1 #q1-question-panel .q-options,
-#s-conducao #conducao-question-panel .q-options {
+#s-conducao #conducao-question-panel .q-options,
+#sq2 #q2-question-panel .q-options {
     gap: 12px !important;
 }
 
 #sq1 #q1-question-panel .q-opt,
-#s-conducao #conducao-question-panel .q-opt {
+#s-conducao #conducao-question-panel .q-opt,
+#sq2 #q2-question-panel .q-opt {
     min-height: 54px !important;
     padding: 10px 16px !important;
     gap: 14px !important;
@@ -7689,20 +7720,28 @@ body {
     background: #0A3D6B !important;
 }
 
-#sq1 #q1-question-panel .q-opt:nth-child(2) {
+#sq2 #q2-question-panel .q-opt:nth-child(1) {
+    background: linear-gradient(135deg, #ff7a18, #ff5500) !important;
+}
+
+#sq1 #q1-question-panel .q-opt:nth-child(2),
+#sq2 #q2-question-panel .q-opt:nth-child(2) {
     background: linear-gradient(135deg, #cc9410, #f2c42f) !important;
     color: #17130a !important;
 }
 
-#sq1 #q1-question-panel .q-opt:nth-child(3) {
+#sq1 #q1-question-panel .q-opt:nth-child(3),
+#sq2 #q2-question-panel .q-opt:nth-child(3) {
     background: linear-gradient(135deg, #df3508, #ff4b12) !important;
 }
 
-#sq1 #q1-question-panel .q-opt:nth-child(4) {
+#sq1 #q1-question-panel .q-opt:nth-child(4),
+#sq2 #q2-question-panel .q-opt:nth-child(4) {
     background: #0A3D6B !important;
 }
 
-#sq1 #q1-question-panel .q-opt:hover:not(.answered) {
+#sq1 #q1-question-panel .q-opt:hover:not(.answered),
+#sq2 #q2-question-panel .q-opt:hover:not(.answered) {
     transform: translateY(-2px) scale(1.01) !important;
     border-color: rgba(255, 255, 255, 0.55) !important;
     filter: brightness(1.08) !important;
@@ -7710,7 +7749,8 @@ body {
 }
 
 #sq1 #q1-question-panel .q-opt .opt-l,
-#s-conducao #conducao-question-panel .q-opt .opt-l {
+#s-conducao #conducao-question-panel .q-opt .opt-l,
+#sq2 #q2-question-panel .q-opt .opt-l {
     width: 40px !important;
     height: 40px !important;
     border-radius: 50% !important;
@@ -7721,7 +7761,8 @@ body {
     text-shadow: none !important;
 }
 
-#sq1 #q1-question-panel .q-opt.selected {
+#sq1 #q1-question-panel .q-opt.selected,
+#sq2 #q2-question-panel .q-opt.selected {
     border-color: #fff !important;
     box-shadow:
         0 0 0 3px rgba(255, 255, 255, 0.22),
@@ -7742,11 +7783,29 @@ body {
     opacity: 1 !important;
 }
 
+#sq2 #q2-question-panel .q-opt.correct,
+#sq2 #q2-question-panel .q-opt.correct:nth-child(1),
+#sq2 #q2-question-panel .q-opt.correct:nth-child(2),
+#sq2 #q2-question-panel .q-opt.correct:nth-child(3),
+#sq2 #q2-question-panel .q-opt.correct:nth-child(4) {
+    background: linear-gradient(135deg, #1faa5a, #2ecc71) !important;
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    color: #fff !important;
+    box-shadow: 0 0 28px rgba(46, 204, 113, 0.55) !important;
+    filter: none !important;
+    opacity: 1 !important;
+}
+
 #sq1 #q1-question-panel .q-opt.wrong,
 #sq1 #q1-question-panel .q-opt.wrong:nth-child(1),
 #sq1 #q1-question-panel .q-opt.wrong:nth-child(2),
 #sq1 #q1-question-panel .q-opt.wrong:nth-child(3),
-#sq1 #q1-question-panel .q-opt.wrong:nth-child(4) {
+#sq1 #q1-question-panel .q-opt.wrong:nth-child(4),
+#sq2 #q2-question-panel .q-opt.wrong,
+#sq2 #q2-question-panel .q-opt.wrong:nth-child(1),
+#sq2 #q2-question-panel .q-opt.wrong:nth-child(2),
+#sq2 #q2-question-panel .q-opt.wrong:nth-child(3),
+#sq2 #q2-question-panel .q-opt.wrong:nth-child(4) {
     background: linear-gradient(135deg, #c62828, #e74c3c) !important;
     border-color: rgba(255, 255, 255, 0.4) !important;
     color: #fff !important;
@@ -7759,7 +7818,12 @@ body {
 #sq1 #q1-question-panel .q-opt.muted:nth-child(1),
 #sq1 #q1-question-panel .q-opt.muted:nth-child(2),
 #sq1 #q1-question-panel .q-opt.muted:nth-child(3),
-#sq1 #q1-question-panel .q-opt.muted:nth-child(4) {
+#sq1 #q1-question-panel .q-opt.muted:nth-child(4),
+#sq2 #q2-question-panel .q-opt.muted,
+#sq2 #q2-question-panel .q-opt.muted:nth-child(1),
+#sq2 #q2-question-panel .q-opt.muted:nth-child(2),
+#sq2 #q2-question-panel .q-opt.muted:nth-child(3),
+#sq2 #q2-question-panel .q-opt.muted:nth-child(4) {
     background: #1212A0 !important;
     border-color: rgba(255, 255, 255, 0.08) !important;
     color: rgba(255, 255, 255, 0.35) !important;
@@ -7769,7 +7833,9 @@ body {
 }
 
 #sq1 #q1-question-panel .q-opt.correct .opt-l,
-#sq1 #q1-question-panel .q-opt.wrong .opt-l {
+#sq1 #q1-question-panel .q-opt.wrong .opt-l,
+#sq2 #q2-question-panel .q-opt.correct .opt-l,
+#sq2 #q2-question-panel .q-opt.wrong .opt-l {
     background: #fff !important;
     border-color: #fff !important;
     font-size: 18px !important;
@@ -7780,18 +7846,26 @@ body {
     color: #7E36E3 !important;
 }
 
-#sq1 #q1-question-panel .q-opt.wrong .opt-l {
+#sq2 #q2-question-panel .q-opt.correct .opt-l {
+    color: #1a7a45 !important;
+}
+
+#sq1 #q1-question-panel .q-opt.wrong .opt-l,
+#sq2 #q2-question-panel .q-opt.wrong .opt-l {
     color: #e74c3c !important;
 }
 
-#sq1 #q1-question-panel .q-opt.muted .opt-l {
+#sq1 #q1-question-panel .q-opt.muted .opt-l,
+#sq2 #q2-question-panel .q-opt.muted .opt-l {
     background: rgba(255, 255, 255, 0.08) !important;
     border-color: rgba(255, 255, 255, 0.12) !important;
     color: rgba(255, 255, 255, 0.35) !important;
 }
 
 #sq1 #q1-question-panel .q-feedback.ok,
-#sq1 #q1-question-panel .q-feedback.nok {
+#sq1 #q1-question-panel .q-feedback.nok,
+#sq2 #q2-question-panel .q-feedback.ok,
+#sq2 #q2-question-panel .q-feedback.nok {
     margin-top: 14px !important;
     padding: 14px 18px !important;
     border-radius: 12px !important;
@@ -7802,21 +7876,24 @@ body {
     letter-spacing: 0 !important;
 }
 
-#sq1 #q1-question-panel .q-feedback.ok {
+#sq1 #q1-question-panel .q-feedback.ok,
+#sq2 #q2-question-panel .q-feedback.ok {
     background: rgba(20, 40, 32, 0.95) !important;
     border: 1.5px solid #00FFFF !important;
     color: #7AF5F5 !important;
     box-shadow: 0 0 18px rgba(0, 255, 255, 0.25) !important;
 }
 
-#sq1 #q1-question-panel .q-feedback.nok {
+#sq1 #q1-question-panel .q-feedback.nok,
+#sq2 #q2-question-panel .q-feedback.nok {
     background: rgba(40, 28, 18, 0.95) !important;
     border: 1.5px solid #ff7a18 !important;
     color: #ffb074 !important;
     box-shadow: 0 0 18px rgba(255, 122, 24, 0.22) !important;
 }
 
-#sq1 #q1-question-panel .btn-next-q.show {
+#sq1 #q1-question-panel .btn-next-q.show,
+#sq2 #q2-question-panel .btn-next-q.show {
     margin-top: 14px !important;
     background: linear-gradient(135deg, #ff7a18, #ff5500) !important;
     color: #fff !important;
@@ -7824,30 +7901,34 @@ body {
 }
 
 @media (max-width: 768px) {
-    #sq1 #q1-question-panel,
-#s-conducao #conducao-question-panel {
+        #sq1 #q1-question-panel,
+    #s-conducao #conducao-question-panel,
+    #sq2 #q2-question-panel {
         padding: 18px 14px 22px !important;
         border-radius: 20px !important;
     }
 
-    #sq1 #q1-question-panel .q-text,
-#s-conducao #conducao-question-panel .q-text {
+        #sq1 #q1-question-panel .q-text,
+    #s-conducao #conducao-question-panel .q-text,
+    #sq2 #q2-question-panel .q-text {
         min-height: 0 !important;
         padding: 14px 16px !important;
         font-size: 16px !important;
         border-radius: 12px !important;
     }
 
-    #sq1 #q1-question-panel .q-opt,
-#s-conducao #conducao-question-panel .q-opt {
+        #sq1 #q1-question-panel .q-opt,
+    #s-conducao #conducao-question-panel .q-opt,
+    #sq2 #q2-question-panel .q-opt {
         min-height: 48px !important;
         padding: 9px 12px !important;
         font-size: 14px !important;
         border-radius: 12px !important;
     }
 
-    #sq1 #q1-question-panel .q-opt .opt-l,
-#s-conducao #conducao-question-panel .q-opt .opt-l {
+        #sq1 #q1-question-panel .q-opt .opt-l,
+    #s-conducao #conducao-question-panel .q-opt .opt-l,
+    #sq2 #q2-question-panel .q-opt .opt-l {
         width: 34px !important;
         height: 34px !important;
         font-size: 14px !important;
@@ -7860,7 +7941,8 @@ body {
 #s-quiz3 #q3-result-panel.quiz-result-panel,
 #s-quiz4 #q4-result-panel.quiz-result-panel,
 #s-quiz5 #q5-result-panel.quiz-result-panel,
-#s-quiz6 #q6-result-panel.quiz-result-panel {
+#s-quiz6 #q6-result-panel.quiz-result-panel,
+#sq2 #q2-result-panel.quiz-result-panel {
     display: none !important;
     width: min(560px, 100%);
     margin: 0 auto;
@@ -7872,7 +7954,8 @@ body {
 #s-quiz3 #q3-result-panel.quiz-result-panel.is-visible,
 #s-quiz4 #q4-result-panel.quiz-result-panel.is-visible,
 #s-quiz5 #q5-result-panel.quiz-result-panel.is-visible,
-#s-quiz6 #q6-result-panel.quiz-result-panel.is-visible {
+#s-quiz6 #q6-result-panel.quiz-result-panel.is-visible,
+#sq2 #q2-result-panel.quiz-result-panel.is-visible {
     display: block !important;
 }
 
@@ -8120,7 +8203,8 @@ body {
 #s-quiz3 #q3-result-panel.is-approved .quiz-result-card,
 #s-quiz4 #q4-result-panel.is-approved .quiz-result-card,
 #s-quiz5 #q5-result-panel.is-approved .quiz-result-card,
-#s-quiz6 #q6-result-panel.is-approved .quiz-result-card {
+#s-quiz6 #q6-result-panel.is-approved .quiz-result-card,
+#sq2 #q2-result-panel.is-approved .quiz-result-card {
     box-shadow:
         0 20px 48px rgba(0, 0, 0, 0.45),
         0 0 48px rgba(0, 255, 255, 0.35),
@@ -8132,7 +8216,8 @@ body {
 #s-quiz3 #q3-result-panel.is-approved .quiz-result-card::before,
 #s-quiz4 #q4-result-panel.is-approved .quiz-result-card::before,
 #s-quiz5 #q5-result-panel.is-approved .quiz-result-card::before,
-#s-quiz6 #q6-result-panel.is-approved .quiz-result-card::before {
+#s-quiz6 #q6-result-panel.is-approved .quiz-result-card::before,
+#sq2 #q2-result-panel.is-approved .quiz-result-card::before {
     background: radial-gradient(ellipse at 50% 40%,
             rgba(0, 255, 255, 0.55) 0%,
             rgba(0, 255, 255, 0.22) 45%,
