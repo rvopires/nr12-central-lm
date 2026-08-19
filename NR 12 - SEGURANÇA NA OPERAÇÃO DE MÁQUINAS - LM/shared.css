@@ -923,8 +923,11 @@ body:has(#s-quiz5.active) #btn-fwd {
     }
 
     .btn-start {
-        padding: 10px 24px;
-        font-size: 17px;
+        padding: 14px 20px;
+        font-size: 13px;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+        min-height: 50px;
     }
 }
 
@@ -1895,6 +1898,32 @@ body:has(#s-quiz5.active) #btn-fwd {
         opacity: 1;
         transform: none;
     }
+
+    .s1-border-trace-path {
+        animation: none;
+    }
+}
+
+.s1-border-trace {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 6;
+    pointer-events: none;
+    overflow: visible;
+    display: block;
+}
+
+.s1-border-trace-path {
+    fill: none;
+    stroke: var(--s1-navy);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    filter:
+        drop-shadow(0 0 6px rgba(0, 255, 255, 0.85))
+        drop-shadow(0 0 14px rgba(0, 255, 255, 0.35));
 }
 
 /* Overlay suave: escurece a esquerda, preserva equipamentos à direita */
@@ -2063,17 +2092,20 @@ body:has(#s-quiz5.active) #btn-fwd {
     color: rgba(255, 255, 255, 0.92);
     text-transform: uppercase;
     margin: 0 0 18px;
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     background: rgba(0, 255, 255, 0.08);
     border: 1px solid rgba(0, 255, 255, 0.42);
-    padding: 7px 14px 7px 12px;
+    padding: 8px 16px;
     border-radius: 999px;
-    align-self: flex-start;
+    align-self: stretch;
+    width: 100%;
     max-width: 100%;
     box-sizing: border-box;
     line-height: 1.35;
+    text-align: center;
     box-shadow:
         0 0 24px rgba(126, 54, 227, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -2083,6 +2115,8 @@ body:has(#s-quiz5.active) #btn-fwd {
 
 .s1-tag span {
     white-space: normal;
+    text-align: center;
+    flex: 0 1 auto;
 }
 
 .s1-tag-ico {
@@ -2154,20 +2188,22 @@ body:has(#s-quiz5.active) #btn-fwd {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
-    width: auto;
+    flex-wrap: nowrap;
+    gap: 10px;
+    width: 100%;
     max-width: 100%;
-    min-height: 62px;
+    min-height: 56px;
     background: linear-gradient(135deg, #a878f0 0%, #7E36E3 42%, #6a28c9 100%);
     color: var(--s1-cta-text);
     font-family: var(--font-h);
     font-weight: 900;
-    font-size: clamp(15px, 1.45vw, 19px);
-    letter-spacing: 0.09em;
-    padding: 18px 48px;
+    font-size: clamp(13px, 1.25vw, 15px);
+    letter-spacing: 0.05em;
+    padding: 16px 24px;
     border-radius: 999px;
     border: 2px solid rgba(0, 255, 255, 0.55);
     cursor: pointer;
+    white-space: nowrap;
     transition:
         transform 0.28s var(--s1-ease),
         box-shadow 0.28s ease,
@@ -2178,7 +2214,7 @@ body:has(#s-quiz5.active) #btn-fwd {
         0 0 40px rgba(126, 54, 227, 0.35),
         0 0 70px rgba(106, 40, 201, 0.22),
         inset 0 1px 0 rgba(255, 255, 255, 0.7);
-    align-self: flex-start;
+    align-self: stretch;
     position: relative;
     overflow: hidden;
     text-transform: uppercase;
@@ -2189,11 +2225,12 @@ body:has(#s-quiz5.active) #btn-fwd {
 .btn-start span {
     position: relative;
     z-index: 2;
+    white-space: nowrap;
 }
 
 .btn-start svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
     filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.45));
 }
@@ -5466,9 +5503,12 @@ body {
     }
 
     #s1 .s1-tag {
-        align-self: flex-start;
+        align-self: stretch;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
         font-size: 10px !important;
-        padding: 6px 10px !important;
+        padding: 8px 12px !important;
         margin-bottom: 14px !important;
     }
 
@@ -5499,11 +5539,14 @@ body {
 
     #s1 .btn-start {
         align-self: stretch !important;
+        width: 100%;
         margin: 0 !important;
-        padding: 14px 20px !important;
+        padding: 16px 18px !important;
         font-size: 13px !important;
+        letter-spacing: 0.04em !important;
         white-space: nowrap;
-        border-radius: 14px !important;
+        min-height: 52px;
+        border-radius: 999px !important;
     }
 
     #s1 .s1-hero-img {
@@ -6563,15 +6606,20 @@ body {
     }
 
     #s1 .btn-start {
-        padding: 14px 18px !important;
+        padding: 15px 16px !important;
         font-size: 12.5px !important;
+        letter-spacing: 0.03em !important;
         white-space: nowrap;
+        min-height: 50px;
     }
 
     #s1 .s1-tag {
         font-size: 9.5px !important;
-        padding: 5px 10px !important;
+        padding: 8px 12px !important;
         margin-bottom: 12px !important;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
     }
 
     .btn-tutorial{
