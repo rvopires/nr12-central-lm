@@ -1771,23 +1771,130 @@ body:has(#s-quiz5.active) #btn-fwd {
     z-index: 0;
     overflow: hidden;
     pointer-events: none;
+    will-change: transform;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.s1-hero-img::before,
-.s1-hero-img::after {
+.s1-hero-img::before {
     display: none;
 }
 
+.s1-hero-img::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -20%;
+    left: 0;
+    width: 42%;
+    height: 140%;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+        105deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0) 38%,
+        rgba(255, 255, 255, 0.07) 48%,
+        rgba(0, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.06) 52%,
+        transparent 62%,
+        transparent 100%
+    );
+    transform: translateX(-160%) skewX(-18deg);
+    animation: s1-light-sweep 7.2s ease-in-out infinite;
+}
+
 .s1-hero-img img {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    inset: -5%;
+    width: 110%;
+    height: 110%;
+    max-width: none;
     display: block;
     object-fit: cover;
     object-position: center right;
     border: none;
     border-radius: 0;
     box-shadow: none;
-    transform: scale(1.01);
+    transform-origin: center center;
+    will-change: transform;
+    animation: s1-ken-burns 24s ease-in-out infinite alternate;
+}
+
+@keyframes s1-ken-burns {
+    from { transform: scale(1); }
+    to { transform: scale(1.06); }
+}
+
+@keyframes s1-light-sweep {
+    0%, 52% {
+        transform: translateX(-160%) skewX(-18deg);
+        opacity: 0;
+    }
+    58% {
+        opacity: 1;
+    }
+    78% {
+        transform: translateX(240%) skewX(-18deg);
+        opacity: 0.55;
+    }
+    86%, 100% {
+        transform: translateX(260%) skewX(-18deg);
+        opacity: 0;
+    }
+}
+
+@keyframes s1-cascade-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.s1-inner > .s1-tag,
+.s1-inner > h1,
+.s1-inner > p,
+.s1-inner > .s1-actions {
+    animation: s1-cascade-in 0.7s var(--s1-ease) both;
+}
+
+.s1-inner > .s1-tag { animation-delay: 0.08s; }
+.s1-inner > h1 { animation-delay: 0.18s; }
+.s1-inner > p { animation-delay: 0.28s; }
+.s1-inner > .s1-actions { animation-delay: 0.38s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .s1-panel {
+        animation: none;
+    }
+
+    .s1-hero-img {
+        transition: none;
+        transform: none;
+    }
+
+    .s1-hero-img img {
+        animation: none;
+        transform: none;
+        will-change: auto;
+    }
+
+    .s1-hero-img::after {
+        animation: none;
+        display: none;
+    }
+
+    .s1-inner > .s1-tag,
+    .s1-inner > h1,
+    .s1-inner > p,
+    .s1-inner > .s1-actions {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
 }
 
 /* Overlay suave: escurece a esquerda, preserva equipamentos à direita */
@@ -1807,15 +1914,31 @@ body:has(#s-quiz5.active) #btn-fwd {
         );
 }
 
+@keyframes s1-panel-in {
+    from {
+        opacity: 0;
+        transform: translateY(calc(-50% + 8px));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes s1-panel-in-static {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 .s1-panel {
     position: absolute;
     z-index: 3;
     top: 50%;
     bottom: auto;
-    left: clamp(48px, 7vw, 96px);
-    width: min(520px, 44vw);
+    left: clamp(40px, 6vw, 80px);
+    width: min(430px, 36vw);
     max-width: calc(100% - 48px);
-    max-height: min(640px, calc(100% - clamp(120px, 18vh, 168px)));
+    max-height: min(560px, calc(100% - clamp(120px, 18vh, 168px)));
     transform: translateY(-50%);
     border-radius: var(--s1-radius);
     overflow: hidden;
@@ -1823,6 +1946,7 @@ body:has(#s-quiz5.active) #btn-fwd {
     flex-direction: column;
     justify-content: center;
     isolation: isolate;
+    animation: s1-panel-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
     background:
         linear-gradient(
             160deg,
@@ -1921,7 +2045,7 @@ body:has(#s-quiz5.active) #btn-fwd {
     flex-direction: column;
     justify-content: center;
     gap: 0;
-    padding: clamp(28px, 3.2vh, 36px) clamp(28px, 2.8vw, 38px);
+    padding: clamp(22px, 2.6vh, 30px) clamp(22px, 2.2vw, 30px);
     max-width: none;
     width: 100%;
     height: auto;
@@ -1973,10 +2097,10 @@ body:has(#s-quiz5.active) #btn-fwd {
 .s1-inner h1 {
     font-family: var(--font-h);
     font-weight: 900;
-    font-size: clamp(30px, 3.5vw, 46px);
+    font-size: clamp(26px, 3vw, 38px);
     line-height: 1.06;
     color: var(--s1-white);
-    margin: 0 0 18px;
+    margin: 0 0 14px;
     letter-spacing: -0.02em;
     text-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
     display: flex;
@@ -2191,7 +2315,7 @@ body:has(#s-quiz5.active) #btn-fwd {
 
 @media (max-width: 1100px) {
     .s1-panel {
-        width: min(500px, 52vw);
+        width: min(420px, 46vw);
     }
 }
 
@@ -2220,6 +2344,7 @@ body:has(#s-quiz5.active) #btn-fwd {
         min-height: auto;
         transform: none;
         border-radius: 24px;
+        animation: s1-panel-in-static 0.28s ease both;
     }
 
     .s1-inner {

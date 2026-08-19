@@ -14,7 +14,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=106">
+<link rel="stylesheet" href="shared.css?v=126">
     <script>
         /* Prévia: configure NR12_UNLOCK_THROUGH em shared.js (ou ?unlock=N) */
         window.MODULE_NAV = {
@@ -589,7 +589,7 @@
         <div id="slides">
             <div class="slide active" id="s1">
                 <div class="s1-hero-img" aria-hidden="true">
-                    <img src="assets/fotos/CAPA.png" alt="">
+                    <img src="assets/fotos/CAPA.jpg" alt="">
                 </div>
                 <div class="s1-veil" aria-hidden="true"></div>
 
@@ -970,6 +970,7 @@
                 const params = new URLSearchParams(window.location.search);
                 // Voltou de outro módulo (cai no sumário) — não abrir
                 if (params.get('last') === '1' || params.get('restoreslide') !== null) return false;
+                if (window.demoMode) return false;
                 const s1 = document.getElementById('s1');
                 if (!s1 || !s1.classList.contains('active')) return false;
                 if (typeof currentSlide === 'number' && currentSlide !== 0) return false;
@@ -990,10 +991,64 @@
                 // Limpa flag antiga que impedia o popup de reabrir
                 try { sessionStorage.removeItem('nr12_tutorial_seen'); } catch (err) { }
                 setTimeout(openTutorialModalAuto, 800);
+                initS1HeroParallax();
             });
 
-        </script>
+            function initS1HeroParallax() {
+                const slide = document.getElementById('s1');
+                const hero = slide && slide.querySelector('.s1-hero-img');
+                if (!slide || !hero) return;
 
+                const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+                const maxShift = 12;
+                let rafId = 0;
+                let nextX = 0;
+                let nextY = 0;
+
+                function applyTransform() {
+                    rafId = 0;
+                    if (reduceMotion.matches) {
+                        hero.style.transform = '';
+                        return;
+                    }
+                    hero.style.transform = 'translate3d(' + nextX.toFixed(2) + 'px, ' + nextY.toFixed(2) + 'px, 0)';
+                }
+
+                function onMove(e) {
+                    if (reduceMotion.matches) return;
+                    const rect = slide.getBoundingClientRect();
+                    if (!rect.width || !rect.height) return;
+                    const nx = ((e.clientX - rect.left) / rect.width) - 0.5;
+                    const ny = ((e.clientY - rect.top) / rect.height) - 0.5;
+                    nextX = -nx * maxShift * 2;
+                    nextY = -ny * maxShift * 2;
+                    if (!rafId) rafId = requestAnimationFrame(applyTransform);
+                }
+
+                function onLeave() {
+                    nextX = 0;
+                    nextY = 0;
+                    if (!rafId) rafId = requestAnimationFrame(applyTransform);
+                }
+
+                function onReduceChange() {
+                    if (reduceMotion.matches) {
+                        nextX = 0;
+                        nextY = 0;
+                        hero.style.transform = '';
+                    }
+                }
+
+                slide.addEventListener('mousemove', onMove, { passive: true });
+                slide.addEventListener('mouseleave', onLeave);
+                if (typeof reduceMotion.addEventListener === 'function') {
+                    reduceMotion.addEventListener('change', onReduceChange);
+                } else if (typeof reduceMotion.addListener === 'function') {
+                    reduceMotion.addListener(onReduceChange);
+                }
+            }
+
+        </script>
     </div><!-- fecha #app -->
 
     <script src="audio-data.js"></script>
