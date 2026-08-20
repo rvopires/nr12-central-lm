@@ -185,71 +185,23 @@
   },
   {
     "file": "pagina-18.mp3",
-    "text": "Módulo 3 Condução Segura",
+    "text": "Módulo 3 Instrução de Trabalho",
     "slideId": "s-bateria",
     "globalN": 16,
     "state": "main",
     "sourceFile": "modulo-3.html"
   },
   {
-    "file": "pagina-19-q1.mp3",
-    "text": "Decisões seguras na operação. Ação 1 de 6. Avalie a seguinte ação: Usar celular durante a operação. Essa ação é permitida ou não permitida?",
+    "file": "pagina-19.mp3",
+    "text": "Módulo 3 Operação segura",
     "slideId": "s-conducao",
     "globalN": 17,
-    "state": "q1",
-    "sourceFile": "modulo-3.html"
-  },
-  {
-    "file": "pagina-19-q2.mp3",
-    "text": "Ação 2 de 6. Avalie a seguinte ação: Reduzir velocidade em curvas. Essa ação é permitida ou não permitida?",
-    "slideId": "s-conducao",
-    "globalN": 17,
-    "state": "q2",
-    "sourceFile": "modulo-3.html"
-  },
-  {
-    "file": "pagina-19-q3.mp3",
-    "text": "Ação 3 de 6. Avalie a seguinte ação: Transportar pessoas no equipamento. Essa ação é permitida ou não permitida?",
-    "slideId": "s-conducao",
-    "globalN": 17,
-    "state": "q3",
-    "sourceFile": "modulo-3.html"
-  },
-  {
-    "file": "pagina-19-q4.mp3",
-    "text": "Ação 4 de 6. Avalie a seguinte ação: Utilizar buzina em cruzamentos. Essa ação é permitida ou não permitida?",
-    "slideId": "s-conducao",
-    "globalN": 17,
-    "state": "q4",
-    "sourceFile": "modulo-3.html"
-  },
-  {
-    "file": "pagina-19-q5.mp3",
-    "text": "Ação 5 de 6. Avalie a seguinte ação: Circular com carga elevada. Essa ação é permitida ou não permitida?",
-    "slideId": "s-conducao",
-    "globalN": 17,
-    "state": "q5",
-    "sourceFile": "modulo-3.html"
-  },
-  {
-    "file": "pagina-19-q6.mp3",
-    "text": "Ação 6 de 6. Avalie a seguinte ação: Olhar sempre na direção do movimento. Essa ação é permitida ou não permitida?",
-    "slideId": "s-conducao",
-    "globalN": 17,
-    "state": "q6",
-    "sourceFile": "modulo-3.html"
-  },
-  {
-    "file": "pagina-19-result.mp3",
-    "text": "Decisões seguras concluídas. Você avaliou corretamente as seis ações de condução segura.",
-    "slideId": "s-conducao",
-    "globalN": 17,
-    "state": "result",
+    "state": "main",
     "sourceFile": "modulo-3.html"
   },
   {
     "file": "pagina-20.mp3",
-    "text": "MÓDULO 3 Troca de Bateria",
+    "text": "Módulo 3. Obrigatório, proibido e cuidados gerais. Antes de operar, confira as regras essenciais de segurança. Explore as três categorias: o que é obrigatório, o que é proibido e os cuidados gerais, incluindo o limite de vinte e cinco quilos.",
     "slideId": "s-rampas",
     "globalN": 18,
     "state": "main",
@@ -257,66 +209,18 @@
   },
   {
     "file": "pagina-21.mp3",
-    "text": "MÓDULO 3 Prevenções para Operação",
+    "text": "Módulo 3 Riscos elétricos, corantes e EPI",
     "slideId": "s-bateria-troca",
     "globalN": 19,
     "state": "main",
     "sourceFile": "modulo-3.html"
   },
   {
-    "file": "pagina-22-intro.mp3",
-    "text": "Quiz do Módulo 3. Decisões na Operação. Teste seus conhecimentos sobre situações reais de operação. Esta avaliação contém cinco perguntas com mínimo de sessenta por cento de acertos. Toque em Iniciar para começar.",
+    "file": "pagina-22.mp3",
+    "text": "Encontre os riscos. Observe três fotos, uma de cada vez, e veja o que está errado em cada cena: sem calçado de segurança, painel elétrico aberto e lata fora do centro do prato do misturador.",
     "slideId": "s-quiz3",
     "globalN": 20,
-    "state": "intro",
-    "sourceFile": "modulo-3.html"
-  },
-  {
-    "file": "pagina-22-q1.mp3",
-    "text": "Pergunta 1 de 5. Atenção. A bateria atingiu vinte por cento durante a operação. O que o operador deve fazer? Opção A: Solicitar troca segura da bateria. Opção B: Continuar operando até descarregar completamente. Opção C: Aumentar velocidade para finalizar mais rápido. Opção D: Ignorar o nível de carga.",
-    "slideId": "s-quiz3",
-    "globalN": 20,
-    "state": "q1",
-    "sourceFile": "modulo-3.html"
-  },
-  {
-    "file": "pagina-22-q2.mp3",
-    "text": "Pergunta 2 de 5. Crítico. A troca da bateria será realizada. Qual procedimento é obrigatório? Opção A: Remover rapidamente sem desligar. Opção B: Realizar sozinho para agilizar. Opção C: Utilizar EPIs e apoio adequado. Opção D: Desconectar apenas após remover.",
-    "slideId": "s-quiz3",
-    "globalN": 20,
-    "state": "q2",
-    "sourceFile": "modulo-3.html"
-  },
-  {
-    "file": "pagina-22-q3.mp3",
-    "text": "Pergunta 3 de 5. Seguro. O operador está transportando um palete. Qual a altura correta da carga? Opção A: Encostada no chão. Opção B: Acima da linha de visão. Opção C: O mais alto possível. Opção D: De quinze a vinte centímetros do solo.",
-    "slideId": "s-quiz3",
-    "globalN": 20,
-    "state": "q3",
-    "sourceFile": "modulo-3.html"
-  },
-  {
-    "file": "pagina-22-q4.mp3",
-    "text": "Pergunta 4 de 5. Atenção. O operador se aproxima de um cruzamento. O que deve ser feito? Opção A: Acelerar para passar rápido. Opção B: Usar buzina e reduzir velocidade. Opção C: Levantar a carga. Opção D: Ignorar pedestres.",
-    "slideId": "s-quiz3",
-    "globalN": 20,
-    "state": "q4",
-    "sourceFile": "modulo-3.html"
-  },
-  {
-    "file": "pagina-22-q5.mp3",
-    "text": "Pergunta 5 de 5. Crítico. Outro funcionário pede carona no equipamento. Qual a atitude correta? Opção A: Negar e seguir normas de segurança. Opção B: Transportar em baixa velocidade. Opção C: Permitir se for rápido. Opção D: Permitir apenas sem carga.",
-    "slideId": "s-quiz3",
-    "globalN": 20,
-    "state": "q5",
-    "sourceFile": "modulo-3.html"
-  },
-  {
-    "file": "pagina-22-result.mp3",
-    "text": "Resultado do Quiz do Módulo 3. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.",
-    "slideId": "s-quiz3",
-    "globalN": 20,
-    "state": "result",
+    "state": "main",
     "sourceFile": "modulo-3.html"
   },
   {

@@ -10,19 +10,935 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=99">
+<link rel="stylesheet" href="shared.css?v=133">
     <style>
         #s-bateria .content-area > .video-wrap--std,
-        #s-rampas .content-area > .video-wrap--std,
+        #s-conducao .content-area > .video-wrap--std,
         #s-bateria-troca .content-area > .video-wrap--std {
             margin-top: 56px !important;
         }
 
         @media screen and (max-width: 768px) {
             #s-bateria .content-area > .video-wrap--std,
-            #s-rampas .content-area > .video-wrap--std,
+            #s-conducao .content-area > .video-wrap--std,
             #s-bateria-troca .content-area > .video-wrap--std {
                 margin-top: 28px !important;
+            }
+        }
+
+        /* ── Página 18: Obrigatório / Proibido / Cuidados ── */
+        #s-rampas {
+            --opc-cyan: #00FFFF;
+            --opc-pink: #ff4d9a;
+            --opc-yellow: #f5c518;
+        }
+
+        #s-rampas .content-area {
+            justify-content: flex-start !important;
+            align-items: stretch !important;
+            text-align: left !important;
+            padding-top: 8px;
+            padding-bottom: 88px;
+            gap: 0;
+        }
+
+        #s-rampas .opc-subtitle {
+            margin: 0 0 18px;
+            font-family: var(--font-b);
+            font-size: clamp(14px, 1.5vw, 17px);
+            color: rgba(255, 255, 255, 0.72);
+            max-width: 52ch;
+            line-height: 1.45;
+        }
+
+        #s-rampas .slide-title .opc-pink {
+            color: var(--opc-pink);
+            text-shadow: 0 0 18px rgba(255, 77, 154, 0.45);
+        }
+
+        #s-rampas .slide-title .opc-yellow {
+            color: var(--opc-yellow);
+            text-shadow: 0 0 18px rgba(245, 197, 24, 0.4);
+        }
+
+        #s-rampas .opc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            width: 100%;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        #s-rampas .opc-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            min-height: 0;
+            padding: 20px 18px 18px;
+            border-radius: 18px;
+            background:
+                linear-gradient(165deg, rgba(12, 18, 36, 0.82) 0%, rgba(8, 10, 24, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            cursor: pointer;
+            text-align: left;
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+            opacity: 0;
+            transform: translateY(14px);
+            outline: none;
+        }
+
+        #s-rampas.slide.active .opc-card {
+            animation: opc-card-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        #s-rampas.slide.active .opc-card:nth-child(1) { animation-delay: 0.05s; }
+        #s-rampas.slide.active .opc-card:nth-child(2) { animation-delay: 0.14s; }
+        #s-rampas.slide.active .opc-card:nth-child(3) { animation-delay: 0.23s; }
+
+        @keyframes opc-card-in {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #s-rampas .opc-card:hover {
+            transform: translateY(-4px);
+        }
+
+        #s-rampas .opc-card:active {
+            transform: translateY(-2px) scale(1.015);
+        }
+
+        #s-rampas .opc-card.is-visited {
+            transform: translateY(-2px);
+        }
+
+        #s-rampas .opc-card.is-visited:hover {
+            transform: translateY(-4px);
+        }
+
+        #s-rampas .opc-card--ok {
+            border-color: rgba(0, 255, 255, 0.55);
+            box-shadow:
+                0 16px 40px rgba(0, 0, 0, 0.4),
+                0 0 18px rgba(0, 255, 255, 0.35),
+                0 0 42px rgba(0, 255, 255, 0.28),
+                0 0 70px rgba(0, 255, 255, 0.14),
+                inset 0 0 24px rgba(0, 255, 255, 0.06);
+        }
+
+        #s-rampas .opc-card--ok:hover,
+        #s-rampas .opc-card--ok.is-visited {
+            border-color: rgba(0, 255, 255, 0.9);
+            box-shadow:
+                0 20px 48px rgba(0, 0, 0, 0.45),
+                0 0 24px rgba(0, 255, 255, 0.5),
+                0 0 56px rgba(0, 255, 255, 0.38),
+                0 0 90px rgba(0, 255, 255, 0.2),
+                inset 0 0 28px rgba(0, 255, 255, 0.1);
+        }
+
+        #s-rampas .opc-card--no {
+            border-color: rgba(255, 77, 154, 0.55);
+            box-shadow:
+                0 16px 40px rgba(0, 0, 0, 0.4),
+                0 0 18px rgba(255, 77, 154, 0.35),
+                0 0 42px rgba(255, 77, 154, 0.28),
+                0 0 70px rgba(255, 77, 154, 0.14),
+                inset 0 0 24px rgba(255, 77, 154, 0.06);
+        }
+
+        #s-rampas .opc-card--no:hover,
+        #s-rampas .opc-card--no.is-visited {
+            border-color: rgba(255, 120, 180, 0.9);
+            box-shadow:
+                0 20px 48px rgba(0, 0, 0, 0.45),
+                0 0 24px rgba(255, 77, 154, 0.5),
+                0 0 56px rgba(255, 77, 154, 0.38),
+                0 0 90px rgba(255, 77, 154, 0.2),
+                inset 0 0 28px rgba(255, 77, 154, 0.1);
+        }
+
+        #s-rampas .opc-card--care {
+            border-color: rgba(245, 197, 24, 0.55);
+            box-shadow:
+                0 16px 40px rgba(0, 0, 0, 0.4),
+                0 0 18px rgba(245, 197, 24, 0.35),
+                0 0 42px rgba(245, 197, 24, 0.28),
+                0 0 70px rgba(245, 197, 24, 0.14),
+                inset 0 0 24px rgba(245, 197, 24, 0.06);
+        }
+
+        #s-rampas .opc-card--care:hover,
+        #s-rampas .opc-card--care.is-visited {
+            border-color: rgba(255, 220, 80, 0.95);
+            box-shadow:
+                0 20px 48px rgba(0, 0, 0, 0.45),
+                0 0 24px rgba(245, 197, 24, 0.5),
+                0 0 56px rgba(245, 197, 24, 0.38),
+                0 0 90px rgba(245, 197, 24, 0.2),
+                inset 0 0 28px rgba(245, 197, 24, 0.1);
+        }
+
+        #s-rampas .opc-card-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        #s-rampas .opc-card-ico {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+        }
+
+        #s-rampas .opc-card-ico svg {
+            width: 36px;
+            height: 36px;
+            display: block;
+        }
+
+        #s-rampas .opc-card--ok .opc-card-ico {
+            color: var(--opc-cyan);
+            filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.85)) drop-shadow(0 0 18px rgba(0, 255, 255, 0.45));
+            animation: opc-ico-pulse 2.8s ease-in-out infinite;
+        }
+
+        #s-rampas .opc-card--no .opc-card-ico {
+            color: var(--opc-pink);
+            filter: drop-shadow(0 0 8px rgba(255, 77, 154, 0.85)) drop-shadow(0 0 18px rgba(255, 77, 154, 0.45));
+            animation: opc-ico-pulse 2.8s ease-in-out infinite 0.4s;
+        }
+
+        #s-rampas .opc-card--care .opc-card-ico {
+            color: var(--opc-yellow);
+            filter: drop-shadow(0 0 8px rgba(245, 197, 24, 0.8)) drop-shadow(0 0 18px rgba(245, 197, 24, 0.4));
+            animation: opc-ico-pulse 2.8s ease-in-out infinite 0.8s;
+        }
+
+        @keyframes opc-ico-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.06); opacity: 0.88; }
+        }
+
+        #s-rampas .opc-card-title {
+            margin: 0;
+            font-family: var(--font-h);
+            font-size: clamp(20px, 2vw, 26px);
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+        }
+
+        #s-rampas .opc-card--ok .opc-card-title { color: var(--opc-cyan); }
+        #s-rampas .opc-card--no .opc-card-title { color: var(--opc-pink); }
+        #s-rampas .opc-card--care .opc-card-title { color: var(--opc-yellow); }
+
+        #s-rampas .opc-card-line {
+            height: 1px;
+            width: 100%;
+            margin: 0 0 14px;
+            opacity: 0.85;
+        }
+
+        #s-rampas .opc-card--ok .opc-card-line {
+            background: linear-gradient(90deg, rgba(0, 255, 255, 0.75), transparent);
+        }
+
+        #s-rampas .opc-card--no .opc-card-line {
+            background: linear-gradient(90deg, rgba(255, 77, 154, 0.75), transparent);
+        }
+
+        #s-rampas .opc-card--care .opc-card-line {
+            background: linear-gradient(90deg, rgba(245, 197, 24, 0.75), transparent);
+        }
+
+        #s-rampas .opc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+
+        #s-rampas .opc-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-family: var(--font-b);
+            font-size: clamp(13px, 1.15vw, 15px);
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        #s-rampas .opc-bullet {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        #s-rampas .opc-bullet svg {
+            width: 18px;
+            height: 18px;
+            display: block;
+        }
+
+        #s-rampas .opc-card--ok .opc-bullet { color: var(--opc-cyan); }
+        #s-rampas .opc-card--no .opc-bullet { color: var(--opc-pink); }
+        #s-rampas .opc-card--care .opc-bullet { color: var(--opc-yellow); }
+
+        #s-rampas .opc-fire {
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(180, 20, 60, 0.28);
+            border: 1px solid rgba(255, 77, 154, 0.55);
+            box-shadow: 0 0 18px rgba(255, 77, 154, 0.18);
+            color: #fff;
+            font-family: var(--font-b);
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.35;
+        }
+
+        #s-rampas .opc-fire svg {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+            color: #ff8fb8;
+        }
+
+        #s-rampas .opc-limit-line {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            line-height: 1.35;
+        }
+
+        #s-rampas .opc-kg {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: var(--opc-yellow);
+            color: #1a1200;
+            font-family: var(--font-h);
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+            white-space: nowrap;
+            vertical-align: middle;
+            box-shadow:
+                0 0 0 2px rgba(245, 197, 24, 0.35),
+                0 6px 16px rgba(245, 197, 24, 0.35);
+        }
+
+        #s-rampas .opc-explore {
+            margin: 18px auto 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            min-height: 52px;
+        }
+
+        #s-rampas .opc-explore-label {
+            font-family: var(--font-h);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        #s-rampas .opc-explore-dots {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        #s-rampas .opc-explore-dots::before,
+        #s-rampas .opc-explore-dots::after {
+            content: none;
+        }
+
+        #s-rampas .opc-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid currentColor;
+            background: transparent;
+            position: relative;
+            transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+        }
+
+        #s-rampas .opc-dot + .opc-dot::before {
+            content: "";
+            position: absolute;
+            right: calc(100% + 2px);
+            top: 50%;
+            width: 12px;
+            height: 0;
+            border-top: 1.5px dashed rgba(255, 255, 255, 0.28);
+            transform: translateY(-50%);
+        }
+
+        #s-rampas .opc-dot--ok { color: var(--opc-cyan); }
+        #s-rampas .opc-dot--no { color: var(--opc-pink); }
+        #s-rampas .opc-dot--care { color: var(--opc-yellow); }
+
+        #s-rampas .opc-dot.is-on {
+            background: currentColor;
+            box-shadow: 0 0 12px currentColor;
+            transform: scale(1.08);
+        }
+
+        #s-rampas .opc-done {
+            font-family: var(--font-h);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            color: var(--opc-cyan);
+            text-shadow: 0 0 12px rgba(0, 255, 255, 0.45);
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        #s-rampas .opc-done.is-show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #s-rampas .opc-card,
+            #s-rampas .opc-card-ico {
+                animation: none !important;
+            }
+
+            #s-rampas.slide.active .opc-card {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media screen and (max-width: 1100px) {
+            #s-rampas .opc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            #s-rampas .opc-card--care {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            #s-rampas .opc-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            #s-rampas .opc-card--care {
+                grid-column: auto;
+            }
+
+            #s-rampas .opc-card {
+                padding: 16px 14px;
+            }
+
+            #s-rampas .content-area {
+                padding-bottom: 100px;
+            }
+        }
+
+        /* ── Encontre os riscos — compacto (cabe sem scroll) ── */
+        #s-quiz3.is-find-playing .content-area {
+            justify-content: flex-start !important;
+            align-items: stretch !important;
+            padding-top: 2px;
+            padding-bottom: 88px;
+            overflow: hidden;
+        }
+
+        #s-quiz3.is-find-playing .quiz-wrap {
+            max-width: 520px;
+            width: 100%;
+        }
+
+        #s-quiz3 #find-risk-play {
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 6px;
+            box-sizing: border-box;
+            max-height: calc(100vh - 150px);
+        }
+
+        #s-quiz3 .find-risk-counter {
+            display: inline-flex;
+            align-self: center;
+            align-items: center;
+            gap: 6px;
+            margin: 0;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.4);
+            color: #00FFFF;
+            font-family: var(--font-h);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            box-shadow: 0 0 14px rgba(0, 255, 255, 0.18);
+        }
+
+        #s-quiz3 .find-risk-step {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            min-height: 0;
+            flex: 1 1 auto;
+        }
+
+        #s-quiz3 .find-risk-step.is-active {
+            display: flex;
+        }
+
+        #s-quiz3 .find-risk-scene {
+            position: relative;
+            width: min(300px, 72vw);
+            aspect-ratio: 1 / 1;
+            height: auto;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 255, 0.35);
+            box-shadow:
+                0 12px 28px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(0, 255, 255, 0.14);
+            background: #0a1020;
+            flex-shrink: 0;
+            transition: width 0.2s ease;
+        }
+
+        #s-quiz3 .find-risk-step.is-answered .find-risk-scene {
+            width: min(220px, 56vw);
+        }
+
+        #s-quiz3 .find-risk-scene .media-placeholder {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            border-radius: 0;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px;
+            text-align: center;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(0, 255, 255, 0.12), transparent 55%),
+                radial-gradient(ellipse at 80% 70%, rgba(126, 54, 227, 0.22), transparent 50%),
+                linear-gradient(160deg, rgba(18, 24, 48, 0.95), rgba(8, 10, 24, 0.98));
+            color: rgba(255, 255, 255, 0.88);
+            font-family: var(--font-b);
+            z-index: 1;
+        }
+
+        #s-quiz3 .find-risk-scene .media-placeholder strong {
+            font-family: var(--font-h);
+            font-size: clamp(13px, 1.5vw, 16px);
+            color: #00FFFF;
+            letter-spacing: 0.02em;
+            text-shadow: 0 0 14px rgba(0, 255, 255, 0.4);
+            max-width: 36ch;
+        }
+
+        #s-quiz3 .find-risk-scene .media-placeholder span {
+            font-size: clamp(11px, 1.1vw, 13px);
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 42ch;
+            line-height: 1.35;
+        }
+
+        #s-quiz3 .find-risk-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+            z-index: 1;
+        }
+
+        #s-quiz3 .find-risk-scene.has-photo .media-placeholder {
+            display: none;
+        }
+
+        #s-quiz3 .find-risk-scene.has-photo .find-risk-photo {
+            display: block;
+        }
+
+        #s-quiz3 .find-risk-expand {
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            z-index: 3;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            background: #00FFFF;
+            color: #1F0A45;
+            box-shadow: 0 4px 12px rgba(0, 255, 255, 0.45);
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        #s-quiz3 .find-risk-expand:hover {
+            filter: brightness(1.08);
+            transform: scale(1.06);
+        }
+
+        #s-quiz3 .find-risk-ask {
+            margin: 0;
+            text-align: center;
+            font-family: var(--font-h);
+            font-size: clamp(13px, 1.4vw, 15px);
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 0.01em;
+        }
+
+        #s-quiz3 .find-risk-decide {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            width: 100%;
+        }
+
+        #s-quiz3 .find-risk-choice {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-height: 42px;
+            padding: 8px 10px;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            font-family: var(--font-h);
+            font-size: clamp(12px, 1.25vw, 14px);
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+        }
+
+        #s-quiz3 .find-risk-choice .opt-l {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        #s-quiz3 .find-risk-choice.is-approve {
+            background: rgba(46, 204, 113, 0.32);
+            border-color: rgba(46, 204, 113, 0.95);
+            color: #d8ffe6;
+            box-shadow: 0 0 28px rgba(46, 204, 113, 0.35);
+        }
+
+        #s-quiz3 .find-risk-choice.is-approve .opt-l {
+            background: #2ecc71;
+            color: #062816;
+            font-weight: 900;
+        }
+
+        #s-quiz3 .find-risk-choice.is-reject {
+            background: rgba(255, 77, 154, 0.32);
+            border-color: rgba(255, 77, 154, 0.95);
+            color: #ffe0ef;
+            box-shadow: 0 0 28px rgba(255, 77, 154, 0.35);
+        }
+
+        #s-quiz3 .find-risk-choice.is-reject .opt-l {
+            background: #ff4d9a;
+            color: #2a0616;
+            font-weight: 900;
+        }
+
+        #s-quiz3 .find-risk-choice:hover:not(:disabled) {
+            filter: brightness(1.12);
+            transform: translateY(-2px);
+        }
+
+        #s-quiz3 .find-risk-choice:disabled {
+            cursor: default;
+        }
+
+        #s-quiz3 .find-risk-choice.is-selected {
+            transform: translateY(-1px);
+            outline: 2px solid #00FFFF;
+            outline-offset: 2px;
+            filter: brightness(1.15);
+        }
+
+        #s-quiz3 .find-risk-choice.is-correct {
+            background: rgba(46, 204, 113, 0.45);
+            border-color: #2ecc71;
+            color: #eafff2;
+            box-shadow: 0 0 32px rgba(46, 204, 113, 0.5);
+            opacity: 1;
+            outline: none;
+        }
+
+        #s-quiz3 .find-risk-choice.is-wrong {
+            background: rgba(231, 76, 60, 0.4);
+            border-color: #e74c3c;
+            color: #ffe4e0;
+            box-shadow: 0 0 32px rgba(231, 76, 60, 0.4);
+            opacity: 1;
+            outline: none;
+        }
+
+        #s-quiz3 .find-risk-choice.is-muted {
+            opacity: 0.32;
+            filter: grayscale(0.45);
+            outline: none;
+        }
+
+        /* Verificar logo abaixo das alternativas; resultado só depois */
+        #s-quiz3 .find-risk-verify {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 0;
+            margin-top: 0;
+            flex-shrink: 0;
+        }
+
+        #s-quiz3 .find-risk-verify.is-ready,
+        #s-quiz3 .find-risk-verify.is-done {
+            min-height: 44px;
+        }
+
+        #s-quiz3 .find-risk-verify-btn,
+        #s-quiz3 .find-risk-next {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 42px;
+            padding: 10px 22px;
+            border: none;
+            font-family: var(--font-h);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #s-quiz3 .find-risk-verify.is-ready .find-risk-verify-btn,
+        #s-quiz3 .find-risk-verify.is-done .find-risk-next {
+            display: inline-flex;
+        }
+
+        #s-quiz3 .find-risk-verify-btn {
+            border-radius: 10px;
+            background: var(--gold, #f1c40f);
+            color: var(--black, #111);
+            box-shadow: 0 4px 16px rgba(241, 196, 15, 0.4);
+        }
+
+        #s-quiz3 .find-risk-verify-btn:hover {
+            filter: brightness(1.06);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(241, 196, 15, 0.55);
+        }
+
+        #s-quiz3 .find-risk-next {
+            border-radius: 999px;
+            background: var(--red);
+            color: var(--black);
+            box-shadow: 0 4px 16px rgba(0, 255, 255, 0.35);
+        }
+
+        #s-quiz3 .find-risk-next:hover {
+            filter: brightness(1.08);
+            transform: translateY(-2px);
+        }
+
+        /* Resultado: não reserva espaço antes de verificar */
+        #s-quiz3 .find-risk-result {
+            display: none;
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 12px;
+            box-sizing: border-box;
+            border: 1px solid rgba(255, 77, 154, 0.5);
+            background: rgba(0, 0, 0, 0.38);
+            box-shadow: 0 0 20px rgba(255, 77, 154, 0.14);
+            flex-shrink: 1;
+            min-height: 0;
+            overflow: auto;
+            max-height: min(28vh, 180px);
+        }
+
+        #s-quiz3 .find-risk-step.is-answered .find-risk-result {
+            display: block;
+        }
+
+        #s-quiz3 .find-risk-step.is-answered.is-ok .find-risk-result {
+            border-color: rgba(46, 204, 113, 0.55);
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.14);
+        }
+
+        #s-quiz3 .find-risk-status {
+            margin: 0 0 6px;
+            padding: 0;
+            font-family: var(--font-h);
+            font-size: clamp(11px, 1.15vw, 13px);
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: 0.01em;
+        }
+
+        #s-quiz3 .find-risk-status.is-ok {
+            color: #7dffa8;
+        }
+
+        #s-quiz3 .find-risk-status.is-nok {
+            color: #ff9ec8;
+        }
+
+        #s-quiz3 .find-risk-explain-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin: 0 0 4px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(255, 77, 154, 0.18);
+            border: 1px solid rgba(255, 77, 154, 0.5);
+            color: #ff7ab3;
+            font-family: var(--font-h);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        #s-quiz3 .find-risk-result h3 {
+            margin: 0 0 3px;
+            font-family: var(--font-h);
+            font-size: clamp(14px, 1.5vw, 16px);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.01em;
+        }
+
+        #s-quiz3 .find-risk-result p.find-risk-desc {
+            margin: 0;
+            font-family: var(--font-b);
+            font-size: clamp(11px, 1.15vw, 13px);
+            line-height: 1.35;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        #s-quiz3 .find-risk-gate {
+            display: none;
+        }
+
+        #s-quiz3 .find-risk-gate.req-item {
+            display: none !important;
+        }
+
+        #s-quiz3 #q3-result-panel.quiz-result-panel {
+            display: none;
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        #s-quiz3 #q3-result-panel.quiz-result-panel.is-visible {
+            display: block;
+        }
+
+        #s-quiz3.is-find-playing.is-find-complete #find-risk-play {
+            display: none !important;
+        }
+
+        #s-quiz3.is-find-playing.is-find-complete .content-area {
+            justify-content: center !important;
+            overflow: auto;
+        }
+
+        #s-quiz3.is-find-playing.is-find-complete .find-risk-counter,
+        #s-quiz3.is-find-playing.is-find-complete .find-risk-step {
+            display: none !important;
+        }
+
+        @media screen and (max-width: 560px) {
+            #s-quiz3 .find-risk-decide {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            #s-quiz3 .find-risk-scene {
+                width: min(270px, 70vw);
+            }
+
+            #s-quiz3 .find-risk-step.is-answered .find-risk-scene {
+                width: min(190px, 50vw);
+            }
+
+            #s-quiz3 .find-risk-result {
+                max-height: min(26vh, 160px);
+            }
+
+            #s-quiz3.is-find-playing .content-area {
+                padding-bottom: 96px;
             }
         }
     </style>
@@ -87,14 +1003,14 @@
                         🎬 Módulo 3</div>
                     <h2 class="slide-title"
                         style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
-                        Condução <span>Segura</span></h2>
+                        Instrução de <span>Trabalho</span></h2>
 
                 </div>
                 <div class="content-area"
                     style="align-items: center; text-align: center; justify-content: flex-start; position: relative; z-index: 2;">
                     <div class="video-wrap video-wrap--std"
                         style="max-width: 1240px; box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 60px rgba(0, 255, 255,0.3); border: 1px solid rgba(0, 255, 255,0.4); border-radius: 12px; transform: translateZ(0);">
-                        <iframe id="panda-cdeab4f1-39cd-4144-a976-23d9f9cfda35" src="about:blank" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
+                        <iframe id="panda-dd10507a-c076-4090-9ee5-133062438965" src="about:blank" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
                     </div>
                 </div>
                 <div class="wave" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;"><svg
@@ -104,53 +1020,7 @@
                     </svg></div>
             </div>
 
-            <div class="slide" id="s-conducao">
-                <div class="top-bar">
-                    <div class="section-tag"
-                        style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);">
-                        🎯 Quiz · Módulo 3</div>
-                    <h2 class="slide-title"
-                        style="font-size: clamp(32px, 5vw, 48px); letter-spacing: 0.02em; text-shadow: 0 0 20px rgba(0, 255, 255, 0.6); position: relative; display: inline-block;">
-                        <div
-                            style="position: absolute; inset: -20px; background: radial-gradient(circle, rgba(0, 255, 255,0.15) 0%, transparent 70%); z-index: -1; filter: blur(10px);">
-                        </div>
-                        Hora do <span>Desafio</span>
-                    </h2>
-
-                </div>
-                <div class="content-area">
-                    <div class="quiz-wrap">
-                        <div id="conducao-question-panel" class="req-item" style="transition: opacity 0.5s ease;">
-                            <div class="q-meta">
-                                <div class="q-dots" id="conducao-dots">
-                                    <div class="qdot2 cur" id="conducao-dot0"></div>
-                                    <div class="qdot2" id="conducao-dot1"></div>
-                                    <div class="qdot2" id="conducao-dot2"></div>
-                                    <div class="qdot2" id="conducao-dot3"></div>
-                                    <div class="qdot2" id="conducao-dot4"></div>
-                                    <div class="qdot2" id="conducao-dot5"></div>
-                                </div>
-                                <div class="q-lbl" id="conducao-counter">Ação 1 de 6</div>
-                            </div>
-                            <div class="q-text" id="conducao-text"></div>
-                            <div class="q-options" id="conducao-options"></div>
-                            <div id="conducao-verify-container"
-                                style="text-align: center; margin-top: 15px; opacity: 0; visibility: hidden; transition: all 0.3s ease; display: none;">
-                                <button class="btn-tf-verify" id="btn-conducao-verify" onclick="verifyConducao()">✔
-                                    Verificar
-                                    Resposta</button>
-                            </div>
-                            <div class="q-feedback" id="conducao-feedback"></div>
-                            <button class="btn-next-q" id="btn-next-conducao" onclick="nextConducao()">Continuar →</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-                        <path d="M0,50 C480,10 960,85 1440,30 L1440,100 L0,100 Z" fill="rgba(0, 255, 255,0.07)" />
-                    </svg></div>
-            </div>
-
-            <div class="slide" id="s-rampas"
+            <div class="slide" id="s-conducao"
                 style="background: radial-gradient(circle at center, rgba(126, 54, 227, 1) 0%, rgba(31, 10, 64, 1) 100%); overflow: hidden;">
                 <!-- Fundo HUD Cinematográfico -->
                 <div
@@ -165,16 +1035,171 @@
                 <div class="top-bar" style="position: relative; z-index: 2;">
                     <div class="section-tag"
                         style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);">
-                        🎬 MÓDULO 3</div>
+                        🎬 Módulo 3</div>
                     <h2 class="slide-title"
                         style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
-                        Troca de <span>Bateria</span></h2>
+                        Operação <span>Segura</span></h2>
                 </div>
                 <div class="content-area"
                     style="align-items: center; text-align: center; justify-content: flex-start; position: relative; z-index: 2;">
                     <div class="video-wrap video-wrap--std"
                         style="max-width: 1240px; box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 60px rgba(0, 255, 255,0.3); border: 1px solid rgba(0, 255, 255,0.4); border-radius: 12px; transform: translateZ(0);">
-                        <iframe id="panda-1fdc2ce2-2871-4ec6-8e28-6133bafa47f6" src="about:blank" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
+                        <iframe id="panda-b229cbaa-0b78-4abf-b325-69abe15923bd" src="about:blank" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
+                    </div>
+                </div>
+                <div class="wave" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;"><svg
+                        viewBox="0 0 1440 100" preserveAspectRatio="none">
+                        <path d="M0,65 C360,20 720,90 1080,40 C1260,15 1390,70 1440,60 L1440,100 L0,100 Z"
+                            fill="rgba(0, 255, 255,0.07)" />
+                    </svg></div>
+            </div>
+
+            <div class="slide" id="s-rampas"
+                style="background: radial-gradient(circle at center, rgba(126, 54, 227, 1) 0%, rgba(31, 10, 64, 1) 100%); overflow: hidden;">
+                <div
+                    style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 50% 50%, rgba(0, 255, 255, 0.12) 0%, transparent 65%);">
+                </div>
+                <div
+                    style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 255, 0.03) 3px, rgba(0, 255, 255, 0.03) 4px);">
+                </div>
+                <div class="top-bar" style="position: relative; z-index: 2;">
+                    <div class="section-tag"
+                        style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);">
+                        🎬 Módulo 3</div>
+                    <h2 class="slide-title"
+                        style="font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -0.015em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.25);">
+                        Obrigatório, <span class="opc-pink">proibido</span> e <span class="opc-yellow">cuidados gerais</span>
+                    </h2>
+                </div>
+                <div class="content-area" style="position: relative; z-index: 2;">
+                    <p class="opc-subtitle">Antes de operar, confira as regras essenciais de segurança.</p>
+
+                    <div class="opc-grid" role="list">
+                        <article class="opc-card opc-card--ok" role="listitem" tabindex="0" data-opc="ok" aria-label="Categoria Obrigatório">
+                            <div class="opc-card-head">
+                                <div class="opc-card-ico" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/>
+                                        <path d="M9 12l2 2 4-4"/>
+                                    </svg>
+                                </div>
+                                <h3 class="opc-card-title">Obrigatório</h3>
+                            </div>
+                            <div class="opc-card-line" aria-hidden="true"></div>
+                            <ul class="opc-list">
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.2 2.2 4.8-5"/></svg></span>
+                                    <span>Ler o manual antes de operar</span>
+                                </li>
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.2 2.2 4.8-5"/></svg></span>
+                                    <span>Usar a máquina somente para sua finalidade</span>
+                                </li>
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.2 2.2 4.8-5"/></svg></span>
+                                    <span>Observar sinalizações e usar EPI</span>
+                                </li>
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.2 2.2 4.8-5"/></svg></span>
+                                    <span>Manutenção só com a máquina desligada e desconectada</span>
+                                </li>
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.2 2.2 4.8-5"/></svg></span>
+                                    <span>Operação por um único operador</span>
+                                </li>
+                            </ul>
+                        </article>
+
+                        <article class="opc-card opc-card--no" role="listitem" tabindex="0" data-opc="no" aria-label="Categoria Proibido">
+                            <div class="opc-card-head">
+                                <div class="opc-card-ico" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="9"/>
+                                        <path d="M9 9l6 6M15 9l-6 6"/>
+                                    </svg>
+                                </div>
+                                <h3 class="opc-card-title">Proibido</h3>
+                            </div>
+                            <div class="opc-card-line" aria-hidden="true"></div>
+                            <ul class="opc-list">
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
+                                    <span>Não usar embalagens fora do padrão</span>
+                                </li>
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
+                                    <span>Não operar em ambiente com risco de explosão</span>
+                                </li>
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
+                                    <span>Não usar a máquina para fins alimentares</span>
+                                </li>
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
+                                    <span>Não usar os pratos do misturador para fechar tampa</span>
+                                </li>
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
+                                    <span>Não operar sem proteções ou com dispositivos de segurança avariados, ausentes ou desativados</span>
+                                </li>
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
+                                    <span>Em caso de incêndio, nunca usar água</span>
+                                </li>
+                            </ul>
+                            <div class="opc-fire">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M8 20h8"/>
+                                    <path d="M9 20V9a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"/>
+                                    <path d="M13 11h3a2 2 0 0 1 2 2v2a3 3 0 0 1-3 3h-1"/>
+                                    <path d="M9 13h4"/>
+                                    <path d="M12 4c.8 1.2.8 2.4 0 3.2-.8.8-1.2 1.5-1.2 2.3 0 1.1.9 2 2 2s2-.9 2-2c0-1.5-1.2-2.6-2.8-5.5z"/>
+                                </svg>
+                                <span>Use apenas extintor de pó químico seco ou CO₂</span>
+                            </div>
+                        </article>
+
+                        <article class="opc-card opc-card--care" role="listitem" tabindex="0" data-opc="care" aria-label="Categoria Cuidados gerais">
+                            <div class="opc-card-head">
+                                <div class="opc-card-ico" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 3l10 18H2L12 3z"/>
+                                        <path d="M12 10v5"/>
+                                        <circle cx="12" cy="18" r="0.8" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <h3 class="opc-card-title">Cuidados gerais</h3>
+                            </div>
+                            <div class="opc-card-line" aria-hidden="true"></div>
+                            <ul class="opc-list">
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></span>
+                                    <span>Mãos fora da área de dosagem/mistura durante o funcionamento</span>
+                                </li>
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></span>
+                                    <span>Exceto para carregar e descarregar</span>
+                                </li>
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></span>
+                                    <span>Não usar a máquina como mesa de trabalho</span>
+                                </li>
+                                <li>
+                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></span>
+                                    <span class="opc-limit-line">Respeitar o limite de <span class="opc-kg" aria-label="25 quilogramas">25 kg</span></span>
+                                </li>
+                            </ul>
+                        </article>
+                    </div>
+
+                    <div class="opc-explore" aria-live="polite">
+                        <div class="opc-explore-label">Explore as 3 categorias</div>
+                        <div class="opc-explore-dots" aria-hidden="true">
+                            <span class="opc-dot opc-dot--ok" data-opc-dot="ok"></span>
+                            <span class="opc-dot opc-dot--no" data-opc-dot="no"></span>
+                            <span class="opc-dot opc-dot--care" data-opc-dot="care"></span>
+                        </div>
+                        <div class="opc-done" id="opc-done-msg">✓ Regras revisadas</div>
                     </div>
                 </div>
                 <div class="wave" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;"><svg
@@ -202,13 +1227,13 @@
                         🎬 MÓDULO 3</div>
                     <h2 class="slide-title"
                         style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
-                        Prevenções para <span>Operação</span></h2>
+                        Riscos elétricos, corantes e <span>EPI</span></h2>
                 </div>
                 <div class="content-area"
                     style="align-items: center; text-align: center; justify-content: flex-start; position: relative; z-index: 2;">
                     <div class="video-wrap video-wrap--std"
                         style="max-width: 1240px; box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 60px rgba(0, 255, 255,0.3); border: 1px solid rgba(0, 255, 255,0.4); border-radius: 12px; transform: translateZ(0);">
-                        <iframe id="panda-cd70ae60-910a-4ffb-952c-803c89e5423f" src="about:blank" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
+                        <iframe id="panda-2491dd3f-8611-47c7-8cf5-b6c0091b47e5" src="about:blank" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
                     </div>
                 </div>
                 <div class="wave" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;"><svg
@@ -233,30 +1258,101 @@
                 </div>
                 <div class="content-area">
                     <div class="quiz-wrap">
-                                                <div id="q3-intro-panel" class="quiz-intro-panel">
+                        <div id="find-risk-intro" class="quiz-intro-panel">
                             <div class="quiz-intro-card">
                                 <div class="quiz-intro-icon" aria-hidden="true">📋</div>
                                 <h3 class="quiz-intro-title">Desafio NR 12 — Módulo 3</h3>
-                                <p class="quiz-intro-desc">Analise <strong>5</strong> situações. Você precisa acertar no mínimo <strong>4</strong> para avançar.</p>
-                                <button type="button" class="quiz-intro-btn" onclick="startQuiz3Intro()">INICIAR DESAFIO</button>
+                                <p class="quiz-intro-desc">Observe <strong>3</strong> fotos e decida se libera ou <strong>não libera</strong> o procedimento. Você precisa acertar no mínimo <strong>2</strong> para avançar.</p>
+                                <button type="button" class="quiz-intro-btn" id="btn-find-risk-start">INICIAR DESAFIO</button>
                             </div>
                         </div>
 
-                        <div id="q3-question-panel" style="display:none; transition: opacity 0.5s ease;">
-                            <div class="q-meta">
-                                <div class="q-dots"></div>
-                                <div class="q-lbl" id="q3-counter">Pergunta 1 de 5</div>
+                        <div id="find-risk-play" style="display:none;">
+                            <span class="find-risk-gate req-item" id="find-risk-gate" aria-hidden="true"></span>
+                            <div class="find-risk-counter" id="find-risk-counter" aria-live="polite">
+                                Risco <span id="find-risk-step-num">1</span> de 3
                             </div>
-                            <div class="q-text" id="q3-text"></div>
-                            <div class="q-options" id="q3-options"></div>
-                            <div id="q3-verify-container"
-                                style="text-align: center; margin-top: 15px; opacity: 0; visibility: hidden; transition: all 0.3s ease; display: none;">
-                                <button class="btn-tf-verify" id="btn-tf-verify-q3" onclick="verifyAnswer3()">✔
-                                    Verificar
-                                    Resposta</button>
+
+                            <div class="find-risk-step is-active" data-step="0" data-correct="reject">
+                                <div class="find-risk-scene has-photo">
+                                    <img class="find-risk-photo" src="assets/fotos/modulo3-card1.png" alt="Operador sem calçado de segurança perto do misturador">
+                                    <button type="button" class="find-risk-expand" aria-label="Ampliar imagem" title="Ampliar imagem"
+                                        onclick="event.stopPropagation(); openImageModal('assets/fotos/modulo3-card1.png')">🔍</button>
+                                    <div class="media-placeholder">
+                                        <strong>FOTO — Risco 1</strong>
+                                        <span>Operador sem calçado de segurança perto do misturador</span>
+                                    </div>
+                                </div>
+                                <p class="find-risk-ask">Você libera este procedimento?</p>
+                                <div class="find-risk-decide">
+                                    <button type="button" class="find-risk-choice is-approve" data-choice="approve"><span class="opt-l">✓</span><span>Liberar</span></button>
+                                    <button type="button" class="find-risk-choice is-reject" data-choice="reject"><span class="opt-l">✕</span><span>Não Liberar</span></button>
+                                </div>
+                                <div class="find-risk-result">
+                                    <p class="find-risk-status" aria-live="polite"></p>
+                                    <div class="find-risk-explain-tag">⚠ O que está errado</div>
+                                    <h3>Sem calçado de segurança</h3>
+                                    <p class="find-risk-desc">Operar perto do misturador sem calçado de segurança aumenta o risco de lesões nos pés por queda de objetos ou respingos.</p>
+                                </div>
+                                <div class="find-risk-verify">
+                                    <button type="button" class="find-risk-verify-btn">✔ Verificar Resposta</button>
+                                    <button type="button" class="find-risk-next">ENTENDI, PRÓXIMO →</button>
+                                </div>
                             </div>
-                            <div class="q-feedback" id="q3-feedback"></div>
-                            <button class="btn-next-q" id="btn-next-q3" onclick="nextQuestion3()">Continuar →</button>
+
+                            <div class="find-risk-step" data-step="1" data-correct="reject">
+                                <div class="find-risk-scene has-photo">
+                                    <img class="find-risk-photo" src="assets/fotos/modulo3-card2.png" alt="Painel elétrico do dosador aberto">
+                                    <button type="button" class="find-risk-expand" aria-label="Ampliar imagem" title="Ampliar imagem"
+                                        onclick="event.stopPropagation(); openImageModal('assets/fotos/modulo3-card2.png')">🔍</button>
+                                    <div class="media-placeholder">
+                                        <strong>FOTO — Risco 2</strong>
+                                        <span>Painel elétrico do dosador aberto</span>
+                                    </div>
+                                </div>
+                                <p class="find-risk-ask">Você libera este procedimento?</p>
+                                <div class="find-risk-decide">
+                                    <button type="button" class="find-risk-choice is-approve" data-choice="approve"><span class="opt-l">✓</span><span>Liberar</span></button>
+                                    <button type="button" class="find-risk-choice is-reject" data-choice="reject"><span class="opt-l">✕</span><span>Não Liberar</span></button>
+                                </div>
+                                <div class="find-risk-result">
+                                    <p class="find-risk-status" aria-live="polite"></p>
+                                    <div class="find-risk-explain-tag">⚠ O que está errado</div>
+                                    <h3>Painel elétrico aberto</h3>
+                                    <p class="find-risk-desc">Deixar o painel elétrico do dosador aberto expõe partes energizadas e aumenta o risco de choque e contato acidental.</p>
+                                </div>
+                                <div class="find-risk-verify">
+                                    <button type="button" class="find-risk-verify-btn">✔ Verificar Resposta</button>
+                                    <button type="button" class="find-risk-next">ENTENDI, PRÓXIMO →</button>
+                                </div>
+                            </div>
+
+                            <div class="find-risk-step" data-step="2" data-correct="reject">
+                                <div class="find-risk-scene has-photo">
+                                    <img class="find-risk-photo" src="assets/fotos/modulo3-card3.png" alt="Lata fora do centro do prato do misturador">
+                                    <button type="button" class="find-risk-expand" aria-label="Ampliar imagem" title="Ampliar imagem"
+                                        onclick="event.stopPropagation(); openImageModal('assets/fotos/modulo3-card3.png')">🔍</button>
+                                    <div class="media-placeholder">
+                                        <strong>FOTO — Risco 3</strong>
+                                        <span>Lata fora do centro do prato do misturador</span>
+                                    </div>
+                                </div>
+                                <p class="find-risk-ask">Você libera este procedimento?</p>
+                                <div class="find-risk-decide">
+                                    <button type="button" class="find-risk-choice is-approve" data-choice="approve"><span class="opt-l">✓</span><span>Liberar</span></button>
+                                    <button type="button" class="find-risk-choice is-reject" data-choice="reject"><span class="opt-l">✕</span><span>Não Liberar</span></button>
+                                </div>
+                                <div class="find-risk-result">
+                                    <p class="find-risk-status" aria-live="polite"></p>
+                                    <div class="find-risk-explain-tag">⚠ O que está errado</div>
+                                    <h3>Lata fora do centro do prato</h3>
+                                    <p class="find-risk-desc">Embalagem desalinhada no prato do misturador pode tombear, gerar respingo e danificar o equipamento durante o ciclo.</p>
+                                </div>
+                                <div class="find-risk-verify">
+                                    <button type="button" class="find-risk-verify-btn">✔ Verificar Resposta</button>
+                                    <button type="button" class="find-risk-next">CONCLUIR ✓</button>
+                                </div>
+                            </div>
                         </div>
 
                         <div id="q3-result-panel" class="quiz-result-panel" style="display:none;">
@@ -265,11 +1361,8 @@
                                 <h3 class="quiz-result-title" id="q3-status">Desafio Concluído!</h3>
                                 <p class="quiz-result-desc" id="q3-sub"></p>
                                 <div class="quiz-result-review" id="q3-review" hidden></div>
-                                <button type="button" class="quiz-result-btn" id="q3-retry-btn"
-                                    onclick="resetQuiz3()">JOGAR NOVAMENTE</button>
+                                <button type="button" class="quiz-result-btn" id="find-risk-retry">JOGAR NOVAMENTE</button>
                             </div>
-                            <div id="q3-pct" class="result-pct" style="display:none" aria-hidden="true"></div>
-                            <div id="q3-stars" class="r-stars" style="display:none" aria-hidden="true"></div>
                         </div>
                     </div>
                 </div>
@@ -306,8 +1399,366 @@
 
     </div>
 
+    <script>
+        (function initOpcExplore() {
+            function bind() {
+                const slide = document.getElementById('s-rampas');
+                if (!slide || slide.dataset.opcBound) return;
+                slide.dataset.opcBound = '1';
+
+                const cards = slide.querySelectorAll('.opc-card[data-opc]');
+                const doneMsg = document.getElementById('opc-done-msg');
+                const visited = {};
+
+                function refresh() {
+                    const keys = ['ok', 'no', 'care'];
+                    let count = 0;
+                    keys.forEach(function (key) {
+                        if (visited[key]) count += 1;
+                        const dot = slide.querySelector('[data-opc-dot="' + key + '"]');
+                        if (dot) dot.classList.toggle('is-on', !!visited[key]);
+                    });
+                    if (doneMsg) doneMsg.classList.toggle('is-show', count === 3);
+                }
+
+                function mark(card) {
+                    const key = card.getAttribute('data-opc');
+                    if (!key) return;
+                    visited[key] = true;
+                    card.classList.add('is-visited');
+                    refresh();
+                }
+
+                cards.forEach(function (card) {
+                    card.addEventListener('click', function () { mark(card); });
+                    card.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            mark(card);
+                        }
+                    });
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', bind);
+            } else {
+                bind();
+            }
+        })();
+
+        (function initFindRisk() {
+            function bind() {
+                const intro = document.getElementById('find-risk-intro');
+                const play = document.getElementById('find-risk-play');
+                const startBtn = document.getElementById('btn-find-risk-start');
+                const stepNum = document.getElementById('find-risk-step-num');
+                const resultPanel = document.getElementById('q3-result-panel');
+                const retryBtn = document.getElementById('find-risk-retry');
+                const gate = document.getElementById('find-risk-gate');
+                const slide = document.getElementById('s-quiz3');
+                const steps = play ? play.querySelectorAll('.find-risk-step') : [];
+                if (!play || !startBtn || play.dataset.findBound) return;
+                play.dataset.findBound = '1';
+
+                let index = 0;
+                const total = steps.length;
+                const MIN_CORRECT = 2;
+                let answered = false;
+                let selectedChoice = null;
+                let score = 0;
+
+                function playClick() {
+                    try {
+                        if (typeof playBeep === 'function') {
+                            playBeep('click');
+                            return;
+                        }
+                    } catch (e) { }
+                    try {
+                        if (typeof playHUDBeep === 'function') {
+                            playHUDBeep('click');
+                            return;
+                        }
+                    } catch (e2) { }
+                    try {
+                        if (typeof ensureAudioCtx === 'function') {
+                            ensureAudioCtx().then(function (ctx) {
+                                if (!ctx) return;
+                                const now = ctx.currentTime;
+                                const osc = ctx.createOscillator();
+                                const gain = ctx.createGain();
+                                osc.type = 'sine';
+                                osc.frequency.setValueAtTime(900, now);
+                                osc.frequency.exponentialRampToValueAtTime(400, now + 0.08);
+                                gain.gain.setValueAtTime(0.14, now);
+                                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                                osc.connect(gain);
+                                gain.connect(ctx.destination);
+                                osc.start(now);
+                                osc.stop(now + 0.1);
+                            });
+                            return;
+                        }
+                    } catch (e3) { }
+                }
+
+                function playTone(ok) {
+                    try {
+                        if (ok && typeof playCorrectAnswerSound === 'function') {
+                            playCorrectAnswerSound();
+                            return;
+                        }
+                        if (!ok && typeof playWrongAnswerSound === 'function') {
+                            playWrongAnswerSound();
+                            return;
+                        }
+                    } catch (e) { }
+                }
+
+                function resetStepUi(step) {
+                    if (!step) return;
+                    step.classList.remove('is-answered', 'is-ok', 'is-nok');
+                    selectedChoice = null;
+                    answered = false;
+                    const status = step.querySelector('.find-risk-status');
+                    if (status) {
+                        status.className = 'find-risk-status';
+                        status.textContent = '';
+                    }
+                    const verify = step.querySelector('.find-risk-verify');
+                    if (verify) verify.classList.remove('is-ready', 'is-done');
+                    step.querySelectorAll('.find-risk-choice').forEach(function (btn) {
+                        btn.disabled = false;
+                        btn.classList.remove('is-correct', 'is-wrong', 'is-muted', 'is-selected');
+                    });
+                }
+
+                function showStep(i) {
+                    answered = false;
+                    selectedChoice = null;
+                    if (slide) slide.classList.remove('is-find-complete');
+                    if (resultPanel) {
+                        resultPanel.style.display = 'none';
+                        resultPanel.classList.remove('is-visible', 'is-approved', 'is-failed');
+                    }
+                    steps.forEach(function (step, idx) {
+                        step.classList.toggle('is-active', idx === i);
+                        if (idx === i) resetStepUi(step);
+                    });
+                    if (stepNum) stepNum.textContent = String(i + 1);
+                }
+
+                function selectChoice(choice, btn) {
+                    if (answered) return;
+                    const step = steps[index];
+                    if (!step) return;
+                    selectedChoice = choice;
+                    step.querySelectorAll('.find-risk-choice').forEach(function (el) {
+                        el.classList.toggle('is-selected', el === btn);
+                    });
+                    const verify = step.querySelector('.find-risk-verify');
+                    if (verify) {
+                        verify.classList.add('is-ready');
+                        verify.classList.remove('is-done');
+                    }
+                    playClick();
+                }
+
+                function verifyAnswer() {
+                    if (answered || !selectedChoice) return;
+                    const step = steps[index];
+                    if (!step) return;
+                    answered = true;
+
+                    const correct = step.getAttribute('data-correct') || 'reject';
+                    const isOk = selectedChoice === correct;
+                    const buttons = step.querySelectorAll('.find-risk-choice');
+                    const status = step.querySelector('.find-risk-status');
+                    const verify = step.querySelector('.find-risk-verify');
+
+                    buttons.forEach(function (btn) {
+                        btn.disabled = true;
+                        btn.classList.remove('is-selected');
+                        const val = btn.getAttribute('data-choice');
+                        if (val === correct) {
+                            btn.classList.add('is-correct');
+                        } else if (val === selectedChoice) {
+                            btn.classList.add('is-wrong');
+                        } else {
+                            btn.classList.add('is-muted');
+                        }
+                    });
+
+                    if (verify) {
+                        verify.classList.remove('is-ready');
+                        verify.classList.add('is-done');
+                    }
+
+                    if (status) {
+                        status.className = 'find-risk-status ' + (isOk ? 'is-ok' : 'is-nok');
+                        status.textContent = isOk
+                            ? '✓ Correto! Há risco na cena — não liberar o procedimento.'
+                            : '✕ Incorreto. Com risco identificado, o procedimento não deve ser liberado.';
+                    }
+
+                    step.classList.add('is-answered');
+                    step.classList.toggle('is-ok', isOk);
+                    step.classList.toggle('is-nok', !isOk);
+                    if (isOk) score += 1;
+                    playTone(isOk);
+                }
+
+                function completeActivity() {
+                    const approved = score >= MIN_CORRECT;
+                    if (slide) slide.classList.add('is-find-complete');
+                    if (play) play.style.display = 'none';
+
+                    const statusEl = document.getElementById('q3-status');
+                    const subEl = document.getElementById('q3-sub');
+                    const iconEl = document.getElementById('q3-result-icon');
+                    const reviewEl = document.getElementById('q3-review');
+
+                    if (statusEl) {
+                        statusEl.textContent = approved ? 'Desafio Concluído!' : 'Desafio não concluído';
+                        statusEl.className = 'quiz-result-title r-status ' + (approved ? 'ap' : 'ref');
+                    }
+                    if (subEl) {
+                        subEl.textContent = approved
+                            ? ('Você acertou ' + score + ' de ' + total + ' riscos. Parabéns! Pode avançar para a próxima etapa.')
+                            : ('Você acertou ' + score + ' de ' + total + ' riscos. É necessário acertar pelo menos ' + MIN_CORRECT + '. Estude e tente novamente.');
+                    }
+                    if (iconEl) iconEl.textContent = approved ? '🏅' : '📚';
+                    if (retryBtn) {
+                        retryBtn.textContent = 'JOGAR NOVAMENTE';
+                        retryBtn.style.display = approved ? 'none' : 'inline-flex';
+                    }
+                    if (reviewEl) {
+                        if (!approved) {
+                            reviewEl.hidden = false;
+                            reviewEl.innerHTML = '<strong>Revise:</strong> se houver risco na cena, não liberar o procedimento. Use calçado de segurança, mantenha painéis fechados e centralize a embalagem no prato.';
+                        } else {
+                            reviewEl.hidden = true;
+                            reviewEl.innerHTML = '';
+                        }
+                    }
+
+                    if (resultPanel) {
+                        resultPanel.style.display = 'block';
+                        resultPanel.classList.add('is-visible');
+                        resultPanel.classList.toggle('is-approved', approved);
+                        resultPanel.classList.toggle('is-failed', !approved);
+                    }
+
+                    if (gate) {
+                        if (approved) {
+                            gate.classList.add('req-done');
+                            gate.classList.remove('req-item');
+                        } else {
+                            gate.classList.remove('req-done');
+                            gate.classList.add('req-item');
+                        }
+                    }
+                    if (typeof updateNextButton === 'function') updateNextButton();
+                    try {
+                        if (typeof playBeep === 'function') playBeep('end');
+                        else playClick();
+                    } catch (e) { playClick(); }
+                }
+
+                function resetActivity() {
+                    playClick();
+                    score = 0;
+                    if (resultPanel) {
+                        resultPanel.style.display = 'none';
+                        resultPanel.classList.remove('is-visible', 'is-approved', 'is-failed');
+                    }
+                    if (play) play.style.display = 'flex';
+                    if (slide) {
+                        slide.classList.add('is-find-playing');
+                        slide.classList.remove('is-find-complete');
+                    }
+                    if (gate) {
+                        gate.classList.remove('req-done');
+                        gate.classList.add('req-item');
+                    }
+                    index = 0;
+                    showStep(0);
+                    if (typeof updateNextButton === 'function') updateNextButton();
+                }
+
+                function goNext() {
+                    if (!answered) return;
+                    if (index >= total - 1) {
+                        completeActivity();
+                        return;
+                    }
+                    index += 1;
+                    showStep(index);
+                }
+
+                function startActivity() {
+                    playClick();
+                    score = 0;
+                    if (intro) intro.style.display = 'none';
+                    if (play) play.style.display = 'flex';
+                    if (resultPanel) {
+                        resultPanel.style.display = 'none';
+                        resultPanel.classList.remove('is-visible', 'is-approved', 'is-failed');
+                    }
+                    if (slide) {
+                        slide.classList.add('is-find-playing');
+                        slide.classList.remove('is-find-complete');
+                    }
+                    if (gate) {
+                        gate.classList.remove('req-done');
+                        gate.classList.add('req-item');
+                    }
+                    index = 0;
+                    showStep(0);
+                    if (typeof updateNextButton === 'function') updateNextButton();
+                }
+
+                play.querySelectorAll('.find-risk-choice').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        const step = btn.closest('.find-risk-step');
+                        if (!step || !step.classList.contains('is-active')) return;
+                        selectChoice(btn.getAttribute('data-choice'), btn);
+                    });
+                });
+
+                play.querySelectorAll('.find-risk-verify-btn').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        const step = btn.closest('.find-risk-step');
+                        if (!step || !step.classList.contains('is-active')) return;
+                        verifyAnswer();
+                    });
+                });
+
+                play.querySelectorAll('.find-risk-next').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        const step = btn.closest('.find-risk-step');
+                        if (!step || !step.classList.contains('is-active')) return;
+                        goNext();
+                    });
+                });
+
+                if (retryBtn) retryBtn.addEventListener('click', resetActivity);
+
+                startBtn.addEventListener('click', startActivity);
+                showStep(0);
+                if (typeof updateNextButton === 'function') updateNextButton();
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', bind);
+            } else {
+                bind();
+            }
+        })();
+    </script>
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=80"></script>
+    <script src="shared.js?v=82"></script>
 </body>
 
 </html>

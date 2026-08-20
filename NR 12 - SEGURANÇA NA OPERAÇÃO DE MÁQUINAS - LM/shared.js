@@ -272,12 +272,10 @@ function nr11GlobalSlide() {
     const offset = NR11_MODULE_OFFSETS[(window.MODULE_NAV && window.MODULE_NAV.id) || 'index'] || 0;
     return offset + currentSlide + 1;
 }
-const QUIZ_AUDIO_HELPER_PAGES = [9, 15, 18, 21, 26, 35, 43];
+const QUIZ_AUDIO_HELPER_PAGES = [9, 15, 26, 35, 43];
 const QUIZ_AUDIO_HELPER_PANELS = {
     sq1: 'q1-question-panel',
     sq2: 'q2-question-panel',
-    's-conducao': 'conducao-question-panel',
-    's-quiz3': 'q3-question-panel',
     's-quiz4': 'q4-question-panel',
     's-quiz5': 'q5-question-panel',
     's-quiz6': 'q6-question-panel'

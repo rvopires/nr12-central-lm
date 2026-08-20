@@ -62,36 +62,6 @@
             result: 'Resultado do Quiz do Módulo 2. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.'
         },
 
-        // ─── MICRO-QUIZ CONDUÇÃO (slide global 18, modulo-3.html, s-conducao) ─
-        's-conducao': {
-            panels: { intro: null, question: '#conducao-question-panel', result: null },
-            counterSelector: '#conducao-counter',
-            counterPattern: /Ação\s+(\d+)\s+de/i,
-            questions: [
-                'Ação 1 de 6. Avalie a seguinte ação: Usar celular durante a operação. Opção A: Permitido. Opção B: Proibido.',
-                'Ação 2 de 6. Avalie a seguinte ação: Reduzir velocidade em curvas. Opção A: Permitido. Opção B: Proibido.',
-                'Ação 3 de 6. Avalie a seguinte ação: Transportar pessoas no equipamento. Opção A: Permitido. Opção B: Proibido.',
-                'Ação 4 de 6. Avalie a seguinte ação: Utilizar buzina em cruzamentos. Opção A: Permitido. Opção B: Proibido.',
-                'Ação 5 de 6. Avalie a seguinte ação: Circular com carga elevada. Opção A: Permitido. Opção B: Proibido.',
-                'Ação 6 de 6. Avalie a seguinte ação: Olhar sempre na direção do movimento. Opção A: Permitido. Opção B: Proibido.'
-            ]
-        },
-
-        // ─── QUIZ 3 (slide global 21, modulo-3.html, s-quiz3) ─────────────────
-        's-quiz3': {
-            panels: { intro: '#q3-intro-panel', question: '#q3-question-panel', result: '#q3-result-panel' },
-            counterSelector: '#q3-counter',
-            intro: 'Quiz do Módulo 3. Decisões na Operação. Teste seus conhecimentos sobre situações reais de operação. Esta avaliação contém cinco perguntas com mínimo de sessenta por cento de acertos. Toque em Iniciar para começar.',
-            questions: [
-                'Pergunta 1 de 5. Atenção. A bateria atingiu vinte por cento durante a operação. O que o operador deve fazer? Opção A: Solicitar troca segura da bateria. Opção B: Continuar operando até descarregar completamente. Opção C: Aumentar velocidade para finalizar mais rápido. Opção D: Ignorar o nível de carga.',
-                'Pergunta 2 de 5. Crítico. A troca da bateria será realizada. Qual procedimento é obrigatório? Opção A: Remover rapidamente sem desligar. Opção B: Realizar sozinho para agilizar. Opção C: Utilizar EPIs e apoio adequado. Opção D: Desconectar apenas após remover.',
-                'Pergunta 3 de 5. Seguro. O operador está transportando um palete. Qual a altura correta da carga? Opção A: Encostada no chão. Opção B: Acima da linha de visão. Opção C: O mais alto possível. Opção D: De quinze a vinte centímetros do solo.',
-                'Pergunta 4 de 5. Atenção. O operador se aproxima de um cruzamento. O que deve ser feito? Opção A: Acelerar para passar rápido. Opção B: Usar buzina e reduzir velocidade. Opção C: Levantar a carga. Opção D: Ignorar pedestres.',
-                'Pergunta 5 de 5. Crítico. Outro funcionário pede carona no equipamento. Qual a atitude correta? Opção A: Negar e seguir normas de segurança. Opção B: Transportar em baixa velocidade. Opção C: Permitir se for rápido. Opção D: Permitir apenas sem carga.'
-            ],
-            result: 'Resultado do Quiz do Módulo 3. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.'
-        },
-
         // ─── QUIZ 4 (slide global 26, modulo-4.html, s-quiz4) ─────────────────
         's-quiz4': {
             panels: { intro: '#q4-intro-panel', question: '#q4-question-panel', result: '#q4-result-panel' },
@@ -143,7 +113,7 @@
        Adicione aqui se quiser sobrescrever o texto extraído do HTML.
        Slides não listados usam extração automática via jsdom no generator.    */
     const OVERRIDES = {
-        // exemplo: 's1': 'Bem-vindo ao treinamento NR 11...'
+        's-quiz3': 'Encontre os riscos. Observe três fotos e decida se libera ou não libera o procedimento. Em todas as cenas há risco: sem calçado de segurança, painel elétrico aberto e lata fora do centro do prato do misturador. A decisão correta é não liberar.'
     };
 
     /* Calcula o número global do slide (1..NR11_TOTAL_SLIDES) a partir do
