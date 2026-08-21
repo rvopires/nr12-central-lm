@@ -230,11 +230,11 @@ const NR11_MODULE_OFFSETS = {
     'modulo-2': 9,
     'modulo-3': 14,
     'modulo-4': 20,
-    'modulo-5': 25,
-    'modulo-6': 34
+    'modulo-5': 27,
+    'modulo-6': 36
 };
-const NR11_FULL_TOTAL_SLIDES = 43;
-const NR12_MODULE_END_PAGE = { 1: 9, 2: 14, 3: 20, 4: 25, 5: 34, 6: 43 };
+const NR11_FULL_TOTAL_SLIDES = 45;
+const NR12_MODULE_END_PAGE = { 1: 9, 2: 14, 3: 20, 4: 27, 5: 36, 6: 45 };
 
 const NR12_PREVIEW_ACTIVE = NR12_UNLOCK_THROUGH != null
     && NR12_UNLOCK_THROUGH >= 1
@@ -272,7 +272,7 @@ function nr11GlobalSlide() {
     const offset = NR11_MODULE_OFFSETS[(window.MODULE_NAV && window.MODULE_NAV.id) || 'index'] || 0;
     return offset + currentSlide + 1;
 }
-const QUIZ_AUDIO_HELPER_PAGES = [9, 15, 26, 35, 43];
+const QUIZ_AUDIO_HELPER_PAGES = [9, 15, 27, 36, 44];
 const QUIZ_AUDIO_HELPER_PANELS = {
     sq1: 'q1-question-panel',
     sq2: 'q2-question-panel',
@@ -474,8 +474,8 @@ window.addEventListener('keydown', (e) => {
         { id: 'modulo-2', offset: 9, file: 'modulo-2.html', module: 2 },
         { id: 'modulo-3', offset: 14, file: 'modulo-3.html', module: 3 },
         { id: 'modulo-4', offset: 20, file: 'modulo-4.html', module: 4 },
-        { id: 'modulo-5', offset: 25, file: 'modulo-5.html', module: 5 },
-        { id: 'modulo-6', offset: 34, file: 'modulo-6.html', module: 6 }
+        { id: 'modulo-5', offset: 27, file: 'modulo-5.html', module: 5 },
+        { id: 'modulo-6', offset: 36, file: 'modulo-6.html', module: 6 }
     ].filter(function (m) {
         return nr12IsModuleUnlocked(m.module);
     });
@@ -1807,7 +1807,7 @@ function createQuizEngine(prefix, questions, numDots) {
     function getMinCorrect() {
         if (prefix === 'q1' || prefix === 'q2') return 2;
         if (prefix === 'q3') return 4;
-        if (prefix === 'q4') return 3;
+        if (prefix === 'q4') return 2;
         if (prefix === 'q5') return 3;
         return Math.ceil(questions.length * 0.60);
     }
@@ -2516,47 +2516,46 @@ window.checkMod4Item = function (el) {
 
 const q4_questions = [
     {
-        q: 'A carga começou a inclinar durante o deslocamento. O que fazer?',
-        opts: ['Parar e reposicionar', 'Continuar a operação'],
-        correct: 0,
-        topic: 'Carga inclinada no deslocamento',
-        feedback_ok: '✅ Correto! Parar e reposicionar evita o tombamento imediato da carga.',
-        feedback_nok: '❌ Incorreto. Continuar a operação com carga inclinada causará um acidente iminente.'
-    },
-    {
-        q: 'O trajeto possui pessoas circulando próximas. Qual a decisão correta?',
-        opts: ['Manter velocidade', 'Reduzir e sinalizar'],
+        q: 'Quais produtos são proibidos na limpeza do dosador?',
+        opts: [
+            'Pano seco',
+            'Água e solventes como álcool, aguarrás e thinner',
+            'Solução suave',
+            'Pano úmido'
+        ],
         correct: 1,
-        topic: 'Pedestres no trajeto',
-        feedback_ok: '✅ Correto! A prioridade é sempre do pedestre. Reduza a velocidade e use a buzina.',
-        feedback_nok: '❌ Incorreto. Manter a velocidade com pedestres próximos é uma falha grave de segurança.'
+        topic: 'Produtos proibidos na limpeza do dosador',
+        feedback_ok: '✅ Correto! Nunca use água ou solventes inflamáveis (álcool, aguarrás, thinner) na limpeza do dosador.',
+        feedback_nok: '❌ Incorreto. São proibidos água e solventes como álcool, aguarrás e thinner na limpeza do dosador.'
     },
     {
-        q: 'Sua visão frontal foi totalmente bloqueada pela carga alta. O que fazer?',
-        opts: ['Conduzir de ré', 'Tentar olhar por cima'],
-        correct: 0,
-        topic: 'Visibilidade bloqueada',
-        feedback_ok: '✅ Correto! Se a visibilidade frontal estiver bloqueada, conduza o equipamento de marcha à ré.',
-        feedback_nok: '❌ Incorreto. É impossível garantir a segurança operando às cegas ou tentando olhar por cima.'
+        q: 'O que fazer se um corante for derramado dentro do dosador?',
+        opts: [
+            'Limpar com pano imediatamente',
+            'Desligar e chamar técnico autorizado',
+            'Continuar operando',
+            'Usar água para diluir'
+        ],
+        correct: 1,
+        topic: 'Corante derramado dentro do dosador',
+        feedback_ok: '✅ Correto! Não tente limpar por conta própria: desligue a máquina e chame o serviço técnico autorizado.',
+        feedback_nok: '❌ Incorreto. Em caso de corante dentro do dosador, desligue e chame o técnico autorizado — não limpe internamente sozinho.'
     },
     {
-        q: 'Você finalizou o turno e precisa estacionar o equipamento. Qual procedimento correto?',
-        opts: ['Baixar os garfos ao chão', 'Deixar os garfos elevados'],
-        correct: 0,
-        topic: 'Estacionamento seguro',
-        feedback_ok: '✅ Correto! Os garfos devem estar sempre abaixados e apoiados no chão ao estacionar.',
-        feedback_nok: '❌ Incorreto. Deixar garfos elevados cria um risco severo de tropeço e colisão para pedestres.'
-    },
-    {
-        q: 'Durante o deslocamento, você precisa passar por uma rampa. Qual a forma correta?',
-        opts: ['Subir de frente, descer de ré', 'Subir e descer de frente'],
-        correct: 0,
-        topic: 'Rampas com carga',
-        feedback_ok: '✅ Correto! A carga deve estar sempre apontada para o lado mais alto da rampa para evitar tombamento.',
-        feedback_nok: '❌ Incorreto. Descer de frente com carga em uma rampa fatalmente fará a carga escorregar ou a máquina tombar.'
+        q: 'Qual o peso máximo permitido para movimentar recipientes?',
+        opts: [
+            '10 kg',
+            '15 kg',
+            '25 kg',
+            '40 kg'
+        ],
+        correct: 2,
+        topic: 'Peso máximo de recipientes',
+        feedback_ok: '✅ Correto! O limite máximo para movimentar recipientes é de 25 kg.',
+        feedback_nok: '❌ Incorreto. O peso máximo permitido para movimentar recipientes é 25 kg.'
     }
 ];
-const quiz4 = createQuizEngine('q4', q4_questions, 5);
+const quiz4 = createQuizEngine('q4', q4_questions, 3);
 if (document.getElementById('q4-question-panel')) quiz4.render();
 function startQuiz4Intro() { quiz4.start(); }
 function verifyAnswer4() { quiz4.verify(); }

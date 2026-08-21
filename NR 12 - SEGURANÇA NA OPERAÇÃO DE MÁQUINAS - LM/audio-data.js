@@ -16,13 +16,13 @@
 }(typeof self !== 'undefined' ? self : this, function () {
 
     /* Ordem dos slides em cada HTML — DEVE bater com NR11_MODULE_OFFSETS.
-       Soma das slides = NR11_TOTAL_SLIDES (43).                              */
+       Soma das slides = NR11_TOTAL_SLIDES (45).                              */
     const SLIDE_ORDER = {
         'index.html': ['s1', 's1b', 's-sumario'],
         'modulo-1.html': ['intro-m1', 's2', 's4', 's6', 's-central-cores', 'sq1'],
         'modulo-2.html': ['intro-m2', 's-equipamento', 's10', 's9', 'sq2'],
         'modulo-3.html': ['intro-m3', 's-bateria', 's-conducao', 's-rampas', 's-bateria-troca', 's-quiz3'],
-        'modulo-4.html': ['s-mod4-intro', 's-mod4-video', 's-mod4-inspecao', 's-mod4-video-finalizacao', 's-quiz4'],
+        'modulo-4.html': ['s-mod4-intro', 's-mod4-video', 's-mod4-inspecao', 's-mod4-limpeza', 's-mod4-video-finalizacao', 's-mod4-organizacao', 's-quiz4'],
         'modulo-5.html': ['s-mod5-intro', 's-mod5-video1', 's-mod5-comp1', 's-mod5-video2', 's-mod5-distancia', 's-mod5-video3', 's-mod5-flip', 's-mod5-epi', 's-quiz5'],
         'modulo-6.html': ['s-mod6-intro', 's-mod6-video-encerramento', 's-mod6-compromissos', 's-mod6-comp-preventiva', 's-mod6-mensagem-final', 's-mod6-video-mensagem-final', 's-mod6-video-final', 's-quiz6', 's-conclusion']
     };
@@ -62,19 +62,17 @@
             result: 'Resultado do Quiz do Módulo 2. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.'
         },
 
-        // ─── QUIZ 4 (slide global 26, modulo-4.html, s-quiz4) ─────────────────
+        // ─── QUIZ 4 (slide global 27, modulo-4.html, s-quiz4) ─────────────────
         's-quiz4': {
             panels: { intro: '#q4-intro-panel', question: '#q4-question-panel', result: '#q4-result-panel' },
             counterSelector: '#q4-counter',
-            intro: 'Quiz do Módulo 4. Decisão Rápida. Simule situações operacionais e tome a decisão correta. Esta avaliação contém cinco situações com mínimo de sessenta por cento de acertos. Toque em Iniciar para começar.',
+            intro: 'Quiz do Módulo 4. Mini-quiz de manutenção e limpeza. Esta avaliação contém três perguntas de múltipla escolha. É necessário acertar pelo menos duas para avançar. Toque em Iniciar Desafio para começar.',
             questions: [
-                'Situação 1 de 5. A carga começou a inclinar durante o deslocamento. Opção A: Parar e reposicionar. Opção B: Continuar a operação.',
-                'Situação 2 de 5. O trajeto possui pessoas circulando próximas. Opção A: Manter velocidade. Opção B: Reduzir e sinalizar.',
-                'Situação 3 de 5. Sua visão frontal foi totalmente bloqueada pela carga alta. Opção A: Conduzir de ré. Opção B: Tentar olhar por cima.',
-                'Situação 4 de 5. Você finalizou o turno e precisa estacionar o equipamento. Opção A: Baixar os garfos ao chão. Opção B: Deixar os garfos elevados.',
-                'Situação 5 de 5. Durante o deslocamento, você precisa passar por uma rampa. Opção A: Subir de frente e descer de ré. Opção B: Subir e descer de frente.'
+                'Pergunta 1 de 3. Quais produtos são proibidos na limpeza do dosador? Opção A: Pano seco. Opção B: Água e solventes como álcool, aguarrás e thinner. Opção C: Solução suave. Opção D: Pano úmido.',
+                'Pergunta 2 de 3. O que fazer se um corante for derramado dentro do dosador? Opção A: Limpar com pano imediatamente. Opção B: Desligar e chamar técnico autorizado. Opção C: Continuar operando. Opção D: Usar água para diluir.',
+                'Pergunta 3 de 3. Qual o peso máximo permitido para movimentar recipientes? Opção A: 10 kg. Opção B: 15 kg. Opção C: 25 kg. Opção D: 40 kg.'
             ],
-            result: 'Resultado do Quiz do Módulo 4. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.'
+            result: 'Resultado do Quiz do Módulo 4. Veja sua pontuação na tela. Toque em Jogar Novamente para refazer ou siga para o próximo módulo.'
         },
 
         // ─── QUIZ 5 (slide global 35, modulo-5.html, s-quiz5) ─────────────────
@@ -121,8 +119,8 @@
        com NR11_MODULE_OFFSETS de shared.js.                                    */
     const MODULE_OFFSETS = {
         'index.html': 0, 'modulo-1.html': 3, 'modulo-2.html': 9,
-        'modulo-3.html': 14, 'modulo-4.html': 20, 'modulo-5.html': 25,
-        'modulo-6.html': 34
+        'modulo-3.html': 14, 'modulo-4.html': 20, 'modulo-5.html': 27,
+        'modulo-6.html': 36
     };
 
     function globalSlideOf(file, slideId) {
