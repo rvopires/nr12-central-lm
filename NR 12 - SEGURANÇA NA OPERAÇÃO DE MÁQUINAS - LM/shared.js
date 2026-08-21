@@ -3399,7 +3399,7 @@ function resetQuiz6() { quiz6.reset(); }
     }
 
     function addReplayButton() {
-        if (document.querySelector('.s1-secondary-actions')) return;
+        if (document.querySelector('.s1-secondary-actions') || document.querySelector('#s1 .tutorial-replay')) return;
         const startBtn = document.querySelector('#s1 .btn-start');
         if (!startBtn) return;
 
