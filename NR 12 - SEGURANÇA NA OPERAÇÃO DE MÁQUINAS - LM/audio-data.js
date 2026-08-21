@@ -16,15 +16,13 @@
 }(typeof self !== 'undefined' ? self : this, function () {
 
     /* Ordem dos slides em cada HTML — DEVE bater com NR11_MODULE_OFFSETS.
-       Soma das slides = NR11_TOTAL_SLIDES (45).                              */
+       Soma das slides = NR11_TOTAL_SLIDES (30).                              */
     const SLIDE_ORDER = {
         'index.html': ['s1', 's1b', 's-sumario'],
         'modulo-1.html': ['intro-m1', 's2', 's4', 's6', 's-central-cores', 'sq1'],
         'modulo-2.html': ['intro-m2', 's-equipamento', 's10', 's9', 'sq2'],
         'modulo-3.html': ['intro-m3', 's-bateria', 's-conducao', 's-rampas', 's-bateria-troca', 's-quiz3'],
-        'modulo-4.html': ['s-mod4-intro', 's-mod4-video', 's-mod4-inspecao', 's-mod4-limpeza', 's-mod4-video-finalizacao', 's-mod4-organizacao', 's-quiz4'],
-        'modulo-5.html': ['s-mod5-intro', 's-mod5-video1', 's-mod5-comp1', 's-mod5-video2', 's-mod5-distancia', 's-mod5-video3', 's-mod5-flip', 's-mod5-epi', 's-quiz5'],
-        'modulo-6.html': ['s-mod6-intro', 's-mod6-video-encerramento', 's-mod6-compromissos', 's-mod6-comp-preventiva', 's-mod6-mensagem-final', 's-mod6-video-mensagem-final', 's-mod6-video-final', 's-quiz6', 's-conclusion']
+        'modulo-4.html': ['s-mod4-intro', 's-mod4-video', 's-mod4-inspecao', 's-mod4-limpeza', 's-mod4-video-finalizacao', 's-mod4-organizacao', 's-quiz4', 's-mod6-mensagem-final', 's-mod6-video-final', 's-conclusion']
     };
 
     /* MULTI_STATE: slides com múltiplos conteúdos exibidos em sequência.
@@ -73,37 +71,6 @@
                 'Pergunta 3 de 3. Qual o peso máximo permitido para movimentar recipientes? Opção A: 10 kg. Opção B: 15 kg. Opção C: 25 kg. Opção D: 40 kg.'
             ],
             result: 'Resultado do Quiz do Módulo 4. Veja sua pontuação na tela. Toque em Jogar Novamente para refazer ou siga para o próximo módulo.'
-        },
-
-        // ─── QUIZ 5 (slide global 35, modulo-5.html, s-quiz5) ─────────────────
-        's-quiz5': {
-            panels: { intro: '#q5-intro-panel', question: '#q5-question-panel', result: '#q5-result-panel' },
-            counterSelector: '#q5-counter',
-            intro: 'Quiz do Módulo 5. Simulação Operacional. Avalie cenários de movimentação, armazenagem e emergências. Esta avaliação contém cinco situações com mínimo de setenta por cento de acertos. Toque em Iniciar para começar.',
-            questions: [
-                'Pergunta 1 de 5. Corredor Obstruído. O operador encontrou um corredor parcialmente bloqueado durante a movimentação da carga. Qual deve ser o procedimento correto? Opção A: Continuar normalmente. Opção B: Sinalizar e liberar o corredor antes da operação. Opção C: Passar rapidamente pelo bloqueio. Opção D: Ignorar o obstáculo.',
-                'Pergunta 2 de 5. Carga Elevada. A carga está sendo transportada acima da altura recomendada. Qual é o principal risco desta operação? Opção A: Melhor visibilidade. Opção B: Maior estabilidade. Opção C: Maior velocidade. Opção D: Comprometimento da visibilidade e risco de colisão.',
-                'Pergunta 3 de 5. EPI Ausente. O operador iniciou a movimentação sem todos os EPIs obrigatórios. Qual procedimento está correto? Opção A: Interromper a operação até regularizar os EPIs. Opção B: Operar apenas em áreas vazias. Opção C: Continuar se a operação for rápida. Opção D: Solicitar ajuda apenas em caso de risco.',
-                'Pergunta 4 de 5. Emergência Operacional. Foi identificado um princípio de incêndio próximo à área de movimentação. Qual deve ser a primeira ação? Opção A: Continuar a operação. Opção B: Improvisar sozinho o combate. Opção C: Parar a operação e afastar as pessoas. Opção D: Mover a carga rapidamente.',
-                'Pergunta 5 de 5. Distanciamento Seguro. Durante a movimentação, o operador reduziu excessivamente a distância da estrutura lateral. Qual distância mínima deve ser mantida? Opção A: Vinte centímetros. Opção B: Cinquenta centímetros. Opção C: Trinta centímetros. Opção D: Não existe distância mínima.'
-            ],
-            result: 'Resultado do Quiz do Módulo 5. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.'
-        },
-
-        // ─── QUIZ 6 (slide global 43, modulo-6.html, s-quiz6) — Liberar/Não ───
-        's-quiz6': {
-            panels: { intro: '#q6-intro-panel', question: '#q6-question-panel', result: '#q6-result-panel' },
-            counterSelector: '#q6-counter',
-            counterPattern: /Pergunta\s+(\d+)\s+de/i,
-            intro: 'Quiz Final. Hora do Desafio do Módulo 6. Analise cada cenário e decida se a operação deve ser liberada ou não liberada. Esta avaliação contém cinco perguntas com mínimo de três acertos. Toque em Iniciar Desafio para começar.',
-            questions: [
-                'Pergunta 1 de 5. Verificação do Trajeto. O operador irá iniciar a movimentação sem verificar o corredor operacional. Você deve liberar ou não liberar?',
-                'Pergunta 2 de 5. Altura da Carga. A carga está posicionada corretamente para movimentação segura. Você deve liberar ou não liberar?',
-                'Pergunta 3 de 5. Distração Operacional. O operador utiliza celular durante a movimentação da carga. Você deve liberar ou não liberar?',
-                'Pergunta 4 de 5. Proteção Operacional. O operador iniciou a operação utilizando os EPIs obrigatórios. Você deve liberar ou não liberar?',
-                'Pergunta 5 de 5. Finalização Segura. O equipamento foi estacionado corretamente ao final da operação. Você deve liberar ou não liberar?'
-            ],
-            result: 'Resultado do Desafio. Veja sua pontuação na tela. Caso aprovado, toque em Próximo. Caso contrário, jogue novamente.'
         }
     };
 
@@ -119,8 +86,7 @@
        com NR11_MODULE_OFFSETS de shared.js.                                    */
     const MODULE_OFFSETS = {
         'index.html': 0, 'modulo-1.html': 3, 'modulo-2.html': 9,
-        'modulo-3.html': 14, 'modulo-4.html': 20, 'modulo-5.html': 27,
-        'modulo-6.html': 36
+        'modulo-3.html': 14, 'modulo-4.html': 20
     };
 
     function globalSlideOf(file, slideId) {

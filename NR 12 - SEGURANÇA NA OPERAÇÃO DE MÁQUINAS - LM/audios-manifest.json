@@ -313,242 +313,26 @@
   },
   {
     "file": "pagina-28.mp3",
-    "text": "INÍCIO DO MÓDULO MÓDULO 5 Manutenção e Limpeza",
-    "slideId": "s-mod5-intro",
+    "text": "MÓDULO 4 A SEGURANÇA É DIREITO E DEVER DE TODOS Operar com responsabilidade protege vidas, equipamentos e toda a operação.",
+    "slideId": "s-mod6-mensagem-final",
     "globalN": 28,
     "state": "main",
-    "sourceFile": "modulo-5.html"
+    "sourceFile": "modulo-4.html"
   },
   {
     "file": "pagina-29.mp3",
-    "text": "MÓDULO 5 Armazenagem Segura",
-    "slideId": "s-mod5-video1",
+    "text": "MÓDULO 4 Mensagem final",
+    "slideId": "s-mod6-video-final",
     "globalN": 29,
     "state": "main",
-    "sourceFile": "modulo-5.html"
+    "sourceFile": "modulo-4.html"
   },
   {
     "file": "pagina-30.mp3",
-    "text": "MÓDULO 5 Controle de Armazenagem Clique nos cards para avançar INCORRETO . Carga desalinhada . Corredor bloqueado . Armazenagem desorganizada CORRETO . Carga alinhada . Corredor livre . Armazenagem organizada",
-    "slideId": "s-mod5-comp1",
-    "globalN": 30,
-    "state": "main",
-    "sourceFile": "modulo-5.html"
-  },
-  {
-    "file": "pagina-31.mp3",
-    "text": "MÓDULO 5 Gravidade e Visibilidade",
-    "slideId": "s-mod5-video2",
-    "globalN": 31,
-    "state": "main",
-    "sourceFile": "modulo-5.html"
-  },
-  {
-    "file": "pagina-32.mp3",
-    "text": "MÓDULO 5 Precisão",
-    "slideId": "s-mod5-distancia",
-    "globalN": 32,
-    "state": "main",
-    "sourceFile": "modulo-5.html"
-  },
-  {
-    "file": "pagina-33.mp3",
-    "text": "MÓDULO 5 Risco de Incêndio",
-    "slideId": "s-mod5-video3",
-    "globalN": 33,
-    "state": "main",
-    "sourceFile": "modulo-5.html"
-  },
-  {
-    "file": "pagina-34.mp3",
-    "text": "MÓDULO 5 Situações de Emergência Toque nos cards para avançar 01 Incêndio Toque para ver 01 Incêndio Parar a operação, afastar pessoas e acionar a brigada de emergência. 02 Vazamento Toque para ver 02 Vazamento Isolar a área e comunicar imediatamente a supervisão responsável. 03 Tombamento Toque para ver 03 Tombamento Não tentar estabilizar manualmente o equipamento e manter distância segura. 04 Queda de carga Toque para ver 04 Queda de carga Interromper a operação e sinalizar a área imediatamente.",
-    "slideId": "s-mod5-flip",
-    "globalN": 34,
-    "state": "main",
-    "sourceFile": "modulo-5.html"
-  },
-  {
-    "file": "pagina-35.mp3",
-    "text": "MÓDULO 5 Equipamentos de Proteção Individual Toque nos blocos para visualizar e confirmar os itens 01 Botina Proteção dos pés OBRIGATÓRIO Ampliar 02 Luvas Proteção das mãos OBRIGATÓRIO Ampliar 03 Capacete Proteção da cabeça OBRIGATÓRIO Ampliar",
-    "slideId": "s-mod5-epi",
-    "globalN": 35,
-    "state": "main",
-    "sourceFile": "modulo-5.html"
-  },
-  {
-    "file": "pagina-36-intro.mp3",
-    "text": "Quiz do Módulo 5. Simulação Operacional. Avalie cenários de movimentação, armazenagem e emergências. Esta avaliação contém cinco situações com mínimo de setenta por cento de acertos. Toque em Iniciar para começar.",
-    "slideId": "s-quiz5",
-    "globalN": 36,
-    "state": "intro",
-    "sourceFile": "modulo-5.html"
-  },
-  {
-    "file": "pagina-36-q1.mp3",
-    "text": "Pergunta 1 de 5. Corredor Obstruído. O operador encontrou um corredor parcialmente bloqueado durante a movimentação da carga. Qual deve ser o procedimento correto? Opção A: Continuar normalmente. Opção B: Sinalizar e liberar o corredor antes da operação. Opção C: Passar rapidamente pelo bloqueio. Opção D: Ignorar o obstáculo.",
-    "slideId": "s-quiz5",
-    "globalN": 36,
-    "state": "q1",
-    "sourceFile": "modulo-5.html"
-  },
-  {
-    "file": "pagina-36-q2.mp3",
-    "text": "Pergunta 2 de 5. Carga Elevada. A carga está sendo transportada acima da altura recomendada. Qual é o principal risco desta operação? Opção A: Melhor visibilidade. Opção B: Maior estabilidade. Opção C: Maior velocidade. Opção D: Comprometimento da visibilidade e risco de colisão.",
-    "slideId": "s-quiz5",
-    "globalN": 36,
-    "state": "q2",
-    "sourceFile": "modulo-5.html"
-  },
-  {
-    "file": "pagina-36-q3.mp3",
-    "text": "Pergunta 3 de 5. EPI Ausente. O operador iniciou a movimentação sem todos os EPIs obrigatórios. Qual procedimento está correto? Opção A: Interromper a operação até regularizar os EPIs. Opção B: Operar apenas em áreas vazias. Opção C: Continuar se a operação for rápida. Opção D: Solicitar ajuda apenas em caso de risco.",
-    "slideId": "s-quiz5",
-    "globalN": 36,
-    "state": "q3",
-    "sourceFile": "modulo-5.html"
-  },
-  {
-    "file": "pagina-36-q4.mp3",
-    "text": "Pergunta 4 de 5. Emergência Operacional. Foi identificado um princípio de incêndio próximo à área de movimentação. Qual deve ser a primeira ação? Opção A: Continuar a operação. Opção B: Improvisar sozinho o combate. Opção C: Parar a operação e afastar as pessoas. Opção D: Mover a carga rapidamente.",
-    "slideId": "s-quiz5",
-    "globalN": 36,
-    "state": "q4",
-    "sourceFile": "modulo-5.html"
-  },
-  {
-    "file": "pagina-36-q5.mp3",
-    "text": "Pergunta 5 de 5. Distanciamento Seguro. Durante a movimentação, o operador reduziu excessivamente a distância da estrutura lateral. Qual distância mínima deve ser mantida? Opção A: Vinte centímetros. Opção B: Cinquenta centímetros. Opção C: Trinta centímetros. Opção D: Não existe distância mínima.",
-    "slideId": "s-quiz5",
-    "globalN": 36,
-    "state": "q5",
-    "sourceFile": "modulo-5.html"
-  },
-  {
-    "file": "pagina-36-result.mp3",
-    "text": "Resultado do Quiz do Módulo 5. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.",
-    "slideId": "s-quiz5",
-    "globalN": 36,
-    "state": "result",
-    "sourceFile": "modulo-5.html"
-  },
-  {
-    "file": "pagina-37.mp3",
-    "text": "ENCERRAMENTO MÓDULO 6 Reforçando o compromisso com a Segurança Operacional",
-    "slideId": "s-mod6-intro",
-    "globalN": 37,
-    "state": "main",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-38.mp3",
-    "text": "MÓDULO 6 Recapitulação",
-    "slideId": "s-mod6-video-encerramento",
-    "globalN": 38,
-    "state": "main",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-39.mp3",
-    "text": "MÓDULO 6 Compromissos Operacionais Toque nos painéis para confirmar os compromissos operacionais 0/4 compromissos confirmados Compromissos operacionais confirmados 01 Segurança Cumprir procedimentos reduz riscos operacionais. 02 Responsabilidade Cada operador é responsável por uma operação segura. 03 Prevenção Atitudes preventivas ajudam a evitar acidentes. 04 Atenção Operacional Manter foco total durante a movimentação é essencial.",
-    "slideId": "s-mod6-compromissos",
-    "globalN": 39,
-    "state": "main",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-40.mp3",
-    "text": "MÓDULO 6 Atitudes Preventivas Salvam Vidas Toque nas imagens para comparar os comportamentos Veja os dois lados para avançar Análise concluída INCORRETO . Operador sem atenção . Comportamento inseguro . Postura inadequada CORRETO . Operador focado . Postura correta . Operação segura",
-    "slideId": "s-mod6-comp-preventiva",
-    "globalN": 40,
-    "state": "main",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-41.mp3",
-    "text": "MÓDULO 6 A SEGURANÇA É DIREITO E DEVER DE TODOS Operar com responsabilidade protege vidas, equipamentos e toda a operação.",
-    "slideId": "s-mod6-mensagem-final",
-    "globalN": 41,
-    "state": "main",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-42.mp3",
-    "text": "MÓDULO 6 Encerramento",
-    "slideId": "s-mod6-video-mensagem-final",
-    "globalN": 42,
-    "state": "main",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-43.mp3",
-    "text": "MÓDULO 6 Mensagem final",
-    "slideId": "s-mod6-video-final",
-    "globalN": 43,
-    "state": "main",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-44-intro.mp3",
-    "text": "Quiz Final. Validação Operacional. Analise cada cenário e decida se a operação deve ser liberada ou não liberada. Esta avaliação contém cinco análises com mínimo de sessenta por cento de acertos. Toque em Iniciar para começar.",
-    "slideId": "s-quiz6",
-    "globalN": 44,
-    "state": "intro",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-44-q1.mp3",
-    "text": "Análise 1 de 5. Verificação do Trajeto. O operador irá iniciar a movimentação sem verificar o corredor operacional. Você deve liberar ou não liberar?",
-    "slideId": "s-quiz6",
-    "globalN": 44,
-    "state": "q1",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-44-q2.mp3",
-    "text": "Análise 2 de 5. Altura da Carga. A carga está posicionada corretamente para movimentação segura. Você deve liberar ou não liberar?",
-    "slideId": "s-quiz6",
-    "globalN": 44,
-    "state": "q2",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-44-q3.mp3",
-    "text": "Análise 3 de 5. Distração Operacional. O operador utiliza celular durante a movimentação da carga. Você deve liberar ou não liberar?",
-    "slideId": "s-quiz6",
-    "globalN": 44,
-    "state": "q3",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-44-q4.mp3",
-    "text": "Análise 4 de 5. Proteção Operacional. O operador iniciou a operação utilizando os EPIs obrigatórios. Você deve liberar ou não liberar?",
-    "slideId": "s-quiz6",
-    "globalN": 44,
-    "state": "q4",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-44-q5.mp3",
-    "text": "Análise 5 de 5. Finalização Segura. O equipamento foi estacionado corretamente ao final da operação. Você deve liberar ou não liberar?",
-    "slideId": "s-quiz6",
-    "globalN": 44,
-    "state": "q5",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-44-result.mp3",
-    "text": "Resultado da Validação Operacional. Veja sua pontuação na tela. Caso aprovado, toque em Finalizar Treinamento. Caso contrário, refaça a validação.",
-    "slideId": "s-quiz6",
-    "globalN": 44,
-    "state": "result",
-    "sourceFile": "modulo-6.html"
-  },
-  {
-    "file": "pagina-45.mp3",
     "text": "TREINAMENTO CONCLUÍDO Você completou com sucesso a capacitação em NR-11 . Empilhadeira Patolada. Sua dedicação aos procedimentos de segurança é fundamental. A excelência operacional protege vidas e garante um ambiente de trabalho seguro.",
     "slideId": "s-conclusion",
-    "globalN": 45,
+    "globalN": 30,
     "state": "main",
-    "sourceFile": "modulo-6.html"
+    "sourceFile": "modulo-4.html"
   }
 ]

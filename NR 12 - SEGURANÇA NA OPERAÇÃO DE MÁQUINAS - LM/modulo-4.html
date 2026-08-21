@@ -15,7 +15,7 @@
         window.MODULE_NAV = {
             id: "modulo-4",
             prev: "modulo-3.html",
-            next: "modulo-5.html",
+            next: null,
             label: "Módulo 4 - Segurança e Advertências"
         };
     </script>
@@ -1510,6 +1510,1803 @@
                 <div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none">
                         <path d="M0,50 C480,10 960,85 1440,30 L1440,100 L0,100 Z" fill="rgba(0, 255, 255,0.07)" />
                     </svg></div>
+            </div>
+
+
+            <div class="slide" id="s-mod6-mensagem-final"
+
+                style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; min-height: 100vh;">
+
+                <!-- Background Layer -->
+
+                <div class="bg-layer" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;">
+
+                    <img class="static-bg"
+
+                        src="assets/imgur/83kI3z0.png"
+
+                        alt="Operador em ambiente industrial"
+
+                        loading="eager"
+
+                        fetchpriority="high"
+
+                        decoding="async"
+
+                        style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85) contrast(1.15);">
+
+                    <!-- Gradient overlay -->
+
+                    <div class="grad-overlay"
+
+                        style="position: absolute; inset: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, transparent 25%, rgba(15, 23, 42, 0.95) 85%);">
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Content Layer -->
+
+                <div class="content-area"
+
+                    style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; width: 100%; margin-top: 5vh;">
+
+                    <div class="glow-bg"
+
+                        style="position: fixed; inset: 0; width: 100vw; height: 100vh; background: radial-gradient(circle at center, rgba(0, 255, 255, 0.08) 0%, transparent 60%); z-index: -1;">
+
+                    </div>
+
+
+
+                    <div class="section-tag anim-tag"
+
+                        style="background: var(--red); color: var(--black); margin-bottom: 30px; position: relative;">🏁
+
+                        MÓDULO 4
+
+                    </div>
+
+                    <h2 class="anim-title"
+
+                        style="font-family: var(--font-h); font-size: clamp(36px, 6vw, 65px); font-weight: 800; color: var(--white); text-transform: uppercase; line-height: 1.25; margin-bottom: 15px; letter-spacing: 1px;">
+
+                        A SEGURANÇA É DIREITO<br><span style="color: var(--green);">E DEVER DE TODOS</span>
+
+                    </h2>
+
+                    <div class="anim-sub"
+
+                        style="font-family: var(--font-p); font-size: clamp(18px, 2.5vw, 24px); color: rgba(255,255,255,0.95); max-width: 1000px; line-height: 1.6; font-weight: 300; text-align: center; margin: 0 auto; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">
+
+                        Operar com responsabilidade protege vidas, equipamentos e toda a operação.
+
+                    </div>
+
+                </div>
+
+
+
+                <style>
+
+                    /* Initial States */
+
+                    #s-mod6-mensagem-final .grad-overlay {
+
+                        opacity: 0;
+
+                        transition: opacity 1.5s ease 0.5s;
+
+                    }
+
+
+
+                    #s-mod6-mensagem-final .glow-bg {
+
+                        opacity: 0;
+
+                        transition: opacity 2s ease 1s;
+
+                    }
+
+
+
+                    #s-mod6-mensagem-final .anim-tag {
+
+                        opacity: 0;
+
+                        transform: translateY(-20px);
+
+                        transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+
+                    }
+
+
+
+                    #s-mod6-mensagem-final .anim-title {
+
+                        opacity: 0;
+
+                        transform: translateY(20px);
+
+                        text-shadow: 0 0 0 transparent;
+
+                        transition: opacity 1.5s ease 1s, transform 1.5s ease 1s, text-shadow 2s ease 1.5s;
+
+                    }
+
+
+
+                    #s-mod6-mensagem-final .anim-sub {
+
+                        opacity: 0;
+
+                        transform: translateY(20px);
+
+                        transition: opacity 1.5s ease 1.5s, transform 1.5s ease 1.5s;
+
+                    }
+
+
+
+                    /* Triggered States */
+
+                    #s-mod6-mensagem-final.is-active .grad-overlay {
+
+                        opacity: 1;
+
+                    }
+
+
+
+                    #s-mod6-mensagem-final.is-active .glow-bg {
+
+                        opacity: 1;
+
+                    }
+
+
+
+                    #s-mod6-mensagem-final.is-active .anim-tag {
+
+                        opacity: 1;
+
+                        transform: translateY(0);
+
+                    }
+
+
+
+                    #s-mod6-mensagem-final.is-active .anim-title {
+
+                        opacity: 1;
+
+                        transform: translateY(0);
+
+                        text-shadow: 0 0 15px rgba(0, 255, 255, 0.4), 0 0 30px rgba(0, 255, 255, 0.2);
+
+                    }
+
+
+
+                    #s-mod6-mensagem-final.is-active .anim-sub {
+
+                        opacity: 1;
+
+                        transform: translateY(0);
+
+                    }
+
+                </style>
+
+
+
+                <script>
+
+                    function playCinematicAudio() {
+
+                        try {
+
+                            const AudioContext = window.AudioContext || window.webkitAudioContext;
+
+                            if (!AudioContext) return;
+
+                            const ctx = new AudioContext();
+
+                            const now = ctx.currentTime;
+
+
+
+                            // Low boom
+
+                            const osc = ctx.createOscillator();
+
+                            const gain = ctx.createGain();
+
+                            osc.type = 'sine';
+
+                            osc.connect(gain);
+
+                            gain.connect(ctx.destination);
+
+                            osc.frequency.setValueAtTime(120, now);
+
+                            osc.frequency.exponentialRampToValueAtTime(30, now + 1.5);
+
+                            gain.gain.setValueAtTime(0, now);
+
+                            gain.gain.linearRampToValueAtTime(0.25, now + 0.1);
+
+                            gain.gain.exponentialRampToValueAtTime(0.01, now + 3);
+
+                            osc.start(now);
+
+                            osc.stop(now + 3);
+
+
+
+                            // Shimmer/sweep
+
+                            const osc2 = ctx.createOscillator();
+
+                            const gain2 = ctx.createGain();
+
+                            osc2.type = 'sine';
+
+                            osc2.connect(gain2);
+
+                            gain2.connect(ctx.destination);
+
+                            osc2.frequency.setValueAtTime(400, now + 0.5);
+
+                            osc2.frequency.linearRampToValueAtTime(800, now + 3);
+
+                            gain2.gain.setValueAtTime(0, now + 0.5);
+
+                            gain2.gain.linearRampToValueAtTime(0.03, now + 2);
+
+                            gain2.gain.linearRampToValueAtTime(0, now + 4);
+
+                            osc2.start(now + 0.5);
+
+                            osc2.stop(now + 4);
+
+                        } catch (e) { }
+
+                    }
+
+
+
+                    document.addEventListener('DOMContentLoaded', () => {
+
+                        const container = document.getElementById('s-mod6-mensagem-final');
+
+                        if (!container) return;
+
+
+
+                        function activateMensagemFinal() {
+
+                            if (!container.classList.contains('is-active')) {
+
+                                container.classList.add('is-active');
+
+                            }
+
+                        }
+
+
+
+                        const observer = new IntersectionObserver((entries) => {
+
+                            entries.forEach(entry => {
+
+                                if (entry.isIntersecting) activateMensagemFinal();
+
+                            });
+
+                        }, { threshold: 0.4 });
+
+
+
+                        observer.observe(container);
+
+
+
+                        const slideObserver = new MutationObserver(() => {
+
+                            if (container.classList.contains('active')) activateMensagemFinal();
+
+                        });
+
+                        slideObserver.observe(container, { attributes: true, attributeFilter: ['class'] });
+
+
+
+                        if (container.classList.contains('active')) activateMensagemFinal();
+
+                    });
+
+                </script>
+
+            </div>
+
+
+
+            <div class="slide" id="s-mod6-video-final"
+
+                style="background: radial-gradient(circle at center, rgba(126, 54, 227, 1) 0%, rgba(31, 10, 64, 1) 100%); overflow: hidden;">
+
+                <!-- Fundo HUD Cinematográfico -->
+
+                <div
+
+                    style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 50% 50%, rgba(0, 255, 255, 0.12) 0%, transparent 65%);">
+
+                </div>
+
+                <div
+
+                    style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 255, 0.03) 3px, rgba(0, 255, 255, 0.03) 4px);">
+
+                </div>
+
+                <div
+
+                    style="display: none;">
+
+                </div>
+
+                <div class="top-bar" style="position: relative; z-index: 2;">
+
+                    <div class="section-tag"
+
+                        style="background: var(--red); color: var(--black); font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);">
+
+                        🏁 MÓDULO 4</div>
+
+                    <h2 class="slide-title"
+
+                        style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4); text-transform: none !important;">
+
+                        Mensagem final</h2>
+
+                </div>
+
+                <div class="content-area"
+
+                    style="align-items: center; text-align: center; justify-content: flex-start; position: relative; z-index: 2;">
+
+                    <div class="video-wrap video-wrap--std"
+
+                        style="max-width: 1240px; box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 60px rgba(0, 255, 255,0.3); border: 1px solid rgba(0, 255, 255,0.4); border-radius: 12px; transform: translateZ(0);">
+
+                        <iframe id="panda-796f4616-0472-4e5e-b2a6-194f69741934" src="about:blank" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
+
+                    </div>
+
+                </div>
+
+                <div class="wave" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;"><svg
+
+                        viewBox="0 0 1440 100" preserveAspectRatio="none">
+
+                        <path d="M0,65 C360,20 720,90 1080,40 C1260,15 1390,70 1440,60 L1440,100 L0,100 Z"
+
+                            fill="rgba(0, 255, 255,0.07)" />
+
+                    </svg></div>
+
+            </div>
+
+
+
+            <div class="slide" id="s-conclusion">
+
+                <style>
+
+                    #s-conclusion {
+
+                        background-color: #1F0A45;
+
+                        align-items: center;
+
+                        justify-content: center;
+
+                        text-align: center;
+
+                    }
+
+
+
+                    #s-conclusion .bg-overlay {
+
+                        position: absolute;
+
+                        top: 0;
+
+                        left: 0;
+
+                        width: 100%;
+
+                        height: 100%;
+
+                        background-image: url('https://i.imgur.com/IPbpmJv.png');
+
+                        background-size: cover;
+
+                        background-position: center;
+
+                        opacity: 0.3;
+
+                        z-index: 0;
+
+                        animation: bg-zoom 30s infinite alternate linear;
+
+                        filter: grayscale(20%) brightness(0.8);
+
+                    }
+
+
+
+                    @keyframes bg-zoom {
+
+                        0% {
+
+                            transform: scale(1);
+
+                        }
+
+
+
+                        100% {
+
+                            transform: scale(1.08);
+
+                        }
+
+                    }
+
+
+
+                    #s-conclusion .glow-overlay {
+
+                        position: absolute;
+
+                        top: 0;
+
+                        left: 0;
+
+                        width: 100%;
+
+                        height: 100%;
+
+                        background: radial-gradient(circle at center, rgba(0, 255, 255, 0.25) 0%, rgba(31, 10, 64, 0.85) 60%, rgba(0, 0, 0, 1) 100%);
+
+                        z-index: 1;
+
+                    }
+
+
+
+                    #s-conclusion .content-area {
+
+                        position: relative;
+
+                        z-index: 10;
+
+                        width: 100%;
+
+                        max-width: 100%;
+
+                        display: flex;
+
+                        flex-direction: column;
+
+                        align-items: center;
+
+                        justify-content: center;
+
+                        flex: 1;
+
+                        min-height: 0;
+
+                        overflow-x: hidden;
+
+                        overflow-y: auto;
+
+                        -webkit-overflow-scrolling: touch;
+
+                        padding: 20px 16px 40px;
+
+                    }
+
+
+
+                    #s-conclusion .content-wrap {
+
+                        position: relative;
+
+                        z-index: 10;
+
+                        isolation: isolate;
+
+                        padding: 52px 48px 48px;
+
+                        max-width: 780px;
+
+                        width: 90%;
+
+                        margin-top: 40px;
+
+                        margin-bottom: 20px;
+
+                        background:
+
+                            radial-gradient(ellipse at 50% 0%, rgba(0, 255, 255, 0.16) 0%, transparent 55%),
+
+                            linear-gradient(160deg, #7E36E3 0%, #5C1FC0 55%, #3A1480 100%);
+
+                        border: 1px solid rgba(140, 180, 210, 0.28);
+
+                        border-radius: 24px;
+
+                        box-shadow:
+
+                            0 24px 60px rgba(0, 0, 0, 0.55),
+
+                            0 0 48px rgba(0, 255, 255, 0.22),
+
+                            0 0 90px rgba(0, 255, 255, 0.1),
+
+                            inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+                        backdrop-filter: blur(16px);
+
+                        animation: hud-enter-epic 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+                        opacity: 0;
+
+                        transform: translateY(30px);
+
+                        overflow: visible;
+
+                        flex-shrink: 0;
+
+                    }
+
+
+
+                    #s-conclusion .content-wrap::before {
+
+                        content: '';
+
+                        position: absolute;
+
+                        inset: -20px;
+
+                        border-radius: 36px;
+
+                        background: radial-gradient(ellipse at 50% 30%,
+
+                                rgba(0, 255, 255, 0.4) 0%,
+
+                                rgba(0, 255, 255, 0.14) 40%,
+
+                                transparent 70%);
+
+                        filter: blur(24px);
+
+                        z-index: -1;
+
+                        pointer-events: none;
+
+                    }
+
+
+
+                    #s-conclusion .content-wrap::after {
+
+                        content: '';
+
+                        position: absolute;
+
+                        top: 0;
+
+                        left: 12%;
+
+                        right: 12%;
+
+                        height: 3px;
+
+                        border-radius: 0 0 4px 4px;
+
+                        background: linear-gradient(90deg, transparent, #7AF5F5 20%, #00FFFF 50%, #7AF5F5 80%, transparent);
+
+                        opacity: 0.95;
+
+                    }
+
+
+
+                    @keyframes hud-enter-epic {
+
+                        to {
+
+                            opacity: 1;
+
+                            transform: translateY(0);
+
+                        }
+
+                    }
+
+
+
+                    .seal-container {
+
+                        position: relative;
+
+                        width: 120px;
+
+                        height: 120px;
+
+                        margin: 0 auto 25px auto;
+
+                        display: flex;
+
+                        align-items: center;
+
+                        justify-content: center;
+
+                        animation: seal-pop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards;
+
+                        opacity: 0;
+
+                        transform: scale(0.5);
+
+                    }
+
+
+
+                    @keyframes seal-pop {
+
+                        to {
+
+                            opacity: 1;
+
+                            transform: scale(1);
+
+                        }
+
+                    }
+
+
+
+                    .seal-ring {
+
+                        position: absolute;
+
+                        width: 100%;
+
+                        height: 100%;
+
+                        border-radius: 50%;
+
+                        border: 3px dashed rgba(0, 255, 255, 0.6);
+
+                        animation: rotate-ring 15s linear infinite;
+
+                    }
+
+
+
+                    @keyframes rotate-ring {
+
+                        100% {
+
+                            transform: rotate(360deg);
+
+                        }
+
+                    }
+
+
+
+                    .seal-inner {
+
+                        width: 90px;
+
+                        height: 90px;
+
+                        background:
+
+                            radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.18), transparent 50%),
+
+                            linear-gradient(145deg, rgba(0, 255, 255, 0.28) 0%, rgba(22, 135, 86, 0.35) 100%);
+
+                        border-radius: 50%;
+
+                        display: flex;
+
+                        align-items: center;
+
+                        justify-content: center;
+
+                        font-size: 45px;
+
+                        border: 2px solid rgba(89, 247, 174, 0.85);
+
+                        box-shadow:
+
+                            0 0 32px rgba(0, 255, 255, 0.55),
+
+                            inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+                        text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+
+                    }
+
+
+
+                    #s-conclusion .title-epic {
+
+                        font-family: var(--font-h);
+
+                        font-size: clamp(32px, 5vw, 56px);
+
+                        color: var(--white);
+
+                        text-transform: uppercase;
+
+                        letter-spacing: 0.06em;
+
+                        margin-bottom: 12px;
+
+                        opacity: 0;
+
+                        animation: fade-up 0.8s ease forwards 1s;
+
+                        line-height: 1.15;
+
+                    }
+
+
+
+                    #s-conclusion .title-epic span {
+
+                        color: #7AF5F5;
+
+                        text-shadow: 0 0 30px rgba(0, 255, 255, 0.7), 0 0 60px rgba(0, 255, 255, 0.4);
+
+                        display: block;
+
+                    }
+
+
+
+                    #s-conclusion .subtext {
+
+                        font-size: clamp(16px, 2.2vw, 20px);
+
+                        color: rgba(255, 255, 255, 0.82);
+
+                        margin-bottom: 28px;
+
+                        line-height: 1.55;
+
+                        opacity: 0;
+
+                        animation: fade-up 0.8s ease forwards 1.3s;
+
+                        max-width: 560px;
+
+                        margin-left: auto;
+
+                        margin-right: auto;
+
+                    }
+
+
+
+                    #s-conclusion .msg-box {
+
+                        position: relative;
+
+                        background:
+
+                            radial-gradient(circle at 0% 50%, rgba(0, 255, 255, 0.14), transparent 50%),
+
+                            linear-gradient(145deg, rgba(20, 40, 32, 0.95) 0%, rgba(12, 28, 24, 0.98) 100%);
+
+                        border: 1px solid rgba(0, 255, 255, 0.38);
+
+                        border-left: 4px solid #00FFFF;
+
+                        padding: 22px 26px;
+
+                        margin: 0 auto;
+
+                        max-width: 600px;
+
+                        font-family: var(--font-b);
+
+                        font-size: 16px;
+
+                        font-weight: 500;
+
+                        color: rgba(255, 255, 255, 0.92);
+
+                        line-height: 1.65;
+
+                        box-shadow:
+
+                            0 12px 32px rgba(0, 0, 0, 0.35),
+
+                            0 0 28px rgba(0, 255, 255, 0.18),
+
+                            inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+                        opacity: 0;
+
+                        animation: fade-up 0.8s ease forwards 1.6s;
+
+                        border-radius: 16px;
+
+                        text-align: left;
+
+                    }
+
+
+
+                    #s-conclusion .msg-box::before {
+
+                        content: '✦';
+
+                        display: flex;
+
+                        align-items: center;
+
+                        justify-content: center;
+
+                        width: 28px;
+
+                        height: 28px;
+
+                        margin-bottom: 12px;
+
+                        border-radius: 50%;
+
+                        background: rgba(0, 255, 255, 0.18);
+
+                        border: 1px solid rgba(0, 255, 255, 0.45);
+
+                        color: #7AF5F5;
+
+                        font-size: 13px;
+
+                        box-shadow: 0 0 14px rgba(0, 255, 255, 0.25);
+
+                    }
+
+
+
+                    #s-conclusion .concl-stats {
+
+                        display: flex;
+
+                        flex-direction: column;
+
+                        gap: 12px;
+
+                        width: 100%;
+
+                        max-width: 600px;
+
+                        margin: 22px auto 0;
+
+                        opacity: 0;
+
+                        animation: fade-up 0.8s ease forwards 1.75s;
+
+                    }
+
+
+
+                    #s-conclusion .concl-stat {
+
+                        display: flex;
+
+                        align-items: center;
+
+                        gap: 14px;
+
+                        padding: 14px 18px;
+
+                        border-radius: 14px;
+
+                        background: linear-gradient(145deg, rgba(22, 36, 48, 0.95) 0%, rgba(14, 24, 34, 0.98) 100%);
+
+                        border: 1px solid rgba(140, 180, 210, 0.2);
+
+                        box-shadow:
+
+                            0 8px 22px rgba(0, 0, 0, 0.3),
+
+                            inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+                        text-align: left;
+
+                    }
+
+
+
+                    #s-conclusion .concl-stat-icon {
+
+                        flex-shrink: 0;
+
+                        width: 42px;
+
+                        height: 42px;
+
+                        border-radius: 12px;
+
+                        display: inline-flex;
+
+                        align-items: center;
+
+                        justify-content: center;
+
+                        font-size: 22px;
+
+                        line-height: 1;
+
+                        background: rgba(0, 255, 255, 0.12);
+
+                        border: 1px solid rgba(0, 255, 255, 0.28);
+
+                        box-shadow: 0 0 14px rgba(0, 255, 255, 0.12);
+
+                    }
+
+
+
+                    #s-conclusion .concl-stat-label {
+
+                        flex: 1;
+
+                        font-family: var(--font-h);
+
+                        font-size: 12px;
+
+                        font-weight: 800;
+
+                        letter-spacing: 0.12em;
+
+                        text-transform: uppercase;
+
+                        color: rgba(255, 255, 255, 0.55);
+
+                    }
+
+
+
+                    #s-conclusion .concl-stat-value {
+
+                        font-family: var(--font-h);
+
+                        font-size: 15px;
+
+                        font-weight: 800;
+
+                        color: #fff;
+
+                        white-space: nowrap;
+
+                    }
+
+
+
+                    #s-conclusion .concl-stat-value.is-ok {
+
+                        color: #7AF5F5;
+
+                        text-shadow: 0 0 12px rgba(0, 255, 255, 0.35);
+
+                    }
+
+
+
+                    #s-conclusion .concl-stat-arrow {
+
+                        flex-shrink: 0;
+
+                        width: 28px;
+
+                        height: 28px;
+
+                        border-radius: 50%;
+
+                        display: inline-flex;
+
+                        align-items: center;
+
+                        justify-content: center;
+
+                        color: rgba(255, 255, 255, 0.55);
+
+                        background: rgba(255, 255, 255, 0.06);
+
+                        border: 1px solid rgba(255, 255, 255, 0.12);
+
+                        font-size: 18px;
+
+                        line-height: 1;
+
+                        margin-left: 4px;
+
+                    }
+
+
+
+                    #s-conclusion .concl-stat-arrow svg {
+
+                        width: 14px;
+
+                        height: 14px;
+
+                        display: block;
+
+                    }
+
+
+
+                    #s-conclusion .btn-finish {
+
+                        width: 100%;
+
+                        max-width: 420px;
+
+                        margin: 22px auto 0;
+
+                        background:
+
+                            radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.28), transparent 36%),
+
+                            #00FFFF;
+
+                        border: 1px solid rgba(89, 247, 174, 0.75);
+
+                        color: #3A1480;
+
+                        font-family: var(--font-h);
+
+                        font-weight: 900;
+
+                        font-size: 15px;
+
+                        padding: 15px 28px;
+
+                        min-height: 52px;
+
+                        border-radius: 999px;
+
+                        cursor: pointer;
+
+                        text-transform: uppercase;
+
+                        letter-spacing: 0.08em;
+
+                        transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+
+                        box-shadow:
+
+                            0 12px 28px rgba(0, 0, 0, 0.35),
+
+                            0 0 28px rgba(0, 255, 255, 0.42),
+
+                            inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+                        opacity: 0;
+
+                        animation: fade-up 0.8s ease forwards 1.9s;
+
+                        display: inline-flex;
+
+                        align-items: center;
+
+                        justify-content: center;
+
+                        gap: 10px;
+
+                    }
+
+
+
+                    #s-conclusion .btn-finish svg {
+
+                        width: 18px;
+
+                        height: 18px;
+
+                        flex-shrink: 0;
+
+                    }
+
+
+
+                    #s-conclusion .btn-finish:hover {
+
+                        filter: brightness(1.05);
+
+                        box-shadow:
+
+                            0 16px 34px rgba(0, 0, 0, 0.4),
+
+                            0 0 40px rgba(0, 255, 255, 0.58),
+
+                            inset 0 1px 0 rgba(255, 255, 255, 0.58);
+
+                        transform: translateY(-3px) scale(1.02);
+
+                    }
+
+
+
+                    @keyframes fade-up {
+
+                        from {
+
+                            opacity: 0;
+
+                            transform: translateY(20px);
+
+                        }
+
+
+
+                        to {
+
+                            opacity: 1;
+
+                            transform: translateY(0);
+
+                        }
+
+                    }
+
+
+
+                    /* Particles */
+
+                    .particle-green {
+
+                        position: absolute;
+
+                        background: var(--green);
+
+                        box-shadow: 0 0 15px 3px var(--green);
+
+                        border-radius: 50%;
+
+                        pointer-events: none;
+
+                        z-index: 5;
+
+                        animation: float-up linear forwards;
+
+                        opacity: 0;
+
+                    }
+
+
+
+                    @keyframes float-up {
+
+                        0% {
+
+                            transform: translateY(10vh) scale(0.5);
+
+                            opacity: 0;
+
+                        }
+
+
+
+                        20% {
+
+                            opacity: 0.6;
+
+                        }
+
+
+
+                        80% {
+
+                            opacity: 0.6;
+
+                        }
+
+
+
+                        100% {
+
+                            transform: translateY(-100vh) scale(1.5);
+
+                            opacity: 0;
+
+                        }
+
+                    }
+
+
+
+                    /* Confetti */
+
+                    .confetti {
+
+                        position: absolute;
+
+                        width: 8px;
+
+                        height: 16px;
+
+                        background: var(--gold);
+
+                        opacity: 0;
+
+                        z-index: 4;
+
+                        animation: fall linear forwards;
+
+                    }
+
+
+
+                    @keyframes fall {
+
+                        0% {
+
+                            transform: translateY(-10vh) rotate(0deg);
+
+                            opacity: 1;
+
+                        }
+
+
+
+                        100% {
+
+                            transform: translateY(110vh) rotate(720deg);
+
+                            opacity: 0;
+
+                        }
+
+                    }
+
+                    /* Desktop: card mais proporcional e compacto */
+
+                    @media (min-width: 769px) {
+
+                        #s-conclusion .content-area {
+
+                            padding: 12px 24px 28px;
+
+                            justify-content: center;
+
+                        }
+
+
+
+                        #s-conclusion .content-wrap {
+
+                            max-width: 540px;
+
+                            width: min(540px, 88%);
+
+                            padding: 32px 28px 28px;
+
+                            margin-top: 8px;
+
+                            margin-bottom: 8px;
+
+                            border-radius: 20px;
+
+                        }
+
+
+
+                        #s-conclusion .seal-container {
+
+                            width: 88px;
+
+                            height: 88px;
+
+                            margin: 0 auto 14px auto;
+
+                        }
+
+
+
+                        #s-conclusion .seal-inner {
+
+                            width: 66px;
+
+                            height: 66px;
+
+                            font-size: 34px;
+
+                        }
+
+
+
+                        #s-conclusion .title-epic {
+
+                            font-size: clamp(26px, 3vw, 38px);
+
+                            margin-bottom: 8px;
+
+                            letter-spacing: 0.04em;
+
+                        }
+
+
+
+                        #s-conclusion .subtext {
+
+                            font-size: 15px;
+
+                            line-height: 1.45;
+
+                            margin-bottom: 16px;
+
+                            max-width: 460px;
+
+                        }
+
+
+
+                        #s-conclusion .msg-box {
+
+                            max-width: 100%;
+
+                            padding: 14px 16px 16px;
+
+                            font-size: 14px;
+
+                            line-height: 1.5;
+
+                            border-radius: 14px;
+
+                        }
+
+
+
+                        #s-conclusion .msg-box::before {
+
+                            width: 24px;
+
+                            height: 24px;
+
+                            margin-bottom: 8px;
+
+                            font-size: 12px;
+
+                        }
+
+
+
+                        #s-conclusion .concl-stats {
+
+                            max-width: 100%;
+
+                            margin-top: 14px;
+
+                            gap: 10px;
+
+                        }
+
+
+
+                        #s-conclusion .concl-stat {
+
+                            padding: 11px 14px;
+
+                            gap: 12px;
+
+                            border-radius: 12px;
+
+                        }
+
+
+
+                        #s-conclusion .concl-stat-icon {
+
+                            width: 36px;
+
+                            height: 36px;
+
+                            font-size: 18px;
+
+                            border-radius: 10px;
+
+                        }
+
+
+
+                        #s-conclusion .concl-stat-label {
+
+                            font-size: 11px;
+
+                        }
+
+
+
+                        #s-conclusion .concl-stat-value {
+
+                            font-size: 14px;
+
+                        }
+
+
+
+                        #s-conclusion .btn-finish {
+
+                            margin-top: 16px;
+
+                            max-width: 100%;
+
+                            min-height: 48px;
+
+                            padding: 12px 22px;
+
+                            font-size: 14px;
+
+                        }
+
+                    }
+
+
+
+                    /* Ajustes Mobile: Posicionamento mais equilibrado */
+
+                    @media (max-width: 768px) {
+
+                        #s-conclusion {
+
+                            justify-content: flex-start !important;
+
+                            align-items: stretch !important;
+
+                            padding-top: 0 !important;
+
+                            margin-top: 0 !important;
+
+                            overflow: hidden !important;
+
+                        }
+
+                        #s-conclusion .content-area {
+
+                            overflow-y: auto !important;
+
+                            -webkit-overflow-scrolling: touch !important;
+
+                            flex: 1 1 auto !important;
+
+                            min-height: 0 !important;
+
+                            height: 100% !important;
+
+                            padding: 48px 14px calc(140px + env(safe-area-inset-bottom, 0px)) !important;
+
+                            justify-content: flex-start !important;
+
+                            align-items: center !important;
+
+                        }
+
+                        #s-conclusion .content-wrap {
+
+                            margin: 28px auto 12px auto !important;
+
+                            padding: 18px 14px 16px !important;
+
+                            display: flex;
+
+                            flex-direction: column;
+
+                            align-items: center !important;
+
+                            justify-content: center !important;
+
+                            text-align: center !important;
+
+                            width: 94% !important;
+
+                            border-radius: 18px !important;
+
+                        }
+
+                        #s-conclusion .seal-container {
+
+                            width: 72px !important;
+
+                            height: 72px !important;
+
+                            margin: 0 auto 10px auto !important;
+
+                            transform: none !important;
+
+                        }
+
+                        #s-conclusion .seal-inner {
+
+                            width: 54px !important;
+
+                            height: 54px !important;
+
+                            font-size: 28px !important;
+
+                        }
+
+                        #s-conclusion .title-epic {
+
+                            font-size: clamp(22px, 6.2vw, 26px) !important;
+
+                            margin: 0 auto 8px auto !important;
+
+                            text-align: center !important;
+
+                            letter-spacing: 0.03em !important;
+
+                        }
+
+                        #s-conclusion .subtext {
+
+                            font-size: 13px !important;
+
+                            line-height: 1.4 !important;
+
+                            margin: 0 auto 12px auto !important;
+
+                            text-align: center !important;
+
+                        }
+
+                        #s-conclusion .msg-box {
+
+                            padding: 12px 12px 14px !important;
+
+                            font-size: 12.5px !important;
+
+                            line-height: 1.45 !important;
+
+                            margin: 0 auto !important;
+
+                            text-align: left !important;
+
+                            border-radius: 12px !important;
+
+                            width: 100%;
+
+                        }
+
+                        #s-conclusion .msg-box::before {
+
+                            width: 22px !important;
+
+                            height: 22px !important;
+
+                            margin-bottom: 8px !important;
+
+                            font-size: 11px !important;
+
+                        }
+
+                        #s-conclusion .concl-stats {
+
+                            margin-top: 12px !important;
+
+                            gap: 8px !important;
+
+                        }
+
+                        #s-conclusion .concl-stat {
+
+                            padding: 10px 12px !important;
+
+                            border-radius: 12px !important;
+
+                            gap: 10px !important;
+
+                        }
+
+                        #s-conclusion .concl-stat-icon {
+
+                            width: 32px !important;
+
+                            height: 32px !important;
+
+                            font-size: 16px !important;
+
+                            border-radius: 9px !important;
+
+                        }
+
+                        #s-conclusion .concl-stat-label {
+
+                            font-size: 10px !important;
+
+                        }
+
+                        #s-conclusion .concl-stat-value {
+
+                            font-size: 12px !important;
+
+                        }
+
+                        #s-conclusion .concl-stat-arrow {
+
+                            width: 22px !important;
+
+                            height: 22px !important;
+
+                        }
+
+                        #s-conclusion .concl-stat-arrow svg {
+
+                            width: 11px !important;
+
+                            height: 11px !important;
+
+                        }
+
+                        #s-conclusion .btn-finish {
+
+                            margin-top: 14px !important;
+
+                            width: 100% !important;
+
+                            max-width: 100% !important;
+
+                            min-height: 46px !important;
+
+                            padding: 12px 18px !important;
+
+                            font-size: 13px !important;
+
+                            letter-spacing: 0.06em !important;
+
+                            gap: 8px !important;
+
+                        }
+
+                        #s-conclusion .btn-finish svg {
+
+                            width: 16px !important;
+
+                            height: 16px !important;
+
+                        }
+
+                    }
+
+                </style>
+
+
+
+                <div class="bg-overlay"></div>
+
+                <div class="glow-overlay"></div>
+
+                <div id="c-particles"></div>
+
+                <div id="c-confetti"></div>
+
+
+
+                <div class="content-area">
+
+                <div class="content-wrap">
+
+                    
+
+
+
+                    <div class="seal-container">
+
+                        <div class="seal-ring"></div>
+
+                        <div class="seal-inner">🏆</div>
+
+                    </div>
+
+
+
+                    <h1 class="title-epic">
+
+                        TREINAMENTO <span>CONCLUÍDO</span>
+
+                    </h1>
+
+
+
+                    <p class="subtext">Você concluiu com sucesso a parte teórica do treinamento NR 12 — Segurança na Operação de Máquinas.</p>
+
+
+
+                    <div class="msg-box">
+
+                        Sua dedicação aos procedimentos de segurança é fundamental.
+
+                        A excelência operacional protege vidas e garante um ambiente de trabalho seguro.
+
+                    </div>
+
+
+
+                    <div class="concl-stats" aria-label="Resumo do treinamento">
+
+                        <div class="concl-stat">
+
+                            <span class="concl-stat-icon" aria-hidden="true">📚</span>
+
+                            <span class="concl-stat-label">Módulos</span>
+
+                            <span class="concl-stat-value">4 Concluídos</span>
+
+                            <span class="concl-stat-arrow" aria-hidden="true">
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+
+                            </span>
+
+                        </div>
+
+                        <div class="concl-stat">
+
+                            <span class="concl-stat-icon" aria-hidden="true">⭐</span>
+
+                            <span class="concl-stat-label">Avaliação</span>
+
+                            <span class="concl-stat-value is-ok">Aprovado</span>
+
+                            <span class="concl-stat-arrow" aria-hidden="true">
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <button type="button" class="btn-finish" id="btn-restart-course" onclick="restartCourse()">
+
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                            <path d="M3 12a9 9 0 1 0 3-6.7" />
+
+                            <polyline points="3 4 3 9 8 9" />
+
+                        </svg>
+
+                        Reiniciar Curso
+
+                    </button>
+
+
+
+                </div>
+
+                </div>
+
             </div>
 
         </div>

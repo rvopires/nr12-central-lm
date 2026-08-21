@@ -229,16 +229,14 @@ const NR11_MODULE_OFFSETS = {
     'modulo-1': 3,
     'modulo-2': 9,
     'modulo-3': 14,
-    'modulo-4': 20,
-    'modulo-5': 27,
-    'modulo-6': 36
+    'modulo-4': 20
 };
-const NR11_FULL_TOTAL_SLIDES = 45;
-const NR12_MODULE_END_PAGE = { 1: 9, 2: 14, 3: 20, 4: 27, 5: 36, 6: 45 };
+const NR11_FULL_TOTAL_SLIDES = 30;
+const NR12_MODULE_END_PAGE = { 1: 9, 2: 14, 3: 20, 4: 30 };
 
 const NR12_PREVIEW_ACTIVE = NR12_UNLOCK_THROUGH != null
     && NR12_UNLOCK_THROUGH >= 1
-    && NR12_UNLOCK_THROUGH < 6;
+    && NR12_UNLOCK_THROUGH < 4;
 const NR12_PREVIEW_M1_ONLY = NR12_PREVIEW_ACTIVE && NR12_UNLOCK_THROUGH === 1; // compat
 const NR11_TOTAL_SLIDES = NR12_PREVIEW_ACTIVE
     ? (NR12_MODULE_END_PAGE[NR12_UNLOCK_THROUGH] || NR11_FULL_TOTAL_SLIDES)
@@ -272,7 +270,7 @@ function nr11GlobalSlide() {
     const offset = NR11_MODULE_OFFSETS[(window.MODULE_NAV && window.MODULE_NAV.id) || 'index'] || 0;
     return offset + currentSlide + 1;
 }
-const QUIZ_AUDIO_HELPER_PAGES = [9, 15, 27, 36, 44];
+const QUIZ_AUDIO_HELPER_PAGES = [9, 15, 27];
 const QUIZ_AUDIO_HELPER_PANELS = {
     sq1: 'q1-question-panel',
     sq2: 'q2-question-panel',
@@ -473,9 +471,7 @@ window.addEventListener('keydown', (e) => {
         { id: 'modulo-1', offset: 3, file: 'modulo-1.html', module: 1 },
         { id: 'modulo-2', offset: 9, file: 'modulo-2.html', module: 2 },
         { id: 'modulo-3', offset: 14, file: 'modulo-3.html', module: 3 },
-        { id: 'modulo-4', offset: 20, file: 'modulo-4.html', module: 4 },
-        { id: 'modulo-5', offset: 27, file: 'modulo-5.html', module: 5 },
-        { id: 'modulo-6', offset: 36, file: 'modulo-6.html', module: 6 }
+        { id: 'modulo-4', offset: 20, file: 'modulo-4.html', module: 4 }
     ].filter(function (m) {
         return nr12IsModuleUnlocked(m.module);
     });
