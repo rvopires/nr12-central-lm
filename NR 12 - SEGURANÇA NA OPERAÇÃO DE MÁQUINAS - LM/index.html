@@ -897,6 +897,18 @@
                     }
                 }
             }
+            window.setTutorialButtonLocked = setTutorialButtonLocked;
+
+            function unlockTutorialImmediately() {
+                if (tutorialUnlockTimer) {
+                    clearInterval(tutorialUnlockTimer);
+                    tutorialUnlockTimer = null;
+                }
+                setTutorialButtonLocked(false, 0);
+                const hint = document.getElementById('tutorialUnlockHint');
+                if (hint) hint.textContent = 'Você pode fechar quando quiser';
+            }
+            window.unlockTutorialImmediately = unlockTutorialImmediately;
 
             function startTutorialUnlockTimer() {
                 let left = TUTORIAL_UNLOCK_SECS;

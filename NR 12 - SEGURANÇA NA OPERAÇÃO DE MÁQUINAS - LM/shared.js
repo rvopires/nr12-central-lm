@@ -397,6 +397,13 @@ function applyDemoModeUI() {
         btn.classList.toggle('demo-shortcut-visible', !!revealBtn);
         btn.classList.toggle('is-demo-on', !!window.demoMode);
         btn.classList.toggle('is-demo-off', !window.demoMode);
+        btn.classList.toggle('active', !!window.demoMode);
+        btn.setAttribute('aria-pressed', window.demoMode ? 'true' : 'false');
+        btn.setAttribute('aria-label', window.demoMode ? 'Desativar modo simulação' : 'Ativar modo simulação');
+        var simLabel = btn.querySelector('.simulation-text');
+        if (simLabel) simLabel.textContent = window.demoMode ? 'Simulação: ON' : 'Simulação: OFF';
+        var simItem = document.getElementById('sim-control-item');
+        if (simItem) simItem.classList.toggle('demo-shortcut-visible', !!revealBtn);
         if (window.matchMedia('(min-width: 769px)').matches) {
             btn.removeAttribute('onmouseover');
             btn.removeAttribute('onmouseout');
@@ -3115,70 +3122,201 @@ function resetQuiz6() { quiz6.reset(); }
     window.__a11yInjected = true;
 
     function init() {
-        if (document.getElementById('a11y-bar')) return;
+        if (document.getElementById('a11y-bar') || document.getElementById('top-controls')) return;
 
-        // ── Barra de ferramentas dobrável ──
-        const bar = document.createElement('div');
-        bar.id = 'a11y-bar';
-        bar.setAttribute('role', 'toolbar');
-        bar.setAttribute('aria-label', 'Ferramentas de acessibilidade');
-        bar.innerHTML = `
-            <button type="button" id="a11y-launcher" aria-expanded="false" aria-controls="a11y-tools" aria-label="Ouvir o conteúdo da página" title="Ouvir">
-                <svg class="a11y-speaker-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 9v6h3.5L12 19V5L7.5 9H4z" fill="currentColor"/>
-                    <path d="M15.5 8.5a4.5 4.5 0 0 1 0 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M17.8 6a7.5 7.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
+        // ── Top controls (estilo NR 06): Música + Transcrição + Tutorial + Simulação ──
+        const topControls = document.createElement('div');
+        topControls.id = 'top-controls';
+
+        // Áudio de fundo (mesma faixa da NR 06)
+        let bgMusicEl = document.getElementById('bg-music');
+        if (!bgMusicEl) {
+            bgMusicEl = document.createElement('audio');
+            bgMusicEl.id = 'bg-music';
+            bgMusicEl.src = 'musica/musica_foco.mp3';
+            bgMusicEl.loop = true;
+            bgMusicEl.preload = 'metadata';
+            bgMusicEl.setAttribute('aria-hidden', 'true');
+            document.body.appendChild(bgMusicEl);
+        }
+        bgMusicEl.volume = 0.35;
+        window.bgMusic = bgMusicEl;
+        if (typeof window.musicEnabled === 'undefined') window.musicEnabled = false;
+
+        const musicItem = document.createElement('div');
+        musicItem.className = 'top-control-item';
+        musicItem.id = 'music-control-item';
+        musicItem.innerHTML = `
+            <button type="button" id="btn-music" class="btn-music-toggle" title="Alternar Música"
+                aria-label="Ativar música de fundo">
+                <span id="music-icon-container">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 5L9.91 7.09 12 9.18V5z"/>
+                    </svg>
+                </span>
+                <span class="control-btn-text music-text">Música: OFF</span>
             </button>
-            <div id="a11y-tools" role="group" aria-label="Opções de acessibilidade">
-                <button type="button" class="a11y-btn" id="a11y-btn-ouvir" aria-pressed="false" aria-label="Ouvir o conteúdo do slide">
-                    <span class="a11y-ico" aria-hidden="true">🔊</span>
-                    <span class="a11y-lbl">Ouvir</span>
-                </button>
-            </div>
+            <span class="top-control-label">Música</span>
+        `;
+        topControls.appendChild(musicItem);
+
+        const MUSIC_ICON_ON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V5L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
+        const MUSIC_ICON_OFF = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 5L9.91 7.09 12 9.18V5z"/></svg>';
+
+        function syncMusicButtonUI() {
+            const btnMusic = document.getElementById('btn-music');
+            const iconContainer = document.getElementById('music-icon-container');
+            const musicText = btnMusic && btnMusic.querySelector('.music-text');
+            if (!btnMusic) return;
+            const on = !!window.musicEnabled;
+            btnMusic.classList.toggle('active', on);
+            if (iconContainer) iconContainer.innerHTML = on ? MUSIC_ICON_ON : MUSIC_ICON_OFF;
+            if (musicText) musicText.textContent = on ? 'Música: ON' : 'Música: OFF';
+            btnMusic.setAttribute('aria-label', on ? 'Desativar música de fundo' : 'Ativar música de fundo');
+        }
+
+        function toggleMusic() {
+            const bgMusic = document.getElementById('bg-music') || window.bgMusic;
+            const btnMusic = document.getElementById('btn-music');
+            if (!bgMusic || !btnMusic) return;
+
+            if (window.musicEnabled) {
+                window.musicEnabled = false;
+                bgMusic.pause();
+            } else {
+                window.musicEnabled = true;
+                bgMusic.play().catch(function (e) { console.log('Music play error:', e); });
+            }
+            try { sessionStorage.setItem('nr12-musicEnabled', window.musicEnabled ? '1' : '0'); } catch (e) { }
+            syncMusicButtonUI();
+        }
+        window.toggleMusic = toggleMusic;
+
+        try {
+            window.musicEnabled = sessionStorage.getItem('nr12-musicEnabled') === '1';
+        } catch (e) {
+            window.musicEnabled = false;
+        }
+        musicItem.querySelector('#btn-music').addEventListener('click', toggleMusic);
+        syncMusicButtonUI();
+        if (window.musicEnabled) {
+            bgMusicEl.play().catch(function () { /* autoplay bloqueado até interação */ });
+        }
+
+        const a11yItem = document.createElement('div');
+        a11yItem.className = 'top-control-item';
+        a11yItem.id = 'a11y-bar';
+        a11yItem.setAttribute('role', 'toolbar');
+        a11yItem.setAttribute('aria-label', 'Ferramentas de acessibilidade');
+        a11yItem.innerHTML = `
+            <button type="button" id="btn-accessibility" class="btn-accessibility-toggle" aria-pressed="false"
+                title="Transcrição em áudio" aria-label="Ouvir transcrição em áudio do slide">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3zm7 9a1 1 0 0 0-2 0 5 5 0 0 1-10 0 1 1 0 0 0-2 0 7 7 0 0 0 6 6.92V21H9a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-2v-3.08A7 7 0 0 0 19 11z"/>
+                </svg>
+                <span class="control-btn-text a11y-text">Transcrição</span>
+            </button>
+            <span class="top-control-label">Transcrição</span>
             <div class="audio-helper">Reproduza o áudio em cada nova pergunta.</div>
         `;
-        document.body.appendChild(bar);
+        topControls.appendChild(a11yItem);
 
-        // ── Posiciona o launcher imediatamente à esquerda do logo ──
+        // Tutorial (só na capa / quando existir #tutorialModal) — visual NR 06
+        const tutorialModal = document.getElementById('tutorialModal');
+        if (tutorialModal) {
+            const tutItem = document.createElement('div');
+            tutItem.className = 'top-control-item';
+            tutItem.id = 'tutorial-control-item';
+            tutItem.innerHTML = `
+                <button type="button" id="btn-tutorial-top" class="btn-tutorial-toggle"
+                    title="Abrir tutorial do curso" aria-label="Abrir tutorial do curso">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                    </svg>
+                    <span class="control-btn-text tutorial-text">Tutorial</span>
+                </button>
+                <span class="top-control-label">Tutorial</span>
+            `;
+            topControls.appendChild(tutItem);
+
+            function openTutorialFromTop() {
+                const modal = document.getElementById('tutorialModal');
+                if (!modal) return;
+                modal.classList.add('active');
+                if (window.resetTutorialVideoToStart) window.resetTutorialVideoToStart();
+                // Página 1 (capa): mantém trava de 5s. Demais páginas: libera na hora.
+                const onFirstPage = (typeof currentSlide === 'number') ? currentSlide === 0 : true;
+                if (onFirstPage) {
+                    if (window.startTutorialUnlockTimer) window.startTutorialUnlockTimer();
+                } else if (window.unlockTutorialImmediately) {
+                    window.unlockTutorialImmediately();
+                } else if (window.setTutorialButtonLocked) {
+                    window.setTutorialButtonLocked(false, 0);
+                }
+            }
+            window.openTutorialFromTop = openTutorialFromTop;
+
+            const tutBtn = tutItem.querySelector('#btn-tutorial-top');
+            if (tutBtn) tutBtn.addEventListener('click', openTutorialFromTop);
+
+            function updateTutorialButtonVisibility() {
+                const item = document.getElementById('tutorial-control-item');
+                if (!item) return;
+                // Visível em todas as páginas do index que têm o modal
+                item.style.display = 'flex';
+            }
+            window.updateTutorialButtonVisibility = updateTutorialButtonVisibility;
+            updateTutorialButtonVisibility();
+        }
+
+        // Envolve o botão de simulação existente (mantém regra qa1010 / demoMode)
+        const existingDemo = document.getElementById('btn-demo');
+        if (existingDemo) {
+            const simItem = document.createElement('div');
+            simItem.className = 'top-control-item';
+            simItem.id = 'sim-control-item';
+
+            existingDemo.classList.add('btn-simulation-toggle');
+            existingDemo.removeAttribute('style');
+            existingDemo.removeAttribute('onmouseover');
+            existingDemo.removeAttribute('onmouseout');
+            existingDemo.type = 'button';
+            existingDemo.title = 'Modo simulação — avançar sem concluir vídeos, jogos ou quizzes';
+            existingDemo.setAttribute('aria-pressed', 'false');
+            existingDemo.setAttribute('aria-label', 'Ativar modo simulação');
+            existingDemo.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.76-.5 2.54l2.6 1.53c.63-1.24 1-2.65 1-4.15 0-5.16-3.99-9.41-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.06.5-9 4.76-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
+                </svg>
+                <span class="control-btn-text simulation-text">Simulação: OFF</span>
+            `;
+
+            simItem.appendChild(existingDemo);
+            const simLabel = document.createElement('span');
+            simLabel.className = 'top-control-label';
+            simLabel.textContent = 'Simulação';
+            simItem.appendChild(simLabel);
+            topControls.appendChild(simItem);
+        }
+
+        document.body.appendChild(topControls);
+
+        // ── Posiciona abaixo da logo (igual NR 06) ──
         function positionA11yBar() {
             const logo = document.getElementById('logo');
-            const launcher = document.getElementById('a11y-launcher');
-            const demoBtn = document.getElementById('btn-demo');
             if (!logo) return;
             const r = logo.getBoundingClientRect();
-            const gap = 10;
-            const launcherSize = launcher
-                ? parseFloat(getComputedStyle(launcher).width) || 36
-                : 36;
-            const topPx = Math.max(8, r.top + (r.height - launcherSize) / 2);
-            const rightPx = Math.max(8, window.innerWidth - r.left + gap);
-            bar.style.top = topPx + 'px';
-            bar.style.right = rightPx + 'px';
-
-            if (demoBtn && window.matchMedia('(min-width: 769px)').matches) {
-                const demoGap = 10;
-                const demoHeight = demoBtn.offsetHeight || 36;
-                const demoTop = Math.max(8, r.top + (r.height - demoHeight) / 2);
-                demoBtn.style.position = 'fixed';
-                demoBtn.style.top = demoTop + 'px';
-                demoBtn.style.right = (rightPx + launcherSize + demoGap) + 'px';
-                demoBtn.style.left = 'auto';
-                demoBtn.style.bottom = 'auto';
-                demoBtn.style.zIndex = '901';
-            } else if (demoBtn) {
-                demoBtn.style.removeProperty('top');
-                demoBtn.style.removeProperty('right');
-                demoBtn.style.removeProperty('left');
-                demoBtn.style.removeProperty('bottom');
-                demoBtn.style.removeProperty('z-index');
-            }
+            const gapBelow = 8;
+            const topPx = Math.max(48, Math.round(r.bottom + gapBelow));
+            const rightPx = Math.max(8, Math.round(window.innerWidth - r.right));
+            topControls.style.top = topPx + 'px';
+            topControls.style.right = rightPx + 'px';
+            topControls.style.left = 'auto';
         }
         window.positionA11yBar = positionA11yBar;
         positionA11yBar();
         window.addEventListener('resize', positionA11yBar);
         window.addEventListener('load', positionA11yBar);
-        // Re-checa logo após imagens carregarem (o logo é uma <img> e pode mudar de tamanho)
         const logoEl = document.getElementById('logo');
         if (logoEl) {
             const logoImg = logoEl.querySelector('img');
@@ -3188,8 +3326,9 @@ function resetQuiz6() { quiz6.reset(); }
             }
         }
 
-        // ── OUVIR (ÁUDIO LOCAL) ──
-        const btnOuvir = document.getElementById('a11y-btn-ouvir');
+        // ── OUVIR (ÁUDIO LOCAL) — mesma regra de áudio ──
+        const btnA11y = document.getElementById('btn-accessibility');
+        const a11yText = a11yItem.querySelector('.a11y-text');
         let currentAudio = null;
 
         function stopSpeak() {
@@ -3197,16 +3336,14 @@ function resetQuiz6() { quiz6.reset(); }
                 currentAudio.pause();
                 currentAudio.currentTime = 0;
             }
-            if (btnOuvir) {
-                btnOuvir.classList.remove('is-active');
-                btnOuvir.setAttribute('aria-pressed', 'false');
-                btnOuvir.querySelector('.a11y-lbl').textContent = 'Ouvir';
+            if (btnA11y) {
+                btnA11y.classList.remove('active', 'is-active');
+                btnA11y.setAttribute('aria-pressed', 'false');
+                btnA11y.setAttribute('aria-label', 'Ouvir transcrição em áudio do slide');
             }
+            if (a11yText) a11yText.textContent = 'Transcrição';
         }
 
-        /* Detecta o arquivo de áudio correspondente ao estado atualmente
-           visível na tela. Para slides multi-estado (quizzes, micro-quiz
-           de condução) o nome inclui o sub-estado: intro, q{N} ou result.   */
         const AUDIO_DIR = 'audios-novos';
         function resolveAudioFile(pageNum) {
             const fallback = `${AUDIO_DIR}/pagina-${pageNum}.mp3`;
@@ -3252,11 +3389,12 @@ function resetQuiz6() { quiz6.reset(); }
         }
 
         async function startSpeak() {
-            if (btnOuvir) {
-                btnOuvir.classList.add('is-active');
-                btnOuvir.setAttribute('aria-pressed', 'true');
-                btnOuvir.querySelector('.a11y-lbl').textContent = 'Lendo...';
+            if (btnA11y) {
+                btnA11y.classList.add('active', 'is-active');
+                btnA11y.setAttribute('aria-pressed', 'true');
+                btnA11y.setAttribute('aria-label', 'Parar transcrição em áudio');
             }
+            if (a11yText) a11yText.textContent = 'Lendo...';
 
             const pageNum = nr11GlobalSlide();
             const audioSrc = resolveAudioFile(pageNum);
@@ -3264,14 +3402,14 @@ function resetQuiz6() { quiz6.reset(); }
             try {
                 currentAudio = new Audio(audioSrc);
 
-                const wasPlayingMusic = window.bgMusic && !window.bgMusic.paused;
+                const wasPlayingMusic = window.musicEnabled && window.bgMusic && !window.bgMusic.paused;
                 if (wasPlayingMusic) window.bgMusic.pause();
 
                 await currentAudio.play();
 
                 currentAudio.onended = () => {
                     stopSpeak();
-                    if (wasPlayingMusic && window.bgMusic) window.bgMusic.play().catch(() => { });
+                    if (window.musicEnabled && window.bgMusic) window.bgMusic.play().catch(() => { });
                 };
 
                 currentAudio.onerror = () => {
@@ -3284,63 +3422,45 @@ function resetQuiz6() { quiz6.reset(); }
             }
         }
 
-        // ── Toggle do launcher + leitura automática ──
-        const launcher = document.getElementById('a11y-launcher');
-        function setOpen(open) {
-            bar.classList.toggle('open', open);
-            launcher.setAttribute('aria-expanded', open ? 'true' : 'false');
-            if (open) window.updateQuizAudioHelper();
-        }
-        launcher.addEventListener('click', function (e) {
-            e.stopPropagation();
-            const willOpen = !bar.classList.contains('open');
-            setOpen(willOpen);
-            if (willOpen) {
-                if (btnOuvir && !btnOuvir.classList.contains('is-active')) startSpeak();
-            } else {
-                stopSpeak();
-            }
-        });
-        // Fecha o painel ao clicar fora, mas mantém o áudio tocando
-        // (ex.: ao trocar cards do carrossel)
-        document.addEventListener('click', function (e) {
-            if (!bar.contains(e.target) && bar.classList.contains('open')) {
-                setOpen(false);
-            }
-        });
-        // Fecha com ESC (sem interromper o áudio)
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && bar.classList.contains('open')) {
-                setOpen(false);
-            }
-        });
-
-        if (btnOuvir) {
-            btnOuvir.addEventListener('click', function () {
-                if (btnOuvir.classList.contains('is-active')) {
+        if (btnA11y) {
+            btnA11y.addEventListener('click', function (e) {
+                e.stopPropagation();
+                if (btnA11y.classList.contains('active')) {
                     stopSpeak();
                 } else {
                     startSpeak();
                 }
+                window.updateQuizAudioHelper();
             });
         }
 
-        // Para a fala ao trocar de slide / sair da página
         document.addEventListener('visibilitychange', function () {
             if (document.hidden) stopSpeak();
         });
         window.addEventListener('beforeunload', stopSpeak);
 
-        // Hook em goTo para parar a leitura ao mudar slide
         if (typeof window.goTo === 'function' && !window.goTo.__a11yHooked) {
             const origGoTo = window.goTo;
             window.goTo = function () {
                 stopSpeak();
                 const result = origGoTo.apply(this, arguments);
                 window.updateQuizAudioHelper();
+                if (typeof window.updateTutorialButtonVisibility === 'function') {
+                    window.updateTutorialButtonVisibility();
+                }
                 return result;
             };
             window.goTo.__a11yHooked = true;
+        } else if (typeof window.goTo === 'function' && !window.goTo.__tutorialVisHooked) {
+            const origGoTo2 = window.goTo;
+            window.goTo = function () {
+                const result = origGoTo2.apply(this, arguments);
+                if (typeof window.updateTutorialButtonVisibility === 'function') {
+                    window.updateTutorialButtonVisibility();
+                }
+                return result;
+            };
+            window.goTo.__tutorialVisHooked = true;
         }
 
         window.updateQuizAudioHelper();
@@ -3350,6 +3470,8 @@ function resetQuiz6() { quiz6.reset(); }
                 new MutationObserver(window.updateQuizAudioHelper).observe(panel, { attributes: true, attributeFilter: ['style', 'class'] });
             }
         });
+
+        if (typeof applyDemoModeUI === 'function') applyDemoModeUI();
     }
 
     if (document.readyState === 'loading') {
@@ -3365,7 +3487,7 @@ function resetQuiz6() { quiz6.reset(); }
    ════════════════════════════════════════ */
 (function () {
     function shouldSkipLazy(img) {
-        if (img.closest('.s1-hero-img, #logo, #a11y-bar, #nav, #a11y-launcher, .a11y-btn')) return true;
+        if (img.closest('.s1-hero-img, #logo, #a11y-bar, #top-controls, #nav, #a11y-launcher, .a11y-btn')) return true;
         if (img.closest('#s-mod6-comp-preventiva')) return true;
         if (img.closest('#s-mod6-mensagem-final')) return true;
         if (img.closest('#s-quiz6')) return true;

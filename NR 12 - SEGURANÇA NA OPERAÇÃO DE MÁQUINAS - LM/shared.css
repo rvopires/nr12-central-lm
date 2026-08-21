@@ -4992,50 +4992,7 @@ body {
         height: 30px !important;
     }
 
-    /* â”€â”€â”€ BOTÃƒO SIMULAÃ‡ÃƒO: chamativo no mobile â”€â”€â”€ */
-    #btn-demo {
-        bottom: auto !important;
-        top: calc(8px + env(safe-area-inset-top, 0px)) !important;
-        left: 8px !important;
-        right: auto !important;
-        padding: 7px 12px 7px 10px !important;
-        font-size: 10px !important;
-        font-weight: 800 !important;
-        letter-spacing: 0.4px !important;
-        border-radius: 999px !important;
-        z-index: 902 !important;
-        opacity: 1 !important;
-        background: rgba(61, 26, 0, 0.95) !important;
-        border: 2px solid rgba(241, 196, 15, 0.8) !important;
-        color: #ffffff !important;
-        box-shadow: 0 0 16px rgba(241, 196, 15, 0.45), 0 4px 14px rgba(0, 0, 0, 0.4) !important;
-        gap: 6px !important;
-    }
-
-    #btn-demo svg {
-        width: 13px !important;
-        height: 13px !important;
-        flex-shrink: 0;
-    }
-
-    #btn-demo:active {
-        transform: scale(0.96);
-        box-shadow: 0 0 22px rgba(241, 196, 15, 0.65), 0 4px 14px rgba(0, 0, 0, 0.4) !important;
-    }
-
-    #btn-demo.is-demo-off {
-        background: #5a5a5a !important;
-        border-color: #888888 !important;
-        color: #f0f0f0 !important;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35) !important;
-    }
-
-    #btn-demo.is-demo-on {
-        background: var(--gold) !important;
-        border-color: var(--gold) !important;
-        color: var(--black) !important;
-        box-shadow: 0 0 16px rgba(241, 196, 15, 0.55), 0 4px 14px rgba(0, 0, 0, 0.35) !important;
-    }
+    /* Simulação no mobile fica no top-controls (estilo NR 06) */
 
     #demo-indicator {
         top: 50px !important;
@@ -6564,266 +6521,258 @@ body {
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    ACESSIBILIDADE â€” Toolbar dobrÃ¡vel (Ouvir & Libras)
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-/* BOTAO SIMULACAO — desktop ao lado da acessibilidade */
-@media (min-width: 769px) {
-    #btn-demo {
-        position: fixed !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 8px !important;
-        padding: 8px 16px 8px 12px !important;
-        font-family: var(--font-h) !important;
-        font-size: 12px !important;
-        font-weight: 700 !important;
-        letter-spacing: 0.04em !important;
-        text-transform: none !important;
-        border-radius: 999px !important;
-        cursor: pointer !important;
-        white-space: nowrap !important;
-        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
-        border: 2px solid rgba(241, 196, 15, 0.75) !important;
-        background: linear-gradient(135deg, rgba(61, 26, 0, 0.96) 0%, rgba(35, 18, 0, 0.98) 100%) !important;
-        color: #ffffff !important;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 14px rgba(241, 196, 15, 0.22) !important;
-        opacity: 1 !important;
-    }
-
-    #btn-demo svg {
-        width: 15px !important;
-        height: 15px !important;
-        flex-shrink: 0;
-    }
-
-    #btn-demo.is-demo-off {
-        background: linear-gradient(135deg, rgba(90, 90, 90, 0.96) 0%, rgba(55, 55, 55, 0.98) 100%) !important;
-        border-color: rgba(180, 180, 180, 0.75) !important;
-        color: #f5f5f5 !important;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.32) !important;
-    }
-
-    #btn-demo.is-demo-on {
-        background: linear-gradient(135deg, #f1c40f 0%, #d4a106 100%) !important;
-        border-color: #f1c40f !important;
-        color: var(--black) !important;
-        box-shadow: 0 4px 18px rgba(241, 196, 15, 0.45), 0 0 16px rgba(241, 196, 15, 0.35) !important;
-    }
-}
-
-@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
-    #btn-demo.is-demo-off:hover {
-        transform: translateY(-1px);
-        border-color: rgba(241, 196, 15, 0.85) !important;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.38), 0 0 16px rgba(241, 196, 15, 0.28) !important;
-    }
-
-    #btn-demo.is-demo-on:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 6px 22px rgba(241, 196, 15, 0.55), 0 0 20px rgba(241, 196, 15, 0.4) !important;
-    }
-}
-
-#a11y-bar {
+/* ════════════════════════════════════════
+   TOP CONTROLS — Transcrição + Simulação (visual NR 06)
+   Regras NR 12: simulação escondida até qa1010 / demoMode
+   ════════════════════════════════════════ */
+#top-controls {
     position: fixed;
-    /* posiÃ§Ã£o Ã© definida via JS para alinhar Ã  esquerda do logo */
-    top: 24px;
-    right: 130px;
+    top: 78px;
+    right: 16px;
+    left: auto;
     z-index: 902;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
+    flex-direction: row;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: auto;
+    max-width: none;
     pointer-events: none;
 }
 
-/* Launcher (botÃ£o Ãºnico circular com Ã­cone de acessibilidade) */
-#a11y-launcher {
-    pointer-events: auto;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #fafafa;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    box-shadow:
-        0 8px 24px rgba(5, 8, 24, 0.2),
-        0 0 0 1px rgba(13, 21, 53, 0.05);
-    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-    overflow: hidden;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#a11y-launcher img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    pointer-events: none;
-}
-
-#a11y-launcher .a11y-speaker-ico {
-    width: 58%;
-    height: 58%;
-    display: block;
-    color: #7E36E3;
-    pointer-events: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-    #a11y-launcher:hover {
-        transform: scale(1.1);
-        box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45), 0 0 0 4px rgba(33, 150, 243, 0.22);
-    }
-}
-
-#a11y-launcher:active {
-    transform: scale(0.94);
-}
-
-#a11y-bar.open #a11y-launcher {
-    box-shadow: 0 4px 18px rgba(33, 150, 243, 0.5), 0 0 0 4px rgba(33, 150, 243, 0.25);
-}
-
-/* Painel expandido (abre PRA BAIXO) */
-#a11y-tools {
-    pointer-events: auto;
+.top-control-item {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    background: rgba(126, 54, 227, 0.9);
-    border: 1px solid rgba(0, 255, 255, 0.35);
-    border-radius: 14px;
-    padding: 8px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
-    opacity: 0;
-    transform: translateY(-8px) scale(0.95);
-    transform-origin: top right;
-    pointer-events: none;
-    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-    max-height: 0;
-    overflow: hidden;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-#a11y-bar.open #a11y-tools {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-    max-height: 200px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-}
-
-.audio-helper{
-    margin-top:10px;
-    font-size:11px;
-    line-height:1.35;
-    opacity:.68;
-    text-align:center;
-    max-width:140px;
-    margin-left:auto;
-    margin-right:auto;
-    display:none;
-    pointer-events:none;
-}
-
-#a11y-bar.open .audio-helper.is-active{
-    display:block;
-}
-
-.a11y-btn {
-    pointer-events: auto;
-    display: inline-flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
-    background: transparent;
-    color: var(--white);
-    border: 1px solid rgba(0, 255, 255, 0.4);
-    border-radius: 999px;
-    padding: 7px 16px 7px 12px;
+    gap: 3px;
+    width: auto;
+    pointer-events: none;
+}
+
+.top-control-label {
+    display: block;
+    font-size: 9px;
+    font-family: var(--font-h);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.88);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    text-align: center;
+    user-select: none;
+    pointer-events: none;
+}
+
+.btn-accessibility-toggle,
+.btn-simulation-toggle,
+.btn-tutorial-toggle,
+.btn-music-toggle,
+#btn-demo.btn-simulation-toggle {
+    pointer-events: auto;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    padding: 0;
+    font-size: 11px;
     font-family: var(--font-h);
     font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.04em;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    min-height: 40px;
+    box-sizing: border-box;
     white-space: nowrap;
-    min-width: 116px;
+    text-transform: none;
+    letter-spacing: normal;
+    position: relative;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
 }
 
-.a11y-btn .a11y-ico {
-    font-size: 16px;
-    line-height: 1;
+.control-btn-text {
+    display: none;
+}
+
+.btn-accessibility-toggle svg,
+.btn-simulation-toggle svg,
+.btn-tutorial-toggle svg,
+.btn-music-toggle svg,
+#btn-demo.btn-simulation-toggle svg,
+#music-icon-container {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .a11y-btn:hover {
-        background: rgba(0, 255, 255, 0.15);
-        border-color: var(--red);
-    }
+#music-icon-container svg {
+    width: 18px;
+    height: 18px;
+    display: block;
 }
 
-.a11y-btn:active {
+.btn-accessibility-toggle:hover,
+.btn-simulation-toggle:hover,
+.btn-tutorial-toggle:hover,
+.btn-music-toggle:hover,
+#btn-demo.btn-simulation-toggle:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-accessibility-toggle.active,
+.btn-music-toggle.active {
+    background: rgba(0, 255, 255, 0.25);
+    border-color: rgba(0, 255, 255, 0.6);
+    color: #fff;
+}
+
+#tutorial-control-item {
+    display: flex;
+}
+
+.btn-tutorial-toggle:active {
     transform: scale(0.96);
 }
 
-.a11y-btn.is-active {
-    background: var(--red);
-    color: var(--black);
-    border-color: var(--red);
+.btn-simulation-toggle.active,
+#btn-demo.btn-simulation-toggle.active,
+#btn-demo.btn-simulation-toggle.is-demo-on {
+    background: rgba(241, 196, 15, 0.22);
+    border-color: rgba(241, 196, 15, 0.65);
+    color: #fff;
 }
 
-/* Mobile portrait â€” compacto, Ã  esquerda do logo */
-@media screen and (max-width: 768px) and (orientation: portrait) {
-    #a11y-bar {
-        top: 14px;
-        right: 100px;
-        gap: 6px;
+#a11y-bar {
+    position: relative;
+    top: auto;
+    right: auto;
+    z-index: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    pointer-events: none;
+}
+
+.audio-helper {
+    margin-top: 6px;
+    font-size: 10px;
+    line-height: 1.35;
+    opacity: 0.75;
+    text-align: center;
+    max-width: 120px;
+    display: none;
+    pointer-events: none;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+#a11y-bar.quiz-audio-helper .audio-helper.is-active,
+#a11y-bar .audio-helper.is-active {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    #top-controls {
+        top: 48px !important;
+        right: 12px !important;
+        left: auto !important;
+        bottom: auto !important;
+        flex-direction: row !important;
+        gap: 8px !important;
+        width: auto !important;
+        max-width: none !important;
+        justify-content: flex-end !important;
     }
 
-    #a11y-launcher {
+    .top-control-item {
+        align-items: center !important;
+        gap: 2px !important;
+        width: auto !important;
+    }
+
+    .top-control-label {
+        display: block !important;
+        font-size: 8px !important;
+        margin-top: 1px !important;
+    }
+
+    .control-btn-text {
+        display: none !important;
+    }
+
+    .btn-accessibility-toggle,
+    .btn-simulation-toggle,
+    .btn-tutorial-toggle,
+    .btn-music-toggle,
+    #btn-demo.btn-simulation-toggle {
+        width: 34px !important;
+        height: 34px !important;
+        min-width: 34px !important;
+        min-height: 34px !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        border: 1px solid rgba(255, 255, 255, 0.45) !important;
+        gap: 0 !important;
+    }
+
+    .btn-accessibility-toggle svg,
+    .btn-simulation-toggle svg,
+    .btn-tutorial-toggle svg,
+    .btn-music-toggle svg,
+    #btn-demo.btn-simulation-toggle svg,
+    #music-icon-container svg {
+        width: 17px !important;
+        height: 17px !important;
+    }
+}
+
+@media screen and (max-height: 480px) {
+    #top-controls {
+        top: calc(5px + 26px + 4px + 8px);
+        right: 10px;
+        gap: 8px;
+    }
+
+    .top-control-label {
+        font-size: 8px;
+    }
+
+    .btn-accessibility-toggle,
+    .btn-simulation-toggle,
+    .btn-tutorial-toggle,
+    .btn-music-toggle,
+    #btn-demo.btn-simulation-toggle {
         width: 32px;
         height: 32px;
+        min-width: 32px;
+        min-height: 32px;
     }
 
-    .a11y-btn {
-        font-size: 12px;
-        padding: 5px 14px 5px 10px;
-        min-width: 100px;
-        gap: 6px;
-    }
-
-    .a11y-btn .a11y-ico {
-        font-size: 14px;
-    }
-}
-
-/* Mobile landscape baixo */
-@media screen and (max-height: 480px) and (orientation: landscape) {
-    #a11y-bar {
-        top: 10px;
-        right: 90px;
-    }
-
-    #a11y-launcher {
-        width: 28px;
-        height: 28px;
-    }
-
-    .a11y-btn {
-        font-size: 11px;
-        padding: 4px 12px 4px 8px;
-        min-width: 86px;
+    .btn-accessibility-toggle svg,
+    .btn-simulation-toggle svg,
+    .btn-tutorial-toggle svg,
+    .btn-music-toggle svg,
+    #btn-demo.btn-simulation-toggle svg,
+    #music-icon-container svg {
+        width: 16px;
+        height: 16px;
     }
 }
 
@@ -9399,8 +9348,9 @@ body {
     }
 }
 
-/* Esconder botão Modo Simulação (mantém a função no código, só some da tela) */
+/* Esconder Simulação (mantém a função; revela com qa1010 / demoMode) */
 html body #btn-demo,
+html body #sim-control-item,
 html body #demo-indicator {
     display: none !important;
     visibility: hidden !important;
@@ -9410,9 +9360,16 @@ html body #demo-indicator {
 
 /* Atalho secreto: digitar qa1010 (ou simulação ativa) revela o botão */
 html body #btn-demo.demo-shortcut-visible {
-    display: inline-flex !important;
+    display: flex !important;
     visibility: visible !important;
     pointer-events: auto !important;
+    opacity: 1 !important;
+}
+
+html body #sim-control-item.demo-shortcut-visible {
+    display: flex !important;
+    visibility: visible !important;
+    pointer-events: none !important;
     opacity: 1 !important;
 }
 
