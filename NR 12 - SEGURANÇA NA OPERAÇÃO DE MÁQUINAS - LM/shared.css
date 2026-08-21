@@ -1747,10 +1747,17 @@ body:has(#s-quiz5.active) #btn-fwd {
     --s1-ease: cubic-bezier(0.22, 1, 0.36, 1);
     background-color: #0f0524;
     background-image:
-        linear-gradient(100deg, rgba(15, 5, 36, 0.96) 0%, rgba(15, 5, 36, 0.86) 28%, rgba(31, 10, 64, 0.45) 52%, rgba(31, 10, 64, 0.2) 68%, rgba(15, 5, 36, 0.55) 100%),
-        radial-gradient(ellipse at 22% 55%, rgba(126, 54, 227, 0.22) 0%, transparent 62%),
+        linear-gradient(
+            90deg,
+            rgba(15, 5, 36, 0.92) 0%,
+            rgba(15, 5, 36, 0.72) 22%,
+            rgba(31, 10, 64, 0.35) 42%,
+            rgba(31, 10, 64, 0.12) 50%,
+            transparent 58%
+        ),
+        radial-gradient(ellipse at 18% 55%, rgba(126, 54, 227, 0.2) 0%, transparent 48%),
         url('assets/fotos/CAPA.png');
-    background-position: center, center, center;
+    background-position: center, center, center right;
     background-repeat: no-repeat, no-repeat, no-repeat;
     background-size: auto, auto, cover;
     overflow: hidden;
@@ -2047,8 +2054,9 @@ body:has(#s-quiz5.active) #btn-fwd {
 
 #s1 .wave {
     z-index: 2;
-    opacity: 1;
-    height: auto;
+    opacity: 0.9;
+    height: 88px;
+    bottom: -28px;
     filter: none;
 }
 
