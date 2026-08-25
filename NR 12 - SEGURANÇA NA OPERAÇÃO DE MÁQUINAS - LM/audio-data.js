@@ -16,13 +16,13 @@
 }(typeof self !== 'undefined' ? self : this, function () {
 
     /* Ordem dos slides em cada HTML — DEVE bater com NR11_MODULE_OFFSETS.
-       Soma das slides = NR11_TOTAL_SLIDES (30).                              */
+       Soma das slides = NR11_TOTAL_SLIDES (31).                              */
     const SLIDE_ORDER = {
         'index.html': ['s1', 's1b', 's-sumario'],
         'modulo-1.html': ['intro-m1', 's2', 's4', 's6', 's-central-cores', 'sq1'],
         'modulo-2.html': ['intro-m2', 's-equipamento', 's10', 's9', 'sq2'],
         'modulo-3.html': ['intro-m3', 's-bateria', 's-conducao', 's-rampas', 's-bateria-troca', 's-quiz3'],
-        'modulo-4.html': ['s-mod4-intro', 's-mod4-video', 's-mod4-inspecao', 's-mod4-limpeza', 's-mod4-video-finalizacao', 's-mod4-organizacao', 's-quiz4', 's-mod6-mensagem-final', 's-mod6-video-final', 's-conclusion']
+        'modulo-4.html': ['s-mod4-intro', 's-mod4-video', 's-mod4-inspecao', 's-mod4-limpeza', 's-mod4-pode-nao', 's-mod4-video-finalizacao', 's-mod4-organizacao', 's-quiz4', 's-mod6-mensagem-final', 's-mod6-video-final', 's-conclusion']
     };
 
     /* MULTI_STATE: slides com múltiplos conteúdos exibidos em sequência.
@@ -60,7 +60,7 @@
             result: 'Resultado do Quiz do Módulo 2. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.'
         },
 
-        // ─── QUIZ 4 (slide global 27, modulo-4.html, s-quiz4) ─────────────────
+        // ─── QUIZ 4 (slide global 28, modulo-4.html, s-quiz4) ─────────────────
         's-quiz4': {
             panels: { intro: '#q4-intro-panel', question: '#q4-question-panel', result: '#q4-result-panel' },
             counterSelector: '#q4-counter',

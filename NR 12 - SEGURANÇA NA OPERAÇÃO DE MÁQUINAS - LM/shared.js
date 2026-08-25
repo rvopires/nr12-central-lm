@@ -231,8 +231,8 @@ const NR11_MODULE_OFFSETS = {
     'modulo-3': 14,
     'modulo-4': 20
 };
-const NR11_FULL_TOTAL_SLIDES = 30;
-const NR12_MODULE_END_PAGE = { 1: 9, 2: 14, 3: 20, 4: 30 };
+const NR11_FULL_TOTAL_SLIDES = 31;
+const NR12_MODULE_END_PAGE = { 1: 9, 2: 14, 3: 20, 4: 31 };
 
 const NR12_PREVIEW_ACTIVE = NR12_UNLOCK_THROUGH != null
     && NR12_UNLOCK_THROUGH >= 1

@@ -23,628 +23,461 @@
     <style>
         /* ── Página 23: Manutenção e limpeza — regras gerais ── */
         #s-mod4-inspecao {
-            --m4m-purple: #6b2fc4;
-            --m4m-purple-deep: #4a1a8c;
+            --m4m-purple: #AD52C4;
+            --m4m-purple-deep: #4A1866;
             --m4m-red: #e03a3a;
-            --m4m-red-deep: #b91c1c;
-            --m4m-green: #1f9d5a;
-            --m4m-green-deep: #0f7a42;
-            --m4m-cyan: #00e5e5;
+            --m4m-red-deep: #9f1c1c;
+            --m4m-mint: #53E6D4;
+            overflow: hidden !important;
         }
-
-        #s-mod4-inspecao .top-bar {
-            padding-bottom: 4px !important;
-        }
-
-        #s-mod4-inspecao .slide-title {
-            font-size: clamp(24px, 3.2vw, 36px) !important;
-            margin-bottom: 0 !important;
-        }
-
+        #s-mod4-inspecao .top-bar { flex-shrink: 0; padding-bottom: 2px !important; }
+        #s-mod4-inspecao .slide-title { font-size: clamp(22px, 2.8vw, 34px) !important; }
         #s-mod4-inspecao .content-area {
-            justify-content: flex-start !important;
-            align-items: stretch !important;
+            flex: 1 1 auto; min-height: 0;
+            display: flex !important; flex-direction: column;
+            justify-content: center !important; align-items: center !important;
             text-align: left !important;
-            padding: 6px 26px 88px;
-            gap: 10px;
-            overflow: hidden;
-            position: relative;
-            z-index: 2;
+            padding: 6px 18px 78px !important; gap: 12px;
+            overflow: hidden !important; position: relative; z-index: 2;
         }
-
-        #s-mod4-inspecao .slide-title .m4m-accent {
-            color: var(--m4m-cyan);
+        #s-mod4-inspecao .m4m-layout {
+            width: 100%; max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+            align-items: stretch; max-height: 100%; min-height: 0;
         }
-
-        #s-mod4-inspecao .m4m-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
-            min-height: 0;
-            flex: 1 1 auto;
-        }
-
         #s-mod4-inspecao .m4m-card {
-            background: #fff;
-            border-radius: 13px;
-            padding: 12px 16px 13px;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
-            border-top: 3px solid transparent;
-            position: relative;
-            min-height: 0;
-            flex: 1 1 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            background: #fff; border: 1.5px solid rgba(173,82,196,0.16);
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 14px 32px rgba(0,0,0,0.18);
+            display: flex; flex-direction: column; min-width: 0; min-height: 0;
         }
-
-        #s-mod4-inspecao .m4m-card--prep { border-top-color: var(--m4m-purple); }
-        #s-mod4-inspecao .m4m-card--ban { border-top-color: var(--m4m-red); background: #fff8f6; }
-        #s-mod4-inspecao .m4m-card--ok { border-top-color: var(--m4m-green); background: #f4fbf7; flex: 0.72 1 0; }
-
-        #s-mod4-inspecao .m4m-card-head {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            margin-bottom: 8px;
+        #s-mod4-inspecao .m4m-media {
+            position: relative; width: 100%; flex: 0 0 auto;
+            height: clamp(100px, 18vh, 160px);
+            background: linear-gradient(145deg, rgba(173,82,196,0.12), rgba(83,230,212,0.1)), #f3f0f7;
+            overflow: hidden;
         }
-
-        #s-mod4-inspecao .m4m-card-ico {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            flex-shrink: 0;
-            color: #fff;
+        #s-mod4-inspecao .m4m-media img {
+            position: relative; z-index: 1; width: 100%; height: 100%;
+            object-fit: cover; object-position: center; display: block;
         }
-
-        #s-mod4-inspecao .m4m-card-ico svg {
-            width: 16px;
-            height: 16px;
+        #s-mod4-inspecao .m4m-media-ph {
+            position: absolute; inset: 0; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 6px;
+            pointer-events: none; color: rgba(74,24,102,0.4);
+            font-family: var(--font-h); font-size: 12px; font-weight: 800;
+            letter-spacing: 0.06em; text-transform: uppercase; z-index: 0;
         }
-
-        #s-mod4-inspecao .m4m-card--prep .m4m-card-ico { background: var(--m4m-purple); }
-        #s-mod4-inspecao .m4m-card--ban .m4m-card-ico { background: var(--m4m-red); }
-        #s-mod4-inspecao .m4m-card--ok .m4m-card-ico { background: var(--m4m-green); }
-
-        #s-mod4-inspecao .m4m-card-title {
-            margin: 0;
-            font-family: var(--font-h);
-            font-size: clamp(12px, 1.2vw, 14px);
-            font-weight: 800;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
+        #s-mod4-inspecao .m4m-media-ph svg { width: 28px; height: 28px; opacity: 0.5; }
+        #s-mod4-inspecao .m4m-expand {
+            position: absolute; bottom: 10px; right: 10px; z-index: 3;
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 34px; height: 34px; padding: 0; border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.9); background: #53E6D4;
+            box-shadow: 0 5px 14px rgba(83,230,212,0.5); color: #1F0A45;
+            font-size: 14px; line-height: 1; cursor: pointer;
         }
-
-        #s-mod4-inspecao .m4m-card--prep .m4m-card-title { color: var(--m4m-purple-deep); }
-        #s-mod4-inspecao .m4m-card--ban .m4m-card-title { color: var(--m4m-red-deep); }
-        #s-mod4-inspecao .m4m-card--ok .m4m-card-title { color: var(--m4m-green-deep); }
-
+        #s-mod4-inspecao .m4m-body {
+            padding: 12px 12px 14px; flex: 1 1 auto; min-height: 0;
+            display: flex; flex-direction: column; gap: 8px; overflow: hidden;
+        }
+        #s-mod4-inspecao .m4m-card--prep .m4m-body {
+            background: linear-gradient(180deg, #faf0ff 0%, #fff 55%);
+            border-top: 3px solid var(--m4m-purple);
+        }
+        #s-mod4-inspecao .m4m-card--ban .m4m-body {
+            background: linear-gradient(180deg, #fff1f2 0%, #fff 55%);
+            border-top: 3px solid var(--m4m-red);
+        }
+        #s-mod4-inspecao .m4m-card--ok .m4m-body {
+            background: linear-gradient(180deg, #ecfffc 0%, #fff 55%);
+            border-top: 3px solid var(--m4m-mint);
+        }
+        #s-mod4-inspecao .m4m-kicker {
+            margin: 0; font-family: var(--font-h); font-size: 10px; font-weight: 800;
+            letter-spacing: 0.1em; text-transform: uppercase;
+        }
+        #s-mod4-inspecao .m4m-card--prep .m4m-kicker { color: var(--m4m-purple); }
+        #s-mod4-inspecao .m4m-card--ban .m4m-kicker { color: var(--m4m-red); }
+        #s-mod4-inspecao .m4m-card--ok .m4m-kicker { color: #1a9e8f; }
+        #s-mod4-inspecao .m4m-title {
+            margin: 0; font-family: var(--font-h); font-size: clamp(14px, 1.4vw, 16px);
+            font-weight: 800; line-height: 1.25; color: var(--m4m-purple-deep);
+        }
+        #s-mod4-inspecao .m4m-card--ban .m4m-title { color: var(--m4m-red-deep); }
+        #s-mod4-inspecao .m4m-card--ok .m4m-title { color: #0d5c54; }
         #s-mod4-inspecao .m4m-lead {
-            margin: 0 0 8px;
-            font-family: var(--font-b);
-            font-size: clamp(12px, 1.2vw, 14px);
-            color: #5a3a36;
-            line-height: 1.35;
+            margin: 0; font-family: var(--font-b); font-size: 12.5px;
+            line-height: 1.4; color: rgba(74,24,102,0.82);
         }
-
+        #s-mod4-inspecao .m4m-card--ban .m4m-lead { color: rgba(159,28,28,0.9); }
+        #s-mod4-inspecao .m4m-card--ok .m4m-lead { color: #0d5c54; }
         #s-mod4-inspecao .m4m-steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            flex: 1;
-            align-items: center;
+            list-style: none; margin: 0; padding: 0;
+            display: flex; flex-direction: column; gap: 6px;
         }
-
         #s-mod4-inspecao .m4m-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 6px;
-            padding: 4px 8px;
+            display: grid; grid-template-columns: 26px 1fr; gap: 8px; align-items: start;
+            padding: 7px 8px; border-radius: 10px;
+            background: rgba(255,255,255,0.85); border: 1px solid rgba(173,82,196,0.14);
         }
-
-        #s-mod4-inspecao .m4m-step-ico {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            background: rgba(107, 47, 196, 0.12);
-            color: var(--m4m-purple);
-            border: 1.5px solid rgba(107, 47, 196, 0.28);
+        #s-mod4-inspecao .m4m-step-num {
+            width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+            background: linear-gradient(145deg, #C47AD8, #AD52C4); color: #fff;
+            font-family: var(--font-h); font-size: 11px; font-weight: 900;
         }
-
-        #s-mod4-inspecao .m4m-step-ico svg {
-            width: 20px;
-            height: 20px;
+        #s-mod4-inspecao .m4m-step strong {
+            display: block; font-family: var(--font-h); font-size: 12.5px; font-weight: 800;
+            color: var(--m4m-purple-deep); line-height: 1.25; margin-bottom: 1px;
         }
-
-        #s-mod4-inspecao .m4m-step-label {
-            margin: 0;
-            font-family: var(--font-h);
-            font-size: clamp(12px, 1.1vw, 13px);
-            font-weight: 700;
-            color: #2b1a4a;
-            line-height: 1.3;
+        #s-mod4-inspecao .m4m-step span {
+            display: block; font-size: 11.5px; line-height: 1.35; color: rgba(74,24,102,0.72);
         }
-
-        #s-mod4-inspecao .m4m-step-hint {
-            margin: 0;
-            font-family: var(--font-b);
-            font-size: 11.5px;
-            color: #6b6478;
-            line-height: 1.3;
-            max-width: 28ch;
-        }
-
-        #s-mod4-inspecao .m4m-bans {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
-            flex: 1;
-            align-items: center;
-        }
-
+        #s-mod4-inspecao .m4m-bans { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
         #s-mod4-inspecao .m4m-ban {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-            text-align: center;
-            padding: 2px;
+            display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px;
+            border-radius: 999px; background: #fff; border: 1.5px solid rgba(224,58,58,0.28);
+            color: var(--m4m-red-deep); font-family: var(--font-h); font-size: 11.5px; font-weight: 800;
         }
-
-        #s-mod4-inspecao .m4m-ban-ico {
-            width: 48px;
-            height: 48px;
-            position: relative;
-            display: grid;
-            place-items: center;
+        #s-mod4-inspecao .m4m-ban::before {
+            content: ''; width: 7px; height: 7px; border-radius: 50%;
+            background: var(--m4m-red); box-shadow: 0 0 0 3px rgba(224,58,58,0.18); flex-shrink: 0;
         }
-
-        #s-mod4-inspecao .m4m-ban-ico svg {
-            width: 100%;
-            height: 100%;
+        #s-mod4-inspecao .m4m-ok-chip {
+            display: inline-flex; align-items: center; gap: 7px; align-self: flex-start;
+            margin-top: auto; padding: 7px 11px; border-radius: 999px;
+            background: rgba(83,230,212,0.22); border: 1px solid rgba(83,230,212,0.55);
+            color: #0d5c54; font-family: var(--font-h); font-size: 11.5px; font-weight: 800;
         }
-
-        #s-mod4-inspecao .m4m-ban-label {
-            margin: 0;
-            font-family: var(--font-h);
-            font-size: clamp(11px, 1.05vw, 12.5px);
-            font-weight: 700;
-            color: #5c1a1a;
-            line-height: 1.25;
-        }
-
-        #s-mod4-inspecao .m4m-ok-body {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 14px;
-            align-items: center;
-            flex: 1;
-        }
-
-        #s-mod4-inspecao .m4m-ok-text {
-            margin: 0;
-            font-family: var(--font-b);
-            font-size: clamp(13px, 1.25vw, 15px);
-            color: #1f4a34;
-            line-height: 1.4;
-        }
-
-        #s-mod4-inspecao .m4m-ok-art {
-            width: 64px;
-            height: 64px;
-            color: var(--m4m-green);
-            flex-shrink: 0;
-        }
-
-        #s-mod4-inspecao .m4m-ok-art svg {
-            width: 100%;
-            height: 100%;
-        }
-
+        #s-mod4-inspecao .m4m-ok-chip svg { width: 15px; height: 15px; flex-shrink: 0; }
+        #s-mod4-inspecao .m4m-carousel-nav { display: none; }
         @media screen and (max-height: 760px) {
-            #s-mod4-inspecao .m4m-step-hint {
-                display: none;
-            }
-            #s-mod4-inspecao .m4m-card {
-                padding: 9px 14px 10px;
-            }
-            #s-mod4-inspecao .m4m-stack {
-                gap: 8px;
-            }
+            #s-mod4-inspecao .m4m-media { height: clamp(80px, 14vh, 120px); }
+            #s-mod4-inspecao .m4m-body { padding: 10px; gap: 6px; }
+            #s-mod4-inspecao .m4m-step span, #s-mod4-inspecao .m4m-lead { font-size: 11px; }
         }
-
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 980px) {
             #s-mod4-inspecao .content-area {
-                overflow-y: auto;
+                overflow-y: auto !important; justify-content: flex-start !important;
+                padding: 6px 12px 88px !important;
             }
-            #s-mod4-inspecao .m4m-card {
-                flex: none;
+            #s-mod4-inspecao .m4m-layout { grid-template-columns: 1fr; max-width: 420px; }
+            #s-mod4-inspecao .m4m-media { height: 140px; }
+        }
+        @media screen and (max-width: 768px) and (orientation: portrait) {
+            #s-mod4-inspecao .m4m-layout { display: block; max-width: 420px; width: 100%; }
+            #s-mod4-inspecao .m4m-card { display: none; }
+            #s-mod4-inspecao .m4m-card.m4m-card-active { display: flex; }
+            #s-mod4-inspecao .m4m-carousel-nav {
+                display: flex; align-items: center; justify-content: center; gap: 16px;
             }
-            #s-mod4-inspecao .m4m-steps {
-                grid-template-columns: 1fr;
+            #s-mod4-inspecao .m4m-nav-btn {
+                background: linear-gradient(145deg, #7AEEE0 0%, #53E6D4 45%, #AD52C4 100%);
+                color: #fff; border: 3px solid #fff; border-radius: 50%;
+                width: 48px; height: 48px; cursor: pointer;
+                display: flex; align-items: center; justify-content: center;
+                box-shadow: 0 0 0 3px rgba(83,230,212,0.55), 0 8px 22px rgba(173,82,196,0.55);
             }
-            #s-mod4-inspecao .m4m-step {
-                flex-direction: row;
-                text-align: left;
-                align-items: flex-start;
-            }
-            #s-mod4-inspecao .m4m-step-hint {
-                display: block;
-                max-width: none;
-            }
-            #s-mod4-inspecao .m4m-bans {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            #s-mod4-inspecao .m4m-ok-body {
-                grid-template-columns: 1fr;
-            }
-            #s-mod4-inspecao .m4m-ok-art {
-                width: 56px;
-                height: 56px;
-                justify-self: end;
+            #s-mod4-inspecao .m4m-nav-btn svg { width: 18px; height: 18px; pointer-events: none; }
+            #s-mod4-inspecao .m4m-nav-btn:disabled { opacity: 0.28; cursor: default; }
+            #s-mod4-inspecao .m4m-counter {
+                font-family: var(--font-h); font-size: 14px; font-weight: 800;
+                color: var(--m4m-mint); min-width: 52px; text-align: center;
             }
         }
 
-        @media screen and (max-width: 600px) {
-            #s-mod4-inspecao .content-area {
-                padding: 6px 12px 88px;
-            }
-        }
-
-        /* ── Página 24: Limpeza por equipamento ── */
+        /* ── Página 24: Limpeza por equipamento (1 tela, sem scroll) ── */
         #s-mod4-limpeza {
-            --m4l-mix: #f08a1a;
-            --m4l-mix-deep: #c56a0a;
-            --m4l-green: #2bb673;
-            --m4l-green-deep: #1a8f56;
-            --m4l-blue: #2f7fd4;
-            --m4l-blue-deep: #1a5fa8;
+            --m4l-mix: #AD52C4;
+            --m4l-mix-deep: #4A1866;
+            --m4l-blue: #1a9e8f;
+            --m4l-blue-deep: #0d5c54;
             --m4l-red: #e03a3a;
-            --m4l-red-deep: #b91c1c;
-            --m4l-cyan: #00e5e5;
+            --m4l-red-deep: #9f1c1c;
+            --m4l-mint: #53E6D4;
+            overflow: hidden !important;
         }
-
-        #s-mod4-limpeza .top-bar {
-            padding-bottom: 6px !important;
-        }
-
-        #s-mod4-limpeza .slide-title {
-            font-size: clamp(24px, 3.2vw, 36px) !important;
-        }
-
-        #s-mod4-limpeza .slide-title .m4l-accent {
-            color: var(--m4l-cyan);
-        }
-
+        #s-mod4-limpeza .top-bar { flex-shrink: 0; padding-bottom: 2px !important; }
+        #s-mod4-limpeza .slide-title { font-size: clamp(22px, 2.8vw, 34px) !important; }
         #s-mod4-limpeza .content-area {
-            justify-content: flex-start !important;
-            align-items: stretch !important;
+            flex: 1 1 auto; min-height: 0;
+            display: flex !important; flex-direction: column;
+            justify-content: center !important; align-items: center !important;
             text-align: left !important;
-            padding: 10px 20px 84px;
-            gap: 12px;
-            overflow: hidden;
-            position: relative;
-            z-index: 2;
+            padding: 4px 18px 78px !important; gap: 10px;
+            overflow: hidden !important; position: relative; z-index: 2;
         }
-
-        #s-mod4-limpeza .m4l-sub {
-            margin: 0;
-            font-family: var(--font-b);
-            font-size: clamp(12px, 1.2vw, 14px);
-            color: rgba(255, 255, 255, 0.78);
-            flex-shrink: 0;
-        }
-
         #s-mod4-limpeza .m4l-layout {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            flex: 1 1 auto;
-            min-height: 0;
-            width: 100%;
-            max-width: 1140px;
-            margin: 4px auto 0;
+            width: 100%; max-width: 1080px; margin: 0 auto;
+            display: flex; flex-direction: column; gap: 10px;
+            max-height: 100%; min-height: 0;
         }
-
         #s-mod4-limpeza .m4l-cols {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            flex: 1 1 auto;
-            min-height: 0;
-            align-items: stretch;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+            align-items: stretch; min-height: 0; flex: 1 1 auto;
         }
-
         #s-mod4-limpeza .m4l-card {
-            background: #fff;
-            border-radius: 14px;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
-            display: flex;
-            flex-direction: column;
-            min-height: 0;
-            height: 100%;
+            background: #fff; border: 1.5px solid rgba(173,82,196,0.16);
+            border-radius: 18px; overflow: hidden;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.16);
+            display: flex; flex-direction: column; min-width: 0; min-height: 0;
+            height: 100%; max-height: 100%;
+        }
+        #s-mod4-limpeza .m4l-media {
+            position: relative; width: 100%; flex: 0 0 auto;
+            height: clamp(90px, 15vh, 140px);
+            background: linear-gradient(145deg, rgba(173,82,196,0.12), rgba(83,230,212,0.1)), #f3f0f7;
             overflow: hidden;
-            position: relative;
         }
-
-        #s-mod4-limpeza .m4l-banner {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 14px 10px 84px;
-            min-height: 72px;
-            position: relative;
-            flex-shrink: 0;
-            overflow: visible;
+        #s-mod4-limpeza .m4l-media img {
+            position: relative; z-index: 1; width: 100%; height: 100%;
+            object-fit: cover; object-position: center; display: block;
         }
-
-        #s-mod4-limpeza .m4l-card--mix .m4l-banner { background: var(--m4l-mix); }
-        #s-mod4-limpeza .m4l-card--dos .m4l-banner { background: var(--m4l-blue); }
-
-        #s-mod4-limpeza .m4l-thumb {
-            position: absolute;
-            left: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 68px;
-            height: 68px;
-            border-radius: 50%;
-            object-fit: contain;
-            object-position: center;
-            padding: 5px;
-            box-sizing: border-box;
-            border: 3px solid #fff;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.32);
-            background: radial-gradient(circle at 50% 40%, #6b3a9e 0%, #2a1048 75%);
-            z-index: 2;
+        #s-mod4-limpeza .m4l-media-ph {
+            position: absolute; inset: 0; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 4px;
+            pointer-events: none; color: rgba(74,24,102,0.4);
+            font-family: var(--font-h); font-size: 11px; font-weight: 800;
+            letter-spacing: 0.06em; text-transform: uppercase; z-index: 0;
         }
-
-        #s-mod4-limpeza .m4l-banner h3 {
-            margin: 0;
-            font-family: var(--font-h);
-            font-size: clamp(13px, 1.25vw, 15px);
-            font-weight: 800;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: #fff;
+        #s-mod4-limpeza .m4l-media-ph svg { width: 26px; height: 26px; opacity: 0.5; }
+        #s-mod4-limpeza .m4l-expand {
+            position: absolute; bottom: 8px; right: 8px; z-index: 3;
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px; padding: 0; border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.9); background: #53E6D4;
+            box-shadow: 0 4px 10px rgba(83,230,212,0.45); color: #1F0A45;
+            font-size: 14px; line-height: 1; cursor: pointer;
         }
-
         #s-mod4-limpeza .m4l-body {
-            padding: 8px 12px 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            flex: 1 1 auto;
-            min-height: 0;
-            position: relative;
+            padding: 10px 12px 12px; flex: 1 1 auto; min-height: 0;
+            display: flex; flex-direction: column; gap: 7px; overflow: hidden;
         }
-
-        #s-mod4-limpeza .m4l-row {
-            display: grid;
-            grid-template-columns: 32px 1fr;
-            gap: 7px;
-            align-items: start;
+        #s-mod4-limpeza .m4l-card--mix .m4l-body {
+            background: linear-gradient(180deg, #faf0ff 0%, #fff 55%);
+            border-top: 3px solid var(--m4l-mix);
         }
-
-        #s-mod4-limpeza .m4l-sec-ico {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            color: #fff;
-            flex-shrink: 0;
-            margin-top: 1px;
+        #s-mod4-limpeza .m4l-card--dos .m4l-body {
+            background: linear-gradient(180deg, #ecfffc 0%, #fff 55%);
+            border-top: 3px solid var(--m4l-mint);
         }
-
-        #s-mod4-limpeza .m4l-sec-ico svg { width: 16px; height: 16px; }
-        #s-mod4-limpeza .m4l-card--mix .m4l-sec-ico { background: var(--m4l-mix); }
-        #s-mod4-limpeza .m4l-card--dos .m4l-sec-ico { background: var(--m4l-blue); }
-
-        #s-mod4-limpeza .m4l-sec-content {
-            min-width: 0;
+        #s-mod4-limpeza .m4l-kicker {
+            margin: 0; font-family: var(--font-h); font-size: 10px; font-weight: 800;
+            letter-spacing: 0.1em; text-transform: uppercase;
         }
-
+        #s-mod4-limpeza .m4l-card--mix .m4l-kicker { color: var(--m4l-mix); }
+        #s-mod4-limpeza .m4l-card--dos .m4l-kicker { color: #1a9e8f; }
+        #s-mod4-limpeza .m4l-title {
+            margin: 0; font-family: var(--font-h); font-size: clamp(14px, 1.35vw, 16px);
+            font-weight: 800; line-height: 1.2; color: var(--m4l-mix-deep);
+        }
+        #s-mod4-limpeza .m4l-card--dos .m4l-title { color: var(--m4l-blue-deep); }
+        #s-mod4-limpeza .m4l-sec {
+            padding: 6px 8px; border-radius: 10px;
+            background: rgba(255,255,255,0.88); border: 1px solid rgba(173,82,196,0.12);
+        }
+        #s-mod4-limpeza .m4l-card--dos .m4l-sec { border-color: rgba(83,230,212,0.28); }
         #s-mod4-limpeza .m4l-sec-title {
-            margin: 0 0 4px;
-            font-family: var(--font-h);
-            font-size: clamp(13px, 1.25vw, 15px);
-            font-weight: 800;
-            text-transform: none;
+            margin: 0 0 3px; font-family: var(--font-h); font-size: 12px; font-weight: 800;
+            color: var(--m4l-mix-deep); line-height: 1.2;
         }
-
-        #s-mod4-limpeza .m4l-card--mix .m4l-sec-title { color: var(--m4l-mix-deep); }
         #s-mod4-limpeza .m4l-card--dos .m4l-sec-title { color: var(--m4l-blue-deep); }
-
-        #s-mod4-limpeza .m4l-sec-content ul {
-            margin: 0;
-            padding: 0 0 0 16px;
-            font-family: var(--font-b);
-            font-size: clamp(13px, 1.2vw, 14.5px);
-            color: #2c3340;
-            line-height: 1.32;
+        #s-mod4-limpeza .m4l-sec ul {
+            margin: 0; padding: 0 0 0 14px; font-family: var(--font-b);
+            font-size: 11.5px; color: rgba(74,24,102,0.82); line-height: 1.28;
         }
-
-        #s-mod4-limpeza .m4l-divider {
-            height: 1px;
-            background: rgba(0,0,0,0.08);
-            margin: 0;
-            border: 0;
-        }
-
         #s-mod4-limpeza .m4l-alert {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 2px 0 2px;
-            color: var(--m4l-blue-deep);
-            font-family: var(--font-h);
-            font-size: clamp(14px, 1.35vw, 16px);
-            font-weight: 800;
-            line-height: 1.3;
+            display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;
+            padding: 4px 9px; border-radius: 999px;
+            background: rgba(224,58,58,0.1); border: 1.5px solid rgba(224,58,58,0.28);
+            color: var(--m4l-red-deep); font-family: var(--font-h); font-size: 11px; font-weight: 800;
         }
-
-        #s-mod4-limpeza .m4l-alert-ico {
-            width: 34px;
-            height: 34px;
-            flex-shrink: 0;
-            color: var(--m4l-blue);
-        }
-
-        #s-mod4-limpeza .m4l-alert-ico svg {
-            width: 100%;
-            height: 100%;
-        }
-
+        #s-mod4-limpeza .m4l-alert svg { width: 13px; height: 13px; flex-shrink: 0; }
         #s-mod4-limpeza .m4l-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            margin-top: 2px;
+            list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px;
         }
-
         #s-mod4-limpeza .m4l-step {
-            display: grid;
-            grid-template-columns: 22px 1fr;
-            gap: 8px;
-            align-items: start;
-            background: transparent;
-            border: none;
-            padding: 0;
-            text-align: left;
+            display: grid; grid-template-columns: 20px 1fr; gap: 6px; align-items: start;
         }
-
         #s-mod4-limpeza .m4l-step-num {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: var(--m4l-blue);
-            color: #fff;
-            font-family: var(--font-h);
-            font-size: 12px;
-            font-weight: 800;
-            display: grid;
-            place-items: center;
-            margin: 1px 0 0;
+            width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center;
+            background: linear-gradient(145deg, #7AEEE0, #53E6D4); color: #1F0A45;
+            font-family: var(--font-h); font-size: 10px; font-weight: 900;
         }
-
-        #s-mod4-limpeza .m4l-step-text {
-            margin: 0;
-            font-family: var(--font-b);
-            font-size: clamp(13px, 1.2vw, 14.5px);
-            color: #2c3340;
-            line-height: 1.35;
+        #s-mod4-limpeza .m4l-step span {
+            font-family: var(--font-b); font-size: 11.5px; color: rgba(74,24,102,0.82);
+            line-height: 1.28; padding-top: 2px;
         }
-
-        #s-mod4-limpeza .m4l-foot {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background: #fff;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
-            flex-shrink: 0;
+        #s-mod4-limpeza .m4l-carousel-nav { display: none; }
+        @media screen and (max-height: 760px) {
+            #s-mod4-limpeza .m4l-media { height: clamp(72px, 12vh, 100px); }
+            #s-mod4-limpeza .m4l-body { padding: 8px 10px; gap: 5px; }
+            #s-mod4-limpeza .m4l-sec ul, #s-mod4-limpeza .m4l-step span { font-size: 11px; }
         }
-
-        #s-mod4-limpeza .m4l-side {
-            padding: 10px 14px 10px;
-            position: relative;
-            overflow: hidden;
-            border-top: none;
-            border-radius: 0;
-            box-shadow: none;
-            background: transparent;
-        }
-
-        #s-mod4-limpeza .m4l-side--ok { background: #eefaf3; }
-        #s-mod4-limpeza .m4l-side--no {
-            background: #fff1f0;
-            border-left: 1px solid rgba(0,0,0,0.06);
-        }
-
-        #s-mod4-limpeza .m4l-side-title {
-            margin: 0 0 6px;
-            font-family: var(--font-h);
-            font-size: clamp(14px, 1.3vw, 15px);
-            font-weight: 800;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            position: relative;
-            z-index: 1;
-        }
-
-        #s-mod4-limpeza .m4l-side-title .m4l-big {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            color: #fff;
-            font-size: 13px;
-            font-weight: 900;
-            flex-shrink: 0;
-        }
-
-        #s-mod4-limpeza .m4l-side--ok .m4l-side-title { color: var(--m4l-green-deep); }
-        #s-mod4-limpeza .m4l-side--ok .m4l-big { background: var(--m4l-green); }
-        #s-mod4-limpeza .m4l-side--no .m4l-side-title { color: var(--m4l-red-deep); }
-        #s-mod4-limpeza .m4l-side--no .m4l-big { background: var(--m4l-red); }
-
-        #s-mod4-limpeza .m4l-side ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            position: relative;
-            z-index: 1;
-        }
-
-        #s-mod4-limpeza .m4l-side li {
-            display: flex;
-            align-items: flex-start;
-            gap: 6px;
-            font-family: var(--font-b);
-            font-size: clamp(13px, 1.2vw, 14.5px);
-            color: #2c3340;
-            line-height: 1.35;
-        }
-
-        #s-mod4-limpeza .m4l-mark {
-            flex-shrink: 0;
-            font-weight: 800;
-            font-size: 12px;
-            line-height: 1.3;
-        }
-
-        #s-mod4-limpeza .m4l-side--ok .m4l-mark { color: var(--m4l-green); }
-        #s-mod4-limpeza .m4l-side--no .m4l-mark { color: var(--m4l-red); }
-
         @media screen and (max-width: 900px) {
-            #s-mod4-limpeza .content-area { overflow-y: auto; }
-            #s-mod4-limpeza .m4l-cols,
-            #s-mod4-limpeza .m4l-foot {
-                grid-template-columns: 1fr;
+            #s-mod4-limpeza .content-area {
+                overflow-y: auto !important; justify-content: flex-start !important;
+                padding: 6px 12px 88px !important;
             }
-            #s-mod4-limpeza .m4l-side--no { border-left: none; border-top: 1px solid rgba(0,0,0,0.06); }
+            #s-mod4-limpeza .m4l-cols { grid-template-columns: 1fr; max-width: 420px; width: 100%; margin: 0 auto; }
+            #s-mod4-limpeza .m4l-media { height: 140px; }
+            #s-mod4-limpeza .m4l-card { height: auto; max-height: none; }
+        }
+        @media screen and (max-width: 768px) and (orientation: portrait) {
+            #s-mod4-limpeza .m4l-cols { display: block; }
+            #s-mod4-limpeza .m4l-card { display: none; }
+            #s-mod4-limpeza .m4l-card.m4l-card-active { display: flex; }
+            #s-mod4-limpeza .m4l-carousel-nav {
+                display: flex; align-items: center; justify-content: center; gap: 16px; flex-shrink: 0;
+            }
+            #s-mod4-limpeza .m4l-nav-btn {
+                background: linear-gradient(145deg, #7AEEE0 0%, #53E6D4 45%, #AD52C4 100%);
+                color: #fff; border: 3px solid #fff; border-radius: 50%;
+                width: 48px; height: 48px; cursor: pointer;
+                display: flex; align-items: center; justify-content: center;
+                box-shadow: 0 0 0 3px rgba(83,230,212,0.55), 0 8px 22px rgba(173,82,196,0.55);
+            }
+            #s-mod4-limpeza .m4l-nav-btn svg { width: 18px; height: 18px; pointer-events: none; }
+            #s-mod4-limpeza .m4l-nav-btn:disabled { opacity: 0.28; cursor: default; }
+            #s-mod4-limpeza .m4l-counter {
+                font-family: var(--font-h); font-size: 14px; font-weight: 800;
+                color: var(--m4l-mint); min-width: 52px; text-align: center;
+            }
         }
 
-        @media screen and (max-width: 600px) {
-            #s-mod4-limpeza .content-area {
-                padding: 6px 12px 88px;
+        /* ── Página 25: Pode / Não pode ── */
+        #s-mod4-pode-nao {
+            --m4p-green: #1f9d5a;
+            --m4p-green-deep: #0f7a42;
+            --m4p-red: #e03a3a;
+            --m4p-red-deep: #9f1c1c;
+            --m4p-mint: #53E6D4;
+            overflow: hidden !important;
+        }
+        #s-mod4-pode-nao .top-bar { flex-shrink: 0; padding-bottom: 2px !important; }
+        #s-mod4-pode-nao .slide-title { font-size: clamp(22px, 2.8vw, 34px) !important; }
+        #s-mod4-pode-nao .content-area {
+            flex: 1 1 auto; min-height: 0;
+            display: flex !important; flex-direction: column;
+            justify-content: center !important; align-items: center !important;
+            text-align: left !important;
+            padding: 6px 22px 78px !important; gap: 12px;
+            overflow: hidden !important; position: relative; z-index: 2;
+        }
+        #s-mod4-pode-nao .m4p-grid {
+            width: 100%; max-width: 980px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+            align-items: stretch; max-height: 100%; min-height: 0;
+        }
+        #s-mod4-pode-nao .m4p-card {
+            background: #fff; border: 1.5px solid rgba(173, 82, 196, 0.14);
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 14px 32px rgba(0,0,0,0.18);
+            display: flex; flex-direction: column; min-width: 0; min-height: 0;
+        }
+        #s-mod4-pode-nao .m4p-media {
+            position: relative; width: 100%; flex: 0 0 auto;
+            height: clamp(120px, 22vh, 200px);
+            background: linear-gradient(145deg, rgba(173,82,196,0.1), rgba(83,230,212,0.1)), #f3f0f7;
+            overflow: hidden;
+        }
+        #s-mod4-pode-nao .m4p-media img {
+            position: relative; z-index: 1; width: 100%; height: 100%;
+            object-fit: cover; object-position: center; display: block;
+        }
+        #s-mod4-pode-nao .m4p-media-ph {
+            position: absolute; inset: 0; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 6px;
+            pointer-events: none; color: rgba(74,24,102,0.4);
+            font-family: var(--font-h); font-size: 12px; font-weight: 800;
+            letter-spacing: 0.06em; text-transform: uppercase; z-index: 0;
+        }
+        #s-mod4-pode-nao .m4p-media-ph svg { width: 32px; height: 32px; opacity: 0.5; }
+        #s-mod4-pode-nao .m4p-expand {
+            position: absolute; bottom: 10px; right: 10px; z-index: 3;
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 36px; height: 36px; padding: 0; border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.9); background: #53E6D4;
+            box-shadow: 0 5px 14px rgba(83,230,212,0.5); color: #1F0A45;
+            font-size: 15px; line-height: 1; cursor: pointer;
+        }
+        #s-mod4-pode-nao .m4p-body {
+            padding: 14px 16px 16px; flex: 1 1 auto; min-height: 0;
+            display: flex; flex-direction: column; gap: 10px; overflow: hidden;
+        }
+        #s-mod4-pode-nao .m4p-card--ok .m4p-body {
+            background: linear-gradient(180deg, #ecfffc 0%, #fff 55%);
+            border-top: 3px solid var(--m4p-mint);
+        }
+        #s-mod4-pode-nao .m4p-card--no .m4p-body {
+            background: linear-gradient(180deg, #fff1f2 0%, #fff 55%);
+            border-top: 3px solid var(--m4p-red);
+        }
+        #s-mod4-pode-nao .m4p-kicker {
+            margin: 0; font-family: var(--font-h); font-size: 11px; font-weight: 800;
+            letter-spacing: 0.12em; text-transform: uppercase;
+        }
+        #s-mod4-pode-nao .m4p-card--ok .m4p-kicker { color: #1a9e8f; }
+        #s-mod4-pode-nao .m4p-card--no .m4p-kicker { color: var(--m4p-red); }
+        #s-mod4-pode-nao .m4p-title {
+            margin: 0; font-family: var(--font-h); font-size: clamp(16px, 1.7vw, 19px);
+            font-weight: 800; line-height: 1.2; display: flex; align-items: center; gap: 8px;
+        }
+        #s-mod4-pode-nao .m4p-card--ok .m4p-title { color: var(--m4p-green-deep); }
+        #s-mod4-pode-nao .m4p-card--no .m4p-title { color: var(--m4p-red-deep); }
+        #s-mod4-pode-nao .m4p-badge {
+            width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+            color: #fff; font-size: 14px; font-weight: 900; flex-shrink: 0;
+        }
+        #s-mod4-pode-nao .m4p-card--ok .m4p-badge { background: var(--m4p-green); }
+        #s-mod4-pode-nao .m4p-card--no .m4p-badge { background: var(--m4p-red); }
+        #s-mod4-pode-nao .m4p-list {
+            margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px;
+        }
+        #s-mod4-pode-nao .m4p-list li {
+            display: flex; align-items: flex-start; gap: 8px; padding: 8px 10px;
+            border-radius: 12px; background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(173,82,196,0.1); font-family: var(--font-b);
+            font-size: clamp(13px, 1.25vw, 14.5px); color: rgba(74,24,102,0.9); line-height: 1.35;
+        }
+        #s-mod4-pode-nao .m4p-card--no .m4p-list li { border-color: rgba(224,58,58,0.16); }
+        #s-mod4-pode-nao .m4p-mark { flex-shrink: 0; font-weight: 900; font-size: 13px; line-height: 1.3; }
+        #s-mod4-pode-nao .m4p-card--ok .m4p-mark { color: var(--m4p-green); }
+        #s-mod4-pode-nao .m4p-card--no .m4p-mark { color: var(--m4p-red); }
+        #s-mod4-pode-nao .m4p-carousel-nav { display: none; }
+        @media screen and (max-height: 760px) {
+            #s-mod4-pode-nao .m4p-media { height: clamp(90px, 16vh, 140px); }
+            #s-mod4-pode-nao .m4p-body { padding: 10px 12px 12px; gap: 8px; }
+            #s-mod4-pode-nao .m4p-list li { padding: 6px 8px; font-size: 12.5px; }
+        }
+        @media screen and (max-width: 900px) {
+            #s-mod4-pode-nao .content-area {
+                overflow-y: auto !important; justify-content: flex-start !important;
+                padding: 6px 12px 88px !important;
+            }
+            #s-mod4-pode-nao .m4p-grid { grid-template-columns: 1fr; max-width: 420px; }
+            #s-mod4-pode-nao .m4p-media { height: 150px; }
+        }
+        @media screen and (max-width: 768px) and (orientation: portrait) {
+            #s-mod4-pode-nao .m4p-grid { display: block; max-width: 420px; width: 100%; }
+            #s-mod4-pode-nao .m4p-card { display: none; }
+            #s-mod4-pode-nao .m4p-card.m4p-card-active { display: flex; }
+            #s-mod4-pode-nao .m4p-carousel-nav {
+                display: flex; align-items: center; justify-content: center; gap: 16px;
+            }
+            #s-mod4-pode-nao .m4p-nav-btn {
+                background: linear-gradient(145deg, #7AEEE0 0%, #53E6D4 45%, #AD52C4 100%);
+                color: #fff; border: 3px solid #fff; border-radius: 50%;
+                width: 48px; height: 48px; min-width: 48px; min-height: 48px; cursor: pointer;
+                display: flex; align-items: center; justify-content: center;
+                box-shadow: 0 0 0 3px rgba(83,230,212,0.55), 0 8px 22px rgba(173,82,196,0.55);
+                touch-action: manipulation;
+            }
+            #s-mod4-pode-nao .m4p-nav-btn svg { width: 18px; height: 18px; pointer-events: none; }
+            #s-mod4-pode-nao .m4p-nav-btn:disabled { opacity: 0.28; cursor: default; }
+            #s-mod4-pode-nao .m4p-counter {
+                font-family: var(--font-h); font-size: 14px; font-weight: 800;
+                color: var(--m4p-mint); min-width: 52px; text-align: center;
             }
         }
 
@@ -1023,159 +856,136 @@
                 <div
                     style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(83, 230, 212, 0.08) 3px, rgba(83, 230, 212, 0.08) 4px);">
                 </div>
-                <div class="top-bar" style="position: relative; z-index: 2;">
+                                <div class="top-bar" style="position: relative; z-index: 2;">
                     <div class="section-tag"
                         style="background: var(--red); color: #1F0A45; font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(83, 230, 212, 0.4);">
                         📋 Módulo 4</div>
                     <h2 class="slide-title"
-                        style="font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -0.015em; text-shadow: 0 0 15px rgba(83, 230, 212, 0.25);">
-                        Manutenção e limpeza <span class="m4m-accent">— regras gerais</span>
+                        style="font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -0.015em; text-shadow: 0 0 15px rgba(83, 230, 212, 0.4);">
+                        Manutenção e limpeza — <span>regras gerais</span>
                     </h2>
                 </div>
                 <div class="content-area">
-                    <div class="m4m-stack" role="list">
-                        <article class="m4m-card m4m-card--prep" role="listitem" aria-label="Antes de qualquer manutenção">
-                            <div class="m4m-card-head">
-                                <div class="m4m-card-ico" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/>
-                                        <path d="M9 12l2 2 4-4"/>
+                    <div class="m4m-layout" id="m4m-viewport" role="list">
+                        <article class="m4m-card m4m-card--prep m4m-card-active" role="listitem" aria-label="Antes de qualquer manutenção">
+                            <div class="m4m-media">
+                                <span class="m4m-media-ph" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/>
                                     </svg>
-                                </div>
-                                <h3 class="m4m-card-title">Antes de qualquer manutenção</h3>
+                                    Foto 1
+                                </span>
+                                <img src="assets/fotos/pag23-antes.png" alt="Antes de qualquer manutenção" onerror="this.style.display='none'">
+                                <button type="button" class="m4m-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/pag23-antes.png')">🔍</button>
                             </div>
-                            <div class="m4m-steps">
-                                <div class="m4m-step">
-                                    <div class="m4m-step-ico" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 3v8"/>
-                                            <path d="M7.5 7.2a6.5 6.5 0 1 0 9 0"/>
-                                        </svg>
-                                    </div>
-                                    <p class="m4m-step-label">Desligue a máquina</p>
-                                    <p class="m4m-step-hint">Desligue a máquina antes de qualquer intervenção.</p>
-                                </div>
-                                <div class="m4m-step">
-                                    <div class="m4m-step-ico" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 7V3"/>
-                                            <path d="M9 7V4"/>
-                                            <path d="M15 7V4"/>
-                                            <rect x="7" y="7" width="10" height="8" rx="1.5"/>
-                                            <path d="M10 15v4M14 15v4"/>
-                                            <path d="M8 19h8"/>
-                                        </svg>
-                                    </div>
-                                    <p class="m4m-step-label">Desconecte o cabo de alimentação</p>
-                                    <p class="m4m-step-hint">Desconecte o cabo da tomada antes de iniciar.</p>
-                                </div>
-                                <div class="m4m-step">
-                                    <div class="m4m-step-ico" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 9v4"/>
-                                            <path d="M12 17h.01"/>
-                                            <path d="M10.3 4.9L2.8 18a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 4.9a2 2 0 0 0-3.4 0z"/>
-                                        </svg>
-                                    </div>
-                                    <p class="m4m-step-label">Atenção: risco elevado de contato com corante</p>
-                                    <p class="m4m-step-hint">Durante a manutenção, o risco de contato com o corante é alto.</p>
-                                </div>
+                            <div class="m4m-body">
+                                <p class="m4m-kicker">Preparação</p>
+                                <h3 class="m4m-title">Antes de qualquer manutenção</h3>
+                                <ol class="m4m-steps">
+                                    <li class="m4m-step"><span class="m4m-step-num" aria-hidden="true">01</span><div><strong>Desligue a máquina</strong><span>Desligue antes de qualquer intervenção.</span></div></li>
+                                    <li class="m4m-step"><span class="m4m-step-num" aria-hidden="true">02</span><div><strong>Desconecte o cabo</strong><span>Retire o cabo da tomada antes de iniciar.</span></div></li>
+                                    <li class="m4m-step"><span class="m4m-step-num" aria-hidden="true">03</span><div><strong>Risco com corante</strong><span>Atenção ao contato elevado com corante.</span></div></li>
+                                </ol>
                             </div>
                         </article>
-
                         <article class="m4m-card m4m-card--ban" role="listitem" aria-label="Produtos proibidos">
-                            <div class="m4m-card-head">
-                                <div class="m4m-card-ico" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                                        <circle cx="12" cy="12" r="9"/>
-                                        <path d="M7.5 7.5l9 9"/>
+                            <div class="m4m-media">
+                                <span class="m4m-media-ph" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/>
                                     </svg>
-                                </div>
-                                <h3 class="m4m-card-title">Produtos proibidos</h3>
+                                    Foto 2
+                                </span>
+                                <img src="assets/fotos/pag23-proibidos.png" alt="Produtos proibidos" onerror="this.style.display='none'">
+                                <button type="button" class="m4m-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/pag23-proibidos.png')">🔍</button>
                             </div>
-                            <p class="m4m-lead">Nunca utilize produtos químicos inflamáveis ou à base de solvente.</p>
-                            <div class="m4m-bans">
-                                <div class="m4m-ban">
-                                    <div class="m4m-ban-ico" aria-hidden="true">
-                                        <svg viewBox="0 0 64 64" fill="none">
-                                            <path d="M26 14h12v6c4 2 7 7 7 13v14a6 6 0 0 1-6 6H25a6 6 0 0 1-6-6V33c0-6 3-11 7-13v-6z" stroke="#2a2a2a" stroke-width="2.2"/>
-                                            <path d="M28 14c0-3 2.5-5 4-5s4 2 4 5" stroke="#2a2a2a" stroke-width="2.2"/>
-                                            <circle cx="32" cy="36" r="16" stroke="#e03a3a" stroke-width="3.5"/>
-                                            <path d="M21 25l22 22" stroke="#e03a3a" stroke-width="3.5" stroke-linecap="round"/>
-                                        </svg>
-                                    </div>
-                                    <p class="m4m-ban-label">Álcool</p>
-                                </div>
-                                <div class="m4m-ban">
-                                    <div class="m4m-ban-ico" aria-hidden="true">
-                                        <svg viewBox="0 0 64 64" fill="none">
-                                            <path d="M26 14h12v6c4 2 7 7 7 13v14a6 6 0 0 1-6 6H25a6 6 0 0 1-6-6V33c0-6 3-11 7-13v-6z" stroke="#2a2a2a" stroke-width="2.2"/>
-                                            <path d="M28 14c0-3 2.5-5 4-5s4 2 4 5" stroke="#2a2a2a" stroke-width="2.2"/>
-                                            <circle cx="32" cy="36" r="16" stroke="#e03a3a" stroke-width="3.5"/>
-                                            <path d="M21 25l22 22" stroke="#e03a3a" stroke-width="3.5" stroke-linecap="round"/>
-                                        </svg>
-                                    </div>
-                                    <p class="m4m-ban-label">Aguarrás</p>
-                                </div>
-                                <div class="m4m-ban">
-                                    <div class="m4m-ban-ico" aria-hidden="true">
-                                        <svg viewBox="0 0 64 64" fill="none">
-                                            <path d="M26 14h12v6c4 2 7 7 7 13v14a6 6 0 0 1-6 6H25a6 6 0 0 1-6-6V33c0-6 3-11 7-13v-6z" stroke="#2a2a2a" stroke-width="2.2"/>
-                                            <path d="M28 14c0-3 2.5-5 4-5s4 2 4 5" stroke="#2a2a2a" stroke-width="2.2"/>
-                                            <circle cx="32" cy="36" r="16" stroke="#e03a3a" stroke-width="3.5"/>
-                                            <path d="M21 25l22 22" stroke="#e03a3a" stroke-width="3.5" stroke-linecap="round"/>
-                                        </svg>
-                                    </div>
-                                    <p class="m4m-ban-label">Desengraxante (WD-40)</p>
-                                </div>
-                                <div class="m4m-ban">
-                                    <div class="m4m-ban-ico" aria-hidden="true">
-                                        <svg viewBox="0 0 64 64" fill="none">
-                                            <path d="M26 14h12v6c4 2 7 7 7 13v14a6 6 0 0 1-6 6H25a6 6 0 0 1-6-6V33c0-6 3-11 7-13v-6z" stroke="#2a2a2a" stroke-width="2.2"/>
-                                            <path d="M28 14c0-3 2.5-5 4-5s4 2 4 5" stroke="#2a2a2a" stroke-width="2.2"/>
-                                            <circle cx="32" cy="36" r="16" stroke="#e03a3a" stroke-width="3.5"/>
-                                            <path d="M21 25l22 22" stroke="#e03a3a" stroke-width="3.5" stroke-linecap="round"/>
-                                        </svg>
-                                    </div>
-                                    <p class="m4m-ban-label">Thinner</p>
+                            <div class="m4m-body">
+                                <p class="m4m-kicker">Proibido</p>
+                                <h3 class="m4m-title">Produtos proibidos</h3>
+                                <p class="m4m-lead">Nunca utilize produtos químicos inflamáveis ou à base de solvente.</p>
+                                <div class="m4m-bans">
+                                    <span class="m4m-ban">Álcool</span>
+                                    <span class="m4m-ban">Aguarrás</span>
+                                    <span class="m4m-ban">Desengraxante (WD-40)</span>
+                                    <span class="m4m-ban">Thinner</span>
                                 </div>
                             </div>
                         </article>
-
                         <article class="m4m-card m4m-card--ok" role="listitem" aria-label="Atenção geral">
-                            <div class="m4m-card-head">
-                                <div class="m4m-card-ico" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/>
-                                        <path d="M9 12l2 2 4-4"/>
+                            <div class="m4m-media">
+                                <span class="m4m-media-ph" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/>
                                     </svg>
-                                </div>
-                                <h3 class="m4m-card-title">Atenção geral</h3>
+                                    Foto 3
+                                </span>
+                                <img src="assets/fotos/pag23-atencao.png" alt="Atenção geral" onerror="this.style.display='none'">
+                                <button type="button" class="m4m-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/pag23-atencao.png')">🔍</button>
                             </div>
-                            <div class="m4m-ok-body">
-                                <p class="m4m-ok-text">Segurança sempre. Siga as orientações e, em caso de dúvida, chame o serviço técnico autorizado.</p>
-                                <div class="m4m-ok-art" aria-hidden="true">
-                                    <svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="48" cy="22" r="10"/>
-                                        <path d="M28 40h40l-4 20H32L28 40z"/>
-                                        <path d="M36 60v18M60 60v18"/>
-                                        <path d="M34 18h28v6c0 4-6 8-14 8s-14-4-14-8v-6z"/>
-                                        <path d="M66 44l12 4-4 10-8-2"/>
-                                        <path d="M74 52l6 8"/>
-                                    </svg>
+                            <div class="m4m-body">
+                                <p class="m4m-kicker">Segurança</p>
+                                <h3 class="m4m-title">Atenção geral</h3>
+                                <p class="m4m-lead">Segurança sempre. Siga as orientações e, em caso de dúvida, chame o serviço técnico autorizado.</p>
+                                <div class="m4m-ok-chip">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+                                    Serviço técnico autorizado
                                 </div>
                             </div>
                         </article>
                     </div>
+                    <div class="m4m-carousel-nav" aria-label="Navegação dos cards">
+                        <button type="button" class="m4m-nav-btn" id="m4m-prev" onclick="m4mCarouselNav(-1)" aria-label="Anterior">
+                            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="15,3 3,10 15,17"/></svg>
+                        </button>
+                        <span class="m4m-counter" id="m4m-counter">1 / 3</span>
+                        <button type="button" class="m4m-nav-btn" id="m4m-next" onclick="m4mCarouselNav(1)" aria-label="Próximo">
+                            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="5,3 17,10 5,17"/></svg>
+                        </button>
+                    </div>
+                    <script>
+                        (function () {
+                            var m4mIdx = 0, m4mTotal = 3;
+                            function isMob() { return window.matchMedia('screen and (max-width: 768px) and (orientation: portrait)').matches; }
+                            function cards() { return document.querySelectorAll('#s-mod4-inspecao .m4m-card'); }
+                            function ui() {
+                                var c = cards(); m4mTotal = c.length || 3;
+                                c.forEach(function (el, i) { el.classList.toggle('m4m-card-active', i === m4mIdx); });
+                                var counter = document.getElementById('m4m-counter');
+                                if (counter) counter.textContent = (m4mIdx + 1) + ' / ' + m4mTotal;
+                                var prev = document.getElementById('m4m-prev'), next = document.getElementById('m4m-next');
+                                if (prev) prev.disabled = m4mIdx === 0;
+                                if (next) next.disabled = m4mIdx === m4mTotal - 1;
+                            }
+                            window.m4mCarouselNav = function (dir) {
+                                if (!isMob()) return;
+                                var n = m4mIdx + dir; if (n < 0 || n >= m4mTotal) return;
+                                m4mIdx = n; try { if (typeof playTechClick === 'function') playTechClick(); } catch (e) {}
+                                ui();
+                            };
+                            var sx = 0, vp = document.getElementById('m4m-viewport');
+                            if (vp) {
+                                vp.addEventListener('touchstart', function (e) { sx = e.changedTouches[0].screenX; }, { passive: true });
+                                vp.addEventListener('touchend', function (e) {
+                                    if (!isMob()) return;
+                                    var d = sx - e.changedTouches[0].screenX;
+                                    if (Math.abs(d) > 40) window.m4mCarouselNav(d > 0 ? 1 : -1);
+                                }, { passive: true });
+                            }
+                            function init() { m4mIdx = 0; ui(); }
+                            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+                            window.addEventListener('resize', function () { if (!isMob()) m4mIdx = 0; ui(); });
+                        })();
+                    </script>
                 </div>
                 <div class="wave" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;"><svg
                         viewBox="0 0 1440 100" preserveAspectRatio="none">
                         <path d="M0,65 C360,20 720,90 1080,40 C1260,15 1390,70 1440,60 L1440,100 L0,100 Z"
                             fill="rgba(83, 230, 212,0.07)" />
                     </svg></div>
+
             </div>
 
-            <div class="slide" id="s-mod4-limpeza"
+<div class="slide" id="s-mod4-limpeza"
                 style="background: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(83, 230, 212, 0.12) 0%, transparent 62%), radial-gradient(circle at center, #AD52C4 0%, #4A1866 100%); overflow: hidden;">
                 <div
                     style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 50% 50%, rgba(83, 230, 212, 0.12) 0%, transparent 65%);">
@@ -1183,137 +993,257 @@
                 <div
                     style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(83, 230, 212, 0.08) 3px, rgba(83, 230, 212, 0.08) 4px);">
                 </div>
+                                <div class="top-bar" style="position: relative; z-index: 2;">
+                    <div class="section-tag"
+                        style="background: var(--red); color: #1F0A45; font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(83, 230, 212, 0.4);">
+                        📋 Módulo 4</div>
+                    <h2 class="slide-title"
+                        style="font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -0.015em; text-shadow: 0 0 15px rgba(83, 230, 212, 0.4);">
+                        Limpeza por <span>equipamento</span>
+                    </h2>
+                </div>
+                <div class="content-area">
+                    <div class="m4l-layout">
+                        <div class="m4l-cols" id="m4l-viewport">
+                            <article class="m4l-card m4l-card--mix m4l-card-active" aria-label="Limpeza do misturador">
+                                <div class="m4l-media">
+                                    <span class="m4l-media-ph" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/>
+                                        </svg>
+                                        Foto 1
+                                    </span>
+                                    <img src="assets/fotos/pag24-misturador.png" alt="Limpeza do misturador" onerror="this.onerror=null;this.src='assets/fotos/misturador-13.png'">
+                                    <button type="button" class="m4l-expand" aria-label="Ampliar imagem" onclick="openImageModal(this.parentElement.querySelector('img').currentSrc||this.parentElement.querySelector('img').src)">🔍</button>
+                                </div>
+                                <div class="m4l-body">
+                                    <p class="m4l-kicker">Misturador</p>
+                                    <h3 class="m4l-title">Limpeza do misturador</h3>
+                                    <div class="m4l-sec">
+                                        <p class="m4l-sec-title">Parte externa</p>
+                                        <ul>
+                                            <li>Usar pano macio e seco para a limpeza.</li>
+                                            <li>Ou pano levemente umedecido com solução suave.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="m4l-sec">
+                                        <p class="m4l-sec-title">Vazamento interno</p>
+                                        <ul>
+                                            <li>Limpar imediatamente.</li>
+                                            <li>Usar pano úmido ou espátula.</li>
+                                            <li>Os líquidos escoam pelos furos de drenagem.</li>
+                                            <li>Inclinar levemente a máquina para facilitar o escoamento.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="m4l-card m4l-card--dos" aria-label="Limpeza do dosador">
+                                <div class="m4l-media">
+                                    <span class="m4l-media-ph" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/>
+                                        </svg>
+                                        Foto 2
+                                    </span>
+                                    <img src="assets/fotos/pag24-dosador.png" alt="Limpeza do dosador" onerror="this.onerror=null;this.src='assets/fotos/dosador-13.png'">
+                                    <button type="button" class="m4l-expand" aria-label="Ampliar imagem" onclick="openImageModal(this.parentElement.querySelector('img').currentSrc||this.parentElement.querySelector('img').src)">🔍</button>
+                                </div>
+                                <div class="m4l-body">
+                                    <p class="m4l-kicker">Dosador</p>
+                                    <h3 class="m4l-title">Limpeza do dosador</h3>
+                                    <div class="m4l-alert" role="alert">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8"/></svg>
+                                        Nunca usar água ou solvente
+                                    </div>
+                                    <div class="m4l-sec">
+                                        <p class="m4l-sec-title">Corante derramado dentro da máquina</p>
+                                        <ul>
+                                            <li>Não tentar limpar.</li>
+                                            <li>Desligar a máquina.</li>
+                                            <li>Chamar serviço técnico autorizado.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="m4l-sec">
+                                        <p class="m4l-sec-title">Derramamento externo</p>
+                                        <ol class="m4l-steps">
+                                            <li class="m4l-step"><span class="m4l-step-num" aria-hidden="true">1</span><span>Desconectar o cabo de alimentação.</span></li>
+                                            <li class="m4l-step"><span class="m4l-step-num" aria-hidden="true">2</span><span>Limpar revestimentos e painéis com pano macio.</span></li>
+                                            <li class="m4l-step"><span class="m4l-step-num" aria-hidden="true">3</span><span>Reconectar o cabo e ligar a máquina.</span></li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="m4l-carousel-nav" aria-label="Navegação dos cards">
+                            <button type="button" class="m4l-nav-btn" id="m4l-prev" onclick="m4lCarouselNav(-1)" aria-label="Anterior">
+                                <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="15,3 3,10 15,17"/></svg>
+                            </button>
+                            <span class="m4l-counter" id="m4l-counter">1 / 2</span>
+                            <button type="button" class="m4l-nav-btn" id="m4l-next" onclick="m4lCarouselNav(1)" aria-label="Próximo">
+                                <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="5,3 17,10 5,17"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <script>
+                        (function () {
+                            var m4lIdx = 0, m4lTotal = 2;
+                            function isMob() { return window.matchMedia('screen and (max-width: 768px) and (orientation: portrait)').matches; }
+                            function cards() { return document.querySelectorAll('#s-mod4-limpeza .m4l-card'); }
+                            function ui() {
+                                var c = cards(); m4lTotal = c.length || 2;
+                                c.forEach(function (el, i) { el.classList.toggle('m4l-card-active', i === m4lIdx); });
+                                var counter = document.getElementById('m4l-counter');
+                                if (counter) counter.textContent = (m4lIdx + 1) + ' / ' + m4lTotal;
+                                var prev = document.getElementById('m4l-prev'), next = document.getElementById('m4l-next');
+                                if (prev) prev.disabled = m4lIdx === 0;
+                                if (next) next.disabled = m4lIdx === m4lTotal - 1;
+                            }
+                            window.m4lCarouselNav = function (dir) {
+                                if (!isMob()) return;
+                                var n = m4lIdx + dir; if (n < 0 || n >= m4lTotal) return;
+                                m4lIdx = n; try { if (typeof playTechClick === 'function') playTechClick(); } catch (e) {}
+                                ui();
+                            };
+                            var sx = 0, vp = document.getElementById('m4l-viewport');
+                            if (vp) {
+                                vp.addEventListener('touchstart', function (e) { sx = e.changedTouches[0].screenX; }, { passive: true });
+                                vp.addEventListener('touchend', function (e) {
+                                    if (!isMob()) return;
+                                    var d = sx - e.changedTouches[0].screenX;
+                                    if (Math.abs(d) > 40) window.m4lCarouselNav(d > 0 ? 1 : -1);
+                                }, { passive: true });
+                            }
+                            function init() { m4lIdx = 0; ui(); }
+                            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+                            window.addEventListener('resize', function () { if (!isMob()) m4lIdx = 0; ui(); });
+                        })();
+                    </script>
+                </div>
+                <div class="wave" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;"><svg
+                        viewBox="0 0 1440 100" preserveAspectRatio="none">
+                        <path d="M0,65 C360,20 720,90 1080,40 C1260,15 1390,70 1440,60 L1440,100 L0,100 Z"
+                            fill="rgba(83, 230, 212,0.07)" />
+                    </svg></div>
+
+            </div>
+
+<div class="slide" id="s-mod4-pode-nao"
+                style="background: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(83, 230, 212, 0.12) 0%, transparent 62%), radial-gradient(circle at center, #AD52C4 0%, #4A1866 100%); overflow: hidden;">
+                <div style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 50% 50%, rgba(83, 230, 212, 0.12) 0%, transparent 65%);"></div>
+                <div style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(83, 230, 212, 0.08) 3px, rgba(83, 230, 212, 0.08) 4px);"></div>
                 <div class="top-bar" style="position: relative; z-index: 2;">
                     <div class="section-tag"
                         style="background: var(--red); color: #1F0A45; font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(83, 230, 212, 0.4);">
                         📋 Módulo 4</div>
                     <h2 class="slide-title"
-                        style="font-size: clamp(24px, 3.2vw, 36px); letter-spacing: -0.015em; text-shadow: 0 0 15px rgba(83, 230, 212, 0.25);">
-                        Limpeza por <span class="m4l-accent">equipamento</span>
+                        style="font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -0.015em; text-shadow: 0 0 15px rgba(83, 230, 212, 0.4);">
+                        O que <span>pode</span> e o que <span>não pode</span>
                     </h2>
                 </div>
                 <div class="content-area">
-                    <div class="m4l-layout">
-                        <div class="m4l-cols">
-                            <article class="m4l-card m4l-card--mix" aria-label="Limpeza do misturador">
-                                <div class="m4l-banner">
-                                    <img class="m4l-thumb" src="assets/fotos/misturador-13.png" alt="Misturador">
-                                    <h3>Limpeza do misturador</h3>
-                                </div>
-                                <div class="m4l-body">
-                                    <div class="m4l-row">
-                                        <div class="m4l-sec-ico" aria-hidden="true">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M4 14c2 0 3-2 5-2s3 2 5 2 3-2 5-2"/>
-                                                <path d="M8 10V7a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1"/>
-                                                <path d="M14 8h4"/>
-                                            </svg>
-                                        </div>
-                                        <div class="m4l-sec-content">
-                                            <p class="m4l-sec-title">Parte externa</p>
-                                            <ul>
-                                                <li>Usar pano macio e seco para a limpeza.</li>
-                                                <li>Ou pano levemente umedecido com solução suave.</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <hr class="m4l-divider">
-                                    <div class="m4l-row">
-                                        <div class="m4l-sec-ico" aria-hidden="true">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M10.3 4.9L2.8 18a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 4.9a2 2 0 0 0-3.4 0z"/>
-                                                <path d="M12 10v4"/>
-                                                <path d="M12 16.5h.01"/>
-                                            </svg>
-                                        </div>
-                                        <div class="m4l-sec-content">
-                                            <p class="m4l-sec-title">Vazamento interno</p>
-                                            <ul>
-                                                <li>Limpar imediatamente.</li>
-                                                <li>Usar pano úmido ou espátula.</li>
-                                                <li>Os líquidos escoam pelos furos de drenagem.</li>
-                                                <li>Inclinar levemente a máquina para facilitar o escoamento.</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="m4l-card m4l-card--dos" aria-label="Limpeza do dosador">
-                                <div class="m4l-banner">
-                                    <img class="m4l-thumb" src="assets/fotos/dosador-13.png" alt="Dosador">
-                                    <h3>Limpeza do dosador</h3>
-                                </div>
-                                <div class="m4l-body">
-                                    <div class="m4l-alert" role="alert">
-                                        <div class="m4l-alert-ico" aria-hidden="true">
-                                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round">
-                                                <circle cx="24" cy="24" r="18"/>
-                                                <path d="M12 12l24 24"/>
-                                            </svg>
-                                        </div>
-                                        <span>Nunca usar água ou solvente.</span>
-                                    </div>
-                                    <div class="m4l-row">
-                                        <div class="m4l-sec-ico" aria-hidden="true">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                                                <circle cx="12" cy="12" r="9"/>
-                                                <path d="M12 8v5"/>
-                                                <path d="M12 16.5h.01"/>
-                                            </svg>
-                                        </div>
-                                        <div class="m4l-sec-content">
-                                            <p class="m4l-sec-title">Corante derramado dentro da máquina</p>
-                                            <ul>
-                                                <li>Não tentar limpar.</li>
-                                                <li>Desligar a máquina.</li>
-                                                <li>Chamar serviço técnico autorizado.</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <hr class="m4l-divider">
-                                    <div class="m4l-sec-content">
-                                        <p class="m4l-sec-title">Derramamento externo</p>
-                                        <div class="m4l-steps">
-                                            <div class="m4l-step">
-                                                <span class="m4l-step-num">1</span>
-                                                <p class="m4l-step-text">Desconectar o cabo de alimentação.</p>
-                                            </div>
-                                            <div class="m4l-step">
-                                                <span class="m4l-step-num">2</span>
-                                                <p class="m4l-step-text">Limpar revestimentos e painéis com pano macio.</p>
-                                            </div>
-                                            <div class="m4l-step">
-                                                <span class="m4l-step-num">3</span>
-                                                <p class="m4l-step-text">Reconectar o cabo e ligar a máquina.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-
-                        <div class="m4l-foot">
-                            <div class="m4l-side m4l-side--ok">
-                                <p class="m4l-side-title"><span class="m4l-big">✓</span> Pode fazer</p>
-                                <ul>
-                                    <li><span class="m4l-mark">✓</span><span>Desligar a máquina</span></li>
-                                    <li><span class="m4l-mark">✓</span><span>Desconectar o cabo</span></li>
-                                    <li><span class="m4l-mark">✓</span><span>Usar pano macio</span></li>
-                                    <li><span class="m4l-mark">✓</span><span>Usar solução suave no misturador</span></li>
-                                    <li><span class="m4l-mark">✓</span><span>Chamar assistência técnica quando necessário</span></li>
+                    <div class="m4p-grid" id="m4p-viewport">
+                        <article class="m4p-card m4p-card--ok m4p-card-active" aria-label="Pode fazer">
+                            <div class="m4p-media">
+                                <span class="m4p-media-ph" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="5" width="18" height="14" rx="2"/>
+                                        <circle cx="8.5" cy="10" r="1.5"/>
+                                        <path d="M21 16l-5.5-5.5L9 17"/>
+                                    </svg>
+                                    Foto 1
+                                </span>
+                                <img src="assets/fotos/pag25-pode.png" alt="Pode fazer" onerror="this.style.display='none'">
+                                <button type="button" class="m4p-expand" aria-label="Ampliar imagem"
+                                    onclick="openImageModal('assets/fotos/pag25-pode.png')">🔍</button>
+                            </div>
+                            <div class="m4p-body">
+                                <p class="m4p-kicker">Permitido</p>
+                                <h3 class="m4p-title"><span class="m4p-badge">✓</span> Pode fazer</h3>
+                                <ul class="m4p-list">
+                                    <li><span class="m4p-mark">✓</span><span>Desligar a máquina</span></li>
+                                    <li><span class="m4p-mark">✓</span><span>Desconectar o cabo</span></li>
+                                    <li><span class="m4p-mark">✓</span><span>Usar pano macio</span></li>
+                                    <li><span class="m4p-mark">✓</span><span>Usar solução suave no misturador</span></li>
+                                    <li><span class="m4p-mark">✓</span><span>Chamar assistência técnica quando necessário</span></li>
                                 </ul>
                             </div>
-                            <div class="m4l-side m4l-side--no">
-                                <p class="m4l-side-title"><span class="m4l-big">✕</span> Não pode fazer</p>
-                                <ul>
-                                    <li><span class="m4l-mark">✕</span><span>Usar água no dosador</span></li>
-                                    <li><span class="m4l-mark">✕</span><span>Usar solventes ou produtos inflamáveis</span></li>
-                                    <li><span class="m4l-mark">✕</span><span>Limpar internamente o dosador por conta própria</span></li>
+                        </article>
+                        <article class="m4p-card m4p-card--no" aria-label="Não pode fazer">
+                            <div class="m4p-media">
+                                <span class="m4p-media-ph" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="5" width="18" height="14" rx="2"/>
+                                        <circle cx="8.5" cy="10" r="1.5"/>
+                                        <path d="M21 16l-5.5-5.5L9 17"/>
+                                    </svg>
+                                    Foto 2
+                                </span>
+                                <img src="assets/fotos/pag25-nao.png" alt="Não pode fazer" onerror="this.style.display='none'">
+                                <button type="button" class="m4p-expand" aria-label="Ampliar imagem"
+                                    onclick="openImageModal('assets/fotos/pag25-nao.png')">🔍</button>
+                            </div>
+                            <div class="m4p-body">
+                                <p class="m4p-kicker">Proibido</p>
+                                <h3 class="m4p-title"><span class="m4p-badge">✕</span> Não pode fazer</h3>
+                                <ul class="m4p-list">
+                                    <li><span class="m4p-mark">✕</span><span>Usar água no dosador</span></li>
+                                    <li><span class="m4p-mark">✕</span><span>Usar solventes ou produtos inflamáveis</span></li>
+                                    <li><span class="m4p-mark">✕</span><span>Limpar internamente o dosador por conta própria</span></li>
                                 </ul>
                             </div>
-                        </div>
+                        </article>
                     </div>
+                    <div class="m4p-carousel-nav" aria-label="Navegação dos cards">
+                        <button type="button" class="m4p-nav-btn" id="m4p-prev" onclick="m4pCarouselNav(-1)" aria-label="Anterior">
+                            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="15,3 3,10 15,17"/></svg>
+                        </button>
+                        <span class="m4p-counter" id="m4p-counter">1 / 2</span>
+                        <button type="button" class="m4p-nav-btn" id="m4p-next" onclick="m4pCarouselNav(1)" aria-label="Próximo">
+                            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="5,3 17,10 5,17"/></svg>
+                        </button>
+                    </div>
+                    <script>
+                        (function () {
+                            var m4pIdx = 0, m4pTotal = 2;
+                            function isMobilePortraitM4p() {
+                                return window.matchMedia('screen and (max-width: 768px) and (orientation: portrait)').matches;
+                            }
+                            function m4pCards() { return document.querySelectorAll('#s-mod4-pode-nao .m4p-card'); }
+                            function m4pUpdateUI() {
+                                var cards = m4pCards();
+                                m4pTotal = cards.length || 2;
+                                cards.forEach(function (c, i) { c.classList.toggle('m4p-card-active', i === m4pIdx); });
+                                var counter = document.getElementById('m4p-counter');
+                                if (counter) counter.textContent = (m4pIdx + 1) + ' / ' + m4pTotal;
+                                var prev = document.getElementById('m4p-prev');
+                                var next = document.getElementById('m4p-next');
+                                if (prev) prev.disabled = (m4pIdx === 0);
+                                if (next) next.disabled = (m4pIdx === m4pTotal - 1);
+                            }
+                            window.m4pCarouselNav = function (dir) {
+                                if (!isMobilePortraitM4p()) return;
+                                var newIdx = m4pIdx + dir;
+                                if (newIdx < 0 || newIdx >= m4pTotal) return;
+                                m4pIdx = newIdx;
+                                try { if (typeof playTechClick === 'function') playTechClick(); } catch (e) {}
+                                m4pUpdateUI();
+                            };
+                            var m4pSX = 0;
+                            var vp = document.getElementById('m4p-viewport');
+                            if (vp) {
+                                vp.addEventListener('touchstart', function (e) { m4pSX = e.changedTouches[0].screenX; }, { passive: true });
+                                vp.addEventListener('touchend', function (e) {
+                                    if (!isMobilePortraitM4p()) return;
+                                    var diff = m4pSX - e.changedTouches[0].screenX;
+                                    if (Math.abs(diff) > 40) window.m4pCarouselNav(diff > 0 ? 1 : -1);
+                                }, { passive: true });
+                            }
+                            function m4pInit() { m4pIdx = 0; m4pUpdateUI(); }
+                            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', m4pInit);
+                            else m4pInit();
+                            window.addEventListener('resize', function () { if (!isMobilePortraitM4p()) m4pIdx = 0; m4pUpdateUI(); });
+                        })();
+                    </script>
                 </div>
                 <div class="wave" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;"><svg
                         viewBox="0 0 1440 100" preserveAspectRatio="none">
@@ -3336,7 +3266,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=155"></script>
+    <script src="shared.js?v=157"></script>
 </body>
 
 </html>
