@@ -1,7 +1,7 @@
 [
   {
     "file": "pagina-1.mp3",
-    "text": "Módulo de Treinamento . Segurança Operacional NR-11 . Empilhadeira Patolada Segurança, prevenção e operação correta na movimentação de materiais com empilhadeira elétrica patolada. INICIAR O TREINAMENTO",
+    "text": "SEGURANÇA DO TRABALHO NR 12 . Segurança na Operação de Máquinas Aprenda a identificar riscos, aplicar proteções e operar máquinas com segurança no dia a dia. 4 Módulos Conteúdo completo Treinamento 100% online INICIAR O TREINAMENTO Ver tutorial",
     "slideId": "s1",
     "globalN": 1,
     "state": "main",
@@ -17,7 +17,7 @@
   },
   {
     "file": "pagina-3.mp3",
-    "text": "Sumário Conteúdo Programático Módulo 1 Abertura e Conceitos. Módulos 2 a 5 em breve, em desenvolvimento.",
+    "text": "Sumário Conteúdo Programático Módulo 1 Abertura e Conceitos Módulo 2 Máquinas da Central de Cores Módulo 3 Segurança na Operação Módulo 4 Segurança e Advertências",
     "slideId": "s-sumario",
     "globalN": 3,
     "state": "main",
@@ -25,30 +25,30 @@
   },
   {
     "file": "pagina-4.mp3",
-    "text": "INÍCIO DO MÓDULO MÓDULO 1 Abertura e Conceitos",
+    "text": "INÍCIO MÓDULO 1 Abertura e Conceitos",
     "slideId": "intro-m1",
     "globalN": 4,
     "state": "main",
     "sourceFile": "modulo-1.html"
   },
   {
-    "file": "pagina-6.mp3",
-    "text": "Módulo 1. Máquinas da Central de Cores. Conheça os equipamentos usados no dia a dia da loja e o papel da NR 12 para operar com proteção, atenção e procedimento correto. Dosador e misturador em operação real. Proteções e bloqueios sempre ativos. Só opera quem foi capacitado.",
+    "file": "pagina-5.mp3",
+    "text": "Módulo 1 Máquinas da Central de Cores CONCEITO Conheça os equipamentos usados no dia a dia da loja . dosador e misturador . e o papel da NR 12 para operar com proteção, atenção e procedimento correto. Proteções e bloqueios devem permanecer ativos; só opera quem foi capacitado.",
     "slideId": "s2",
     "globalN": 5,
     "state": "main",
     "sourceFile": "modulo-1.html"
   },
   {
-    "file": "pagina-7.mp3",
-    "text": "Módulo 1 Requisitos Obrigatórios . NR-11",
+    "file": "pagina-6.mp3",
+    "text": "Módulo 1 Limites de Atuação Clique em cada card . veja os 5 para desbloquear o avanço Força Humana ou Animal Clique no card Força Humana ou Animal 01 Equipamentos movidos exclusivamente por força humana (como as paleteiras manuais da loja) ou força animal. Clique para voltar Ferramentas Portáteis Clique no card Ferramentas Portáteis 02 Ferramentas elétricas manuais e transportáveis que atendam às normas técnicas de fabricação (como as furadeiras e serras tico-tico de uso da loja). Clique para voltar Eletrodomésticos Clique no card Eletrodomésticos 03 Aparelhos domésticos certificados com o selo do INMETRO. Clique para voltar Equipamentos Estáticos Clique no card Equipamentos Estáticos 04 Vasos de pressão, caldeiras, auto-fornos e tanques de armazenamento. Clique para voltar Atenção Clique no card Atenção 05 Embora esses itens comuns fiquem de fora da norma, as máquinas da Central de Cores (dosador e misturador) exigem o cumprimento obrigatório e rigoroso da NR 12. Clique para voltar ‹ 1 / 5 ›",
     "slideId": "s4",
     "globalN": 6,
     "state": "main",
     "sourceFile": "modulo-1.html"
   },
   {
-    "file": "pagina-8.mp3",
+    "file": "pagina-7.mp3",
     "text": "Módulo 1 Diretrizes de Proteção",
     "slideId": "s6",
     "globalN": 7,
@@ -56,15 +56,15 @@
     "sourceFile": "modulo-1.html"
   },
   {
-    "file": "pagina-9.mp3",
-    "text": "Módulo 1 Central de Cores. Dosador. Misturador.",
+    "file": "pagina-8.mp3",
+    "text": "Módulo 1 Central de Cores Dosador Equipamento da Central de Cores usado para dosar tintas e pigmentos com precisão nas embalagens. Misturador Equipamento da Central de Cores responsável por homogeneizar a tinta após a dosagem. 1 / 2",
     "slideId": "s-central-cores",
     "globalN": 8,
     "state": "main",
     "sourceFile": "modulo-1.html"
   },
   {
-    "file": "pagina-10-intro.mp3",
+    "file": "pagina-9-intro.mp3",
     "text": "Hora do desafio. Quiz do Módulo 1. Mostre que você domina os principais conteúdos da NR-12 na Central de Cores. Esta avaliação contém três perguntas. É necessário acertar pelo menos duas para avançar. Toque em Iniciar Desafio para começar.",
     "slideId": "sq1",
     "globalN": 9,
@@ -72,7 +72,7 @@
     "sourceFile": "modulo-1.html"
   },
   {
-    "file": "pagina-10-q1.mp3",
+    "file": "pagina-9-q1.mp3",
     "text": "Pergunta 1 de 3. Qual é o objetivo principal da NR-12 na Central de Cores? Opção A: Ensinar os operadores a realizarem misturas de cores personalizadas para os clientes da loja. Opção B: Estabelecer referências técnicas e medidas de proteção para resguardar a saúde e a integridade física dos trabalhadores. Opção C: Definir quais marcas de tintas e corantes químicos podem ser comercializados na loja.",
     "slideId": "sq1",
     "globalN": 9,
@@ -80,7 +80,7 @@
     "sourceFile": "modulo-1.html"
   },
   {
-    "file": "pagina-10-q2.mp3",
+    "file": "pagina-9-q2.mp3",
     "text": "Pergunta 2 de 3. De acordo com o item 12.1.4 da norma, a NR-12 NÃO se aplica a qual dos seguintes itens da loja? Opção A: Ao dosador automático computadorizado de corantes da Central. Opção B: Às paleteiras manuais, movidas por força humana, e ferramentas elétricas portáteis, como furadeiras. Opção C: Ao misturador mecânico giroscópico utilizado para homogeneizar as tintas.",
     "slideId": "sq1",
     "globalN": 9,
@@ -88,7 +88,7 @@
     "sourceFile": "modulo-1.html"
   },
   {
-    "file": "pagina-10-q3.mp3",
+    "file": "pagina-9-q3.mp3",
     "text": "Pergunta 3 de 3. Segundo as exigências do Anexo II da NR-12, quem está legalmente autorizado a utilizar o dosador e o misturador de tintas? Opção A: Qualquer colaborador da loja que precise preparar uma tinta de forma rápida. Opção B: Apenas clientes, desde que acompanhados por um operador de caixa. Opção C: Exclusivamente os colaboradores capacitados e aprovados no treinamento de segurança.",
     "slideId": "sq1",
     "globalN": 9,
@@ -96,7 +96,7 @@
     "sourceFile": "modulo-1.html"
   },
   {
-    "file": "pagina-10-result.mp3",
+    "file": "pagina-9-result.mp3",
     "text": "Resultado do Quiz do Módulo 1. Veja sua pontuação na tela. Toque em Jogar Novamente para refazer ou siga para o próximo módulo.",
     "slideId": "sq1",
     "globalN": 9,
@@ -104,39 +104,39 @@
     "sourceFile": "modulo-1.html"
   },
   {
-    "file": "pagina-11.mp3",
-    "text": "INÍCIO DO MÓDULO MÓDULO 2 Máquinas da Central de Cores",
+    "file": "pagina-10.mp3",
+    "text": "INÍCIO MÓDULO 2 Máquinas da Central de Cores",
     "slideId": "intro-m2",
     "globalN": 10,
     "state": "main",
     "sourceFile": "modulo-2.html"
   },
   {
-    "file": "pagina-12.mp3",
-    "text": "Equipamento Dosador de tintas",
+    "file": "pagina-11.mp3",
+    "text": "Módulo 2 Dosador de tintas",
     "slideId": "s-equipamento",
     "globalN": 11,
     "state": "main",
     "sourceFile": "modulo-2.html"
   },
   {
-    "file": "pagina-13.mp3",
-    "text": "Equipamento Misturador de tintas",
+    "file": "pagina-12.mp3",
+    "text": "Módulo 2 Misturador de tintas",
     "slideId": "s10",
     "globalN": 12,
     "state": "main",
     "sourceFile": "modulo-2.html"
   },
   {
-    "file": "pagina-14.mp3",
-    "text": "Módulo 2 Componentes das Máquinas Dosador de tintas Área de dosagem e posicionamento das embalagens. Área de enchimento dos canisters. Placa de identificação e etiquetas Advertências gerais e Perigo Laser. Interruptor geral, caixa de fusíveis, tomada de alimentação, tomadas auxiliares, portas seriais USB e serial. Misturador de tintas Lâmpada e botão de início de ciclo e timer, máximo de seis minutos. Botão de emergência. Porta tipo cortina deslizante. Mecanismo de travamento rotor e pratos de fechamento superior e inferior. Toque nos cards para visualizar.",
+    "file": "pagina-13.mp3",
+    "text": "Módulo 2 Componentes das Máquinas 01 Toque para visualizar Dosador de tintas Área de dosagem e posicionamento das embalagens; Área de enchimento dos canisters; Placa de identificação e etiquetas “Advertências gerais” e “Perigo Laser”; Interruptor geral, caixa de fusíveis, tomada de alimentação, tomadas auxiliares, portas seriais (USB e serial). 02 Toque para visualizar Misturador de tintas Lâmpada/botão de início de ciclo e timer (máx. 6 min); Botão de emergência; Porta tipo cortina deslizante; Mecanismo de travamento (rotor) e pratos de fechamento superior/inferior.",
     "slideId": "s9",
     "globalN": 13,
     "state": "main",
     "sourceFile": "modulo-2.html"
   },
   {
-    "file": "pagina-16-intro.mp3",
+    "file": "pagina-14-intro.mp3",
     "text": "Quiz do Módulo 2. Hora do desafio. Esta avaliação contém três perguntas de verdadeiro ou falso. É necessário acertar pelo menos duas para avançar. Toque em Iniciar Desafio para começar.",
     "slideId": "sq2",
     "globalN": 14,
@@ -144,7 +144,7 @@
     "sourceFile": "modulo-2.html"
   },
   {
-    "file": "pagina-16-q1.mp3",
+    "file": "pagina-14-q1.mp3",
     "text": "Pergunta 1 de 3. O timer do misturador permite ajustar o tempo de mistura em até 6 minutos. Opção A: Verdadeiro. Opção B: Falso.",
     "slideId": "sq2",
     "globalN": 14,
@@ -152,7 +152,7 @@
     "sourceFile": "modulo-2.html"
   },
   {
-    "file": "pagina-16-q2.mp3",
+    "file": "pagina-14-q2.mp3",
     "text": "Pergunta 2 de 3. A porta cortina do misturador pode ficar aberta durante o ciclo de mistura. Opção A: Verdadeiro. Opção B: Falso.",
     "slideId": "sq2",
     "globalN": 14,
@@ -160,7 +160,7 @@
     "sourceFile": "modulo-2.html"
   },
   {
-    "file": "pagina-16-q3.mp3",
+    "file": "pagina-14-q3.mp3",
     "text": "Pergunta 3 de 3. Os canisters ficam na área de enchimento do dosador. Opção A: Verdadeiro. Opção B: Falso.",
     "slideId": "sq2",
     "globalN": 14,
@@ -168,7 +168,7 @@
     "sourceFile": "modulo-2.html"
   },
   {
-    "file": "pagina-16-result.mp3",
+    "file": "pagina-14-result.mp3",
     "text": "Resultado do Quiz do Módulo 2. Veja sua pontuação na tela. Toque em Tentar Novamente para refazer ou siga para o próximo módulo.",
     "slideId": "sq2",
     "globalN": 14,
@@ -176,15 +176,15 @@
     "sourceFile": "modulo-2.html"
   },
   {
-    "file": "pagina-17.mp3",
-    "text": "INÍCIO DO MÓDULO MÓDULO 3 Segurança na Operação",
+    "file": "pagina-15.mp3",
+    "text": "INÍCIO MÓDULO 3 Segurança na Operação",
     "slideId": "intro-m3",
     "globalN": 15,
     "state": "main",
     "sourceFile": "modulo-3.html"
   },
   {
-    "file": "pagina-18.mp3",
+    "file": "pagina-16.mp3",
     "text": "Módulo 3 Instrução de Trabalho",
     "slideId": "s-bateria",
     "globalN": 16,
@@ -192,23 +192,23 @@
     "sourceFile": "modulo-3.html"
   },
   {
-    "file": "pagina-19.mp3",
-    "text": "Módulo 3 Operação segura",
+    "file": "pagina-17.mp3",
+    "text": "Módulo 3 Operação Segura",
     "slideId": "s-conducao",
     "globalN": 17,
     "state": "main",
     "sourceFile": "modulo-3.html"
   },
   {
-    "file": "pagina-20.mp3",
-    "text": "Módulo 3. Obrigatório, proibido e cuidados gerais. Explore as três categorias: o que é obrigatório, o que é proibido e os cuidados gerais, incluindo o limite de vinte e cinco quilos.",
+    "file": "pagina-18.mp3",
+    "text": "Módulo 3 Obrigatório, proibido e cuidados gerais Obrigatório Ler o manual antes de operar Usar a máquina somente para sua finalidade Observar sinalizações e usar EPI Manutenção só com a máquina desligada e desconectada Operação por um único operador Proibido Não usar embalagens fora do padrão Não operar em ambiente com risco de explosão Não usar a máquina para fins alimentares Não usar os pratos do misturador para fechar tampa Não operar sem proteções ou com dispositivos de segurança avariados, ausentes ou desativados Em caso de incêndio, nunca usar água Use apenas extintor de pó químico seco ou CO₂ Cuidados gerais Mãos fora da área de dosagem/mistura durante o funcionamento Exceto para carregar e descarregar Não usar a máquina como mesa de trabalho Respeitar o limite de 25 kg Explore as 3 categorias Regras revisadas",
     "slideId": "s-rampas",
     "globalN": 18,
     "state": "main",
     "sourceFile": "modulo-3.html"
   },
   {
-    "file": "pagina-21.mp3",
+    "file": "pagina-19.mp3",
     "text": "Módulo 3 Riscos elétricos, corantes e EPI",
     "slideId": "s-bateria-troca",
     "globalN": 19,
@@ -216,122 +216,130 @@
     "sourceFile": "modulo-3.html"
   },
   {
-    "file": "pagina-22.mp3",
-    "text": "Encontre os riscos. Observe três fotos, uma de cada vez, e veja o que está errado em cada cena: sem calçado de segurança, painel elétrico aberto e lata fora do centro do prato do misturador.",
+    "file": "pagina-20.mp3",
+    "text": "Encontre os riscos. Observe três fotos e decida se libera ou não libera o procedimento. Em todas as cenas há risco: sem calçado de segurança, painel elétrico aberto e lata fora do centro do prato do misturador. A decisão correta é não liberar.",
     "slideId": "s-quiz3",
     "globalN": 20,
     "state": "main",
     "sourceFile": "modulo-3.html"
   },
   {
-    "file": "pagina-23.mp3",
-    "text": "INÍCIO DO MÓDULO MÓDULO 4 Segurança e Advertências",
+    "file": "pagina-21.mp3",
+    "text": "INÍCIO MÓDULO 4 Segurança e Advertências",
     "slideId": "s-mod4-intro",
     "globalN": 21,
     "state": "main",
     "sourceFile": "modulo-4.html"
   },
   {
-    "file": "pagina-24.mp3",
-    "text": "MÓDULO 4 Regras do dia a dia",
+    "file": "pagina-22.mp3",
+    "text": "Módulo 4 Regras do dia a dia",
     "slideId": "s-mod4-video",
     "globalN": 22,
     "state": "main",
     "sourceFile": "modulo-4.html"
   },
   {
-    "file": "pagina-25.mp3",
-    "text": "MÓDULO 4 Manutenção e limpeza — regras gerais. Antes de qualquer manutenção: desligue a máquina, desconecte o cabo de alimentação e atenção ao risco elevado de contato com corante. Produtos proibidos: nunca utilize produtos químicos inflamáveis ou à base de solvente, como álcool, aguarrás, desengraxante WD-40 e thinner. Atenção geral: segurança sempre. Siga as orientações e, em caso de dúvida, chame o serviço técnico autorizado.",
+    "file": "pagina-23.mp3",
+    "text": "Módulo 4 Manutenção e limpeza . regras gerais Preparação Antes de qualquer manutenção Desligue a máquinaDesligue antes de qualquer intervenção. Desconecte o caboRetire o cabo da tomada antes de iniciar. Risco com coranteAtenção ao contato elevado com corante. Proibido Produtos proibidos Nunca utilize produtos químicos inflamáveis ou à base de solvente. Álcool Aguarrás Desengraxante (WD-40) Thinner Segurança Atenção geral Segurança sempre. Siga as orientações e, em caso de dúvida, chame o serviço técnico autorizado. Serviço técnico autorizado 1 / 3",
     "slideId": "s-mod4-inspecao",
     "globalN": 23,
     "state": "main",
     "sourceFile": "modulo-4.html"
   },
   {
-    "file": "pagina-26-limpeza.mp3",
-    "text": "MÓDULO 4 Limpeza por equipamento. Limpeza do misturador: na parte externa, usar pano macio e seco ou levemente umedecido com solução suave. Em vazamento interno, limpar imediatamente com pano úmido ou espátula; os líquidos escoam pelos furos de drenagem; inclinar levemente a máquina. Limpeza do dosador: nunca usar água ou solvente. Se houver corante derramado dentro da máquina, não tentar limpar, desligar e chamar o serviço técnico autorizado. Em derramamento externo: desconectar, limpar com pano macio, reconectar e ligar. Pode fazer: desligar, desconectar, usar pano macio, solução suave no misturador e chamar assistência. Não pode fazer: usar água no dosador, solventes inflamáveis, nem limpar internamente o dosador por conta própria.",
+    "file": "pagina-24.mp3",
+    "text": "Módulo 4 Limpeza por equipamento Misturador Limpeza do misturador Parte externa Usar pano macio e seco para a limpeza. Ou pano levemente umedecido com solução suave. Vazamento interno Limpar imediatamente. Usar pano úmido ou espátula. Os líquidos escoam pelos furos de drenagem. Inclinar levemente a máquina para facilitar o escoamento. Dosador Limpeza do dosador Nunca usar água ou solvente Corante derramado dentro da máquina Não tentar limpar. Desligar a máquina. Chamar serviço técnico autorizado. Derramamento externo Desconectar o cabo de alimentação. Limpar revestimentos e painéis com pano macio. Reconectar o cabo e ligar a máquina. 1 / 2",
     "slideId": "s-mod4-limpeza",
     "globalN": 24,
     "state": "main",
     "sourceFile": "modulo-4.html"
   },
   {
-    "file": "pagina-26.mp3",
-    "text": "MÓDULO 4 Limpeza dos bicos e da esponja",
-    "slideId": "s-mod4-video-finalizacao",
+    "file": "pagina-25.mp3",
+    "text": "Módulo 4 O que pode e o que não pode Permitido Pode fazer Desligar a máquina Desconectar o cabo Usar pano macio Usar solução suave no misturador Chamar assistência técnica quando necessário Proibido Não pode fazer Usar água no dosador Usar solventes ou produtos inflamáveis Limpar internamente o dosador por conta própria 1 / 2",
+    "slideId": "s-mod4-pode-nao",
     "globalN": 25,
     "state": "main",
     "sourceFile": "modulo-4.html"
   },
   {
-    "file": "pagina-26-organizacao.mp3",
-    "text": "MÓDULO 4 Organização e recomendações finais. Mantenha a Central de Cores limpa, organizada e segura para todos. Mantenha o ambiente limpo e organizado, evitando acúmulo de sujeira, papéis e etiquetas atrás das máquinas. Descarte resíduos de tinta em recipiente ou palete plástico de contenção próprio, para evitar riscos de incêndio. Demais recomendações: realizar manutenções preventivas regularmente; em caso de falha, não intervir, comunicar o líder para acionar a manutenção corretiva; utilizar sempre os equipamentos de segurança durante a operação; seguir as instruções de uso do fabricante; capacitar os operadores e não permitir uso por pessoas não autorizadas; realizar testes e inspeções periódicas.",
-    "slideId": "s-mod4-organizacao",
+    "file": "pagina-26.mp3",
+    "text": "Módulo 4 Limpeza dos bicos e da esponja",
+    "slideId": "s-mod4-video-finalizacao",
     "globalN": 26,
     "state": "main",
     "sourceFile": "modulo-4.html"
   },
   {
-    "file": "pagina-27-intro.mp3",
-    "text": "Quiz do Módulo 4. Mini-quiz de manutenção e limpeza. Esta avaliação contém três perguntas de múltipla escolha. É necessário acertar pelo menos duas para avançar. Toque em Iniciar Desafio para começar.",
-    "slideId": "s-quiz4",
+    "file": "pagina-27.mp3",
+    "text": "Módulo 4 Organização e recomendações finais Mantenha a Central de Cores limpa, organizada e segura para todos. Espaço para foto Coloque o arquivo em: assets/fotos/organizacao.png Ambiente limpo e organizado Sem acúmulo de resíduos Contenção correta Boas práticas no ambiente Mantenha o ambiente limpo e organizado, evitando acúmulo de sujeira, papéis e etiquetas atrás das máquinas. Descarte resíduos de tinta em recipiente/palete plástico de contenção próprio, para evitar riscos de incêndio. Recomendações importantes Realizar manutenções preventivas regularmente Em caso de falha, não intervir . comunicar o líder para acionar a manutenção corretiva Utilizar sempre os equipamentos de segurança durante a operação Seguir as instruções de uso do fabricante Capacitar os operadores e não permitir uso por pessoas não autorizadas Realizar testes e inspeções periódicas",
+    "slideId": "s-mod4-organizacao",
     "globalN": 27,
-    "state": "intro",
-    "sourceFile": "modulo-4.html"
-  },
-  {
-    "file": "pagina-27-q1.mp3",
-    "text": "Pergunta 1 de 3. Quais produtos são proibidos na limpeza do dosador? Opção A: Pano seco. Opção B: Água e solventes como álcool, aguarrás e thinner. Opção C: Solução suave. Opção D: Pano úmido.",
-    "slideId": "s-quiz4",
-    "globalN": 27,
-    "state": "q1",
-    "sourceFile": "modulo-4.html"
-  },
-  {
-    "file": "pagina-27-q2.mp3",
-    "text": "Pergunta 2 de 3. O que fazer se um corante for derramado dentro do dosador? Opção A: Limpar com pano imediatamente. Opção B: Desligar e chamar técnico autorizado. Opção C: Continuar operando. Opção D: Usar água para diluir.",
-    "slideId": "s-quiz4",
-    "globalN": 27,
-    "state": "q2",
-    "sourceFile": "modulo-4.html"
-  },
-  {
-    "file": "pagina-27-q3.mp3",
-    "text": "Pergunta 3 de 3. Qual o peso máximo permitido para movimentar recipientes? Opção A: 10 kg. Opção B: 15 kg. Opção C: 25 kg. Opção D: 40 kg.",
-    "slideId": "s-quiz4",
-    "globalN": 27,
-    "state": "q3",
-    "sourceFile": "modulo-4.html"
-  },
-  {
-    "file": "pagina-27-result.mp3",
-    "text": "Resultado do Quiz do Módulo 4. Veja sua pontuação na tela. Toque em Jogar Novamente para refazer ou siga para o próximo módulo.",
-    "slideId": "s-quiz4",
-    "globalN": 27,
-    "state": "result",
-    "sourceFile": "modulo-4.html"
-  },
-  {
-    "file": "pagina-28.mp3",
-    "text": "MÓDULO 4 A SEGURANÇA É DIREITO E DEVER DE TODOS Operar com responsabilidade protege vidas, equipamentos e toda a operação.",
-    "slideId": "s-mod6-mensagem-final",
-    "globalN": 28,
     "state": "main",
     "sourceFile": "modulo-4.html"
   },
   {
+    "file": "pagina-28-intro.mp3",
+    "text": "Quiz do Módulo 4. Mini-quiz de manutenção e limpeza. Esta avaliação contém três perguntas de múltipla escolha. É necessário acertar pelo menos duas para avançar. Toque em Iniciar Desafio para começar.",
+    "slideId": "s-quiz4",
+    "globalN": 28,
+    "state": "intro",
+    "sourceFile": "modulo-4.html"
+  },
+  {
+    "file": "pagina-28-q1.mp3",
+    "text": "Pergunta 1 de 3. Quais produtos são proibidos na limpeza do dosador? Opção A: Pano seco. Opção B: Água e solventes como álcool, aguarrás e thinner. Opção C: Solução suave. Opção D: Pano úmido.",
+    "slideId": "s-quiz4",
+    "globalN": 28,
+    "state": "q1",
+    "sourceFile": "modulo-4.html"
+  },
+  {
+    "file": "pagina-28-q2.mp3",
+    "text": "Pergunta 2 de 3. O que fazer se um corante for derramado dentro do dosador? Opção A: Limpar com pano imediatamente. Opção B: Desligar e chamar técnico autorizado. Opção C: Continuar operando. Opção D: Usar água para diluir.",
+    "slideId": "s-quiz4",
+    "globalN": 28,
+    "state": "q2",
+    "sourceFile": "modulo-4.html"
+  },
+  {
+    "file": "pagina-28-q3.mp3",
+    "text": "Pergunta 3 de 3. Qual o peso máximo permitido para movimentar recipientes? Opção A: 10 kg. Opção B: 15 kg. Opção C: 25 kg. Opção D: 40 kg.",
+    "slideId": "s-quiz4",
+    "globalN": 28,
+    "state": "q3",
+    "sourceFile": "modulo-4.html"
+  },
+  {
+    "file": "pagina-28-result.mp3",
+    "text": "Resultado do Quiz do Módulo 4. Veja sua pontuação na tela. Toque em Jogar Novamente para refazer ou siga para o próximo módulo.",
+    "slideId": "s-quiz4",
+    "globalN": 28,
+    "state": "result",
+    "sourceFile": "modulo-4.html"
+  },
+  {
     "file": "pagina-29.mp3",
-    "text": "MÓDULO 4 Mensagem final",
-    "slideId": "s-mod6-video-final",
+    "text": "Encerramento A SEGURANÇA É DIREITO E DEVER DE TODOS Operar com responsabilidade protege vidas, equipamentos e toda a operação.",
+    "slideId": "s-mod6-mensagem-final",
     "globalN": 29,
     "state": "main",
     "sourceFile": "modulo-4.html"
   },
   {
     "file": "pagina-30.mp3",
-    "text": "TREINAMENTO CONCLUÍDO Você completou com sucesso a capacitação em NR-11 . Empilhadeira Patolada. Sua dedicação aos procedimentos de segurança é fundamental. A excelência operacional protege vidas e garante um ambiente de trabalho seguro.",
-    "slideId": "s-conclusion",
+    "text": "Encerramento Mensagem final",
+    "slideId": "s-mod6-video-final",
     "globalN": 30,
+    "state": "main",
+    "sourceFile": "modulo-4.html"
+  },
+  {
+    "file": "pagina-31.mp3",
+    "text": "Página 31 de 31. Treinamento — Concluído. Certificado de conclusão. Parabéns! Você concluiu o treinamento NR 12 — Segurança na Operação de Máquinas. Por mérito, dedicação e compromisso com a segurança, você percorreu os 4 módulos. 4 módulos. NR 12. Máquinas.",
+    "slideId": "s-conclusion",
+    "globalN": 31,
     "state": "main",
     "sourceFile": "modulo-4.html"
   }

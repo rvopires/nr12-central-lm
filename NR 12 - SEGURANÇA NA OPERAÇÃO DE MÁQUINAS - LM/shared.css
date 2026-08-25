@@ -6226,73 +6226,61 @@ body {
         overflow-y: auto !important;
     }
 
-    /* â”€â”€â”€ MÃ“D 6 pÃ¡g 9 (s-conclusion): centralizar e abaixar â”€â”€â”€ */
+    /* s-conclusion — formato NR06 pág. 61 (s-fim) */
     #s-conclusion {
+        overflow: hidden !important;
         align-items: stretch !important;
         justify-content: flex-start !important;
         padding-top: 0 !important;
         text-align: center !important;
-        overflow: hidden !important;
+    }
+
+    #s-conclusion::after {
+        display: none !important;
     }
 
     #s-conclusion .content-area {
         overflow-x: hidden !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
-        max-height: none !important;
-        height: 100% !important;
         flex: 1 1 auto !important;
         min-height: 0 !important;
-        padding: 48px 18px calc(140px + env(safe-area-inset-bottom, 0px)) !important;
+        height: auto !important;
+        max-height: none !important;
+        padding: 8px 16px calc(110px + env(safe-area-inset-bottom, 0px)) !important;
         text-align: center !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        max-width: 100% !important;
         display: flex !important;
         flex-direction: column !important;
-    }
-
-    #s-conclusion .content-wrap {
-        margin-top: 28px !important;
-        max-height: none !important;
-        overflow: visible !important;
-    }
-
-    #s-conclusion .title-epic,
-    #s-conclusion h1 {
-        font-size: 24px !important;
-        line-height: 1.1 !important;
-        margin-bottom: 8px !important;
-    }
-
-    #s-conclusion .subtext,
-    #s-conclusion p {
-        font-size: 13px !important;
-        line-height: 1.4 !important;
-        margin-bottom: 12px !important;
-    }
-
-    #s-conclusion .msg-box {
-        font-size: 12.5px !important;
-        line-height: 1.45 !important;
-        padding: 12px 12px 14px !important;
-        margin: 0 auto !important;
+        justify-content: center !important;
+        align-items: center !important;
         max-width: 100% !important;
-        border-radius: 12px !important;
-        text-align: left !important;
     }
 
-    #s-conclusion .seal-container {
-        width: 72px !important;
-        height: 72px !important;
+    #s-conclusion .fim-wrap {
+        width: 100% !important;
+        max-width: min(860px, 94vw) !important;
+        margin: 0 auto !important;
+    }
+
+    #s-conclusion .fim-card p {
+        font-size: clamp(13px, 3.6vw, 16px) !important;
+        line-height: 1.65 !important;
+        margin-bottom: 20px !important;
+        text-align: center !important;
+        max-width: 560px !important;
+    }
+
+    #s-conclusion .fim-card h3 {
+        font-size: clamp(24px, 7vw, 34px) !important;
+        line-height: 1.15 !important;
         margin-bottom: 10px !important;
     }
 
-    #s-conclusion .seal-inner {
-        width: 54px !important;
-        height: 54px !important;
-        font-size: 28px !important;
+    #s-conclusion > .slide-scroll-btn {
+        z-index: 20 !important;
     }
+
+
 }
 
 
@@ -6480,95 +6468,249 @@ body {
         text-align: center !important;
     }
 
-    /* â”€â”€â”€ MÃ“D 6 pÃ¡g 45 (s-conclusion): scroll + setinha â”€â”€â”€ */
+    /* s-conclusion — formato NR06 pág. 61 (s-fim) */
     #s-conclusion {
         overflow: hidden !important;
         align-items: stretch !important;
         justify-content: flex-start !important;
         padding-top: 0 !important;
+        text-align: center !important;
+    }
+
+    #s-conclusion::after {
+        display: none !important;
     }
 
     #s-conclusion .content-area {
         overflow-x: hidden !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
-        max-height: none !important;
-        height: 100% !important;
         flex: 1 1 auto !important;
         min-height: 0 !important;
-        padding: 48px 18px calc(140px + env(safe-area-inset-bottom, 0px)) !important;
+        height: auto !important;
+        max-height: none !important;
+        padding: 8px 16px calc(110px + env(safe-area-inset-bottom, 0px)) !important;
         text-align: center !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: flex-start !important;
+        justify-content: center !important;
         align-items: center !important;
-    }
-
-    #s-conclusion .content-wrap {
-        max-height: none !important;
-        overflow: visible !important;
-        margin-top: 28px !important;
-    }
-
-    #s-conclusion .bg-overlay,
-    #s-conclusion .glow-overlay,
-    #s-conclusion #c-particles,
-    #s-conclusion #c-confetti {
-        overflow: hidden !important;
-        max-height: none !important;
-        padding: 0 !important;
-        display: block !important;
-        pointer-events: none !important;
-    }
-
-    #s-conclusion .title-epic,
-    #s-conclusion h1 {
-        font-size: 24px !important;
-        line-height: 1.1 !important;
-        margin-bottom: 8px !important;
-    }
-
-    #s-conclusion .subtext,
-    #s-conclusion p {
-        font-size: 13px !important;
-        line-height: 1.4 !important;
-        margin-bottom: 12px !important;
-    }
-
-    #s-conclusion .msg-box {
-        font-size: 12.5px !important;
-        line-height: 1.45 !important;
-        padding: 12px 12px 14px !important;
-        margin: 0 auto !important;
-        border-radius: 12px !important;
-        text-align: left !important;
-    }
-
-    #s-conclusion .seal-container {
-        width: 72px !important;
-        height: 72px !important;
-        margin-bottom: 10px !important;
-    }
-
-    #s-conclusion .seal-inner {
-        width: 54px !important;
-        height: 54px !important;
-        font-size: 28px !important;
-    }
-
-    #s-conclusion .btn-finish {
-        width: 100% !important;
         max-width: 100% !important;
-        min-height: 46px !important;
-        margin-top: 14px !important;
-        padding: 12px 18px !important;
-        font-size: 13px !important;
+    }
+
+    #s-conclusion .fim-wrap {
+        width: 100% !important;
+        max-width: min(860px, 94vw) !important;
+        margin: 0 auto !important;
+    }
+
+    #s-conclusion .fim-card p {
+        font-size: clamp(13px, 3.6vw, 16px) !important;
+        line-height: 1.65 !important;
+        margin-bottom: 20px !important;
+        text-align: center !important;
+        max-width: 560px !important;
+    }
+
+    #s-conclusion .fim-card h3 {
+        font-size: clamp(24px, 7vw, 34px) !important;
+        line-height: 1.15 !important;
+        margin-bottom: 10px !important;
     }
 
     #s-conclusion > .slide-scroll-btn {
         z-index: 20 !important;
     }
+
+
 }
+
+
+/* Mobile-only hint at top of card pages */
+@media screen and (max-width: 768px) {
+    .mobile-hint,
+    #s2 .s2-acc-hint {
+        display: block !important;
+        width: 100%;
+        text-align: center;
+        margin: 8px 0 12px;
+        padding: 0 8px;
+        font-family: var(--font-h);
+        font-size: 15px !important;
+        font-weight: 700;
+        line-height: 1.4 !important;
+        color: var(--gold-lt);
+        letter-spacing: 0.3px;
+        text-shadow: 0 0 10px rgba(83, 230, 212, 0.45);
+    }
+}
+
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   FIX BATCH v3 â€” mobile refinements
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+@media screen and (max-width: 768px) {
+
+    /* --- CAPA: mobile compacto --- */
+    #s1 .s1-inner {
+        padding: 20px 16px 70px !important;
+        transform: none;
+    }
+
+    #s1 .s1-text-col h1 {
+        font-size: 26px !important;
+        margin-bottom: 10px !important;
+    }
+
+    #s1 .s1-text-col > p {
+        font-size: 14px !important;
+        margin-bottom: 16px !important;
+        line-height: 1.45 !important;
+    }
+
+    #s1 .btn-start {
+        padding: 14px 24px 14px 18px !important;
+        font-size: 13px !important;
+        letter-spacing: 0.06em !important;
+        white-space: nowrap;
+        min-height: 0;
+        width: auto !important;
+        align-self: flex-start !important;
+        justify-content: flex-start !important;
+    }
+
+    #s1 .s1-tag {
+        font-size: 9.5px !important;
+        padding: 7px 12px !important;
+        margin-bottom: 12px !important;
+        justify-content: flex-start;
+        text-align: left;
+        width: auto;
+        max-width: 100%;
+    }
+
+    #s1 .s1-secondary-actions {
+        align-self: flex-start !important;
+        margin-top: 0;
+    }
+
+    #s1 .btn-tutorial {
+        display: inline-flex;
+        width: auto;
+        max-width: max-content;
+        align-self: flex-start;
+        justify-content: flex-start;
+        margin-top: 0;
+        margin-left: 0;
+        position: relative;
+        left: 0;
+    }
+
+    .slide:not(#s1) .visual-placeholder::after {
+        display: none;
+    }
+
+    /* â”€â”€â”€ GLOBAL: desativa hover/transform agressivo nos cards â”€â”€â”€ */
+    /* Em mobile com touch, hover fica preso. Desativar transforms evita "travadas". */
+    .icon-card:hover,
+    .card:hover,
+    .check-item:hover,
+    .stat-pill:hover,
+    .risk-card:hover,
+    .compare-card:hover,
+    .comp-card-modern:hover,
+    .hub-spoke:hover,
+    .sum-item:hover,
+    .rule-card:hover,
+    .rampas-card:hover,
+    .mod5-card:hover,
+    .hud-panel-item:hover,
+    .passo-card:hover {
+        transform: none !important;
+    }
+
+    /* Reduz box-shadow agressivo no hover/active */
+    .comp-card-modern:hover,
+    .compare-card:hover {
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    /* MÓD 3 s-conducao: espaço inferior */
+    #s-conducao .content-area {
+        padding-bottom: calc(160px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+
+
+
+    /* â”€â”€â”€ MÃ“D 6 pÃ¡g 3 (s-mod6-compromissos): Ã­cones uniformes e centralizados â”€â”€â”€ */
+    #s-mod6-compromissos .hud-panel-icon {
+        font-size: 28px !important;
+        width: 48px !important;
+        height: 48px !important;
+        line-height: 48px !important;
+        text-align: center !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 auto 10px !important;
+    }
+
+    #s-mod6-compromissos .hud-panel-item {
+        text-align: center !important;
+        padding: 20px 16px !important;
+    }
+
+    #s-mod6-compromissos .hud-panel-num {
+        margin-bottom: 6px !important;
+    }
+
+    #s-mod6-compromissos .hud-panel-title {
+        margin-top: 6px !important;
+    }
+
+    /* â”€â”€â”€ MÃ“D 6 pÃ¡g 4 (s-mod6-comp-preventiva): card vira verde ao clicar (one-time) â”€â”€â”€ */
+    #s-mod6-comp-preventiva .comp-card-modern.req-done {
+        border-color: var(--green) !important;
+        box-shadow: 0 0 24px rgba(83, 230, 212, 0.35), inset 0 0 12px rgba(83, 230, 212, 0.1) !important;
+        background: rgba(83, 230, 212, 0.06) !important;
+    }
+
+    #s-mod6-comp-preventiva .comp-card-modern.req-done::after {
+        content: 'âœ“';
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        font-size: 22px;
+        color: var(--green);
+        text-shadow: 0 0 12px rgba(83, 230, 212, 0.6);
+        font-weight: bold;
+        z-index: 5;
+    }
+
+    /* â”€â”€â”€ MÃ“D 6 pÃ¡g 5 (s-mod6-mensagem-final): centralizar mais embaixo + blur menor â”€â”€â”€ */
+    #s-mod6-mensagem-final {
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    #s-mod6-mensagem-final .bg-layer img,
+    #s-mod6-mensagem-final .static-bg {
+        filter: brightness(0.55) contrast(1.05) !important;
+    }
+
+    #s-mod6-mensagem-final>*:not(.bg-layer):not(.top-bar) {
+        margin-top: 60px !important;
+    }
+
+    /* Especificamente: o tÃ­tulo central */
+    #s-mod6-mensagem-final h1,
+    #s-mod6-mensagem-final h2 {
+        margin-top: 8vh !important;
+        text-align: center !important;
+    }
+
+    }
 
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•

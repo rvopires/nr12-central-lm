@@ -78,7 +78,8 @@
        Adicione aqui se quiser sobrescrever o texto extraído do HTML.
        Slides não listados usam extração automática via jsdom no generator.    */
     const OVERRIDES = {
-        's-quiz3': 'Encontre os riscos. Observe três fotos e decida se libera ou não libera o procedimento. Em todas as cenas há risco: sem calçado de segurança, painel elétrico aberto e lata fora do centro do prato do misturador. A decisão correta é não liberar.'
+        's-quiz3': 'Encontre os riscos. Observe três fotos e decida se libera ou não libera o procedimento. Em todas as cenas há risco: sem calçado de segurança, painel elétrico aberto e lata fora do centro do prato do misturador. A decisão correta é não liberar.',
+        's-conclusion': 'Página 31 de 31. Treinamento — Concluído. Certificado de conclusão. Parabéns! Você concluiu o treinamento NR 12 — Segurança na Operação de Máquinas. Por mérito, dedicação e compromisso com a segurança, você percorreu os 4 módulos. 4 módulos. NR 12. Máquinas.'
     };
 
     /* Calcula o número global do slide (1..NR11_TOTAL_SLIDES) a partir do
