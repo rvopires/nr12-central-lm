@@ -11,7 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=140">
+<link rel="stylesheet" href="shared.css?v=143">
     <script>
         window.MODULE_NAV = {
             id: "modulo-1",
@@ -420,16 +420,60 @@
                     <h2 class="slide-title"
                         style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);">
                         Limites de Atuação: Onde a NR 12 <span>NÃO</span> se aplica?</h2>
+                    <div class="slide-subtitle">Passe por todos os cards para avançar</div>
                 </div>
                 <div class="content-area">
                     <style>
+                        #s4 {
+                            display: flex !important;
+                            flex-direction: column !important;
+                            overflow: hidden;
+                            background:
+                                radial-gradient(ellipse 90% 70% at 50% 0%, rgba(0, 255, 255, 0.1) 0%, transparent 62%),
+                                radial-gradient(circle at center, rgba(126, 54, 227, 1) 0%, rgba(31, 10, 64, 1) 100%);
+                            background-color: #1F0A45;
+                        }
+
+                        #s4 .top-bar {
+                            flex-shrink: 0;
+                        }
+
+                        #s4 .content-area {
+                            flex: 1 1 0;
+                            min-height: 0;
+                            display: flex !important;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: flex-start !important;
+                            gap: 10px;
+                            overflow-x: hidden;
+                            overflow-y: auto;
+                            -webkit-overflow-scrolling: touch;
+                            padding-top: 8px !important;
+                            padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px)) !important;
+                        }
+
                         #s4 .s4-layout {
-                            width: min(860px, 100%);
+                            width: min(420px, 100%);
                             margin: 0 auto;
                             display: flex;
                             flex-direction: column;
                             align-items: center;
                             gap: 10px;
+                            flex-shrink: 0;
+                        }
+
+                        #s4 .s4-hint {
+                            font-family: var(--font-h);
+                            font-size: 13px;
+                            font-weight: 700;
+                            color: #00FFFF;
+                            letter-spacing: .04em;
+                            text-align: center;
+                            margin: 0;
+                            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+                            flex-shrink: 0;
+                            order: 3;
                         }
 
                         #s4 .s4-carousel {
@@ -441,50 +485,45 @@
                         }
 
                         #s4 .s4-card {
-                            width: min(820px, 100%);
+                            width: 100%;
+                            max-width: 420px;
                             position: relative;
-                            display: grid;
-                            grid-template-columns: 340px 1fr;
-                            grid-template-rows: auto 1fr;
-                            background:
-                                radial-gradient(circle at 50% 0%, rgba(0, 255, 255, 0.14), transparent 55%),
-                                linear-gradient(165deg, #3A1480 0%, #1F0A45 100%);
-                            border: 1px solid rgba(0, 255, 255, 0.4);
-                            border-radius: 16px;
+                            display: flex;
+                            flex-direction: column;
+                            background: #ffffff;
+                            border: 1.5px solid rgba(0, 255, 255, 0.22);
+                            border-radius: 22px;
                             overflow: hidden;
-                            box-shadow:
-                                0 20px 55px rgba(0, 0, 0, 0.55),
-                                0 0 28px rgba(0, 255, 255, 0.2);
+                            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
                             touch-action: pan-y;
+                            transition: transform 0.2s ease, box-shadow 0.2s ease;
+                            min-width: 0;
+                            flex-shrink: 0;
+                        }
+
+                        #s4 .s4-card:hover {
+                            transform: translateY(-3px);
+                            box-shadow: 0 20px 40px rgba(126, 54, 227, 0.18);
                         }
 
                         #s4 .s4-card-accent {
-                            grid-column: 1 / -1;
-                            height: 4px;
-                            background: linear-gradient(90deg, transparent, #00FFFF 30%, #7AF5F5 70%, transparent);
-                            opacity: 0.9;
+                            display: none;
                         }
 
                         #s4 .s4-card-photo {
-                            width: 340px;
-                            height: 340px;
-                            aspect-ratio: 1 / 1;
-                            background: #2A0F5C;
-                            border-right: 1px solid rgba(0, 255, 255, 0.3);
+                            width: 100%;
+                            height: auto;
+                            aspect-ratio: 16 / 10;
+                            max-height: min(200px, 28vh);
+                            background: #f8fafc;
+                            border-right: none;
                             overflow: hidden;
                             position: relative;
+                            flex-shrink: 0;
                         }
 
                         #s4 .s4-card-photo::after {
-                            content: '';
-                            position: absolute;
-                            left: 0;
-                            right: 0;
-                            bottom: 0;
-                            height: 28%;
-                            background: linear-gradient(to top, rgba(31, 10, 64, 0.55), transparent);
-                            pointer-events: none;
-                            z-index: 1;
+                            display: none;
                         }
 
                         #s4 .s4-slide-img {
@@ -496,8 +535,12 @@
                             object-position: center center;
                             display: block;
                             opacity: 0;
-                            transition: opacity 0.25s ease;
+                            transition: opacity 0.3s ease;
                             z-index: 0;
+                        }
+
+                        #s4 .s4-slide-img[data-s4-img="0"] {
+                            object-position: center 78%;
                         }
 
                         #s4 .s4-slide-img.is-active {
@@ -530,34 +573,39 @@
                         #s4 .s4-card.is-warn {
                             border-color: rgba(255, 193, 7, 0.55);
                             box-shadow:
-                                0 20px 55px rgba(0, 0, 0, 0.55),
-                                0 0 28px rgba(255, 193, 7, 0.18);
+                                0 14px 32px rgba(0, 0, 0, 0.28),
+                                0 0 20px rgba(255, 193, 7, 0.16);
                         }
 
-                        #s4 .s4-card.is-warn .s4-card-accent {
-                            background: linear-gradient(90deg, transparent, #FFC107 30%, #FFE082 70%, transparent);
+                        #s4 .s4-card.is-warn .s4-card-inner {
+                            background: linear-gradient(90deg, #fffbeb, #fef3c7);
+                            border-top-color: #FFC107;
                         }
 
                         #s4 .s4-card.is-warn .s4-card-photo {
-                            border-right-color: rgba(255, 193, 7, 0.35);
+                            border-bottom-color: rgba(255, 193, 7, 0.35);
                         }
 
                         #s4 .s4-card.is-warn .s4-card-num {
-                            color: #FFE082;
-                            border-color: rgba(255, 193, 7, 0.5);
-                            background: rgba(255, 193, 7, 0.14);
+                            color: #92400e;
+                            border-color: rgba(245, 158, 11, 0.55);
+                            background: rgba(255, 193, 7, 0.28);
                         }
 
                         #s4 .s4-card.is-warn .s4-card-title {
-                            color: #FFE082;
+                            color: #92400e;
                         }
 
                         #s4 .s4-card.is-warn .s4-card-divider {
-                            background: linear-gradient(90deg, rgba(255, 193, 7, 0.8), transparent);
+                            background: linear-gradient(90deg, rgba(245, 158, 11, 0.85), transparent);
+                        }
+
+                        #s4 .s4-card.is-warn .s4-card-desc {
+                            color: rgba(61, 36, 0, 0.88);
                         }
 
                         #s4 .s4-card.is-warn .s4-card-desc strong {
-                            color: #FFE082;
+                            color: #b45309;
                             font-weight: 800;
                         }
 
@@ -580,58 +628,67 @@
                             font-size: 17px;
                             line-height: 1;
                             cursor: pointer;
+                            transition: transform 0.15s ease, box-shadow 0.15s ease;
+                        }
+
+                        #s4 .s4-card-expand:hover {
+                            transform: scale(1.06);
+                            box-shadow: 0 8px 22px rgba(0, 255, 255, 0.65);
                         }
 
                         #s4 .s4-card-inner {
-                            padding: 22px 26px;
+                            padding: 18px 16px 20px;
                             text-align: left;
                             display: flex;
                             flex-direction: column;
-                            justify-content: center;
+                            justify-content: flex-start;
                             align-items: flex-start;
                             gap: 0;
+                            flex: 1;
+                            background: linear-gradient(90deg, #ecfeff, #cffafe);
+                            border-top: 3px solid #0891b2;
                         }
 
                         #s4 .s4-card-num {
                             display: inline-flex;
                             align-items: center;
                             justify-content: center;
-                            min-width: 36px;
-                            height: 24px;
-                            padding: 0 9px;
+                            min-width: 34px;
+                            height: 22px;
+                            padding: 0 8px;
                             margin-bottom: 10px;
                             border-radius: 99px;
-                            background: rgba(0, 255, 255, 0.12);
-                            border: 1px solid rgba(0, 255, 255, 0.4);
-                            color: #00FFFF;
+                            background: rgba(126, 54, 227, 0.1);
+                            border: 1px solid rgba(126, 54, 227, 0.3);
+                            color: #7E36E3;
                             font-family: var(--font-h);
-                            font-size: 12px;
+                            font-size: 11px;
                             font-weight: 800;
                             letter-spacing: 0.08em;
+                            box-shadow: none;
                         }
 
                         #s4 .s4-card-title {
                             font-family: var(--font-h);
-                            font-size: 22px;
+                            font-size: clamp(17px, 4.6vw, 19.5px);
                             font-weight: 800;
-                            color: #00FFFF;
+                            color: #5c24b0;
                             margin: 0 0 10px;
-                            text-transform: uppercase;
-                            letter-spacing: 0.4px;
+                            text-transform: none;
+                            letter-spacing: normal;
+                            line-height: 1.25;
                         }
 
                         #s4 .s4-card-divider {
-                            width: 56px;
-                            height: 2px;
-                            margin: 0 0 12px;
-                            border-radius: 2px;
-                            background: linear-gradient(90deg, rgba(0, 255, 255, 0.7), transparent);
+                            display: none;
                         }
 
                         #s4 .s4-card-desc {
-                            font-size: 16px;
-                            line-height: 1.55;
-                            color: rgba(255, 255, 255, 0.88);
+                            font-family: var(--font-b), 'Open Sans', sans-serif;
+                            font-size: clamp(15.5px, 4.2vw, 17.5px);
+                            font-weight: 400;
+                            line-height: 1.65;
+                            color: rgba(42, 20, 80, 0.92);
                             margin: 0;
                             max-width: none;
                         }
@@ -668,23 +725,66 @@
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            gap: 14px;
+                            gap: 16px;
                             position: relative;
                             z-index: 20;
                         }
 
+                        #s4 .s4-nav-btn.m1o-nav-btn {
+                            width: 46px;
+                            height: 46px;
+                            min-width: 46px;
+                            border-radius: 50%;
+                            border: 2px solid rgba(255, 255, 255, 0.85);
+                            background: linear-gradient(145deg, #9b63ea 0%, #7E36E3 50%, #5c24b0 100%);
+                            color: #fff;
+                            font-size: 26px;
+                            line-height: 1;
+                            box-shadow:
+                                0 0 0 3px rgba(0, 255, 255, 0.35),
+                                0 8px 20px rgba(126, 54, 227, 0.45);
+                            transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+                        }
+
+                        #s4 .s4-nav-btn.m1o-nav-btn:hover:not(:disabled) {
+                            filter: brightness(1.08);
+                            transform: scale(1.06);
+                            box-shadow:
+                                0 0 0 4px rgba(0, 255, 255, 0.5),
+                                0 10px 26px rgba(126, 54, 227, 0.55);
+                        }
+
                         #s4 .s4-nav-btn:disabled {
-                            opacity: 0.35;
+                            opacity: 0.3;
                             cursor: not-allowed;
                             pointer-events: none;
+                        }
+
+                        #s4 #s4-next:not(:disabled) {
+                            animation: s4NextPulse 1.4s ease-in-out infinite;
+                        }
+
+                        @keyframes s4NextPulse {
+                            0%, 100% {
+                                transform: translateX(0) scale(1);
+                                box-shadow:
+                                    0 0 0 3px rgba(0, 255, 255, 0.35),
+                                    0 8px 20px rgba(126, 54, 227, 0.45);
+                            }
+                            50% {
+                                transform: translateX(3px) scale(1.05);
+                                box-shadow:
+                                    0 0 0 5px rgba(0, 255, 255, 0.55),
+                                    0 10px 26px rgba(126, 54, 227, 0.6);
+                            }
                         }
 
                         #s4 .s4-counter {
                             font-family: var(--font-h);
                             font-size: 15px;
-                            font-weight: 700;
+                            font-weight: 800;
                             color: #fff;
-                            min-width: 40px;
+                            min-width: 48px;
                             text-align: center;
                         }
 
@@ -701,63 +801,56 @@
                             #s4 .s4-layout {
                                 width: 100%;
                                 max-width: 420px;
-                                gap: 8px;
+                                gap: 10px;
                             }
 
                             #s4 .s4-carousel {
                                 width: 100%;
-                                gap: 8px;
+                                gap: 10px;
+                            }
+
+                            #s4 .s4-hint {
+                                font-size: 12px;
                             }
 
                             #s4 .s4-slide-warn-icon {
-                                font-size: 64px;
-                            }
-
-                            #s4 .s4-card.is-warn .s4-card-divider {
-                                margin: 0 auto 8px;
-                                background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.8), transparent);
+                                font-size: 56px;
                             }
 
                             #s4 .s4-card {
-                                width: min(360px, 92vw);
+                                width: min(420px, 94vw);
                                 margin: 0 auto;
-                                grid-template-columns: 1fr;
-                                grid-template-rows: auto auto auto;
                             }
 
                             #s4 .s4-card-photo {
-                                width: 100%;
-                                height: auto;
-                                aspect-ratio: 1 / 1;
-                                border-right: none;
-                                border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+                                aspect-ratio: 16 / 10;
+                                max-height: min(170px, 24vh);
                             }
 
                             #s4 .s4-card-inner {
-                                padding: 10px 12px 12px;
-                                text-align: center;
-                                align-items: center;
+                                padding: 18px 16px 20px;
                             }
 
+                            #s4 .s4-card.is-warn .s4-card-divider,
                             #s4 .s4-card-divider {
-                                margin: 0 auto 8px;
-                                background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.7), transparent);
+                                display: none;
                             }
 
                             #s4 .s4-card-title {
-                                font-size: 14px;
-                                margin-bottom: 6px;
+                                font-size: clamp(17px, 4.6vw, 19.5px);
+                                margin-bottom: 10px;
                             }
 
                             #s4 .s4-card-desc {
-                                font-size: 12.5px;
-                                line-height: 1.4;
+                                font-size: clamp(15.5px, 4.2vw, 17.5px);
+                                line-height: 1.65;
+                                font-weight: 400;
                             }
 
                             #s4 .s4-carousel-nav {
                                 margin-top: 2px;
                                 margin-bottom: 8px;
-                                gap: 16px;
+                                gap: 18px;
                             }
 
                             #s4 .s4-progress {
@@ -806,6 +899,7 @@
                                     aria-label="Próximo item">›</button>
                             </div>
                         </div>
+                        <p class="s4-hint">Navegue pelos cards · Veja todos para desbloquear o avanço</p>
                     </div>
 
                     <span id="s4-tracker" class="req-item" style="display:none" aria-hidden="true"></span>
@@ -1376,7 +1470,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=140"></script>
+    <script src="shared.js?v=141"></script>
 </body>
 
 </html>

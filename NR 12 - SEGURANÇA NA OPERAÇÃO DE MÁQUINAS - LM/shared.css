@@ -293,7 +293,7 @@ img {
     }
 
     #s1 .btn-start {
-        padding: 14px 20px;
+        padding: 14px 20px 14px 18px;
         font-size: 13px;
     }
 
@@ -641,6 +641,34 @@ img {
     transform: translateX(-40px);
 }
 
+/* Textura de fundo (estilo NR 06) — todas as páginas, exceto a capa (#s1) */
+.slide:not(#s1)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+        radial-gradient(ellipse 90% 70% at 50% 0%, rgba(0, 255, 255, 0.14) 0%, transparent 62%),
+        repeating-linear-gradient(
+            to bottom,
+            rgba(0, 255, 255, 0.045) 0px,
+            rgba(0, 255, 255, 0.045) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+    background-size: 100% 100%, 100% 4px;
+}
+
+.slide:not(#s1) > .top-bar,
+.slide:not(#s1) > .content-area,
+.slide:not(#s1) > .slide-scroll-btn,
+.slide:not(#s1) > .s1-inner,
+.slide:not(#s1) > .mod-intro {
+    position: relative;
+    z-index: 2;
+}
+
 /* â”€â”€ BOTTOM NAV â”€â”€ */
 #nav {
     position: fixed;
@@ -777,6 +805,7 @@ body:has(#s-quiz5.active) #btn-fwd {
     right: 0;
     height: 100px;
     pointer-events: none;
+    z-index: 2;
 }
 
 .wave svg {
@@ -1920,14 +1949,14 @@ body:has(#s-quiz5.active) #btn-fwd {
 #s1 .btn-start {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     background: linear-gradient(135deg, #a878f0 0%, #7E36E3 42%, #6a28c9 100%);
     color: #00FFFF;
     font-family: var(--font-h);
     font-weight: 700;
-    font-size: 13px;
+    font-size: 16px;
     letter-spacing: 0.06em;
-    padding: 14px 28px;
+    padding: 18px 36px 18px 18px;
     border-radius: 999px;
     border: 2px solid rgba(0, 255, 255, 0.55);
     cursor: pointer;
@@ -1961,8 +1990,8 @@ body:has(#s-quiz5.active) #btn-fwd {
 }
 
 #s1 .btn-start svg {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     flex-shrink: 0;
     filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.45));
 }
@@ -2833,7 +2862,12 @@ body:has(#s-quiz5.active) #btn-fwd {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 40px 32px 90px;
+    width: 100%;
+    min-height: calc(100vh - 160px);
+    padding: 24px 20px 40px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
 }
 
 .mod-intro-pill {
@@ -5253,7 +5287,7 @@ body {
         align-self: flex-start !important;
         width: auto !important;
         margin: 0 !important;
-        padding: 14px 28px !important;
+        padding: 14px 28px 14px 18px !important;
         justify-content: flex-start !important;
         min-height: 0;
     }
@@ -6295,7 +6329,7 @@ body {
     }
 
     #s1 .btn-start {
-        padding: 14px 24px !important;
+        padding: 14px 24px 14px 18px !important;
         font-size: 13px !important;
         letter-spacing: 0.06em !important;
         white-space: nowrap;

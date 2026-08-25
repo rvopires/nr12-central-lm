@@ -3124,7 +3124,7 @@ function resetQuiz6() { quiz6.reset(); }
     function init() {
         if (document.getElementById('a11y-bar') || document.getElementById('top-controls')) return;
 
-        // ── Top controls (estilo NR 06): Música + Transcrição + Tutorial + Simulação ──
+        // ── Top controls (estilo NR 06): Música + Transcrição + Simulação ──
         const topControls = document.createElement('div');
         topControls.id = 'top-controls';
 
@@ -3220,54 +3220,6 @@ function resetQuiz6() { quiz6.reset(); }
             <div class="audio-helper">Reproduza o áudio em cada nova pergunta.</div>
         `;
         topControls.appendChild(a11yItem);
-
-        // Tutorial (só na capa / quando existir #tutorialModal) — visual NR 06
-        const tutorialModal = document.getElementById('tutorialModal');
-        if (tutorialModal) {
-            const tutItem = document.createElement('div');
-            tutItem.className = 'top-control-item';
-            tutItem.id = 'tutorial-control-item';
-            tutItem.innerHTML = `
-                <button type="button" id="btn-tutorial-top" class="btn-tutorial-toggle"
-                    title="Abrir tutorial do curso" aria-label="Abrir tutorial do curso">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
-                    </svg>
-                    <span class="control-btn-text tutorial-text">Tutorial</span>
-                </button>
-                <span class="top-control-label">Tutorial</span>
-            `;
-            topControls.appendChild(tutItem);
-
-            function openTutorialFromTop() {
-                const modal = document.getElementById('tutorialModal');
-                if (!modal) return;
-                modal.classList.add('active');
-                if (window.resetTutorialVideoToStart) window.resetTutorialVideoToStart();
-                // Página 1 (capa): mantém trava de 5s. Demais páginas: libera na hora.
-                const onFirstPage = (typeof currentSlide === 'number') ? currentSlide === 0 : true;
-                if (onFirstPage) {
-                    if (window.startTutorialUnlockTimer) window.startTutorialUnlockTimer();
-                } else if (window.unlockTutorialImmediately) {
-                    window.unlockTutorialImmediately();
-                } else if (window.setTutorialButtonLocked) {
-                    window.setTutorialButtonLocked(false, 0);
-                }
-            }
-            window.openTutorialFromTop = openTutorialFromTop;
-
-            const tutBtn = tutItem.querySelector('#btn-tutorial-top');
-            if (tutBtn) tutBtn.addEventListener('click', openTutorialFromTop);
-
-            function updateTutorialButtonVisibility() {
-                const item = document.getElementById('tutorial-control-item');
-                if (!item) return;
-                // Visível em todas as páginas do index que têm o modal
-                item.style.display = 'flex';
-            }
-            window.updateTutorialButtonVisibility = updateTutorialButtonVisibility;
-            updateTutorialButtonVisibility();
-        }
 
         // Envolve o botão de simulação existente (mantém regra qa1010 / demoMode)
         const existingDemo = document.getElementById('btn-demo');
@@ -3445,22 +3397,9 @@ function resetQuiz6() { quiz6.reset(); }
                 stopSpeak();
                 const result = origGoTo.apply(this, arguments);
                 window.updateQuizAudioHelper();
-                if (typeof window.updateTutorialButtonVisibility === 'function') {
-                    window.updateTutorialButtonVisibility();
-                }
                 return result;
             };
             window.goTo.__a11yHooked = true;
-        } else if (typeof window.goTo === 'function' && !window.goTo.__tutorialVisHooked) {
-            const origGoTo2 = window.goTo;
-            window.goTo = function () {
-                const result = origGoTo2.apply(this, arguments);
-                if (typeof window.updateTutorialButtonVisibility === 'function') {
-                    window.updateTutorialButtonVisibility();
-                }
-                return result;
-            };
-            window.goTo.__tutorialVisHooked = true;
         }
 
         window.updateQuizAudioHelper();
