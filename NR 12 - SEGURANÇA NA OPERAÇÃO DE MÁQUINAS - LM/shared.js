@@ -1726,7 +1726,7 @@ function createQuizEngine(prefix, questions, numDots) {
         const opts = document.getElementById(prefix + '-options');
         if (opts) {
             opts.innerHTML = '';
-            const letters = ['A', 'B', 'C', 'D'];
+            const letters = (prefix === 'q2' && q.opts.length === 2) ? ['V', 'F'] : ['A', 'B', 'C', 'D'];
             q.opts.forEach((opt, i) => {
                 const el = document.createElement('div');
                 el.className = 'q-opt';
@@ -1741,6 +1741,10 @@ function createQuizEngine(prefix, questions, numDots) {
         if (vCont) { vCont.style.display = 'none'; vCont.style.opacity = '0'; vCont.style.visibility = 'hidden'; }
         const btn = document.getElementById('btn-next-' + prefix);
         if (btn) btn.className = 'btn-next-q';
+        if (prefix === 'q2') {
+            const fill = document.getElementById('q2-progress-fill');
+            if (fill) fill.style.width = (((idx + 1) / questions.length) * 100) + '%';
+        }
         renderDots();
         try { window.updateQuizAudioHelper(); } catch (e) { }
     }

@@ -45,103 +45,178 @@
 
         <div id="slides">
             <div class="slide active" id="intro-m1">
+                <style>
+                    #intro-m1 > .intro-m1-avatar {
+                        position: absolute;
+                        left: clamp(4px, 2.5vw, 28px);
+                        bottom: clamp(90px, 14vh, 140px);
+                        top: auto;
+                        z-index: 3;
+                        width: clamp(200px, 32vw, 340px);
+                        height: auto;
+                        max-height: 46vh;
+                        object-fit: contain;
+                        object-position: left bottom;
+                        filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.42));
+                        user-select: none;
+                        pointer-events: none;
+                    }
+                    @media (max-width: 520px) {
+                        #intro-m1 > .intro-m1-avatar {
+                            left: 2px;
+                            width: 130px;
+                            bottom: 100px;
+                            max-height: 34vh;
+                        }
+                    }
+                </style>
                 <div class="mod-intro">
                     <div class="mod-intro-pill">INÍCIO</div>
                     <div class="mod-intro-num">MÓDULO 1</div>
                     <div class="mod-intro-title">Abertura e Conceitos</div>
                 </div>
+                <img class="intro-m1-avatar" src="assets/fotos/avatar-md1.png" alt="Avatar do módulo 1">
                 <div class="wave"><svg viewBox="0 0 1440 100" preserveAspectRatio="none">
                         <path d="M0,50 C480,10 960,85 1440,30 L1440,100 L0,100 Z" fill="rgba(83, 230, 212,0.07)" />
                     </svg></div>
             </div>
 
-            <div class="slide" id="s2">
-                <div class="top-bar">
+            <div class="slide" id="s2"
+                style="background: linear-gradient(135deg, #2A0A4A 0%, #4A1866 42%, #1F0A45 100%); overflow: hidden;">
+                <div class="top-bar" style="position: relative; z-index: 2;">
                     <div class="section-tag"
                         style="background: var(--red); color: #1F0A45; font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(83, 230, 212, 0.4);">
                         📄 Módulo 1</div>
                     <h2 class="slide-title"
-                        style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(83, 230, 212, 0.4);">
+                        style="font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -0.015em; text-shadow: 0 0 15px rgba(83, 230, 212, 0.4);">
                         Máquinas da <span>Central de Cores</span></h2>
                 </div>
                 <div class="content-area">
                     <style>
                         #s2 .content-area {
+                            position: relative;
+                            z-index: 2;
                             display: grid !important;
-                            grid-template-columns: 1.2fr 1fr;
-                            gap: 40px;
-                            align-items: center;
-                            max-width: 1050px;
+                            grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+                            gap: clamp(22px, 3.5vw, 40px);
+                            align-items: center !important;
+                            justify-content: stretch !important;
+                            text-align: left !important;
+                            max-width: 1100px !important;
                             margin: 0 auto;
                             width: 100%;
+                            padding: 10px 22px 80px !important;
                         }
-
-                        #s2 .s2-card {
-                            background:
-                                radial-gradient(ellipse at 28% 18%, rgba(83, 230, 212, 0.14), transparent 55%),
-                                linear-gradient(160deg, #063A52 0%, #042A3C 48%, #021C28 100%);
-                            border: 1px solid rgba(83, 230, 212, 0.4);
-                            border-radius: 20px;
-                            padding: clamp(22px, 4vw, 36px);
-                            box-shadow:
-                                0 -2px 0 0 #53E6D4,
-                                0 -6px 16px rgba(83, 230, 212, 0.25),
-                                0 18px 36px rgba(0, 0, 0, 0.45);
+                        #s2 .s2-copy,
+                        #s2 .s2-stage {
+                            background: #fff;
+                            border-radius: 18px;
+                            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+                            min-width: 0;
                         }
-
-                        #s2 .s2-badge {
-                            display: inline-block;
-                            background: rgba(83, 230, 212, 0.14);
-                            color: #53E6D4;
-                            border: 1px solid rgba(83, 230, 212, 0.4);
-                            padding: 6px 14px;
-                            border-radius: 100px;
-                            font-size: 12px;
-                            font-weight: 700;
-                            letter-spacing: 0.5px;
-                            font-family: var(--font-h);
-                            margin-bottom: 18px;
+                        #s2 .s2-copy {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 12px;
+                            padding: clamp(14px, 2vw, 18px);
+                            align-self: center;
+                            max-width: 420px;
+                            width: 100%;
+                            justify-self: end;
                         }
-
-                        #s2 .s2-card p {
-                            font-family: var(--font-b);
-                            font-size: clamp(15px, 1.7vw, 18px);
-                            line-height: 1.75;
-                            color: #E8F9FF;
+                        #s2 .s2-lead {
                             margin: 0;
+                            font-family: var(--font-h);
+                            font-size: clamp(18px, 2.2vw, 24px);
+                            font-weight: 900;
+                            line-height: 1.15;
+                            letter-spacing: -0.02em;
+                            color: #0a0612;
                         }
-
-                        #s2 .s2-card p strong {
-                            color: #53E6D4;
+                        #s2 .s2-lead em {
+                            font-style: normal;
+                            color: #5B1FB8;
+                        }
+                        #s2 .s2-text {
+                            margin: 0;
+                            font-family: var(--font-b);
+                            font-size: clamp(13.5px, 1.35vw, 15px);
+                            line-height: 1.55;
+                            color: #1a1228;
+                        }
+                        #s2 .s2-text strong {
+                            color: #4A1499;
                             font-weight: 800;
                         }
-
-                        #s2 .s2-img-ph {
-                            position: relative;
-                            border-radius: 20px;
-                            overflow: hidden;
-                            border: 1px solid rgba(83, 230, 212, 0.35);
-                            max-width: 480px;
-                            width: 100%;
-                            margin: 0 auto;
-                            background: #0d061c;
-                            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
+                        #s2 .s2-lines {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0;
+                            margin-top: 2px;
+                            border-top: 1px solid rgba(26, 18, 40, 0.18);
                         }
-
-                        #s2 .s2-img-ph img {
-                            width: 100%;
-                            height: auto;
-                            max-height: min(58vh, 520px);
+                        #s2 .s2-line {
+                            display: grid;
+                            grid-template-columns: 32px 1fr;
+                            gap: 10px;
+                            align-items: baseline;
+                            padding: 9px 0;
+                            border-bottom: 1px solid rgba(26, 18, 40, 0.14);
+                        }
+                        #s2 .s2-line-n {
+                            font-family: var(--font-h);
+                            font-size: 13px;
+                            font-weight: 800;
+                            color: #4A1499;
+                            letter-spacing: 0.04em;
+                        }
+                        #s2 .s2-line strong {
                             display: block;
-                            object-fit: contain;
+                            font-family: var(--font-h);
+                            font-size: clamp(15px, 1.5vw, 17px);
+                            font-weight: 800;
+                            color: #0a0612;
+                            margin-bottom: 2px;
+                        }
+                        #s2 .s2-line span {
+                            font-family: var(--font-b);
+                            font-size: 13.5px;
+                            line-height: 1.4;
+                            color: #2a2038;
+                        }
+                        #s2 .s2-stage {
+                            position: relative;
+                            isolation: isolate;
+                            padding: 2px;
+                            display: block;
+                            height: fit-content;
+                            align-self: center;
+                            border-radius: 14px;
+                            overflow: hidden;
+                            line-height: 0;
+                        }
+                        #s2 .s2-photo {
+                            position: relative;
+                            z-index: 1;
+                            overflow: hidden;
+                            border-radius: 12px;
+                            background: #3A1458;
+                            width: 100%;
+                            aspect-ratio: 4 / 3;
+                            max-height: min(52vh, 440px);
+                            line-height: normal;
+                        }
+                        #s2 .s2-photo img {
+                            width: 100%;
+                            height: 100%;
+                            display: block;
+                            object-fit: cover;
                             object-position: center;
                         }
-
                         #s2 .s2-expand {
                             position: absolute;
-                            bottom: 12px;
                             right: 12px;
-                            top: auto;
+                            bottom: 12px;
                             z-index: 5;
                             display: inline-flex;
                             align-items: center;
@@ -150,97 +225,86 @@
                             height: 40px;
                             padding: 0;
                             border-radius: 50%;
-                            border: 1.5px solid rgba(255, 255, 255, 0.9);
+                            border: 2px solid rgba(255, 255, 255, 0.95);
                             background: #53E6D4;
-                            box-shadow: 0 6px 18px rgba(83, 230, 212, 0.5);
+                            box-shadow: 0 6px 18px rgba(83, 230, 212, 0.45);
                             color: #1F0A45;
-                            font-size: 17px;
-                            line-height: 1;
+                            font-size: 16px;
                             cursor: pointer;
-                            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+                            transition: transform 0.2s ease, box-shadow 0.2s ease;
                         }
-
                         #s2 .s2-expand:hover {
-                            background: #53E6D4;
                             transform: translateY(-1px) scale(1.04);
                             box-shadow: 0 8px 22px rgba(83, 230, 212, 0.65);
                         }
-
                         #s2 .s2-expand:focus-visible {
                             outline: 2px solid #fff;
                             outline-offset: 3px;
                         }
-
+                        #s2 .s2-cap {
+                            position: absolute;
+                            left: 0;
+                            top: 14px;
+                            z-index: 2;
+                            padding: 8px 14px;
+                            background: #53E6D4;
+                            color: #1F0A45;
+                            font-family: var(--font-h);
+                            font-size: 11px;
+                            font-weight: 900;
+                            letter-spacing: 0.12em;
+                            text-transform: uppercase;
+                        }
                         @media (max-width: 900px) {
                             #s2 .content-area {
                                 grid-template-columns: 1fr !important;
-                                gap: 20px;
-                                justify-items: center;
-                            }
-
-                            #s2 .s2-card {
-                                width: 100%;
-                                max-width: 520px;
-                                order: 2;
-                            }
-
-                            #s2 .s2-img-ph {
-                                order: 1;
-                                width: min(100%, 360px);
-                            }
-
-                            #s2 .s2-img-ph img {
-                                max-height: min(42vh, 360px);
-                            }
-                        }
-
-                        @media (max-width: 768px) {
-                            #s2 .content-area {
+                                gap: 18px;
                                 padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px)) !important;
                                 overflow-y: auto !important;
-                                align-content: start;
+                                align-content: start !important;
                             }
-
-                            #s2 .s2-card {
-                                padding: 18px 16px;
-                            }
-
-                            #s2 .s2-card p {
-                                font-size: clamp(14.5px, 4vw, 16px);
-                                line-height: 1.55;
-                            }
+                            #s2 .s2-stage { order: 1; max-width: 520px; margin: 0 auto; width: 100%; justify-self: center; }
+                            #s2 .s2-copy { order: 2; max-width: 380px; margin: 0 auto; width: 100%; justify-self: center; }
+                            #s2 .s2-photo { max-height: min(36vh, 300px); }
                         }
-
                         @media (max-height: 720px) {
-                            #s2 .s2-card {
-                                padding: 16px !important;
-                            }
-
-                            #s2 .s2-badge {
-                                font-size: 10px !important;
-                                margin-bottom: 8px !important;
-                            }
-
-                            #s2 .s2-card p {
-                                font-size: 14.5px !important;
-                                line-height: 1.45 !important;
-                            }
-
-                            #s2 .s2-img-ph img {
-                                max-height: min(48vh, 380px);
-                            }
+                            #s2 .s2-copy { padding: 12px 14px; gap: 10px; }
+                            #s2 .s2-lead { font-size: clamp(16px, 2.2vw, 20px); }
+                            #s2 .s2-text { font-size: 13.5px; line-height: 1.45; }
+                            #s2 .s2-line { padding: 7px 0; }
+                            #s2 .s2-stage { padding: 1px; }
+                            #s2 .s2-photo { max-height: min(42vh, 300px); }
                         }
                     </style>
 
-                    <article class="s2-card" aria-label="Conceito — máquinas da Central de Cores">
-                        <span class="s2-badge">CONCEITO</span>
-                        <p>Conheça os equipamentos usados no dia a dia da loja — <strong>dosador</strong> e <strong>misturador</strong> — e o papel da <strong>NR 12</strong> para operar com proteção, atenção e procedimento correto. Proteções e bloqueios devem permanecer ativos; só opera quem foi capacitado.</p>
-                    </article>
+                    <div class="s2-copy">
+                        <p class="s2-lead">Dois equipamentos.<br>Uma regra: <em>operar com segurança.</em></p>
+                        <p class="s2-text">No dia a dia da loja você encontra o <strong>dosador</strong> e o <strong>misturador</strong>. A <strong>NR 12</strong> define proteção, atenção e o procedimento certo — proteções e bloqueios ativos, e só opera quem foi capacitado.</p>
+                        <div class="s2-lines">
+                            <div class="s2-line">
+                                <span class="s2-line-n">01</span>
+                                <div>
+                                    <strong>Dosador</strong>
+                                    <span>Dosagem precisa de tintas e pigmentos</span>
+                                </div>
+                            </div>
+                            <div class="s2-line">
+                                <span class="s2-line-n">02</span>
+                                <div>
+                                    <strong>Misturador</strong>
+                                    <span>Homogeneização após a dosagem</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <div class="s2-img-ph">
-                        <img src="assets/fotos/maquinas-introdução.png" alt="Máquinas da Central de Cores — aberta e fechada">
-                        <button type="button" class="s2-expand" aria-label="Ampliar imagem" title="Ampliar imagem"
-                            onclick="openImageModal('assets/fotos/maquinas-introdução.png')">🔍</button>
+                    <div class="s2-stage">
+                        <div class="s2-photo">
+                            <span class="s2-cap">Central</span>
+                            <img src="assets/fotos/maquinas-introdução.png" alt="Máquinas da Central de Cores — aberta e fechada">
+                            <button type="button" class="s2-expand" aria-label="Ampliar imagem" title="Ampliar imagem"
+                                onclick="openImageModal('assets/fotos/maquinas-introdução.png')">🔍</button>
+                        </div>
                     </div>
                 </div>
                 <button type="button" id="s2-scroll-down" class="slide-scroll-btn"
@@ -290,6 +354,10 @@
                             text-shadow: 0 0 10px rgba(83, 230, 212, 0.3);
                             order: 3;
                             flex-shrink: 0;
+                        }
+
+                        #s4 .carousel-hint {
+                            display: none !important;
                         }
 
                         #s4 .s4-flip-grid {
@@ -666,7 +734,7 @@
                         }
                     </style>
 
-                    <p class="s4-flip-hint">Clique em cada card — veja os 5 para desbloquear o avanço</p>
+                    <p class="s4-flip-hint">Toque no card para virar e veja os 5 para poder avançar</p>
 
                     <div class="s4-flip-grid" id="s4-flip-grid">
                         <button type="button" class="s4-flip-card s4-flip--purple is-active req-item" data-s4-idx="0"
@@ -1075,7 +1143,7 @@
                             font-family: var(--font-h);
                             font-size: clamp(15px, 1.6vw, 18px);
                             font-weight: 800;
-                            color: #4A1866;
+                            color: #12081f;
                             line-height: 1.25;
                         }
 
@@ -1083,7 +1151,7 @@
                             margin: 0;
                             font-size: 13px;
                             line-height: 1.5;
-                            color: rgba(74, 24, 102, 0.88);
+                            color: #0d0818;
                         }
 
                         #s-central-cores .cc-carousel-nav {
@@ -1139,11 +1207,13 @@
                             #s-central-cores .cc-body h4 {
                                 font-size: clamp(17px, 4.6vw, 19.5px);
                                 margin-bottom: 10px;
+                                color: #12081f;
                             }
 
                             #s-central-cores .cc-body p {
                                 font-size: clamp(15px, 4.1vw, 17px);
                                 line-height: 1.65;
+                                color: #0d0818;
                             }
 
                             #s-central-cores .cc-carousel-nav {

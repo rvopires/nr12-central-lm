@@ -482,6 +482,183 @@
 
                 </div>
                 <div class="content-area">
+                    <style>
+                        /* Layout interno do quiz 2 — só painel de perguntas */
+                        #sq2 #q2-question-panel {
+                            max-width: 640px;
+                            margin: 0 auto;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 14px;
+                        }
+                        #sq2 #q2-question-panel .q-meta {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: stretch;
+                            gap: 8px;
+                            margin: 0 0 2px;
+                        }
+                        #sq2 #q2-question-panel .q-dots {
+                            display: none !important;
+                        }
+                        #sq2 #q2-question-panel .q2-progress {
+                            width: 100%;
+                            height: 8px;
+                            border-radius: 999px;
+                            background: rgba(255, 255, 255, 0.14);
+                            overflow: hidden;
+                        }
+                        #sq2 #q2-question-panel .q2-progress-fill {
+                            height: 100%;
+                            width: 33.333%;
+                            border-radius: inherit;
+                            background: linear-gradient(90deg, #53E6D4, #AD52C4);
+                            box-shadow: 0 0 12px rgba(83, 230, 212, 0.45);
+                            transition: width 0.35s ease;
+                        }
+                        #sq2 #q2-question-panel .q-lbl {
+                            font-family: var(--font-h);
+                            font-size: 13px;
+                            font-weight: 800;
+                            letter-spacing: 0.06em;
+                            text-transform: uppercase;
+                            color: #53E6D4;
+                            text-align: center;
+                            margin: 0;
+                        }
+                        #sq2 #q2-question-panel .q-text {
+                            margin: 0 !important;
+                            padding: 22px 20px !important;
+                            border-radius: 20px !important;
+                            border: none !important;
+                            background: #fff !important;
+                            color: #12081f !important;
+                            font-family: var(--font-h) !important;
+                            font-size: clamp(17px, 2.1vw, 21px) !important;
+                            font-weight: 800 !important;
+                            line-height: 1.35 !important;
+                            text-align: center !important;
+                            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28) !important;
+                        }
+                        #sq2 #q2-question-panel .q-text::before {
+                            display: none !important;
+                        }
+                        #sq2 #q2-question-panel .q-options {
+                            display: grid !important;
+                            grid-template-columns: 1fr 1fr !important;
+                            gap: 14px !important;
+                            margin-top: 2px;
+                        }
+                        #sq2 #q2-question-panel .q-opt {
+                            flex-direction: column !important;
+                            justify-content: center !important;
+                            align-items: center !important;
+                            text-align: center !important;
+                            gap: 10px !important;
+                            min-height: 132px !important;
+                            padding: 18px 14px !important;
+                            border-radius: 20px !important;
+                            border: 2px solid transparent !important;
+                            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28) !important;
+                            font-size: clamp(15px, 1.7vw, 18px) !important;
+                            font-weight: 800 !important;
+                            color: #fff !important;
+                            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, filter 0.18s ease !important;
+                        }
+                        #sq2 #q2-question-panel .q-opt:nth-child(1) {
+                            background: linear-gradient(160deg, #ff9a3c 0%, #ff6a00 100%) !important;
+                        }
+                        #sq2 #q2-question-panel .q-opt:nth-child(2) {
+                            background: linear-gradient(160deg, #ffe566 0%, #f2c42f 100%) !important;
+                            color: #1a1408 !important;
+                        }
+                        #sq2 #q2-question-panel .q-opt:nth-child(n+3) {
+                            display: none !important;
+                        }
+                        #sq2 #q2-question-panel .q-opt:hover:not(.answered) {
+                            transform: translateY(-4px) scale(1.02) !important;
+                            filter: brightness(1.06) !important;
+                            border-color: rgba(255, 255, 255, 0.7) !important;
+                            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35) !important;
+                        }
+                        #sq2 #q2-question-panel .q-opt.selected:not(.answered) {
+                            transform: translateY(-2px) scale(1.03) !important;
+                            border-color: #fff !important;
+                            box-shadow:
+                                0 0 0 4px rgba(83, 230, 212, 0.4),
+                                0 18px 36px rgba(0, 0, 0, 0.35) !important;
+                        }
+                        #sq2 #q2-question-panel .q-opt .opt-l {
+                            width: 52px !important;
+                            height: 52px !important;
+                            border-radius: 50% !important;
+                            background: rgba(255, 255, 255, 0.22) !important;
+                            border: 2px solid rgba(255, 255, 255, 0.85) !important;
+                            color: inherit !important;
+                            font-size: 22px !important;
+                            font-weight: 900 !important;
+                        }
+                        #sq2 #q2-question-panel .q-opt span {
+                            font-family: var(--font-h) !important;
+                            font-weight: 800 !important;
+                            line-height: 1.2 !important;
+                        }
+                        #sq2 #q2-question-panel .q-opt.correct,
+                        #sq2 #q2-question-panel .q-opt.correct:nth-child(1),
+                        #sq2 #q2-question-panel .q-opt.correct:nth-child(2) {
+                            background: linear-gradient(160deg, #34d399 0%, #059669 100%) !important;
+                            border-color: #fff !important;
+                            color: #fff !important;
+                        }
+                        #sq2 #q2-question-panel .q-opt.wrong,
+                        #sq2 #q2-question-panel .q-opt.wrong:nth-child(1),
+                        #sq2 #q2-question-panel .q-opt.wrong:nth-child(2) {
+                            background: linear-gradient(160deg, #f87171 0%, #dc2626 100%) !important;
+                            border-color: rgba(255, 255, 255, 0.5) !important;
+                            color: #fff !important;
+                            opacity: 0.95 !important;
+                        }
+                        #sq2 #q2-question-panel .q-opt.muted,
+                        #sq2 #q2-question-panel .q-opt.muted:nth-child(1),
+                        #sq2 #q2-question-panel .q-opt.muted:nth-child(2) {
+                            opacity: 0.45 !important;
+                            filter: grayscale(0.35) !important;
+                            transform: none !important;
+                        }
+                        #sq2 #q2-question-panel #q2-verify-container {
+                            margin-top: 4px !important;
+                        }
+                        #sq2 #q2-question-panel .btn-tf-verify,
+                        #sq2 #q2-question-panel .btn-next-q {
+                            border-radius: 999px !important;
+                            min-width: 220px;
+                            font-weight: 800 !important;
+                            letter-spacing: 0.04em;
+                        }
+                        #sq2 #q2-question-panel .q-feedback {
+                            text-align: center;
+                            border-radius: 14px;
+                            margin-top: 2px;
+                        }
+                        @media (max-width: 560px) {
+                            #sq2 #q2-question-panel .q-options {
+                                gap: 10px !important;
+                            }
+                            #sq2 #q2-question-panel .q-opt {
+                                min-height: 118px !important;
+                                padding: 14px 10px !important;
+                            }
+                            #sq2 #q2-question-panel .q-opt .opt-l {
+                                width: 44px !important;
+                                height: 44px !important;
+                                font-size: 18px !important;
+                            }
+                            #sq2 #q2-question-panel .q-text {
+                                padding: 18px 14px !important;
+                                font-size: clamp(16px, 4.4vw, 19px) !important;
+                            }
+                        }
+                    </style>
                     <div class="quiz-wrap">
                         <div id="q2-intro-panel" class="quiz-intro-panel">
                             <div class="quiz-intro-card">
@@ -493,7 +670,10 @@
                         </div>
                         <div id="q2-question-panel" style="display:none; transition: opacity 0.5s ease;">
                             <div class="q-meta">
-                                <div class="q-dots">
+                                <div class="q2-progress" aria-hidden="true">
+                                    <div class="q2-progress-fill" id="q2-progress-fill"></div>
+                                </div>
+                                <div class="q-dots" hidden>
                                     <div class="qdot2 cur" id="q2dot0"></div>
                                     <div class="qdot2" id="q2dot1"></div>
                                     <div class="qdot2" id="q2dot2"></div>
@@ -559,7 +739,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=163"></script>
+    <script src="shared.js?v=164"></script>
 </body>
 
 </html>
