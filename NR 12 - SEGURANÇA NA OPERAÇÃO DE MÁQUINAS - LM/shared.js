@@ -1783,6 +1783,10 @@ function createQuizEngine(prefix, questions, numDots) {
                 setOptIcon(allOpts[q.correct], '✓');
             }
             if (q.topic) wrongTopics.push(q.topic);
+            else {
+                var fallback = String(q.q || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+                if (fallback) wrongTopics.push(fallback.length > 90 ? fallback.slice(0, 87) + '…' : fallback);
+            }
             if (fb) { fb.textContent = q.feedback_nok; fb.className = 'q-feedback nok'; }
             playBeep('nok');
         }
@@ -1894,10 +1898,10 @@ function createQuizEngine(prefix, questions, numDots) {
             }
 
             if (reviewEl) {
-                if (!approved && topics.length) {
+                if (!approved) {
                     reviewEl.hidden = false;
                     reviewEl.innerHTML = '<strong>Revise estes temas:</strong><ul>' +
-                        topics.map(function (t) { return '<li>' + t + '</li>'; }).join('') +
+                        (topics.length ? topics : ['Revise as questões do desafio e tente novamente.']).map(function (t) { return '<li>' + t + '</li>'; }).join('') +
                         '</ul>';
                 } else {
                     reviewEl.hidden = true;
@@ -2925,6 +2929,10 @@ function createQuiz6Engine(questions) {
                 fb.className = 'q-feedback nok';
             }
             if (q.topic) wrongTopics.push(q.topic);
+            else {
+                var fallback6 = String(q.q || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+                if (fallback6) wrongTopics.push(fallback6.length > 90 ? fallback6.slice(0, 87) + '…' : fallback6);
+            }
             playQuiz6Audio('incorrect');
         }
 
@@ -2998,10 +3006,10 @@ function createQuiz6Engine(questions) {
         const reviewEl = document.getElementById('q6-review');
         if (reviewEl) {
             const topics = uniqueTopics(wrongTopics);
-            if (!approved && topics.length) {
+            if (!approved) {
                 reviewEl.hidden = false;
                 reviewEl.innerHTML = '<strong>Revise estes temas:</strong><ul>' +
-                    topics.map(function (t) { return '<li>' + t + '</li>'; }).join('') +
+                    (topics.length ? topics : ['Revise as questões do desafio e tente novamente.']).map(function (t) { return '<li>' + t + '</li>'; }).join('') +
                     '</ul>';
             } else {
                 reviewEl.hidden = true;

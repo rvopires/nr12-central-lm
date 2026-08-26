@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=163">
+<link rel="stylesheet" href="shared.css?v=165">
     <script>
         window.MODULE_NAV = {
             id: "modulo-4",
@@ -41,45 +41,68 @@
             overflow: hidden !important; position: relative; z-index: 2;
         }
         #s-mod4-inspecao .m4m-layout {
-            width: 100%; max-width: 1100px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-            align-items: stretch; max-height: 100%; min-height: 0;
+            width: min(760px, 92%);
+            margin: 0 auto;
+            display: block;
+            position: relative;
         }
         #s-mod4-inspecao .m4m-card {
-            background: #fff; border: 1.5px solid rgba(173,82,196,0.16);
-            border-radius: 20px; overflow: hidden;
-            box-shadow: 0 14px 32px rgba(0,0,0,0.18);
-            display: flex; flex-direction: column; min-width: 0; min-height: 0;
+            display: none;
+            background: #fff;
+            border: 1.5px solid rgba(173,82,196,0.18);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+            flex-direction: column;
+            min-width: 0;
+            width: 100%;
+        }
+        #s-mod4-inspecao .m4m-card.m4m-card-active {
+            display: flex;
+            animation: m4m-card-in 0.35s ease;
+        }
+        @keyframes m4m-card-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         #s-mod4-inspecao .m4m-media {
-            position: relative; width: 100%; flex: 0 0 auto;
-            height: clamp(100px, 18vh, 160px);
-            background: linear-gradient(145deg, rgba(173,82,196,0.12), rgba(83,230,212,0.1)), #f3f0f7;
+            position: relative;
+            width: 100%;
+            height: min(240px, 32vh);
+            flex: 0 0 min(240px, 32vh);
+            background: #1a0a32;
             overflow: hidden;
         }
         #s-mod4-inspecao .m4m-media img {
-            position: relative; z-index: 1; width: 100%; height: 100%;
-            object-fit: cover; object-position: center; display: block;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
         }
+        #s-mod4-inspecao .m4m-media.has-photo .m4m-media-ph { display: none; }
         #s-mod4-inspecao .m4m-media-ph {
             position: absolute; inset: 0; display: flex; flex-direction: column;
             align-items: center; justify-content: center; gap: 6px;
-            pointer-events: none; color: rgba(74,24,102,0.4);
+            pointer-events: none; color: rgba(255,255,255,0.4);
             font-family: var(--font-h); font-size: 12px; font-weight: 800;
             letter-spacing: 0.06em; text-transform: uppercase; z-index: 0;
         }
         #s-mod4-inspecao .m4m-media-ph svg { width: 28px; height: 28px; opacity: 0.5; }
         #s-mod4-inspecao .m4m-expand {
-            position: absolute; bottom: 10px; right: 10px; z-index: 3;
+            position: absolute; bottom: 12px; right: 12px; z-index: 3;
             display: inline-flex; align-items: center; justify-content: center;
-            width: 34px; height: 34px; padding: 0; border-radius: 50%;
-            border: 1.5px solid rgba(255,255,255,0.9); background: #53E6D4;
-            box-shadow: 0 5px 14px rgba(83,230,212,0.5); color: #1F0A45;
-            font-size: 14px; line-height: 1; cursor: pointer;
+            width: 42px; height: 42px; padding: 0; border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.95); background: #53E6D4;
+            box-shadow: 0 6px 16px rgba(83,230,212,0.55); color: #1F0A45;
+            font-size: 17px; line-height: 1; cursor: pointer;
         }
+        #s-mod4-inspecao .m4m-expand:hover { filter: brightness(1.08); transform: scale(1.06); }
         #s-mod4-inspecao .m4m-body {
-            padding: 12px 12px 14px; flex: 1 1 auto; min-height: 0;
-            display: flex; flex-direction: column; gap: 8px; overflow: hidden;
+            padding: 16px 18px 18px; flex: 1 1 auto; min-height: 0;
+            display: flex; flex-direction: column; gap: 10px; overflow: auto;
         }
         #s-mod4-inspecao .m4m-card--prep .m4m-body {
             background: linear-gradient(180deg, #faf0ff 0%, #fff 55%);
@@ -94,50 +117,53 @@
             border-top: 3px solid var(--m4m-mint);
         }
         #s-mod4-inspecao .m4m-kicker {
-            margin: 0; font-family: var(--font-h); font-size: 10px; font-weight: 800;
+            margin: 0; font-family: var(--font-h); font-size: 12px; font-weight: 800;
             letter-spacing: 0.1em; text-transform: uppercase;
         }
         #s-mod4-inspecao .m4m-card--prep .m4m-kicker { color: var(--m4m-purple); }
         #s-mod4-inspecao .m4m-card--ban .m4m-kicker { color: var(--m4m-red); }
         #s-mod4-inspecao .m4m-card--ok .m4m-kicker { color: #1a9e8f; }
         #s-mod4-inspecao .m4m-title {
-            margin: 0; font-family: var(--font-h); font-size: clamp(14px, 1.4vw, 16px);
-            font-weight: 800; line-height: 1.25; color: var(--m4m-purple-deep);
+            margin: 0; font-family: var(--font-h); font-size: clamp(20px, 2.4vw, 26px);
+            font-weight: 800; line-height: 1.2; color: var(--m4m-purple-deep);
         }
         #s-mod4-inspecao .m4m-card--ban .m4m-title { color: var(--m4m-red-deep); }
         #s-mod4-inspecao .m4m-card--ok .m4m-title { color: #0d5c54; }
         #s-mod4-inspecao .m4m-lead {
-            margin: 0; font-family: var(--font-b); font-size: 12.5px;
-            line-height: 1.4; color: rgba(74,24,102,0.82);
+            margin: 0; font-family: var(--font-b); font-size: 15px;
+            line-height: 1.45; color: rgba(74,24,102,0.82);
         }
         #s-mod4-inspecao .m4m-card--ban .m4m-lead { color: rgba(159,28,28,0.9); }
         #s-mod4-inspecao .m4m-card--ok .m4m-lead { color: #0d5c54; }
         #s-mod4-inspecao .m4m-steps {
             list-style: none; margin: 0; padding: 0;
-            display: flex; flex-direction: column; gap: 6px;
+            display: flex; flex-direction: column; gap: 8px;
         }
         #s-mod4-inspecao .m4m-step {
-            display: grid; grid-template-columns: 26px 1fr; gap: 8px; align-items: start;
-            padding: 7px 8px; border-radius: 10px;
+            display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: start;
+            padding: 9px 10px; border-radius: 12px;
             background: rgba(255,255,255,0.85); border: 1px solid rgba(173,82,196,0.14);
         }
         #s-mod4-inspecao .m4m-step-num {
-            width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
-            background: linear-gradient(145deg, #C47AD8, #AD52C4); color: #fff;
-            font-family: var(--font-h); font-size: 11px; font-weight: 900;
+            width: 34px; height: 34px; min-width: 34px; min-height: 34px;
+            border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+            box-sizing: border-box; padding: 0; overflow: hidden; flex-shrink: 0;
+            background: linear-gradient(145deg, #C47AD8, #AD52C4); color: #fff !important;
+            font-family: var(--font-h); font-size: 11px !important; font-weight: 800;
+            line-height: 1 !important; letter-spacing: 0; white-space: nowrap;
         }
         #s-mod4-inspecao .m4m-step strong {
-            display: block; font-family: var(--font-h); font-size: 12.5px; font-weight: 800;
+            display: block; font-family: var(--font-h); font-size: 14px; font-weight: 800;
             color: var(--m4m-purple-deep); line-height: 1.25; margin-bottom: 1px;
         }
-        #s-mod4-inspecao .m4m-step span {
-            display: block; font-size: 11.5px; line-height: 1.35; color: rgba(74,24,102,0.72);
+        #s-mod4-inspecao .m4m-step div span {
+            display: block; font-size: 13px; line-height: 1.4; color: rgba(74,24,102,0.72);
         }
-        #s-mod4-inspecao .m4m-bans { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+        #s-mod4-inspecao .m4m-bans { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
         #s-mod4-inspecao .m4m-ban {
-            display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px;
+            display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px;
             border-radius: 999px; background: #fff; border: 1.5px solid rgba(224,58,58,0.28);
-            color: var(--m4m-red-deep); font-family: var(--font-h); font-size: 11.5px; font-weight: 800;
+            color: var(--m4m-red-deep); font-family: var(--font-h); font-size: 13px; font-weight: 800;
         }
         #s-mod4-inspecao .m4m-ban::before {
             content: ''; width: 7px; height: 7px; border-radius: 50%;
@@ -145,45 +171,70 @@
         }
         #s-mod4-inspecao .m4m-ok-chip {
             display: inline-flex; align-items: center; gap: 7px; align-self: flex-start;
-            margin-top: auto; padding: 7px 11px; border-radius: 999px;
+            margin-top: auto; padding: 9px 14px; border-radius: 999px;
             background: rgba(83,230,212,0.22); border: 1px solid rgba(83,230,212,0.55);
-            color: #0d5c54; font-family: var(--font-h); font-size: 11.5px; font-weight: 800;
+            color: #0d5c54; font-family: var(--font-h); font-size: 13px; font-weight: 800;
         }
-        #s-mod4-inspecao .m4m-ok-chip svg { width: 15px; height: 15px; flex-shrink: 0; }
-        #s-mod4-inspecao .m4m-carousel-nav { display: none; }
+        #s-mod4-inspecao .m4m-ok-chip svg { width: 16px; height: 16px; flex-shrink: 0; }
+        #s-mod4-inspecao .m4m-carousel-nav {
+            display: flex; align-items: center; justify-content: center; gap: 18px;
+            flex-shrink: 0; padding: 8px 0 4px; position: relative; z-index: 30;
+        }
+        #s-mod4-inspecao .m4m-nav-btn {
+            width: 52px; height: 52px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; padding: 0;
+            border: 1px solid rgba(255,255,255,0.22);
+            background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.9);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            transition: transform 0.15s ease, filter 0.15s ease;
+        }
+        #s-mod4-inspecao .m4m-nav-btn svg { width: 18px; height: 18px; pointer-events: none; }
+        #s-mod4-inspecao #m4m-next:not(:disabled) {
+            border: 2px solid rgba(255,255,255,0.8);
+            background: #53E6D4; color: #3A1480;
+            box-shadow: 0 6px 18px rgba(83,230,212,0.55), 0 0 28px rgba(83,230,212,0.45);
+            animation: m4m-nav-pulse 1.4s ease-in-out infinite;
+        }
+        #s-mod4-inspecao .m4m-nav-btn:hover:not(:disabled) { filter: brightness(1.12); transform: scale(1.08); }
+        #s-mod4-inspecao .m4m-nav-btn:disabled { opacity: 0.32; cursor: default; animation: none; }
+        #s-mod4-inspecao .m4m-counter {
+            font-family: var(--font-h); font-size: 15px; font-weight: 800;
+            color: var(--m4m-mint); min-width: 56px; text-align: center;
+        }
+        @keyframes m4m-nav-pulse {
+            0%, 100% { box-shadow: 0 6px 18px rgba(83,230,212,0.45), 0 0 18px rgba(83,230,212,0.3); }
+            50% { box-shadow: 0 8px 24px rgba(83,230,212,0.7), 0 0 32px rgba(83,230,212,0.55); }
+        }
+        @media screen and (min-width: 769px) {
+            #s-mod4-inspecao .m4m-card.m4m-card-active {
+                display: grid;
+                grid-template-columns: 320px 1fr;
+                grid-template-rows: 320px;
+                height: 320px;
+                min-height: 320px;
+                max-height: 320px;
+            }
+            #s-mod4-inspecao .m4m-media {
+                width: 320px; height: 320px; min-height: 320px; max-height: 320px; flex: none;
+            }
+            #s-mod4-inspecao .m4m-card--prep .m4m-body,
+            #s-mod4-inspecao .m4m-card--ban .m4m-body,
+            #s-mod4-inspecao .m4m-card--ok .m4m-body {
+                border-top: none;
+            }
+            #s-mod4-inspecao .m4m-card--prep .m4m-body { border-left: 3px solid var(--m4m-purple); }
+            #s-mod4-inspecao .m4m-card--ban .m4m-body { border-left: 3px solid var(--m4m-red); }
+            #s-mod4-inspecao .m4m-card--ok .m4m-body { border-left: 3px solid var(--m4m-mint); }
+        }
         @media screen and (max-height: 760px) {
-            #s-mod4-inspecao .m4m-media { height: clamp(80px, 14vh, 120px); }
-            #s-mod4-inspecao .m4m-body { padding: 10px; gap: 6px; }
-            #s-mod4-inspecao .m4m-step span, #s-mod4-inspecao .m4m-lead { font-size: 11px; }
+            #s-mod4-inspecao .m4m-media { height: min(180px, 26vh); flex-basis: min(180px, 26vh); }
+            #s-mod4-inspecao .m4m-body { padding: 12px 14px; gap: 8px; }
         }
-        @media screen and (max-width: 980px) {
-            #s-mod4-inspecao .content-area {
-                overflow-y: auto !important; justify-content: flex-start !important;
-                padding: 6px 12px 88px !important;
-            }
-            #s-mod4-inspecao .m4m-layout { grid-template-columns: 1fr; max-width: 420px; }
-            #s-mod4-inspecao .m4m-media { height: 140px; }
-        }
-        @media screen and (max-width: 768px) and (orientation: portrait) {
-            #s-mod4-inspecao .m4m-layout { display: block; max-width: 420px; width: 100%; }
-            #s-mod4-inspecao .m4m-card { display: none; }
-            #s-mod4-inspecao .m4m-card.m4m-card-active { display: flex; }
-            #s-mod4-inspecao .m4m-carousel-nav {
-                display: flex; align-items: center; justify-content: center; gap: 16px;
-            }
-            #s-mod4-inspecao .m4m-nav-btn {
-                background: linear-gradient(145deg, #7AEEE0 0%, #53E6D4 45%, #AD52C4 100%);
-                color: #fff; border: 3px solid #fff; border-radius: 50%;
-                width: 48px; height: 48px; cursor: pointer;
-                display: flex; align-items: center; justify-content: center;
-                box-shadow: 0 0 0 3px rgba(83,230,212,0.55), 0 8px 22px rgba(173,82,196,0.55);
-            }
-            #s-mod4-inspecao .m4m-nav-btn svg { width: 18px; height: 18px; pointer-events: none; }
-            #s-mod4-inspecao .m4m-nav-btn:disabled { opacity: 0.28; cursor: default; }
-            #s-mod4-inspecao .m4m-counter {
-                font-family: var(--font-h); font-size: 14px; font-weight: 800;
-                color: var(--m4m-mint); min-width: 52px; text-align: center;
-            }
+        @media screen and (max-width: 768px) {
+            #s-mod4-inspecao .content-area { padding: 6px 12px 96px !important; }
+            #s-mod4-inspecao .m4m-layout { width: min(440px, 100%); }
+            #s-mod4-inspecao .m4m-media { height: 180px; flex-basis: 180px; }
+            #s-mod4-inspecao .m4m-title { font-size: 22px; }
         }
 
         /* ── Página 24: Limpeza por equipamento (1 tela, sem scroll) ── */
@@ -868,15 +919,9 @@
                 <div class="content-area">
                     <div class="m4m-layout" id="m4m-viewport" role="list">
                         <article class="m4m-card m4m-card--prep m4m-card-active" role="listitem" aria-label="Antes de qualquer manutenção">
-                            <div class="m4m-media">
-                                <span class="m4m-media-ph" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/>
-                                    </svg>
-                                    Foto 1
-                                </span>
-                                <img src="assets/fotos/pag23-antes.png" alt="Antes de qualquer manutenção" onerror="this.style.display='none'">
-                                <button type="button" class="m4m-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/pag23-antes.png')">🔍</button>
+                            <div class="m4m-media has-photo">
+                                <img src="assets/fotos/antesmanutencao.png" alt="Antes de qualquer manutenção">
+                                <button type="button" class="m4m-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/antesmanutencao.png')">🔍</button>
                             </div>
                             <div class="m4m-body">
                                 <p class="m4m-kicker">Preparação</p>
@@ -889,15 +934,9 @@
                             </div>
                         </article>
                         <article class="m4m-card m4m-card--ban" role="listitem" aria-label="Produtos proibidos">
-                            <div class="m4m-media">
-                                <span class="m4m-media-ph" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/>
-                                    </svg>
-                                    Foto 2
-                                </span>
-                                <img src="assets/fotos/pag23-proibidos.png" alt="Produtos proibidos" onerror="this.style.display='none'">
-                                <button type="button" class="m4m-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/pag23-proibidos.png')">🔍</button>
+                            <div class="m4m-media has-photo">
+                                <img src="assets/fotos/produtosproibidos.png" alt="Produtos proibidos">
+                                <button type="button" class="m4m-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/produtosproibidos.png')">🔍</button>
                             </div>
                             <div class="m4m-body">
                                 <p class="m4m-kicker">Proibido</p>
@@ -912,15 +951,9 @@
                             </div>
                         </article>
                         <article class="m4m-card m4m-card--ok" role="listitem" aria-label="Atenção geral">
-                            <div class="m4m-media">
-                                <span class="m4m-media-ph" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/>
-                                    </svg>
-                                    Foto 3
-                                </span>
-                                <img src="assets/fotos/pag23-atencao.png" alt="Atenção geral" onerror="this.style.display='none'">
-                                <button type="button" class="m4m-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/pag23-atencao.png')">🔍</button>
+                            <div class="m4m-media has-photo">
+                                <img src="assets/fotos/atencao.png" alt="Atenção geral">
+                                <button type="button" class="m4m-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/atencao.png')">🔍</button>
                             </div>
                             <div class="m4m-body">
                                 <p class="m4m-kicker">Segurança</p>
@@ -945,7 +978,6 @@
                     <script>
                         (function () {
                             var m4mIdx = 0, m4mTotal = 3;
-                            function isMob() { return window.matchMedia('screen and (max-width: 768px) and (orientation: portrait)').matches; }
                             function cards() { return document.querySelectorAll('#s-mod4-inspecao .m4m-card'); }
                             function ui() {
                                 var c = cards(); m4mTotal = c.length || 3;
@@ -957,7 +989,6 @@
                                 if (next) next.disabled = m4mIdx === m4mTotal - 1;
                             }
                             window.m4mCarouselNav = function (dir) {
-                                if (!isMob()) return;
                                 var n = m4mIdx + dir; if (n < 0 || n >= m4mTotal) return;
                                 m4mIdx = n; try { if (typeof playTechClick === 'function') playTechClick(); } catch (e) {}
                                 ui();
@@ -966,14 +997,13 @@
                             if (vp) {
                                 vp.addEventListener('touchstart', function (e) { sx = e.changedTouches[0].screenX; }, { passive: true });
                                 vp.addEventListener('touchend', function (e) {
-                                    if (!isMob()) return;
                                     var d = sx - e.changedTouches[0].screenX;
                                     if (Math.abs(d) > 40) window.m4mCarouselNav(d > 0 ? 1 : -1);
                                 }, { passive: true });
                             }
                             function init() { m4mIdx = 0; ui(); }
                             if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
-                            window.addEventListener('resize', function () { if (!isMob()) m4mIdx = 0; ui(); });
+                            window.addEventListener('resize', ui);
                         })();
                     </script>
                 </div>
@@ -2230,7 +2260,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=161"></script>
+    <script src="shared.js?v=162"></script>
 </body>
 
 </html>

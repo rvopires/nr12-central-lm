@@ -2343,32 +2343,53 @@ body:has(#s-quiz5.active) #btn-fwd {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    border: 1.5px solid rgba(83, 230, 212, 0.55);
+    gap: 10px;
+    border: 1.5px solid rgba(89, 247, 174, 0.85);
     border-radius: 999px;
-    padding: 16px 40px;
-    background: linear-gradient(135deg, #53E6D4, #2DD4C4);
+    min-width: 280px;
+    min-height: 58px;
+    padding: 18px 48px;
+    background:
+        radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.4), transparent 36%),
+        linear-gradient(135deg, #7AEEE0, #53E6D4 40%, #2DD4C4);
     color: #1F0A45;
     font-family: var(--font-h);
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
+    font-size: 17px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     cursor: pointer;
     white-space: nowrap;
     align-self: center;
+    position: relative;
+    overflow: hidden;
     box-shadow:
-        0 10px 30px rgba(83, 230, 212, 0.45),
-        0 0 0 1px rgba(83, 230, 212, 0.12);
-    transition: all 0.25s;
+        0 14px 32px rgba(0, 0, 0, 0.35),
+        0 0 32px rgba(83, 230, 212, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    animation: q1-retry-pulse 1.8s ease-in-out infinite;
+}
+
+.quiz-intro-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.5) 45%, transparent 70%);
+    transform: translateX(-120%);
+    animation: q1-retry-shine 2.4s ease-in-out infinite;
+    pointer-events: none;
 }
 
 .quiz-intro-btn:hover {
-    background: linear-gradient(135deg, #7AEEE0, #53E6D4);
-    transform: translateY(-2px);
+    background:
+        radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.5), transparent 36%),
+        linear-gradient(135deg, #B8FFF6, #7AEEE0 40%, #53E6D4);
+    transform: translateY(-3px) scale(1.03);
     box-shadow:
-        0 12px 36px rgba(83, 230, 212, 0.55),
-        0 0 0 1px rgba(83, 230, 212, 0.2);
+        0 18px 40px rgba(0, 0, 0, 0.42),
+        0 0 48px rgba(83, 230, 212, 0.75),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .quiz-intro-btn:active {
@@ -2440,8 +2461,8 @@ body:has(#s-quiz5.active) #btn-fwd {
     }
 
     .quiz-intro-btn {
-        padding: 16px 38px;
-        font-size: 15.5px;
+        padding: 18px 42px;
+        font-size: 16.5px;
     }
 }
 
@@ -2470,9 +2491,9 @@ body:has(#s-quiz5.active) #btn-fwd {
 
     .quiz-intro-btn {
         width: 100%;
-        max-width: 320px;
-        padding: 16px 32px;
-        font-size: 15px;
+        max-width: 340px;
+        padding: 18px 32px;
+        font-size: 16px;
         white-space: normal;
     }
 }
@@ -2812,7 +2833,7 @@ body:has(#s-quiz5.active) #btn-fwd {
 }
 
 .r-status.ref {
-    color: #ff7085;
+    color: #fff;
 }
 
 .r-status.try {
@@ -8092,14 +8113,15 @@ body {
 #s-quiz6 .quiz-result-card {
     position: relative;
     isolation: isolate;
+    overflow: hidden;
     padding: 36px 28px 30px;
-    border-radius: 22px;
-    background: #AD52C4;
-    border: 1px solid rgba(140, 180, 210, 0.22);
+    border-radius: 24px;
+    background: linear-gradient(160deg, #7E36E3 0%, #3A1480 40%, #2A0F5C 75%, #1a0840 100%);
+    border: 1.5px solid rgba(83, 230, 212, 0.38);
     box-shadow:
-        0 20px 48px rgba(0, 0, 0, 0.45),
-        0 0 40px rgba(83, 230, 212, 0.22),
-        0 0 80px rgba(83, 230, 212, 0.14);
+        0 28px 64px rgba(0, 0, 0, 0.42),
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+        0 0 48px rgba(83, 230, 212, 0.14);
 }
 
 #sq1 .quiz-result-card::before,
@@ -8110,14 +8132,14 @@ body {
 #s-quiz6 .quiz-result-card::before {
     content: '';
     position: absolute;
-    inset: -18px;
-    border-radius: 32px;
-    background: radial-gradient(ellipse at 50% 40%,
-            rgba(83, 230, 212, 0.45) 0%,
-            rgba(83, 230, 212, 0.18) 42%,
-            transparent 72%);
-    filter: blur(22px);
-    z-index: -1;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 3px;
+    border-radius: 0 0 8px 8px;
+    background: linear-gradient(90deg, transparent, #53E6D4 30%, #7AEEE0 50%, #53E6D4 70%, transparent);
+    filter: none;
+    z-index: 2;
     pointer-events: none;
 }
 
@@ -8152,17 +8174,15 @@ body {
 #s-quiz3 .quiz-result-title.ref,
 #s-quiz4 .quiz-result-title.ref,
 #s-quiz5 .quiz-result-title.ref,
-#s-quiz6 .quiz-result-title.ref {
-    color: #ffb074;
-}
-
+#s-quiz6 .quiz-result-title.ref,
 #sq1 .quiz-result-title.ap,
 #sq2 .quiz-result-title.ap,
 #s-quiz3 .quiz-result-title.ap,
 #s-quiz4 .quiz-result-title.ap,
 #s-quiz5 .quiz-result-title.ap,
 #s-quiz6 .quiz-result-title.ap {
-    color: #53E6D4;
+    color: #fff;
+    text-shadow: 0 2px 18px rgba(83, 230, 212, 0.28);
 }
 
 #sq1 .quiz-result-desc,
@@ -8188,9 +8208,9 @@ body {
     padding: 14px 16px;
     max-width: 420px;
     border-radius: 12px;
-    background: rgba(255, 122, 24, 0.08);
-    border: 1px solid rgba(255, 122, 24, 0.45);
-    color: #ffb074;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(83, 230, 212, 0.35);
+    color: #fff;
 }
 
 #sq1 .quiz-result-review strong,
@@ -8205,7 +8225,7 @@ body {
     font-size: 13px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: #ff9a4a;
+    color: #fff;
 }
 
 #sq1 .quiz-result-review ul,
@@ -8215,7 +8235,8 @@ body {
 #s-quiz5 .quiz-result-review ul,
 #s-quiz6 .quiz-result-review ul {
     margin: 0;
-    padding-left: 18px;
+    padding: 0;
+    list-style: none;
 }
 
 #sq1 .quiz-result-review li,
@@ -8224,10 +8245,29 @@ body {
 #s-quiz4 .quiz-result-review li,
 #s-quiz5 .quiz-result-review li,
 #s-quiz6 .quiz-result-review li {
-    margin: 4px 0;
-    font-size: 14px;
-    line-height: 1.4;
-    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 8px 0;
+    font-size: 15px;
+    line-height: 1.45;
+    color: #fff;
+}
+
+#sq1 .quiz-result-review li::before,
+#sq2 .quiz-result-review li::before,
+#s-quiz3 .quiz-result-review li::before,
+#s-quiz4 .quiz-result-review li::before,
+#s-quiz5 .quiz-result-review li::before,
+#s-quiz6 .quiz-result-review li::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    margin-top: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: #53E6D4;
+    box-shadow: 0 0 0 3px rgba(83, 230, 212, 0.22);
 }
 
 #sq1 .quiz-result-btn,
@@ -8240,9 +8280,9 @@ body {
     align-items: center;
     justify-content: center;
     gap: 12px;
-    min-width: 260px;
-    min-height: 54px;
-    padding: 15px 32px;
+    min-width: 280px;
+    min-height: 58px;
+    padding: 18px 36px;
     border: 1px solid rgba(89, 247, 174, 0.75);
     border-radius: 999px;
     background:
@@ -8250,7 +8290,7 @@ body {
         #53E6D4;
     color: #3A1480;
     font-family: var(--font-h);
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 900;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -8329,11 +8369,15 @@ body {
 #s-quiz4 #q4-result-panel.is-approved .quiz-result-card,
 #s-quiz5 #q5-result-panel.is-approved .quiz-result-card,
 #s-quiz6 #q6-result-panel.is-approved .quiz-result-card,
-#sq2 #q2-result-panel.is-approved .quiz-result-card {
-    box-shadow:
-        0 20px 48px rgba(0, 0, 0, 0.45),
-        0 0 48px rgba(83, 230, 212, 0.35),
-        0 0 90px rgba(83, 230, 212, 0.2);
+#sq2 #q2-result-panel.is-approved .quiz-result-card,
+#sq1 #q1-result-panel.is-failed .quiz-result-card,
+#sq2 #sq2-result-panel.is-failed .quiz-result-card,
+#s-quiz3 #q3-result-panel.is-failed .quiz-result-card,
+#s-quiz4 #q4-result-panel.is-failed .quiz-result-card,
+#s-quiz5 #q5-result-panel.is-failed .quiz-result-card,
+#s-quiz6 #q6-result-panel.is-failed .quiz-result-card,
+#sq2 #q2-result-panel.is-failed .quiz-result-card {
+    background: linear-gradient(160deg, #7E36E3 0%, #3A1480 40%, #2A0F5C 75%, #1a0840 100%);
 }
 
 #sq1 #q1-result-panel.is-approved .quiz-result-card::before,
@@ -8343,10 +8387,7 @@ body {
 #s-quiz5 #q5-result-panel.is-approved .quiz-result-card::before,
 #s-quiz6 #q6-result-panel.is-approved .quiz-result-card::before,
 #sq2 #q2-result-panel.is-approved .quiz-result-card::before {
-    background: radial-gradient(ellipse at 50% 40%,
-            rgba(83, 230, 212, 0.55) 0%,
-            rgba(83, 230, 212, 0.22) 45%,
-            transparent 72%);
+    background: linear-gradient(90deg, transparent, #53E6D4 30%, #7AEEE0 50%, #53E6D4 70%, transparent);
 }
 
 @media (max-width: 768px) {
