@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -1050,7 +1050,7 @@
                             }
                             window.m4mCarouselNav = function (dir) {
                                 var n = m4mIdx + dir; if (n < 0 || n >= m4mTotal) return;
-                                m4mIdx = n; try { if (typeof playTechClick === 'function') playTechClick(); } catch (e) {}
+                                m4mIdx = n; try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
                                 ui();
                             };
                             var sx = 0, vp = document.getElementById('m4m-viewport');
@@ -1177,7 +1177,7 @@
                             }
                             window.m4lCarouselNav = function (dir) {
                                 var n = m4lIdx + dir; if (n < 0 || n >= m4lTotal) return;
-                                m4lIdx = n; try { if (typeof playTechClick === 'function') playTechClick(); } catch (e) {}
+                                m4lIdx = n; try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
                                 ui();
                             };
                             var sx = 0, vp = document.getElementById('m4l-viewport');
@@ -1300,7 +1300,7 @@
                                 var newIdx = m4pIdx + dir;
                                 if (newIdx < 0 || newIdx >= m4pTotal) return;
                                 m4pIdx = newIdx;
-                                try { if (typeof playTechClick === 'function') playTechClick(); } catch (e) {}
+                                try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
                                 m4pUpdateUI();
                             };
                             var m4pSX = 0;
@@ -2305,7 +2305,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=168"></script>
+    <script src="shared.js?v=172"></script>
 </body>
 
 </html>

@@ -298,19 +298,9 @@ window.updateQuizAudioHelper = function updateQuizAudioHelper() {
     const bar = document.getElementById('a11y-bar');
     const audioHelper = bar && bar.querySelector('.audio-helper');
     if (!audioHelper) return;
-
-    let show = false;
-    if (QUIZ_AUDIO_HELPER_PAGES.includes(nr11GlobalSlide())) {
-        const activeSlide = document.querySelector('.slide.active');
-        const panelId = activeSlide && QUIZ_AUDIO_HELPER_PANELS[activeSlide.id];
-        if (panelId) {
-            const panel = document.getElementById(panelId);
-            show = !!(panel && window.getComputedStyle(panel).display !== 'none');
-        }
-    }
-
-    audioHelper.classList.toggle('is-active', show);
-    if (bar) bar.classList.toggle('quiz-audio-helper', show);
+    // Não exibir aviso de áudio nas perguntas do quiz
+    audioHelper.classList.remove('is-active');
+    if (bar) bar.classList.remove('quiz-audio-helper');
 };
 
 function persistSlideHash(idx) {
@@ -359,7 +349,11 @@ function popHistory() {
 window.MODULE_NAV = window.MODULE_NAV || { id: 'index', prev: null, next: null, label: 'Capa' };
 
 /** Som de clique dos botões Anterior/Próximo — mesmo do NR 06 (Mixkit 2568) */
+var _clickSoundAt = 0;
 function playClickSound() {
+    var now = Date.now();
+    if (now - _clickSoundAt < 140) return;
+    _clickSoundAt = now;
     let snd = document.getElementById('click-sound');
     if (!snd) {
         snd = document.createElement('audio');
@@ -376,16 +370,6 @@ function playClickSound() {
     }
 }
 window.playClickSound = playClickSound;
-
-function initCarouselClickSound() {
-    document.addEventListener('click', function (e) {
-        const btn = e.target && e.target.closest && e.target.closest(_CAROUSEL_NAV_BTN);
-        if (!btn || btn.disabled) return;
-        if (btn.closest('#nav')) return;
-        playClickSound();
-    }, true);
-}
-initCarouselClickSound();
 
 function moduleNext(force) {
     const total = document.querySelectorAll('.slide').length;
@@ -1407,13 +1391,14 @@ function playSynthFallback(kind) {
             currentGain = gain;
 
             const now = ctx.currentTime;
-            if (kind === 'ok' || kind === 'correct') {
+            if (kind === 'ok' || kind === 'correct' || kind === 'ok-soft') {
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(523.25, now);
                 osc.frequency.setValueAtTime(659.25, now + 0.09);
                 osc.frequency.setValueAtTime(783.99, now + 0.18);
+                var peak = kind === 'ok-soft' ? 0.07 : 0.18;
                 gain.gain.setValueAtTime(0.0001, now);
-                gain.gain.exponentialRampToValueAtTime(0.18, now + 0.02);
+                gain.gain.exponentialRampToValueAtTime(peak, now + 0.02);
                 gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.38);
                 osc.start(now);
                 osc.stop(now + 0.4);
@@ -1498,6 +1483,24 @@ function playQuizMp3(kind) {
 function playCorrectAnswerSound() {
     playQuizMp3('ok');
 }
+
+/** Som de check mais baixo (cards/flip) — mesmo SFX do acerto, volume reduzido */
+function playSoftCheckSound() {
+    try {
+        try { ensureAudioCtx(); } catch (e) { }
+        var audio = new Audio(QUIZ_CORRECT_SFX);
+        audio.volume = 0.18;
+        var p = audio.play();
+        if (p && typeof p.catch === 'function') {
+            p.catch(function () {
+                playSynthFallback('ok-soft');
+            });
+        }
+    } catch (e) {
+        try { playSynthFallback('ok-soft'); } catch (err) { }
+    }
+}
+window.playSoftCheckSound = playSoftCheckSound;
 
 function playWrongAnswerSound() {
     playQuizMp3('nok');
@@ -3284,7 +3287,7 @@ function resetQuiz6() { quiz6.reset(); }
                 <span class="control-btn-text a11y-text">Transcrição</span>
             </button>
             <span class="top-control-label">Transcrição</span>
-            <div class="audio-helper">Reproduza o áudio em cada nova pergunta.</div>
+            <div class="audio-helper" hidden aria-hidden="true"></div>
         `;
         topControls.appendChild(a11yItem);
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -1245,6 +1245,7 @@
                                     <li>Não usar a máquina para fins alimentares</li>
                                     <li>Não usar os pratos do misturador para fechar tampa</li>
                                     <li>Não operar sem proteções ou com dispositivos de segurança avariados, ausentes ou desativados</li>
+                                    <li>Caso o dosador possua o item opcional “batoque de laser”, não olhar fixamente para o centralizador deste</li>
                                     <li>Em caso de incêndio, nunca usar água</li>
                                 </ul>
                                 <div class="opc-fire">
@@ -1549,7 +1550,7 @@
                     const n = idx + dir;
                     if (n < 0 || n >= total) return;
                     idx = n;
-                    try { if (typeof playTechClick === 'function') playTechClick(); } catch (e) {}
+                    try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
                     ui();
                 }
 
@@ -1903,7 +1904,7 @@
         })();
     </script>
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=168"></script>
+    <script src="shared.js?v=172"></script>
 </body>
 
 </html>

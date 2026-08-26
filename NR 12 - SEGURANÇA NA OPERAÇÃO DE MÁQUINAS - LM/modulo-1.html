@@ -764,8 +764,14 @@
                             });
                             var prevBtn = document.getElementById('cm-prev');
                             var nextBtn = document.getElementById('cm-next');
-                            if (prevBtn) prevBtn.addEventListener('click', function () { go(idx - 1); });
-                            if (nextBtn) nextBtn.addEventListener('click', function () { go(idx + 1); });
+                            if (prevBtn) prevBtn.addEventListener('click', function () {
+                                if (typeof playClickSound === 'function') playClickSound();
+                                go(idx - 1);
+                            });
+                            if (nextBtn) nextBtn.addEventListener('click', function () {
+                                if (typeof playClickSound === 'function') playClickSound();
+                                go(idx + 1);
+                            });
                             go(0);
                         })();
                     </script>
@@ -1328,6 +1334,18 @@
                         }
                         #s4 .s4-flip--warn .s4-flip-back-foot { color: #fde68a; }
                         #s4 .s4-flip--warn .s4-flip-back p strong { color: #fde68a; }
+                        #s4 .s4-flip--mint .s4-flip-front-foot {
+                            background: linear-gradient(90deg, #ecfdf5, #d1fae5);
+                            border-top: 3px solid #10b981;
+                        }
+                        #s4 .s4-flip--mint .s4-flip-tap { background: #10b981; color: #fff; }
+                        #s4 .s4-flip--mint .s4-flip-front-foot h4 { color: #065f46; }
+                        #s4 .s4-flip--gold .s4-flip-front-foot {
+                            background: linear-gradient(90deg, #fffbeb, #fef3c7);
+                            border-top: 3px solid #ca8a04;
+                        }
+                        #s4 .s4-flip--gold .s4-flip-tap { background: #ca8a04; color: #fff; }
+                        #s4 .s4-flip--gold .s4-flip-front-foot h4 { color: #854d0e; }
 
                         #s4 .s4-flip-card:hover .s4-flip-front {
                             box-shadow: 0 20px 44px rgba(173, 82, 196, 0.22);
@@ -1429,7 +1447,7 @@
                         }
                     </style>
 
-                    <p class="s4-flip-hint">Toque no card para virar e veja os 5 para poder avançar</p>
+                    <p class="s4-flip-hint">Toque no card para virar e veja os 7 para poder avançar</p>
 
                     <div class="s4-flip-grid" id="s4-flip-grid">
                         <button type="button" class="s4-flip-card s4-flip--purple is-active req-item" data-s4-idx="0"
@@ -1540,7 +1558,61 @@
                             </div>
                         </button>
 
-                        <button type="button" class="s4-flip-card s4-flip--warn req-item" data-s4-idx="4"
+                        <button type="button" class="s4-flip-card s4-flip--mint req-item" data-s4-idx="4"
+                            onclick="s4FlipCard(this)" aria-pressed="false">
+                            <div class="s4-flip-inner">
+                                <div class="s4-flip-face s4-flip-front">
+                                    <div class="s4-flip-front-img">
+                                        <img src="assets/fotos/MUSEU.png" alt="Museus, feiras e eventos">
+                                        <span class="s4-flip-zoom" role="button" tabindex="0" aria-label="Ampliar imagem"
+                                            onclick="event.stopPropagation(); openImageModal('assets/fotos/MUSEU.png')">🔍</span>
+                                    </div>
+                                    <div class="s4-flip-front-foot">
+                                        <h4>Museus e Eventos</h4>
+                                        <span class="s4-flip-tap">Clique no card</span>
+                                    </div>
+                                </div>
+                                <div class="s4-flip-face s4-flip-back">
+                                    <div>
+                                        <div class="s4-flip-back-top">
+                                            <h4>Museus e Eventos</h4>
+                                            <div class="s4-flip-badge">05</div>
+                                        </div>
+                                        <p>Máquinas expostas em museus, feiras e eventos, com fins históricos ou consideradas antiguidades, não mais empregadas com fins produtivos — desde que preservada a integridade física de visitantes e expositores.</p>
+                                    </div>
+                                    <div class="s4-flip-back-foot">Clique para voltar</div>
+                                </div>
+                            </div>
+                        </button>
+
+                        <button type="button" class="s4-flip-card s4-flip--gold req-item" data-s4-idx="5"
+                            onclick="s4FlipCard(this)" aria-pressed="false">
+                            <div class="s4-flip-inner">
+                                <div class="s4-flip-face s4-flip-front">
+                                    <div class="s4-flip-front-img">
+                                        <img src="assets/fotos/INMETRO.png" alt="Máquinas certificadas pelo INMETRO">
+                                        <span class="s4-flip-zoom" role="button" tabindex="0" aria-label="Ampliar imagem"
+                                            onclick="event.stopPropagation(); openImageModal('assets/fotos/INMETRO.png')">🔍</span>
+                                    </div>
+                                    <div class="s4-flip-front-foot">
+                                        <h4>Certificação INMETRO</h4>
+                                        <span class="s4-flip-tap">Clique no card</span>
+                                    </div>
+                                </div>
+                                <div class="s4-flip-face s4-flip-back">
+                                    <div>
+                                        <div class="s4-flip-back-top">
+                                            <h4>Certificação INMETRO</h4>
+                                            <div class="s4-flip-badge">06</div>
+                                        </div>
+                                        <p>Máquinas certificadas pelo INMETRO, desde que atendidos todos os requisitos técnicos de construção relacionados à segurança.</p>
+                                    </div>
+                                    <div class="s4-flip-back-foot">Clique para voltar</div>
+                                </div>
+                            </div>
+                        </button>
+
+                        <button type="button" class="s4-flip-card s4-flip--warn req-item" data-s4-idx="6"
                             onclick="s4FlipCard(this)" aria-pressed="false">
                             <div class="s4-flip-inner">
                                 <div class="s4-flip-face s4-flip-front">
@@ -1558,7 +1630,7 @@
                                     <div>
                                         <div class="s4-flip-back-top">
                                             <h4>Atenção</h4>
-                                            <div class="s4-flip-badge">05</div>
+                                            <div class="s4-flip-badge">07</div>
                                         </div>
                                         <p>Embora esses itens comuns fiquem de fora da norma, as máquinas da Central de Cores (dosador e misturador) <strong>exigem o cumprimento obrigatório e rigoroso da NR 12</strong>.</p>
                                     </div>
@@ -1570,7 +1642,7 @@
 
                     <div class="s4-carousel-nav" aria-label="Navegação dos cards">
                         <button type="button" class="s4-nav-btn" id="s4-prev" aria-label="Anterior">‹</button>
-                        <span class="s4-counter" id="s4-counter">1 / 5</span>
+                        <span class="s4-counter" id="s4-counter">1 / 7</span>
                         <button type="button" class="s4-nav-btn" id="s4-next" aria-label="Próximo">›</button>
                     </div>
 
@@ -1594,6 +1666,10 @@
 
                             function playS4CheckSound() {
                                 try {
+                                    if (typeof playSoftCheckSound === 'function') {
+                                        playSoftCheckSound();
+                                        return;
+                                    }
                                     if (typeof playBeep === 'function') {
                                         playBeep('ok');
                                         return;
@@ -1603,7 +1679,7 @@
                                         return;
                                     }
                                     if (typeof playSynthFallback === 'function') {
-                                        playSynthFallback('ok');
+                                        playSynthFallback('ok-soft');
                                     }
                                 } catch (e) {}
                             }
@@ -1646,7 +1722,7 @@
                                 var next = s4Idx + dir;
                                 if (next < 0 || next >= list.length) return;
                                 s4Idx = next;
-                                try { if (typeof playTechClick === 'function') playTechClick(); } catch (e) {}
+                                try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
                                 s4UpdateUI();
                             }
 
@@ -2065,7 +2141,7 @@
                                 var newIdx = ccIdx + dir;
                                 if (newIdx < 0 || newIdx >= ccTotal) return;
                                 ccIdx = newIdx;
-                                try { if (typeof playTechClick === 'function') playTechClick(); } catch (e) {}
+                                try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
                                 ccUpdateUI();
                             };
 
@@ -2214,7 +2290,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=168"></script>
+    <script src="shared.js?v=172"></script>
 </body>
 
 </html>

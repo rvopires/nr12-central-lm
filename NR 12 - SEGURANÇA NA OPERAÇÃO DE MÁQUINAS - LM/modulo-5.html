@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -645,7 +645,7 @@
                                 viewed.add(m5cIdx);
                                 if (viewed.size >= M5C_CARDS.length && trackerEl && !trackerEl.classList.contains('req-done')) {
                                     trackerEl.classList.add('req-done');
-                                    if (typeof playTechClick === 'function') playTechClick();
+                                    if (typeof playClickSound === 'function') playClickSound();
                                     if (typeof updateNextButton === 'function') updateNextButton();
                                 }
                             }
@@ -682,7 +682,7 @@
                                 const next = m5cIdx + dir;
                                 if (next < 0 || next >= M5C_CARDS.length) return;
                                 m5cIdx = next;
-                                if (typeof playTechClick === 'function') playTechClick();
+                                if (typeof playClickSound === 'function') playClickSound();
                                 renderM5cCard();
                             }
 
@@ -1359,7 +1359,7 @@
                         function m5fFlipCard(card) {
                             card.classList.toggle('flipped');
                             card.classList.add('req-done');
-                            if (typeof playTechClick === 'function') playTechClick();
+                            if (typeof playClickSound === 'function') playClickSound();
                             m5fCheckDesktopProgress();
                         }
 
@@ -1410,7 +1410,7 @@
                                 viewed.add(m5fIdx);
                                 if (viewed.size >= M5F_CARDS.length && trackerEl && !trackerEl.classList.contains('req-done')) {
                                     trackerEl.classList.add('req-done');
-                                    if (typeof playTechClick === 'function') playTechClick();
+                                    if (typeof playClickSound === 'function') playClickSound();
                                     if (typeof updateNextButton === 'function') updateNextButton();
                                 }
                             }
@@ -1444,7 +1444,7 @@
                                 const next = m5fIdx + dir;
                                 if (next < 0 || next >= M5F_CARDS.length) return false;
                                 m5fIdx = next;
-                                if (typeof playTechClick === 'function') playTechClick();
+                                if (typeof playClickSound === 'function') playClickSound();
                                 renderM5fCard();
                                 return true;
                             }
@@ -2015,7 +2015,7 @@
                         function m5eDesktopDone(el) {
                             if (!el) return;
                             el.classList.add('req-done');
-                            if (typeof playTechClick === 'function') playTechClick();
+                            if (typeof playClickSound === 'function') playClickSound();
                             m5eCheckDesktopProgress();
                         }
 
@@ -2064,7 +2064,7 @@
                                 viewed.add(m5eIdx);
                                 if (viewed.size >= M5E_CARDS.length && trackerEl && !trackerEl.classList.contains('req-done')) {
                                     trackerEl.classList.add('req-done');
-                                    if (typeof playTechClick === 'function') playTechClick();
+                                    if (typeof playClickSound === 'function') playClickSound();
                                     if (typeof updateNextButton === 'function') updateNextButton();
                                 }
                             }
@@ -2086,7 +2086,7 @@
                                 const next = m5eIdx + dir;
                                 if (next < 0 || next >= M5E_CARDS.length) return;
                                 m5eIdx = next;
-                                if (typeof playTechClick === 'function') playTechClick();
+                                if (typeof playClickSound === 'function') playClickSound();
                                 renderM5eCard();
                             }
 
@@ -2203,7 +2203,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=168"></script>
+    <script src="shared.js?v=172"></script>
 </body>
 
 </html>
