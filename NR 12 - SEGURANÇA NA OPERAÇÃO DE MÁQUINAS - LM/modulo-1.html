@@ -46,27 +46,35 @@
         <div id="slides">
             <div class="slide active" id="intro-m1">
                 <style>
+                    /* Avatar decorativo: absoluto + scale (PNG 2560x1440 com personagem só no canto) */
                     #intro-m1 > .intro-m1-avatar {
                         position: absolute;
-                        left: clamp(4px, 2.5vw, 28px);
-                        bottom: clamp(90px, 14vh, 140px);
+                        left: clamp(-20px, 1vw, 24px);
+                        bottom: clamp(48px, 6vh, 90px);
                         top: auto;
-                        z-index: 3;
-                        width: clamp(200px, 32vw, 340px);
+                        right: auto;
+                        margin: 0;
+                        padding: 0;
+                        border: 0;
+                        z-index: 1;
+                        width: clamp(560px, 68vw, 960px);
                         height: auto;
-                        max-height: 46vh;
+                        max-width: none;
+                        max-height: none;
                         object-fit: contain;
                         object-position: left bottom;
-                        filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.42));
+                        transform: scale(1.35);
+                        transform-origin: left bottom;
+                        filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.45));
                         user-select: none;
                         pointer-events: none;
                     }
-                    @media (max-width: 520px) {
+                    @media (max-width: 768px) {
                         #intro-m1 > .intro-m1-avatar {
-                            left: 2px;
-                            width: 130px;
-                            bottom: 100px;
-                            max-height: 34vh;
+                            left: -10px;
+                            width: 460px;
+                            bottom: 80px;
+                            transform: scale(1.2);
                         }
                     }
                 </style>
@@ -1519,7 +1527,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=163"></script>
+    <script src="shared.js?v=165"></script>
 </body>
 
 </html>

@@ -358,8 +358,26 @@ function popHistory() {
    ════════════════════════════════════════ */
 window.MODULE_NAV = window.MODULE_NAV || { id: 'index', prev: null, next: null, label: 'Capa' };
 
+/** Som de clique dos botões Anterior/Próximo — mesmo do NR 06 (Mixkit 2568) */
+function playClickSound() {
+    let snd = document.getElementById('click-sound');
+    if (!snd) {
+        snd = document.createElement('audio');
+        snd.id = 'click-sound';
+        snd.src = 'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3';
+        snd.preload = 'auto';
+        document.body.appendChild(snd);
+    }
+    try {
+        snd.currentTime = 0;
+        snd.play().catch(function (e) { console.log('Click sound error:', e); });
+    } catch (e) {
+        console.log('Click sound error:', e);
+    }
+}
+window.playClickSound = playClickSound;
+
 function moduleNext(force) {
-    try { playBeep && playBeep('click'); } catch (e) { }
     const total = document.querySelectorAll('.slide').length;
     if (currentSlide === total - 1) {
         if (!window.MODULE_NAV.next) return;
@@ -367,6 +385,7 @@ function moduleNext(force) {
             alert('Você precisa concluir o quiz deste módulo para avançar.');
             return;
         }
+        playClickSound();
         // removed persistence
         window.location.href = window.MODULE_NAV.next;
         return;
@@ -376,9 +395,9 @@ function moduleNext(force) {
 window.moduleNext = moduleNext;
 
 function modulePrev(force) {
-    try { playBeep && playBeep('click'); } catch (e) { }
     if (currentSlide === 0) {
         if (!window.MODULE_NAV.prev) return;
+        playClickSound();
         // Persistence removed for previous navigation
         window.location.href = window.MODULE_NAV.prev + '?last=1';
         return;
@@ -1175,11 +1194,7 @@ function syncSlideVideos(activeIdx) {
 }
 
 function goTo(idx, force = false, skipHistory = false) {
-    try {
-        const clickAudio = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
-        clickAudio.volume = 0.4;
-        clickAudio.play().catch(e => console.log('Audio error:', e));
-    } catch (e) { }
+    playClickSound();
 
     if (idx < 0 || idx >= TOTAL) return;
     if (idx > currentSlide && !force && !isSlideCompleted(currentSlide)) {
