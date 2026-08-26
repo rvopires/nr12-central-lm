@@ -10000,11 +10000,30 @@ html body #sim-control-item {
 }
 
 html body #btn-demo,
-html body #btn-demo.btn-simulation-toggle {
+html body #btn-demo.btn-simulation-toggle,
+html body #sim-control-item #btn-demo {
     display: flex !important;
     visibility: visible !important;
     pointer-events: auto !important;
     opacity: 1 !important;
+}
+
+@media (max-width: 900px) {
+    html body #sim-control-item {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    html body #btn-demo,
+    html body #btn-demo.btn-simulation-toggle {
+        display: flex !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        opacity: 1 !important;
+    }
+    html body #tutorial-control-item {
+        display: none !important;
+    }
 }
 
 /* Toast inferior do modo simulação (aparece e some) */
