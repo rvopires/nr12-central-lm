@@ -537,13 +537,12 @@
             #s-mod4-limpeza .m4l-title { font-size: 22px; }
         }
 
-        /* ── Página 25: Pode / Não pode ── */
+        /* ── Pode / Não pode — duelo visual ── */
         #s-mod4-pode-nao {
-            --m4p-green: #1f9d5a;
-            --m4p-green-deep: #0f7a42;
-            --m4p-red: #e03a3a;
-            --m4p-red-deep: #9f1c1c;
-            --m4p-mint: #53E6D4;
+            --m4p-ok: #53E6D4;
+            --m4p-ok-deep: #1a9e8f;
+            --m4p-no: #ff6b7a;
+            --m4p-no-deep: #c62828;
             overflow: hidden !important;
         }
         #s-mod4-pode-nao .top-bar { flex-shrink: 0; padding-bottom: 2px !important; }
@@ -552,125 +551,190 @@
             flex: 1 1 auto; min-height: 0;
             display: flex !important; flex-direction: column;
             justify-content: center !important; align-items: center !important;
-            text-align: left !important;
-            padding: 6px 22px 78px !important; gap: 12px;
+            text-align: center !important;
+            padding: 4px 18px 78px !important; gap: 10px;
             overflow: hidden !important; position: relative; z-index: 2;
         }
-        #s-mod4-pode-nao .m4p-grid {
-            width: 100%; max-width: 980px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-            align-items: stretch; max-height: 100%; min-height: 0;
+        #s-mod4-pode-nao .m4p-hint {
+            margin: 0;
+            font-family: var(--font-h); font-size: clamp(12px, 1.4vw, 14px); font-weight: 700;
+            color: rgba(255,255,255,0.82); letter-spacing: 0.02em;
         }
-        #s-mod4-pode-nao .m4p-card {
-            background: #fff; border: 1.5px solid rgba(173, 82, 196, 0.14);
-            border-radius: 20px; overflow: hidden;
-            box-shadow: 0 14px 32px rgba(0,0,0,0.18);
-            display: flex; flex-direction: column; min-width: 0; min-height: 0;
+        #s-mod4-pode-nao .m4p-hint strong { color: #53E6D4; }
+        #s-mod4-pode-nao .m4p-tabs {
+            display: none;
+            width: min(360px, 100%);
+            padding: 4px;
+            border-radius: 999px;
+            background: rgba(31,10,69,0.45);
+            border: 1px solid rgba(255,255,255,0.12);
+            gap: 4px;
+        }
+        #s-mod4-pode-nao .m4p-tab {
+            flex: 1; border: none; border-radius: 999px;
+            padding: 10px 12px; cursor: pointer;
+            font-family: var(--font-h); font-size: 13px; font-weight: 800;
+            color: rgba(255,255,255,0.7);
+            background: transparent;
+            transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+        }
+        #s-mod4-pode-nao .m4p-tab.is-on[data-m4p="ok"] {
+            background: linear-gradient(135deg, #7AEEE0, #53E6D4);
+            color: #1F0A45;
+            box-shadow: 0 6px 16px rgba(83,230,212,0.35);
+        }
+        #s-mod4-pode-nao .m4p-tab.is-on[data-m4p="no"] {
+            background: linear-gradient(135deg, #ff8a95, #e03a3a);
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(224,58,58,0.4);
+        }
+        #s-mod4-pode-nao .m4p-arena {
+            width: min(980px, 100%);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 14px;
+            align-items: stretch;
+            min-height: 0;
+            max-height: 100%;
+        }
+        #s-mod4-pode-nao .m4p-vs {
+            align-self: center;
+            width: 48px; height: 48px; border-radius: 50%;
+            display: grid; place-items: center;
+            font-family: var(--font-h); font-size: 13px; font-weight: 900;
+            letter-spacing: 0.04em; color: #1F0A45;
+            background: linear-gradient(145deg, #fff59d, #53E6D4);
+            border: 2px solid rgba(255,255,255,0.85);
+            box-shadow: 0 8px 22px rgba(83,230,212,0.4), 0 0 0 4px rgba(83,230,212,0.12);
+            z-index: 2;
+        }
+        #s-mod4-pode-nao .m4p-panel {
+            position: relative;
+            display: flex; flex-direction: column;
+            border-radius: 22px;
+            overflow: hidden;
+            min-width: 0; min-height: 0;
+            background: rgba(31,10,69,0.55);
+            box-shadow: 0 20px 44px rgba(0,0,0,0.38);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        #s-mod4-pode-nao .m4p-panel--ok {
+            border: 2px solid rgba(83,230,212,0.55);
+            box-shadow: 0 20px 44px rgba(0,0,0,0.38), 0 0 28px rgba(83,230,212,0.18);
+        }
+        #s-mod4-pode-nao .m4p-panel--no {
+            border: 2px solid rgba(255,107,122,0.55);
+            box-shadow: 0 20px 44px rgba(0,0,0,0.38), 0 0 28px rgba(224,58,58,0.16);
+        }
+        #s-mod4-pode-nao .m4p-panel:hover { transform: translateY(-3px); }
+        #s-mod4-pode-nao .m4p-stamp {
+            display: inline-flex; align-items: center; gap: 6px;
+            margin: 0 0 8px;
+            padding: 7px 12px; border-radius: 999px;
+            font-family: var(--font-h); font-size: 12px; font-weight: 900;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: #fff;
+        }
+        #s-mod4-pode-nao .m4p-panel--ok .m4p-stamp {
+            background: rgba(26,158,143,0.92);
+            box-shadow: 0 6px 16px rgba(83,230,212,0.35);
+        }
+        #s-mod4-pode-nao .m4p-panel--no .m4p-stamp {
+            background: rgba(198,40,40,0.92);
+            box-shadow: 0 6px 16px rgba(224,58,58,0.35);
         }
         #s-mod4-pode-nao .m4p-media {
-            position: relative; width: 100%; flex: 0 0 auto;
-            height: clamp(120px, 22vh, 200px);
-            background: linear-gradient(145deg, rgba(173,82,196,0.1), rgba(83,230,212,0.1)), #f3f0f7;
-            overflow: hidden;
+            position: relative;
+            width: 100%;
+            flex: 1 1 auto;
+            min-height: 220px;
+            height: clamp(220px, 42vh, 360px);
+            background: #1a0a35;
+            cursor: zoom-in;
         }
         #s-mod4-pode-nao .m4p-media img {
-            position: relative; z-index: 1; width: 100%; height: 100%;
-            object-fit: cover; object-position: center; display: block;
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center;
+            display: block;
         }
-        #s-mod4-pode-nao .m4p-media-ph {
-            position: absolute; inset: 0; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 6px;
-            pointer-events: none; color: rgba(74,24,102,0.4);
-            font-family: var(--font-h); font-size: 12px; font-weight: 800;
-            letter-spacing: 0.06em; text-transform: uppercase; z-index: 0;
+        #s-mod4-pode-nao .m4p-media::after {
+            content: '';
+            position: absolute; inset: auto 0 0 0; height: 42%;
+            background: linear-gradient(180deg, transparent, rgba(20,6,45,0.92));
+            pointer-events: none; z-index: 1;
         }
-        #s-mod4-pode-nao .m4p-media-ph svg { width: 32px; height: 32px; opacity: 0.5; }
         #s-mod4-pode-nao .m4p-expand {
-            position: absolute; bottom: 10px; right: 10px; z-index: 3;
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 36px; height: 36px; padding: 0; border-radius: 50%;
-            border: 1.5px solid rgba(255,255,255,0.9); background: #53E6D4;
-            box-shadow: 0 5px 14px rgba(83,230,212,0.5); color: #1F0A45;
-            font-size: 15px; line-height: 1; cursor: pointer;
+            position: absolute; top: 12px; right: 12px; z-index: 3;
+            width: 34px; height: 34px; border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.35);
+            background: rgba(31,10,69,0.55);
+            color: #53E6D4; font-size: 14px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            cursor: pointer; display: grid; place-items: center;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+            transition: transform 0.15s ease, background 0.15s ease;
         }
-        #s-mod4-pode-nao .m4p-body {
-            padding: 14px 16px 16px; flex: 1 1 auto; min-height: 0;
-            display: flex; flex-direction: column; gap: 10px; overflow: hidden;
+        #s-mod4-pode-nao .m4p-expand:hover {
+            transform: scale(1.06);
+            background: rgba(83,230,212,0.22);
         }
-        #s-mod4-pode-nao .m4p-card--ok .m4p-body {
-            background: linear-gradient(180deg, #ecfffc 0%, #fff 55%);
-            border-top: 3px solid var(--m4p-mint);
+        #s-mod4-pode-nao .m4p-caption {
+            position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+            padding: 14px 16px 16px;
+            text-align: left;
         }
-        #s-mod4-pode-nao .m4p-card--no .m4p-body {
-            background: linear-gradient(180deg, #fff1f2 0%, #fff 55%);
-            border-top: 3px solid var(--m4p-red);
+        #s-mod4-pode-nao .m4p-caption h3 {
+            margin: 0 0 4px;
+            font-family: var(--font-h); font-size: clamp(16px, 1.8vw, 20px);
+            font-weight: 800; color: #fff; line-height: 1.2;
         }
-        #s-mod4-pode-nao .m4p-kicker {
-            margin: 0; font-family: var(--font-h); font-size: 11px; font-weight: 800;
-            letter-spacing: 0.12em; text-transform: uppercase;
+        #s-mod4-pode-nao .m4p-caption p {
+            margin: 0;
+            font-family: var(--font-b); font-size: 13px;
+            color: rgba(255,255,255,0.82); line-height: 1.35;
         }
-        #s-mod4-pode-nao .m4p-card--ok .m4p-kicker { color: #1a9e8f; }
-        #s-mod4-pode-nao .m4p-card--no .m4p-kicker { color: var(--m4p-red); }
-        #s-mod4-pode-nao .m4p-title {
-            margin: 0; font-family: var(--font-h); font-size: clamp(16px, 1.7vw, 19px);
-            font-weight: 800; line-height: 1.2; display: flex; align-items: center; gap: 8px;
+        #s-mod4-pode-nao .m4p-chips {
+            display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
         }
-        #s-mod4-pode-nao .m4p-card--ok .m4p-title { color: var(--m4p-green-deep); }
-        #s-mod4-pode-nao .m4p-card--no .m4p-title { color: var(--m4p-red-deep); }
-        #s-mod4-pode-nao .m4p-badge {
-            width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
-            color: #fff; font-size: 14px; font-weight: 900; flex-shrink: 0;
+        #s-mod4-pode-nao .m4p-chips span {
+            padding: 5px 9px; border-radius: 999px;
+            font-family: var(--font-h); font-size: 11px; font-weight: 700;
+            color: #fff; border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(255,255,255,0.1);
         }
-        #s-mod4-pode-nao .m4p-card--ok .m4p-badge { background: var(--m4p-green); }
-        #s-mod4-pode-nao .m4p-card--no .m4p-badge { background: var(--m4p-red); }
-        #s-mod4-pode-nao .m4p-list {
-            margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px;
+        #s-mod4-pode-nao .m4p-panel--ok .m4p-chips span {
+            border-color: rgba(83,230,212,0.35);
+            background: rgba(83,230,212,0.14);
         }
-        #s-mod4-pode-nao .m4p-list li {
-            display: flex; align-items: flex-start; gap: 8px; padding: 8px 10px;
-            border-radius: 12px; background: rgba(255,255,255,0.9);
-            border: 1px solid rgba(173,82,196,0.1); font-family: var(--font-b);
-            font-size: clamp(13px, 1.25vw, 14.5px); color: rgba(74,24,102,0.9); line-height: 1.35;
+        #s-mod4-pode-nao .m4p-panel--no .m4p-chips span {
+            border-color: rgba(255,107,122,0.4);
+            background: rgba(224,58,58,0.18);
         }
-        #s-mod4-pode-nao .m4p-card--no .m4p-list li { border-color: rgba(224,58,58,0.16); }
-        #s-mod4-pode-nao .m4p-mark { flex-shrink: 0; font-weight: 900; font-size: 13px; line-height: 1.3; }
-        #s-mod4-pode-nao .m4p-card--ok .m4p-mark { color: var(--m4p-green); }
-        #s-mod4-pode-nao .m4p-card--no .m4p-mark { color: var(--m4p-red); }
-        #s-mod4-pode-nao .m4p-carousel-nav { display: none; }
         @media screen and (max-height: 760px) {
-            #s-mod4-pode-nao .m4p-media { height: clamp(90px, 16vh, 140px); }
-            #s-mod4-pode-nao .m4p-body { padding: 10px 12px 12px; gap: 8px; }
-            #s-mod4-pode-nao .m4p-list li { padding: 6px 8px; font-size: 12.5px; }
+            #s-mod4-pode-nao .m4p-media { min-height: 180px; height: clamp(180px, 36vh, 280px); }
+            #s-mod4-pode-nao .m4p-chips { display: none; }
         }
         @media screen and (max-width: 900px) {
             #s-mod4-pode-nao .content-area {
                 overflow-y: auto !important; justify-content: flex-start !important;
-                padding: 6px 12px 88px !important;
+                padding: 6px 12px 88px !important; gap: 12px;
             }
-            #s-mod4-pode-nao .m4p-grid { grid-template-columns: 1fr; max-width: 420px; }
-            #s-mod4-pode-nao .m4p-media { height: 150px; }
+            #s-mod4-pode-nao .m4p-tabs { display: flex; }
+            #s-mod4-pode-nao .m4p-arena {
+                grid-template-columns: 1fr;
+                width: min(440px, 100%);
+                gap: 0;
+            }
+            #s-mod4-pode-nao .m4p-vs { display: none; }
+            #s-mod4-pode-nao .m4p-panel { display: none; }
+            #s-mod4-pode-nao .m4p-panel.is-show { display: flex; animation: m4pIn 0.28s ease; }
+            #s-mod4-pode-nao .m4p-media { height: min(52vh, 360px); min-height: 240px; }
+            #s-mod4-pode-nao .m4p-chips { display: flex; }
         }
-        @media screen and (max-width: 768px) and (orientation: portrait) {
-            #s-mod4-pode-nao .m4p-grid { display: block; max-width: 420px; width: 100%; }
-            #s-mod4-pode-nao .m4p-card { display: none; }
-            #s-mod4-pode-nao .m4p-card.m4p-card-active { display: flex; }
-            #s-mod4-pode-nao .m4p-carousel-nav {
-                display: flex; align-items: center; justify-content: center; gap: 16px;
-            }
-            #s-mod4-pode-nao .m4p-nav-btn {
-                background: linear-gradient(145deg, #7AEEE0 0%, #53E6D4 45%, #AD52C4 100%);
-                color: #fff; border: 3px solid #fff; border-radius: 50%;
-                width: 48px; height: 48px; min-width: 48px; min-height: 48px; cursor: pointer;
-                display: flex; align-items: center; justify-content: center;
-                box-shadow: 0 0 0 3px rgba(83,230,212,0.55), 0 8px 22px rgba(173,82,196,0.55);
-                touch-action: manipulation;
-            }
-            #s-mod4-pode-nao .m4p-nav-btn svg { width: 18px; height: 18px; pointer-events: none; }
-            #s-mod4-pode-nao .m4p-nav-btn:disabled { opacity: 0.28; cursor: default; }
-            #s-mod4-pode-nao .m4p-counter {
-                font-family: var(--font-h); font-size: 14px; font-weight: 800;
-                color: var(--m4p-mint); min-width: 52px; text-align: center;
-            }
+        @keyframes m4pIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ── Página 29: Organização — checklist interativa (v2) ── */
@@ -1377,107 +1441,73 @@
                     </h2>
                 </div>
                 <div class="content-area">
-                    <div class="m4p-grid" id="m4p-viewport">
-                        <article class="m4p-card m4p-card--ok m4p-card-active" aria-label="Pode fazer">
-                            <div class="m4p-media">
-                                <span class="m4p-media-ph" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="3" y="5" width="18" height="14" rx="2"/>
-                                        <circle cx="8.5" cy="10" r="1.5"/>
-                                        <path d="M21 16l-5.5-5.5L9 17"/>
-                                    </svg>
-                                    Foto 1
-                                </span>
-                                <img src="assets/fotos/pag25-pode.png" alt="Pode fazer" onerror="this.style.display='none'">
-                                <button type="button" class="m4p-expand" aria-label="Ampliar imagem"
-                                    onclick="openImageModal('assets/fotos/pag25-pode.png')">🔍</button>
-                            </div>
-                            <div class="m4p-body">
-                                <p class="m4p-kicker">Permitido</p>
-                                <h3 class="m4p-title"><span class="m4p-badge">✓</span> Pode fazer</h3>
-                                <ul class="m4p-list">
-                                    <li><span class="m4p-mark">✓</span><span>Desligar a máquina</span></li>
-                                    <li><span class="m4p-mark">✓</span><span>Desconectar o cabo</span></li>
-                                    <li><span class="m4p-mark">✓</span><span>Usar pano macio</span></li>
-                                    <li><span class="m4p-mark">✓</span><span>Usar solução suave no misturador</span></li>
-                                    <li><span class="m4p-mark">✓</span><span>Chamar assistência técnica quando necessário</span></li>
-                                </ul>
-                            </div>
-                        </article>
-                        <article class="m4p-card m4p-card--no" aria-label="Não pode fazer">
-                            <div class="m4p-media">
-                                <span class="m4p-media-ph" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="3" y="5" width="18" height="14" rx="2"/>
-                                        <circle cx="8.5" cy="10" r="1.5"/>
-                                        <path d="M21 16l-5.5-5.5L9 17"/>
-                                    </svg>
-                                    Foto 2
-                                </span>
-                                <img src="assets/fotos/pag25-nao.png" alt="Não pode fazer" onerror="this.style.display='none'">
-                                <button type="button" class="m4p-expand" aria-label="Ampliar imagem"
-                                    onclick="openImageModal('assets/fotos/pag25-nao.png')">🔍</button>
-                            </div>
-                            <div class="m4p-body">
-                                <p class="m4p-kicker">Proibido</p>
-                                <h3 class="m4p-title"><span class="m4p-badge">✕</span> Não pode fazer</h3>
-                                <ul class="m4p-list">
-                                    <li><span class="m4p-mark">✕</span><span>Usar água no dosador</span></li>
-                                    <li><span class="m4p-mark">✕</span><span>Usar solventes ou produtos inflamáveis</span></li>
-                                    <li><span class="m4p-mark">✕</span><span>Limpar internamente o dosador por conta própria</span></li>
-                                </ul>
-                            </div>
-                        </article>
+                    <p class="m4p-hint">Compare o certo e o errado · toque na <strong>lupa</strong> para ampliar</p>
+                    <div class="m4p-tabs" role="tablist" aria-label="Pode ou não pode">
+                        <button type="button" class="m4p-tab is-on" data-m4p="ok" role="tab" aria-selected="true">✓ Pode</button>
+                        <button type="button" class="m4p-tab" data-m4p="no" role="tab" aria-selected="false">✕ Não pode</button>
                     </div>
-                    <div class="m4p-carousel-nav" aria-label="Navegação dos cards">
-                        <button type="button" class="m4p-nav-btn" id="m4p-prev" onclick="m4pCarouselNav(-1)" aria-label="Anterior">
-                            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="15,3 3,10 15,17"/></svg>
-                        </button>
-                        <span class="m4p-counter" id="m4p-counter">1 / 2</span>
-                        <button type="button" class="m4p-nav-btn" id="m4p-next" onclick="m4pCarouselNav(1)" aria-label="Próximo">
-                            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="5,3 17,10 5,17"/></svg>
-                        </button>
+                    <div class="m4p-arena" id="m4p-viewport">
+                        <article class="m4p-panel m4p-panel--ok is-show" data-m4p="ok" aria-label="Pode fazer">
+                            <div class="m4p-media" onclick="openImageModal('assets/fotos/pode.png')" role="button" tabindex="0" aria-label="Ampliar imagem Pode">
+                                <img src="assets/fotos/pode.png" alt="Práticas permitidas na limpeza">
+                                <button type="button" class="m4p-expand" aria-label="Ampliar imagem"
+                                    onclick="event.stopPropagation(); openImageModal('assets/fotos/pode.png')">🔍</button>
+                                <div class="m4p-caption">
+                                    <span class="m4p-stamp">✓ Pode</span>
+                                    <p>Desligue, desconecte e limpe com pano macio e solução suave.</p>
+                                    <div class="m4p-chips">
+                                        <span>Desligar</span><span>Desconectar</span><span>Pano macio</span>
+                                        <span>Solução suave</span><span>Assistência</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <div class="m4p-vs" aria-hidden="true">VS</div>
+                        <article class="m4p-panel m4p-panel--no" data-m4p="no" aria-label="Não pode fazer">
+                            <div class="m4p-media" onclick="openImageModal('assets/fotos/naopode.png')" role="button" tabindex="0" aria-label="Ampliar imagem Não pode">
+                                <img src="assets/fotos/naopode.png" alt="Práticas proibidas na limpeza">
+                                <button type="button" class="m4p-expand" aria-label="Ampliar imagem"
+                                    onclick="event.stopPropagation(); openImageModal('assets/fotos/naopode.png')">🔍</button>
+                                <div class="m4p-caption">
+                                    <span class="m4p-stamp">✕ Não pode</span>
+                                    <p>Água, solventes e limpeza interna do dosador são proibidos.</p>
+                                    <div class="m4p-chips">
+                                        <span>Sem água</span><span>Sem solventes</span><span>Sem limpeza interna</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
                     </div>
                     <script>
                         (function () {
-                            var m4pIdx = 0, m4pTotal = 2;
-                            function isMobilePortraitM4p() {
-                                return window.matchMedia('screen and (max-width: 768px) and (orientation: portrait)').matches;
+                            var tabs = document.querySelectorAll('#s-mod4-pode-nao .m4p-tab');
+                            var panels = document.querySelectorAll('#s-mod4-pode-nao .m4p-panel');
+                            function show(key) {
+                                tabs.forEach(function (t) {
+                                    var on = t.getAttribute('data-m4p') === key;
+                                    t.classList.toggle('is-on', on);
+                                    t.setAttribute('aria-selected', on ? 'true' : 'false');
+                                });
+                                panels.forEach(function (p) {
+                                    p.classList.toggle('is-show', p.getAttribute('data-m4p') === key);
+                                });
                             }
-                            function m4pCards() { return document.querySelectorAll('#s-mod4-pode-nao .m4p-card'); }
-                            function m4pUpdateUI() {
-                                var cards = m4pCards();
-                                m4pTotal = cards.length || 2;
-                                cards.forEach(function (c, i) { c.classList.toggle('m4p-card-active', i === m4pIdx); });
-                                var counter = document.getElementById('m4p-counter');
-                                if (counter) counter.textContent = (m4pIdx + 1) + ' / ' + m4pTotal;
-                                var prev = document.getElementById('m4p-prev');
-                                var next = document.getElementById('m4p-next');
-                                if (prev) prev.disabled = (m4pIdx === 0);
-                                if (next) next.disabled = (m4pIdx === m4pTotal - 1);
-                            }
-                            window.m4pCarouselNav = function (dir) {
-                                if (!isMobilePortraitM4p()) return;
-                                var newIdx = m4pIdx + dir;
-                                if (newIdx < 0 || newIdx >= m4pTotal) return;
-                                m4pIdx = newIdx;
-                                try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
-                                m4pUpdateUI();
-                            };
-                            var m4pSX = 0;
-                            var vp = document.getElementById('m4p-viewport');
+                            tabs.forEach(function (t) {
+                                t.addEventListener('click', function () {
+                                    show(t.getAttribute('data-m4p'));
+                                    try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
+                                });
+                            });
+                            var sx = 0, vp = document.getElementById('m4p-viewport');
                             if (vp) {
-                                vp.addEventListener('touchstart', function (e) { m4pSX = e.changedTouches[0].screenX; }, { passive: true });
+                                vp.addEventListener('touchstart', function (e) { sx = e.changedTouches[0].screenX; }, { passive: true });
                                 vp.addEventListener('touchend', function (e) {
-                                    if (!isMobilePortraitM4p()) return;
-                                    var diff = m4pSX - e.changedTouches[0].screenX;
-                                    if (Math.abs(diff) > 40) window.m4pCarouselNav(diff > 0 ? 1 : -1);
+                                    if (!window.matchMedia('(max-width: 900px)').matches) return;
+                                    var d = sx - e.changedTouches[0].screenX;
+                                    if (Math.abs(d) < 40) return;
+                                    show(d > 0 ? 'no' : 'ok');
                                 }, { passive: true });
                             }
-                            function m4pInit() { m4pIdx = 0; m4pUpdateUI(); }
-                            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', m4pInit);
-                            else m4pInit();
-                            window.addEventListener('resize', function () { if (!isMobilePortraitM4p()) m4pIdx = 0; m4pUpdateUI(); });
                         })();
                     </script>
                 </div>
