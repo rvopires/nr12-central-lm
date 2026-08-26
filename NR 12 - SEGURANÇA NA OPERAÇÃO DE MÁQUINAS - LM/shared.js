@@ -297,6 +297,29 @@ window.updateQuizAudioHelper = function updateQuizAudioHelper() {
     if (bar) bar.classList.toggle('quiz-audio-helper', show);
 };
 
+function persistSlideHash(idx) {
+    try {
+        const slides = document.querySelectorAll('.slide');
+        const el = slides[idx];
+        if (!el || !el.id) return;
+        const next = window.location.pathname + window.location.search + '#' + el.id;
+        const cur = window.location.pathname + window.location.search + window.location.hash;
+        if (cur !== next) window.history.replaceState(null, '', next);
+    } catch (e) { }
+}
+
+function slideIndexFromHash() {
+    try {
+        const hash = (window.location.hash || '').replace(/^#/, '');
+        if (!hash) return null;
+        const slides = document.querySelectorAll('.slide');
+        for (let i = 0; i < slides.length; i++) {
+            if (slides[i].id === hash) return i;
+        }
+    } catch (e) { }
+    return null;
+}
+
 /* ════════════════════════════════════════
    RELOAD GUARD: refresh sempre volta pro index
    ════════════════════════════════════════ */
@@ -307,7 +330,7 @@ window.updateQuizAudioHelper = function updateQuizAudioHelper() {
    GLOBAL HISTORY SYSTEM
    ════════════════════════════════════════ */
 function trackHistory(slideIndex) {
-    // Removed persistence
+    persistSlideHash(slideIndex);
 }
 
 function popHistory() {
@@ -646,13 +669,13 @@ function updateNextButton() {
         return;
     }
 
-    // Mesmo pill redondo — "PRÓXIMO MÓDULO" só nos módulos (não na capa/sumário)
+    // Mesmo pill redondo — rótulo sempre "PRÓXIMO"
     const showNextModuleLabel = isLast && hasNextModule && window.MODULE_NAV.id !== 'index';
     btnFwd.style.setProperty('display', 'flex', 'important');
     btnFwd.style.setProperty('visibility', 'visible', 'important');
     btnFwd.style.borderRadius = '999px';
     btnFwd.disabled = !isSlideCompleted(currentSlide);
-    label.textContent = showNextModuleLabel ? 'PRÓXIMO MÓDULO' : 'PRÓXIMO';
+    label.textContent = 'PRÓXIMO';
     btnFwd.classList.toggle('btn-next-module', showNextModuleLabel);
 
     const navEl = document.getElementById('nav');
@@ -844,18 +867,8 @@ function loadSlideVideoIframe(iframe) {
 
 function ensureVideoWarn(wrap) {
     var warn = wrap.querySelector('.video-warn');
-    if (!warn) {
-        warn = document.createElement('div');
-        warn.className = 'video-warn';
-        warn.textContent = 'Assista até o final';
-        wrap.appendChild(warn);
-    }
-    if (!wrap.classList.contains('req-done')) {
-        warn.style.display = '';
-        warn.style.opacity = '1';
-        warn.style.pointerEvents = 'auto';
-    }
-    return warn;
+    if (warn) warn.remove();
+    return null;
 }
 
 function markWrapVideoComplete(wrap, warn) {
@@ -1175,6 +1188,7 @@ function goTo(idx, force = false, skipHistory = false) {
     currentSlide = idx;
     if (!skipHistory) trackHistory(currentSlide);
     cleanSlideNavUrl();
+    persistSlideHash(currentSlide);
     const newSlide = slides[currentSlide];
     newSlide.classList.add('active');
     newSlide.classList.remove('exit-left');
@@ -1210,7 +1224,6 @@ function goTo(idx, force = false, skipHistory = false) {
     try { syncSlideVideos(currentSlide); } catch (e) { }
     updateNextButton();
     try { window.updateQuizAudioHelper(); } catch (e) { }
-    // Slide index not persisted
 }
 
 document.addEventListener('keydown', e => {
@@ -2060,16 +2073,17 @@ let restoreSlide = urlParams.get('restoreslide');
 let isLast = urlParams.get('last');
 
 if (restoreSlide !== null) {
-    currentSlide = parseInt(restoreSlide);
-    trackHistory(currentSlide);
+    currentSlide = parseInt(restoreSlide, 10);
 } else if (isLast === '1') {
     currentSlide = TOTAL - 1;
-    trackHistory(currentSlide);
 } else {
-    currentSlide = 0;
-    trackHistory(currentSlide);
+    const fromHash = slideIndexFromHash();
+    currentSlide = fromHash !== null ? fromHash : 0;
 }
+if (isNaN(currentSlide) || currentSlide < 0 || currentSlide >= TOTAL) currentSlide = 0;
+trackHistory(currentSlide);
 cleanSlideNavUrl();
+persistSlideHash(currentSlide);
 
 document.querySelectorAll('.slide').forEach((s, i) => {
     if (i === currentSlide) s.classList.add('active');

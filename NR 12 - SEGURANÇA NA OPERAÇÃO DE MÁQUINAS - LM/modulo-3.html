@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=162">
+<link rel="stylesheet" href="shared.css?v=163">
     <style>
         #s-bateria .content-area > .video-wrap--std,
         #s-conducao .content-area > .video-wrap--std,
@@ -34,21 +34,16 @@
         }
 
         #s-rampas .content-area {
-            justify-content: flex-start !important;
-            align-items: stretch !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
             text-align: left !important;
-            padding-top: 8px;
+            gap: 14px;
+            padding-top: 36px;
             padding-bottom: 88px;
-            gap: 0;
-        }
-
-        #s-rampas .opc-subtitle {
-            margin: 0 0 18px;
-            font-family: var(--font-b);
-            font-size: clamp(14px, 1.5vw, 17px);
-            color: rgba(255, 255, 255, 0.72);
-            max-width: 52ch;
-            line-height: 1.45;
+            overflow-y: auto !important;
+            -webkit-overflow-scrolling: touch;
         }
 
         #s-rampas .slide-title .opc-pink {
@@ -62,207 +57,198 @@
         }
 
         #s-rampas .opc-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 16px;
-            width: 100%;
-            max-width: 1180px;
+            width: min(640px, 100%);
             margin: 0 auto;
+            position: relative;
         }
 
         #s-rampas .opc-card {
-            position: relative;
-            display: flex;
+            display: none;
             flex-direction: column;
-            gap: 0;
-            min-height: 0;
-            padding: 20px 18px 18px;
-            border-radius: 18px;
-            background:
-                linear-gradient(165deg, rgba(12, 18, 36, 0.82) 0%, rgba(8, 10, 24, 0.9) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            cursor: pointer;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 22px;
+            overflow: hidden;
+            background: #fff;
+            border: 1.5px solid rgba(173, 82, 196, 0.18);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
             text-align: left;
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease,
-                border-color 0.25s ease;
-            opacity: 0;
-            transform: translateY(14px);
             outline: none;
         }
 
-        #s-rampas.slide.active .opc-card {
-            animation: opc-card-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        #s-rampas .opc-card.is-active {
+            display: flex;
+            animation: opc-card-in 0.35s ease;
         }
 
-        #s-rampas.slide.active .opc-card:nth-child(1) { animation-delay: 0.05s; }
-        #s-rampas.slide.active .opc-card:nth-child(2) { animation-delay: 0.14s; }
-        #s-rampas.slide.active .opc-card:nth-child(3) { animation-delay: 0.23s; }
+        @media screen and (min-width: 769px) {
+            #s-rampas .opc-grid {
+                width: min(760px, 86%);
+            }
 
-        @keyframes opc-card-in {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            #s-rampas .opc-card.is-active {
+                display: grid;
+                grid-template-columns: 320px 1fr;
+                grid-template-rows: 320px;
+                height: 320px;
+                min-height: 320px;
+                max-height: 320px;
+                align-items: stretch;
             }
         }
 
-        #s-rampas .opc-card:hover {
-            transform: translateY(-4px);
+        @keyframes opc-card-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        #s-rampas .opc-card:active {
-            transform: translateY(-2px) scale(1.015);
-        }
+        #s-rampas .opc-card--ok { border-color: rgba(83, 230, 212, 0.55); }
+        #s-rampas .opc-card--no { border-color: rgba(255, 77, 154, 0.45); }
+        #s-rampas .opc-card--care { border-color: rgba(245, 197, 24, 0.5); }
 
-        #s-rampas .opc-card.is-visited {
-            transform: translateY(-2px);
-        }
-
-        #s-rampas .opc-card.is-visited:hover {
-            transform: translateY(-4px);
-        }
-
-        #s-rampas .opc-card--ok {
-            border-color: rgba(83, 230, 212, 0.55);
-            box-shadow:
-                0 16px 40px rgba(0, 0, 0, 0.4),
-                0 0 18px rgba(83, 230, 212, 0.35),
-                0 0 42px rgba(83, 230, 212, 0.28),
-                0 0 70px rgba(83, 230, 212, 0.14),
-                inset 0 0 24px rgba(83, 230, 212, 0.06);
-        }
-
-        #s-rampas .opc-card--ok:hover,
-        #s-rampas .opc-card--ok.is-visited {
-            border-color: rgba(83, 230, 212, 0.9);
-            box-shadow:
-                0 20px 48px rgba(0, 0, 0, 0.45),
-                0 0 24px rgba(83, 230, 212, 0.5),
-                0 0 56px rgba(83, 230, 212, 0.38),
-                0 0 90px rgba(83, 230, 212, 0.2),
-                inset 0 0 28px rgba(83, 230, 212, 0.1);
-        }
-
-        #s-rampas .opc-card--no {
-            border-color: rgba(255, 77, 154, 0.55);
-            box-shadow:
-                0 16px 40px rgba(0, 0, 0, 0.4),
-                0 0 18px rgba(255, 77, 154, 0.35),
-                0 0 42px rgba(255, 77, 154, 0.28),
-                0 0 70px rgba(255, 77, 154, 0.14),
-                inset 0 0 24px rgba(255, 77, 154, 0.06);
-        }
-
-        #s-rampas .opc-card--no:hover,
-        #s-rampas .opc-card--no.is-visited {
-            border-color: rgba(255, 120, 180, 0.9);
-            box-shadow:
-                0 20px 48px rgba(0, 0, 0, 0.45),
-                0 0 24px rgba(255, 77, 154, 0.5),
-                0 0 56px rgba(255, 77, 154, 0.38),
-                0 0 90px rgba(255, 77, 154, 0.2),
-                inset 0 0 28px rgba(255, 77, 154, 0.1);
-        }
-
-        #s-rampas .opc-card--care {
-            border-color: rgba(245, 197, 24, 0.55);
-            box-shadow:
-                0 16px 40px rgba(0, 0, 0, 0.4),
-                0 0 18px rgba(245, 197, 24, 0.35),
-                0 0 42px rgba(245, 197, 24, 0.28),
-                0 0 70px rgba(245, 197, 24, 0.14),
-                inset 0 0 24px rgba(245, 197, 24, 0.06);
-        }
-
-        #s-rampas .opc-card--care:hover,
-        #s-rampas .opc-card--care.is-visited {
-            border-color: rgba(255, 220, 80, 0.95);
-            box-shadow:
-                0 20px 48px rgba(0, 0, 0, 0.45),
-                0 0 24px rgba(245, 197, 24, 0.5),
-                0 0 56px rgba(245, 197, 24, 0.38),
-                0 0 90px rgba(245, 197, 24, 0.2),
-                inset 0 0 28px rgba(245, 197, 24, 0.1);
-        }
-
-        #s-rampas .opc-card-head {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        #s-rampas .opc-card-ico {
-            width: 42px;
-            height: 42px;
+        #s-rampas .opc-media {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            height: auto;
+            margin: 0;
+            background: #1a0a32;
+            overflow: hidden;
+            border-radius: 0;
             flex-shrink: 0;
-            display: grid;
-            place-items: center;
         }
 
-        #s-rampas .opc-card-ico svg {
-            width: 36px;
-            height: 36px;
+        #s-rampas .opc-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
             display: block;
         }
 
-        #s-rampas .opc-card--ok .opc-card-ico {
-            color: var(--opc-cyan);
-            filter: drop-shadow(0 0 8px rgba(83, 230, 212, 0.85)) drop-shadow(0 0 18px rgba(83, 230, 212, 0.45));
-            animation: opc-ico-pulse 2.8s ease-in-out infinite;
+        @media screen and (min-width: 769px) {
+            #s-rampas .opc-media {
+                width: 320px;
+                height: 320px;
+                min-height: 320px;
+                max-height: 320px;
+                aspect-ratio: 1 / 1;
+                margin: 0;
+                border-radius: 0;
+                align-self: stretch;
+            }
         }
 
-        #s-rampas .opc-card--no .opc-card-ico {
-            color: var(--opc-pink);
-            filter: drop-shadow(0 0 8px rgba(255, 77, 154, 0.85)) drop-shadow(0 0 18px rgba(255, 77, 154, 0.45));
-            animation: opc-ico-pulse 2.8s ease-in-out infinite 0.4s;
+        #s-rampas .opc-expand {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 3;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 255, 255, 0.9);
+            background: #53E6D4;
+            box-shadow: 0 5px 14px rgba(83, 230, 212, 0.5);
+            color: #1F0A45;
+            font-size: 15px;
+            line-height: 1;
+            cursor: pointer;
         }
 
-        #s-rampas .opc-card--care .opc-card-ico {
-            color: var(--opc-yellow);
-            filter: drop-shadow(0 0 8px rgba(245, 197, 24, 0.8)) drop-shadow(0 0 18px rgba(245, 197, 24, 0.4));
-            animation: opc-ico-pulse 2.8s ease-in-out infinite 0.8s;
+        #s-rampas .opc-body {
+            padding: 16px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 10px;
+            min-height: 0;
+            overflow: hidden;
         }
 
-        @keyframes opc-ico-pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.06); opacity: 0.88; }
+        @media screen and (min-width: 769px) {
+            #s-rampas .opc-body {
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+                scrollbar-color: rgba(173, 82, 196, 0.45) transparent;
+            }
+            #s-rampas .opc-body::-webkit-scrollbar {
+                width: 6px;
+            }
+            #s-rampas .opc-body::-webkit-scrollbar-thumb {
+                background: rgba(173, 82, 196, 0.45);
+                border-radius: 99px;
+            }
         }
+
+        #s-rampas .opc-card--ok .opc-body {
+            background: linear-gradient(180deg, #ecfffc 0%, #fff 55%);
+            border-top: 3px solid var(--opc-cyan);
+        }
+
+        #s-rampas .opc-card--no .opc-body {
+            background: linear-gradient(180deg, #fff1f5 0%, #fff 55%);
+            border-top: 3px solid var(--opc-pink);
+        }
+
+        #s-rampas .opc-card--care .opc-body {
+            background: linear-gradient(180deg, #fff8e1 0%, #fff 55%);
+            border-top: 3px solid var(--opc-yellow);
+        }
+
+        @media screen and (min-width: 769px) {
+            #s-rampas .opc-card--ok .opc-body,
+            #s-rampas .opc-card--no .opc-body,
+            #s-rampas .opc-card--care .opc-body {
+                border-top: none;
+            }
+            #s-rampas .opc-card--ok .opc-body { border-left: 3px solid var(--opc-cyan); }
+            #s-rampas .opc-card--no .opc-body { border-left: 3px solid var(--opc-pink); }
+            #s-rampas .opc-card--care .opc-body { border-left: 3px solid var(--opc-yellow); }
+        }
+
+        #s-rampas .opc-kicker {
+            margin: 0;
+            font-family: var(--font-h);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        #s-rampas .opc-card--ok .opc-kicker { color: #1a9e8f; }
+        #s-rampas .opc-card--no .opc-kicker { color: #c2185b; }
+        #s-rampas .opc-card--care .opc-kicker { color: #a67c00; }
 
         #s-rampas .opc-card-title {
             margin: 0;
             font-family: var(--font-h);
-            font-size: clamp(20px, 2vw, 26px);
+            font-size: clamp(24px, 2.8vw, 32px);
             font-weight: 800;
             letter-spacing: -0.01em;
-            line-height: 1.1;
+            line-height: 1.15;
         }
 
-        #s-rampas .opc-card--ok .opc-card-title { color: var(--opc-cyan); }
-        #s-rampas .opc-card--no .opc-card-title { color: var(--opc-pink); }
-        #s-rampas .opc-card--care .opc-card-title { color: var(--opc-yellow); }
+        #s-rampas .opc-card--ok .opc-card-title { color: #0d5c54; }
+        #s-rampas .opc-card--no .opc-card-title {
+            color: #9f1c4a;
+            font-size: clamp(20px, 2.2vw, 26px);
+        }
+        #s-rampas .opc-card--care .opc-card-title { color: #6b4e00; }
 
-        #s-rampas .opc-card-line {
-            height: 1px;
-            width: 100%;
-            margin: 0 0 14px;
-            opacity: 0.85;
+        #s-rampas .opc-card--no .opc-list {
+            gap: 7px;
         }
 
-        #s-rampas .opc-card--ok .opc-card-line {
-            background: linear-gradient(90deg, rgba(83, 230, 212, 0.75), transparent);
-        }
-
-        #s-rampas .opc-card--no .opc-card-line {
-            background: linear-gradient(90deg, rgba(255, 77, 154, 0.75), transparent);
-        }
-
-        #s-rampas .opc-card--care .opc-card-line {
-            background: linear-gradient(90deg, rgba(245, 197, 24, 0.75), transparent);
+        #s-rampas .opc-card--no .opc-list li {
+            font-size: clamp(13px, 1.2vw, 14.5px);
+            line-height: 1.35;
+            gap: 8px;
         }
 
         #s-rampas .opc-list {
@@ -272,7 +258,6 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            flex: 1;
         }
 
         #s-rampas .opc-list li {
@@ -280,50 +265,56 @@
             align-items: flex-start;
             gap: 10px;
             font-family: var(--font-b);
-            font-size: clamp(13px, 1.15vw, 15px);
-            line-height: 1.4;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(15px, 1.5vw, 18px);
+            line-height: 1.45;
+            color: rgba(31, 10, 69, 0.88);
         }
 
-        #s-rampas .opc-bullet {
-            width: 18px;
-            height: 18px;
+        #s-rampas .opc-list li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            margin-top: 6px;
+            border-radius: 50%;
             flex-shrink: 0;
-            margin-top: 1px;
         }
 
-        #s-rampas .opc-bullet svg {
-            width: 18px;
-            height: 18px;
-            display: block;
+        #s-rampas .opc-card--ok .opc-list li::before {
+            background: var(--opc-cyan);
+            box-shadow: 0 0 0 3px rgba(83, 230, 212, 0.22);
         }
 
-        #s-rampas .opc-card--ok .opc-bullet { color: var(--opc-cyan); }
-        #s-rampas .opc-card--no .opc-bullet { color: var(--opc-pink); }
-        #s-rampas .opc-card--care .opc-bullet { color: var(--opc-yellow); }
+        #s-rampas .opc-card--no .opc-list li::before {
+            background: var(--opc-pink);
+            box-shadow: 0 0 0 3px rgba(255, 77, 154, 0.18);
+        }
+
+        #s-rampas .opc-card--care .opc-list li::before {
+            background: var(--opc-yellow);
+            box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.22);
+        }
 
         #s-rampas .opc-fire {
-            margin-top: 14px;
+            margin-top: 4px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 12px;
+            gap: 8px;
+            padding: 7px 9px;
             border-radius: 12px;
-            background: rgba(180, 20, 60, 0.28);
-            border: 1px solid rgba(255, 77, 154, 0.55);
-            box-shadow: 0 0 18px rgba(255, 77, 154, 0.18);
-            color: #fff;
+            background: #fff1f5;
+            border: 1px solid rgba(255, 77, 154, 0.4);
+            color: #9f1c4a;
             font-family: var(--font-b);
-            font-size: 13px;
-            font-weight: 600;
-            line-height: 1.35;
+            font-size: 12.5px;
+            font-weight: 700;
+            line-height: 1.3;
         }
 
         #s-rampas .opc-fire svg {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             flex-shrink: 0;
-            color: #ff8fb8;
+            color: var(--opc-pink);
         }
 
         #s-rampas .opc-limit-line {
@@ -339,7 +330,7 @@
             align-items: center;
             justify-content: center;
             margin: 0;
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 999px;
             background: var(--opc-yellow);
             color: #1a1200;
@@ -349,19 +340,90 @@
             letter-spacing: 0.02em;
             line-height: 1.2;
             white-space: nowrap;
-            vertical-align: middle;
+        }
+
+        #s-rampas .opc-carousel-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 30;
+            padding: 6px 0 4px;
+        }
+
+        #s-rampas .opc-nav-btn {
+            width: 52px;
+            height: 52px;
+            min-width: 52px;
+            min-height: 52px;
+            border-radius: 50%;
+            font-size: 28px;
+            font-weight: 900;
+            line-height: 1;
+            padding: 0;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s ease, filter 0.15s ease;
+        }
+
+        #s-rampas .opc-nav-btn:not(:disabled):not(#opc-next) {
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            animation: none;
+        }
+
+        #s-rampas #opc-next:not(:disabled) {
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            background: #53E6D4;
+            color: #3A1480;
             box-shadow:
-                0 0 0 2px rgba(245, 197, 24, 0.35),
-                0 6px 16px rgba(245, 197, 24, 0.35);
+                0 6px 18px rgba(83, 230, 212, 0.55),
+                0 0 28px rgba(83, 230, 212, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.45);
+            animation: carousel-nav-pulse 1.4s ease-in-out infinite;
+        }
+
+        #s-rampas .opc-nav-btn:hover:not(:disabled) {
+            filter: brightness(1.12);
+            transform: scale(1.08);
+        }
+
+        #s-rampas .opc-nav-btn:not(:disabled):active {
+            transform: scale(0.94);
+            animation: none;
+        }
+
+        #s-rampas .opc-nav-btn:disabled {
+            opacity: 0.32;
+            cursor: default;
+            filter: grayscale(0.35);
+            box-shadow: none;
+            animation: none;
+        }
+
+        #s-rampas .opc-counter {
+            font-family: var(--font-h);
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--opc-cyan);
+            min-width: 52px;
+            text-align: center;
         }
 
         #s-rampas .opc-explore {
-            margin: 18px auto 0;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
-            min-height: 52px;
+            gap: 8px;
+            min-height: 44px;
         }
 
         #s-rampas .opc-explore-label {
@@ -377,11 +439,6 @@
             display: flex;
             align-items: center;
             gap: 14px;
-        }
-
-        #s-rampas .opc-explore-dots::before,
-        #s-rampas .opc-explore-dots::after {
-            content: none;
         }
 
         #s-rampas .opc-dot {
@@ -434,44 +491,41 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            #s-rampas .opc-card,
-            #s-rampas .opc-card-ico {
-                animation: none !important;
-            }
-
-            #s-rampas.slide.active .opc-card {
-                opacity: 1;
-                transform: none;
+            #s-rampas .opc-card.is-active {
+                animation: none;
             }
         }
 
-        @media screen and (max-width: 1100px) {
-            #s-rampas .opc-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            #s-rampas .opc-card--care {
-                grid-column: 1 / -1;
-            }
+        @media screen and (max-height: 760px) {
+            #s-rampas .opc-body { padding: 16px 18px; gap: 10px; }
+            #s-rampas .opc-list { gap: 8px; }
         }
 
         @media screen and (max-width: 768px) {
-            #s-rampas .opc-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
+            #s-rampas .content-area { padding-bottom: 100px; gap: 10px; }
+            #s-rampas .opc-grid { width: min(440px, 100%); }
+            #s-rampas .opc-card.is-active {
+                height: min(520px, calc(100vh - 280px));
+                min-height: min(520px, calc(100vh - 280px));
+                max-height: min(520px, calc(100vh - 280px));
             }
-
-            #s-rampas .opc-card--care {
-                grid-column: auto;
+            #s-rampas .opc-media {
+                width: 100%;
+                height: 180px;
+                min-height: 180px;
+                max-height: 180px;
+                aspect-ratio: auto;
+                margin: 0;
             }
-
-            #s-rampas .opc-card {
-                padding: 16px 14px;
+            #s-rampas .opc-body {
+                padding: 16px 16px 18px;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
-
-            #s-rampas .content-area {
-                padding-bottom: 100px;
-            }
+            #s-rampas .opc-list li { font-size: 15.5px; }
+            #s-rampas .opc-card-title { font-size: 24px; }
+            #s-rampas .opc-card--no .opc-card-title { font-size: 22px; }
+            #s-rampas .opc-card--no .opc-list li { font-size: 13.5px; }
         }
 
         /* ── Encontre os riscos — compacto (cabe sem scroll) ── */
@@ -1072,122 +1126,76 @@
                     </h2>
                 </div>
                 <div class="content-area" style="position: relative; z-index: 2;">
-                    <div class="opc-grid" role="list">
-                        <article class="opc-card opc-card--ok" role="listitem" tabindex="0" data-opc="ok" aria-label="Categoria Obrigatório">
-                            <div class="opc-card-head">
-                                <div class="opc-card-ico" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/>
-                                        <path d="M9 12l2 2 4-4"/>
-                                    </svg>
-                                </div>
+                    <div class="opc-grid" id="opc-viewport" role="list">
+                        <article class="opc-card opc-card--ok is-active" role="listitem" data-opc="ok" aria-label="Categoria Obrigatório">
+                            <div class="opc-media">
+                                <img src="assets/fotos/obrigatorio.png" alt="Operador lendo o manual ao lado das máquinas e do EPI">
+                                <button type="button" class="opc-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/obrigatorio.png')">🔍</button>
+                            </div>
+                            <div class="opc-body">
+                                <p class="opc-kicker">Categoria 01</p>
                                 <h3 class="opc-card-title">Obrigatório</h3>
+                                <ul class="opc-list">
+                                    <li>Ler o manual antes de operar</li>
+                                    <li>Usar a máquina somente para sua finalidade</li>
+                                    <li>Observar sinalizações e usar EPI</li>
+                                    <li>Manutenção só com a máquina desligada e desconectada</li>
+                                    <li>Operação por um único operador</li>
+                                </ul>
                             </div>
-                            <div class="opc-card-line" aria-hidden="true"></div>
-                            <ul class="opc-list">
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.2 2.2 4.8-5"/></svg></span>
-                                    <span>Ler o manual antes de operar</span>
-                                </li>
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.2 2.2 4.8-5"/></svg></span>
-                                    <span>Usar a máquina somente para sua finalidade</span>
-                                </li>
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.2 2.2 4.8-5"/></svg></span>
-                                    <span>Observar sinalizações e usar EPI</span>
-                                </li>
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.2 2.2 4.8-5"/></svg></span>
-                                    <span>Manutenção só com a máquina desligada e desconectada</span>
-                                </li>
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.2 2.2 4.8-5"/></svg></span>
-                                    <span>Operação por um único operador</span>
-                                </li>
-                            </ul>
                         </article>
 
-                        <article class="opc-card opc-card--no" role="listitem" tabindex="0" data-opc="no" aria-label="Categoria Proibido">
-                            <div class="opc-card-head">
-                                <div class="opc-card-ico" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="9"/>
-                                        <path d="M9 9l6 6M15 9l-6 6"/>
-                                    </svg>
-                                </div>
+                        <article class="opc-card opc-card--no" role="listitem" data-opc="no" aria-label="Categoria Proibido">
+                            <div class="opc-media">
+                                <img src="assets/fotos/proibido.png" alt="Itens proibidos na operação das máquinas">
+                                <button type="button" class="opc-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/proibido.png')">🔍</button>
+                            </div>
+                            <div class="opc-body">
+                                <p class="opc-kicker">Categoria 02</p>
                                 <h3 class="opc-card-title">Proibido</h3>
-                            </div>
-                            <div class="opc-card-line" aria-hidden="true"></div>
-                            <ul class="opc-list">
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
-                                    <span>Não usar embalagens fora do padrão</span>
-                                </li>
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
-                                    <span>Não operar em ambiente com risco de explosão</span>
-                                </li>
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
-                                    <span>Não usar a máquina para fins alimentares</span>
-                                </li>
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
-                                    <span>Não usar os pratos do misturador para fechar tampa</span>
-                                </li>
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
-                                    <span>Não operar sem proteções ou com dispositivos de segurança avariados, ausentes ou desativados</span>
-                                </li>
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
-                                    <span>Em caso de incêndio, nunca usar água</span>
-                                </li>
-                            </ul>
-                            <div class="opc-fire">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <path d="M8 20h8"/>
-                                    <path d="M9 20V9a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"/>
-                                    <path d="M13 11h3a2 2 0 0 1 2 2v2a3 3 0 0 1-3 3h-1"/>
-                                    <path d="M9 13h4"/>
-                                    <path d="M12 4c.8 1.2.8 2.4 0 3.2-.8.8-1.2 1.5-1.2 2.3 0 1.1.9 2 2 2s2-.9 2-2c0-1.5-1.2-2.6-2.8-5.5z"/>
-                                </svg>
-                                <span>Use apenas extintor de pó químico seco ou CO₂</span>
+                                <ul class="opc-list">
+                                    <li>Não usar embalagens fora do padrão</li>
+                                    <li>Não operar em ambiente com risco de explosão</li>
+                                    <li>Não usar a máquina para fins alimentares</li>
+                                    <li>Não usar os pratos do misturador para fechar tampa</li>
+                                    <li>Não operar sem proteções ou com dispositivos de segurança avariados, ausentes ou desativados</li>
+                                    <li>Em caso de incêndio, nunca usar água</li>
+                                </ul>
+                                <div class="opc-fire">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M8 20h8"/>
+                                        <path d="M9 20V9a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"/>
+                                        <path d="M13 11h3a2 2 0 0 1 2 2v2a3 3 0 0 1-3 3h-1"/>
+                                        <path d="M9 13h4"/>
+                                        <path d="M12 4c.8 1.2.8 2.4 0 3.2-.8.8-1.2 1.5-1.2 2.3 0 1.1.9 2 2 2s2-.9 2-2c0-1.5-1.2-2.6-2.8-5.5z"/>
+                                    </svg>
+                                    <span>Use apenas extintor de pó químico seco ou CO₂</span>
+                                </div>
                             </div>
                         </article>
 
-                        <article class="opc-card opc-card--care" role="listitem" tabindex="0" data-opc="care" aria-label="Categoria Cuidados gerais">
-                            <div class="opc-card-head">
-                                <div class="opc-card-ico" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 3l10 18H2L12 3z"/>
-                                        <path d="M12 10v5"/>
-                                        <circle cx="12" cy="18" r="0.8" fill="currentColor"/>
-                                    </svg>
-                                </div>
-                                <h3 class="opc-card-title">Cuidados gerais</h3>
+                        <article class="opc-card opc-card--care" role="listitem" data-opc="care" aria-label="Categoria Cuidados gerais">
+                            <div class="opc-media">
+                                <img src="assets/fotos/cuidadosgerais.png" alt="Operador colocando a embalagem no misturador com cuidado">
+                                <button type="button" class="opc-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/cuidadosgerais.png')">🔍</button>
                             </div>
-                            <div class="opc-card-line" aria-hidden="true"></div>
-                            <ul class="opc-list">
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></span>
-                                    <span>Mãos fora da área de dosagem/mistura durante o funcionamento</span>
-                                </li>
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></span>
-                                    <span>Exceto para carregar e descarregar</span>
-                                </li>
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></span>
-                                    <span>Não usar a máquina como mesa de trabalho</span>
-                                </li>
-                                <li>
-                                    <span class="opc-bullet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></span>
-                                    <span class="opc-limit-line">Respeitar o limite de <span class="opc-kg" aria-label="25 quilogramas">25 kg</span></span>
-                                </li>
-                            </ul>
+                            <div class="opc-body">
+                                <p class="opc-kicker">Categoria 03</p>
+                                <h3 class="opc-card-title">Cuidados gerais</h3>
+                                <ul class="opc-list">
+                                    <li>Mãos fora da área de dosagem/mistura durante o funcionamento</li>
+                                    <li>Exceto para carregar e descarregar</li>
+                                    <li>Não usar a máquina como mesa de trabalho</li>
+                                    <li><span class="opc-limit-line">Respeitar o limite de <span class="opc-kg" aria-label="25 quilogramas">25 kg</span></span></li>
+                                </ul>
+                            </div>
                         </article>
+                    </div>
+
+                    <div class="opc-carousel-nav" aria-label="Navegação dos cards">
+                        <button type="button" class="opc-nav-btn" id="opc-prev" aria-label="Anterior">‹</button>
+                        <span class="opc-counter" id="opc-counter">1 / 3</span>
+                        <button type="button" class="opc-nav-btn" id="opc-next" aria-label="Próximo">›</button>
                     </div>
 
                     <div class="opc-explore" aria-live="polite">
@@ -1258,7 +1266,7 @@
                     <div class="quiz-wrap">
                         <div id="find-risk-intro" class="quiz-intro-panel">
                             <div class="quiz-intro-card">
-                                <div class="quiz-intro-icon" aria-hidden="true">📋</div>
+                                <div class="quiz-intro-icon" aria-hidden="true">🎮</div>
                                 <h3 class="quiz-intro-title">Desafio NR 12 — Módulo 3</h3>
                                 <p class="quiz-intro-desc">Observe <strong>3</strong> fotos e decida se libera ou <strong>não libera</strong> o procedimento. Você precisa acertar no mínimo <strong>2</strong> para avançar.</p>
                                 <button type="button" class="quiz-intro-btn" id="btn-find-risk-start">INICIAR DESAFIO</button>
@@ -1406,9 +1414,15 @@
 
                 const cards = slide.querySelectorAll('.opc-card[data-opc]');
                 const doneMsg = document.getElementById('opc-done-msg');
+                const counter = document.getElementById('opc-counter');
+                const prev = document.getElementById('opc-prev');
+                const next = document.getElementById('opc-next');
+                const viewport = document.getElementById('opc-viewport');
                 const visited = {};
+                let idx = 0;
+                const total = cards.length;
 
-                function refresh() {
+                function refreshDots() {
                     const keys = ['ok', 'no', 'care'];
                     let count = 0;
                     keys.forEach(function (key) {
@@ -1419,23 +1433,49 @@
                     if (doneMsg) doneMsg.classList.toggle('is-show', count === 3);
                 }
 
-                function mark(card) {
+                function markCurrent() {
+                    const card = cards[idx];
+                    if (!card) return;
                     const key = card.getAttribute('data-opc');
                     if (!key) return;
                     visited[key] = true;
                     card.classList.add('is-visited');
-                    refresh();
+                    refreshDots();
                 }
 
-                cards.forEach(function (card) {
-                    card.addEventListener('click', function () { mark(card); });
-                    card.addEventListener('keydown', function (e) {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            mark(card);
-                        }
+                function ui() {
+                    cards.forEach(function (card, i) {
+                        card.classList.toggle('is-active', i === idx);
                     });
-                });
+                    if (counter) counter.textContent = (idx + 1) + ' / ' + total;
+                    if (prev) prev.disabled = idx === 0;
+                    if (next) next.disabled = idx === total - 1;
+                    markCurrent();
+                }
+
+                function go(dir) {
+                    const n = idx + dir;
+                    if (n < 0 || n >= total) return;
+                    idx = n;
+                    try { if (typeof playTechClick === 'function') playTechClick(); } catch (e) {}
+                    ui();
+                }
+
+                if (prev) prev.addEventListener('click', function () { go(-1); });
+                if (next) next.addEventListener('click', function () { go(1); });
+
+                if (viewport) {
+                    var sx = 0;
+                    viewport.addEventListener('touchstart', function (e) {
+                        sx = e.changedTouches[0].screenX;
+                    }, { passive: true });
+                    viewport.addEventListener('touchend', function (e) {
+                        var d = sx - e.changedTouches[0].screenX;
+                        if (Math.abs(d) > 40) go(d > 0 ? 1 : -1);
+                    }, { passive: true });
+                }
+
+                ui();
             }
 
             if (document.readyState === 'loading') {
@@ -1756,7 +1796,7 @@
         })();
     </script>
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=159"></script>
+    <script src="shared.js?v=161"></script>
 </body>
 
 </html>
