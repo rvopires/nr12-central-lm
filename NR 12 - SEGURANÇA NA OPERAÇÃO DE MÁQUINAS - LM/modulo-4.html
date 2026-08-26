@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=168">
+<link rel="stylesheet" href="shared.css?v=179">
     <script>
         window.MODULE_NAV = {
             id: "modulo-4",
@@ -1530,7 +1530,7 @@
                 <div class="top-bar">
                     <div class="section-tag"
                         style="background: var(--red); color: #1F0A45; font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(83, 230, 212, 0.4);">
-                        🎯 Quiz · Módulo 4</div>
+                        🕹️ Atividade · Módulo 4</div>
                     <h2 class="slide-title"
                         style="font-size: clamp(32px, 5vw, 48px); letter-spacing: 0.02em; text-shadow: 0 0 20px rgba(83, 230, 212, 0.6); position: relative; display: inline-block;">
                         <div
@@ -1550,21 +1550,23 @@
                             </div>
                         </div>
 
-                        <div id="q4-question-panel" style="display:none; transition: opacity 0.5s ease;">
+                        <div id="q4-question-panel" class="q4-activity" style="display:none; transition: opacity 0.5s ease;">
+                            <div class="q4-progress" aria-hidden="true">
+                                <div class="q4-progress-fill" id="q4-progress-fill"></div>
+                            </div>
                             <div class="q-meta">
                                 <div class="q-dots"></div>
-                                <div class="q-lbl" id="q4-counter">Pergunta 1 de 3</div>
+                                <div class="q-lbl" id="q4-counter">Missão 1 de 3</div>
                             </div>
                             <div class="q-text" id="q4-text"></div>
+                            <p class="q4-hint">Escolha a atitude correta e confirme</p>
                             <div class="q-options" id="q4-options"></div>
                             <div id="q4-verify-container"
                                 style="text-align: center; margin-top: 15px; opacity: 0; visibility: hidden; transition: all 0.3s ease; display: none;">
-                                <button class="btn-tf-verify" id="btn-tf-verify-q4" onclick="verifyAnswer4()">✔
-                                    Verificar
-                                    Resposta</button>
+                                <button class="btn-tf-verify" id="btn-tf-verify-q4" onclick="verifyAnswer4()">✔ Confirmar decisão</button>
                             </div>
                             <div class="q-feedback" id="q4-feedback"></div>
-                            <button class="btn-next-q" id="btn-next-q4" onclick="nextQuestion4()">Continuar →</button>
+                            <button class="btn-next-q" id="btn-next-q4" onclick="nextQuestion4()">Próxima missão →</button>
                         </div>
 
                         <div id="q4-result-panel" class="quiz-result-panel" style="display:none;">
@@ -2077,7 +2079,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=174"></script>
+    <script src="shared.js?v=175"></script>
 </body>
 
 </html>

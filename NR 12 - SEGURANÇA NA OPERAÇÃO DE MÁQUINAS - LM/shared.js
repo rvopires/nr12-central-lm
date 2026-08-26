@@ -1749,7 +1749,11 @@ function createQuizEngine(prefix, questions, numDots) {
 
         const q = questions[idx];
         const c = document.getElementById(prefix + '-counter');
-        if (c) c.textContent = `Pergunta ${idx + 1} de ${questions.length}`;
+        if (c) {
+            c.textContent = prefix === 'q4'
+                ? `Missão ${idx + 1} de ${questions.length}`
+                : `Pergunta ${idx + 1} de ${questions.length}`;
+        }
         const txt = document.getElementById(prefix + '-text');
         if (txt) {
             txt.innerHTML = q.q;
@@ -1784,8 +1788,11 @@ function createQuizEngine(prefix, questions, numDots) {
             const letters = (prefix === 'q2' && q.opts.length === 2) ? ['V', 'F'] : ['A', 'B', 'C', 'D'];
             q.opts.forEach((opt, i) => {
                 const el = document.createElement('div');
-                el.className = 'q-opt';
-                el.innerHTML = `<div class="opt-l">${letters[i]}</div><span>${opt}</span>`;
+                el.className = 'q-opt' + (prefix === 'q4' ? ' q4-action' : '');
+                const ico = (prefix === 'q4' && q.icons && q.icons[i])
+                    ? `<span class="q4-opt-ico" aria-hidden="true">${q.icons[i]}</span>`
+                    : '';
+                el.innerHTML = `<div class="opt-l">${letters[i]}</div>${ico}<span>${opt}</span>`;
                 el.onclick = () => selectAnswer(i, el);
                 opts.appendChild(el);
             });
@@ -1798,6 +1805,10 @@ function createQuizEngine(prefix, questions, numDots) {
         if (btn) btn.className = 'btn-next-q';
         if (prefix === 'q2') {
             const fill = document.getElementById('q2-progress-fill');
+            if (fill) fill.style.width = (((idx + 1) / questions.length) * 100) + '%';
+        }
+        if (prefix === 'q4') {
+            const fill = document.getElementById('q4-progress-fill');
             if (fill) fill.style.width = (((idx + 1) / questions.length) * 100) + '%';
         }
         renderDots();
@@ -1873,7 +1884,12 @@ function createQuizEngine(prefix, questions, numDots) {
         });
 
         const btn = document.getElementById('btn-next-' + prefix);
-        if (btn) btn.className = 'btn-next-q show';
+        if (btn) {
+            btn.className = 'btn-next-q show';
+            if (prefix === 'q4') {
+                btn.textContent = (idx >= questions.length - 1) ? 'Ver resultado →' : 'Próxima missão →';
+            }
+        }
 
         scheduleScrollBtnRefresh();
 
@@ -2612,43 +2628,46 @@ window.checkMod4Item = function (el) {
 
 const q4_questions = [
     {
-        q: 'Quais produtos são proibidos na limpeza do dosador?',
+        q: '<div class="q4-mission"><div class="q4-mission-emoji" aria-hidden="true">🧴</div><span class="q4-mission-badge">Situação na loja</span><p class="q4-mission-sit">Hora de limpar o dosador. Um colega pega álcool e aguarrás e pergunta se pode usar.</p><strong class="q4-mission-ask">Quais produtos são proibidos na limpeza?</strong></div>',
         opts: [
             'Pano seco',
-            'Água e solventes como álcool, aguarrás e thinner',
+            'Água e solventes (álcool, aguarrás, thinner)',
             'Solução suave',
             'Pano úmido'
         ],
+        icons: ['🧽', '🚫', '🧴', '💧'],
         correct: 1,
         topic: 'Produtos proibidos na limpeza do dosador',
-        feedback_ok: '✅ Correto! Nunca use água ou solventes inflamáveis (álcool, aguarrás, thinner) na limpeza do dosador.',
-        feedback_nok: '❌ Incorreto. São proibidos água e solventes como álcool, aguarrás e thinner na limpeza do dosador.'
+        feedback_ok: '✅ Boa decisão! Água e solventes inflamáveis nunca entram na limpeza do dosador.',
+        feedback_nok: '❌ Atenção: são proibidos água e solventes como álcool, aguarrás e thinner.'
     },
     {
-        q: 'O que fazer se um corante for derramado dentro do dosador?',
+        q: '<div class="q4-mission"><div class="q4-mission-emoji" aria-hidden="true">🎨</div><span class="q4-mission-badge">Situação na loja</span><p class="q4-mission-sit">Durante o uso, um corante derrama para dentro do dosador. A máquina ainda está ligada.</p><strong class="q4-mission-ask">Qual é a atitude correta agora?</strong></div>',
         opts: [
             'Limpar com pano imediatamente',
             'Desligar e chamar técnico autorizado',
             'Continuar operando',
             'Usar água para diluir'
         ],
+        icons: ['🧻', '☎️', '▶️', '💧'],
         correct: 1,
         topic: 'Corante derramado dentro do dosador',
-        feedback_ok: '✅ Correto! Não tente limpar por conta própria: desligue a máquina e chame o serviço técnico autorizado.',
-        feedback_nok: '❌ Incorreto. Em caso de corante dentro do dosador, desligue e chame o técnico autorizado — não limpe internamente sozinho.'
+        feedback_ok: '✅ Isso! Desligue e chame o técnico autorizado — não limpe o interior por conta própria.',
+        feedback_nok: '❌ Errado. Com corante dentro do dosador: desligue e chame o técnico autorizado.'
     },
     {
-        q: 'Qual o peso máximo permitido para movimentar recipientes?',
+        q: '<div class="q4-mission"><div class="q4-mission-emoji" aria-hidden="true">📦</div><span class="q4-mission-badge">Situação na loja</span><p class="q4-mission-sit">Você precisa movimentar recipientes de tinta sozinho(a) até a área de uso.</p><strong class="q4-mission-ask">Qual o peso máximo permitido?</strong></div>',
         opts: [
             '10 kg',
             '15 kg',
             '25 kg',
             '40 kg'
         ],
+        icons: ['🔟', '⚖️', '✅', '🏋️'],
         correct: 2,
         topic: 'Peso máximo de recipientes',
-        feedback_ok: '✅ Correto! O limite máximo para movimentar recipientes é de 25 kg.',
-        feedback_nok: '❌ Incorreto. O peso máximo permitido para movimentar recipientes é 25 kg.'
+        feedback_ok: '✅ Certo! O limite máximo para movimentar recipientes é 25 kg.',
+        feedback_nok: '❌ Não. O peso máximo permitido para movimentar recipientes é 25 kg.'
     }
 ];
 const quiz4 = createQuizEngine('q4', q4_questions, 3);

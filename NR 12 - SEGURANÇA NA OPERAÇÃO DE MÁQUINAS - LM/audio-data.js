@@ -66,9 +66,9 @@
             counterSelector: '#q4-counter',
             intro: 'Quiz do Módulo 4. Mini-quiz de manutenção e limpeza. Esta avaliação contém três perguntas de múltipla escolha. É necessário acertar pelo menos duas para avançar. Toque em Iniciar Desafio para começar.',
             questions: [
-                'Pergunta 1 de 3. Quais produtos são proibidos na limpeza do dosador? Opção A: Pano seco. Opção B: Água e solventes como álcool, aguarrás e thinner. Opção C: Solução suave. Opção D: Pano úmido.',
-                'Pergunta 2 de 3. O que fazer se um corante for derramado dentro do dosador? Opção A: Limpar com pano imediatamente. Opção B: Desligar e chamar técnico autorizado. Opção C: Continuar operando. Opção D: Usar água para diluir.',
-                'Pergunta 3 de 3. Qual o peso máximo permitido para movimentar recipientes? Opção A: 10 kg. Opção B: 15 kg. Opção C: 25 kg. Opção D: 40 kg.'
+                'Missão 1 de 3. Situação na loja: hora de limpar o dosador. Um colega pega álcool e aguarrás e pergunta se pode usar. Quais produtos são proibidos na limpeza? Opção A: Pano seco. Opção B: Água e solventes como álcool, aguarrás e thinner. Opção C: Solução suave. Opção D: Pano úmido.',
+                'Missão 2 de 3. Situação na loja: durante o uso, um corante derrama para dentro do dosador. Qual é a atitude correta? Opção A: Limpar com pano imediatamente. Opção B: Desligar e chamar técnico autorizado. Opção C: Continuar operando. Opção D: Usar água para diluir.',
+                'Missão 3 de 3. Situação na loja: você precisa movimentar recipientes de tinta sozinho. Qual o peso máximo permitido? Opção A: 10 kg. Opção B: 15 kg. Opção C: 25 kg. Opção D: 40 kg.'
             ],
             result: 'Resultado do Quiz do Módulo 4. Veja sua pontuação na tela. Toque em Jogar Novamente para refazer ou siga para o próximo módulo.'
         }
