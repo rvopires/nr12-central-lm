@@ -6891,7 +6891,7 @@ body {
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 /* ════════════════════════════════════════
    TOP CONTROLS — Transcrição + Simulação (visual NR 06)
-   Regras NR 12: simulação escondida até qa1010 / demoMode
+   Simulação fica sempre visível ao lado da Transcrição
    ════════════════════════════════════════ */
 #top-controls {
     position: fixed;
@@ -7012,7 +7012,7 @@ body {
 }
 
 #tutorial-control-item {
-    display: flex;
+    display: none !important;
 }
 
 .btn-tutorial-toggle:active {
@@ -9983,9 +9983,7 @@ body {
     }
 }
 
-/* Esconder Simulação (mantém a função; revela com qa1010 / demoMode) */
-html body #btn-demo,
-html body #sim-control-item,
+/* Toast do modo simulação: escondido até o aviso temporário */
 html body #demo-indicator {
     display: none !important;
     visibility: hidden !important;
@@ -9993,18 +9991,19 @@ html body #demo-indicator {
     opacity: 0 !important;
 }
 
-/* Atalho secreto: digitar qa1010 (ou simulação ativa) revela o botão */
-html body #btn-demo.demo-shortcut-visible {
-    display: flex !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    opacity: 1 !important;
-}
-
-html body #sim-control-item.demo-shortcut-visible {
+/* Simulação sempre visível no top-controls (ao lado da Transcrição) */
+html body #sim-control-item {
     display: flex !important;
     visibility: visible !important;
     pointer-events: none !important;
+    opacity: 1 !important;
+}
+
+html body #btn-demo,
+html body #btn-demo.btn-simulation-toggle {
+    display: flex !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
     opacity: 1 !important;
 }
 

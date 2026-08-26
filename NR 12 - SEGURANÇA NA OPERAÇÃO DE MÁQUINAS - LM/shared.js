@@ -437,16 +437,9 @@ function setDemoBtnRevealed(visible) {
 function applyDemoModeUI() {
     const btn = document.getElementById('btn-demo');
     const ind = document.getElementById('demo-indicator');
-    // Visível só com simulação ligada, ou se o atalho qa1010 revelou (antes de ligar)
-    var revealBtn = !!window.demoMode || isDemoBtnRevealed();
-
-    if (window.demoMode) {
-        setDemoBtnRevealed(true);
-        revealBtn = true;
-    }
 
     if (btn) {
-        btn.classList.toggle('demo-shortcut-visible', !!revealBtn);
+        btn.classList.add('demo-shortcut-visible');
         btn.classList.toggle('is-demo-on', !!window.demoMode);
         btn.classList.toggle('is-demo-off', !window.demoMode);
         btn.classList.toggle('active', !!window.demoMode);
@@ -455,7 +448,7 @@ function applyDemoModeUI() {
         var simLabel = btn.querySelector('.simulation-text');
         if (simLabel) simLabel.textContent = window.demoMode ? 'Simulação: ON' : 'Simulação: OFF';
         var simItem = document.getElementById('sim-control-item');
-        if (simItem) simItem.classList.toggle('demo-shortcut-visible', !!revealBtn);
+        if (simItem) simItem.classList.add('demo-shortcut-visible');
         if (window.matchMedia('(min-width: 769px)').matches) {
             btn.removeAttribute('onmouseover');
             btn.removeAttribute('onmouseout');
@@ -497,8 +490,7 @@ function showDemoModeToast(active) {
 function toggleDemoMode() {
     window.demoMode = !window.demoMode;
     try { sessionStorage.setItem('nr11-demoMode', window.demoMode ? '1' : '0'); } catch (e) { }
-    // Liga: mantém o botão visível entre módulos. Desliga: esconde o atalho de novo.
-    setDemoBtnRevealed(!!window.demoMode);
+    setDemoBtnRevealed(true);
     applyDemoModeUI();
     showDemoModeToast(!!window.demoMode);
 }
@@ -520,19 +512,8 @@ window.addEventListener('keydown', (e) => {
         if (!e.key || e.key.length !== 1) return;
         seq = (seq + e.key.toLowerCase()).slice(-target.length);
         if (seq !== target) return;
-        var btn = document.getElementById('btn-demo');
-        if (btn) {
-            btn.classList.toggle('demo-shortcut-visible');
-            var visible = btn.classList.contains('demo-shortcut-visible');
-            setDemoBtnRevealed(visible);
-            // Se esconder o atalho com simulação ainda ligada, desliga para não ficar "fantasma"
-            if (!visible && window.demoMode) {
-                window.demoMode = false;
-                try { sessionStorage.setItem('nr11-demoMode', '0'); } catch (err) { }
-            }
-            applyDemoModeUI();
-        }
         seq = '';
+        toggleDemoMode();
     });
 })();
 
