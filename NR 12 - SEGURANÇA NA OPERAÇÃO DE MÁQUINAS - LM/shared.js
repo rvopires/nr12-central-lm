@@ -467,26 +467,40 @@ function applyDemoModeUI() {
             btn.style.removeProperty('box-shadow');
         }
     }
-    if (ind) {
-        ind.classList.toggle('demo-shortcut-visible', !!window.demoMode);
-        if (window.demoMode) {
-            ind.style.opacity = '1';
-            ind.style.transform = 'translateY(0)';
-        } else {
-            ind.style.opacity = '0';
-            ind.style.transform = 'translateY(-20px)';
-        }
+    // Indicador não fica fixo — só toast inferior ao ligar/desligar
+    if (ind && !ind.classList.contains('is-toast-show')) {
+        ind.classList.remove('demo-shortcut-visible');
+        ind.style.opacity = '0';
+        ind.style.transform = 'translate(-50%, 12px) scale(0.96)';
+        ind.style.pointerEvents = 'none';
     }
     updateNextButton();
     if (typeof window.positionA11yBar === 'function') window.positionA11yBar();
 }
 
+function showDemoModeToast(active) {
+    var ind = document.getElementById('demo-indicator');
+    if (!ind) return;
+    ind.textContent = active ? '🔓 Modo Simulação ATIVADO' : '🔒 Modo Simulação DESATIVADO';
+    ind.classList.add('demo-shortcut-visible', 'is-toast-show');
+    ind.style.opacity = '1';
+    ind.style.transform = 'translateX(-50%) scale(1)';
+    ind.style.pointerEvents = 'none';
+    clearTimeout(ind._toastTimer);
+    ind._toastTimer = setTimeout(function () {
+        ind.classList.remove('is-toast-show', 'demo-shortcut-visible');
+        ind.style.opacity = '0';
+        ind.style.transform = 'translate(-50%, 12px) scale(0.96)';
+    }, 2500);
+}
+
 function toggleDemoMode() {
     window.demoMode = !window.demoMode;
     try { sessionStorage.setItem('nr11-demoMode', window.demoMode ? '1' : '0'); } catch (e) { }
-    // Liga: mantém visível entre módulos. Desliga: esconde o atalho de novo.
+    // Liga: mantém o botão visível entre módulos. Desliga: esconde o atalho de novo.
     setDemoBtnRevealed(!!window.demoMode);
     applyDemoModeUI();
+    showDemoModeToast(!!window.demoMode);
 }
 
 window.addEventListener('keydown', (e) => {
