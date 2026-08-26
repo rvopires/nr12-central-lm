@@ -16,13 +16,13 @@
 }(typeof self !== 'undefined' ? self : this, function () {
 
     /* Ordem dos slides em cada HTML — DEVE bater com NR11_MODULE_OFFSETS.
-       Soma das slides = NR11_TOTAL_SLIDES (33).                              */
+       Soma das slides = NR11_TOTAL_SLIDES (32).                              */
     const SLIDE_ORDER = {
         'index.html': ['s1', 's1b', 's-sumario'],
         'modulo-1.html': ['intro-m1', 's-o-que-e-nr12', 's-conceito-maquinas', 's2', 's4', 's6', 's-central-cores', 'sq1'],
         'modulo-2.html': ['intro-m2', 's-equipamento', 's10', 's9', 'sq2'],
         'modulo-3.html': ['intro-m3', 's-bateria', 's-conducao', 's-rampas', 's-bateria-troca', 's-quiz3'],
-        'modulo-4.html': ['s-mod4-intro', 's-mod4-video', 's-mod4-inspecao', 's-mod4-limpeza', 's-mod4-pode-nao', 's-mod4-video-finalizacao', 's-mod4-organizacao', 's-quiz4', 's-mod6-mensagem-final', 's-mod6-video-final', 's-conclusion']
+        'modulo-4.html': ['s-mod4-intro', 's-mod4-video', 's-mod4-inspecao', 's-mod4-limpeza', 's-mod4-pode-nao', 's-mod4-video-finalizacao', 's-mod4-organizacao', 's-quiz4', 's-mod6-video-final', 's-conclusion']
     };
 
     /* MULTI_STATE: slides com múltiplos conteúdos exibidos em sequência.
@@ -79,7 +79,7 @@
        Slides não listados usam extração automática via jsdom no generator.    */
     const OVERRIDES = {
         's-quiz3': 'Encontre os riscos. Observe três fotos e decida se libera ou não libera o procedimento. Em todas as cenas há risco: sem calçado de segurança, painel elétrico aberto e lata fora do centro do prato do misturador. A decisão correta é não liberar.',
-        's-conclusion': 'Página 33 de 33. Treinamento — Concluído. Certificado de conclusão. Parabéns! Você concluiu o treinamento NR 12 — Segurança na Operação de Máquinas. Por mérito, dedicação e compromisso com a segurança, você percorreu os 4 módulos. 4 módulos. NR 12. Máquinas.'
+        's-conclusion': 'Página 32 de 32. Treinamento — Concluído. Certificado de conclusão. Parabéns! Você concluiu o treinamento NR 12 — Segurança na Operação de Máquinas. Por mérito, dedicação e compromisso com a segurança, você percorreu os 4 módulos. 4 módulos. NR 12. Máquinas.'
     };
 
     /* Calcula o número global do slide (1..NR11_TOTAL_SLIDES) a partir do

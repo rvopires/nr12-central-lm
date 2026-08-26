@@ -238,15 +238,15 @@
             #s-mod4-inspecao .m4m-title { font-size: 22px; }
         }
 
-        /* ── Página 24: Limpeza por equipamento — carrossel ── */
+        /* ── Página 26: Limpeza por equipamento — ficha com abas ── */
         #s-mod4-limpeza {
             --m4l-mix: #AD52C4;
             --m4l-mix-deep: #4A1866;
-            --m4l-blue: #1a9e8f;
-            --m4l-blue-deep: #0d5c54;
+            --m4l-mint: #53E6D4;
+            --m4l-teal: #1a9e8f;
+            --m4l-teal-deep: #0d5c54;
             --m4l-red: #e03a3a;
             --m4l-red-deep: #9f1c1c;
-            --m4l-mint: #53E6D4;
             overflow: hidden !important;
         }
         #s-mod4-limpeza .top-bar { flex-shrink: 0; padding-bottom: 2px !important; }
@@ -256,204 +256,285 @@
             display: flex !important; flex-direction: column;
             justify-content: center !important; align-items: center !important;
             text-align: left !important;
-            padding: 36px 18px 64px !important; gap: 12px;
+            padding: 8px 18px 72px !important; gap: 14px;
             overflow: hidden !important; position: relative; z-index: 2;
         }
-        #s-mod4-limpeza .m4l-layout {
-            width: min(920px, 94%);
+        #s-mod4-limpeza .m4l-board {
+            width: min(940px, 96%);
             margin: 0 auto;
-            display: block;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            min-height: 0;
+            max-height: 100%;
         }
-        #s-mod4-limpeza .m4l-cols {
-            display: block;
-            position: relative;
+        #s-mod4-limpeza .m4l-hint {
+            margin: 0;
+            text-align: center;
+            font-family: var(--font-b);
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.88);
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+        }
+        #s-mod4-limpeza .m4l-hint strong {
+            color: #53E6D4;
+            font-weight: 800;
+        }
+        #s-mod4-limpeza .m4l-switch {
+            display: flex;
+            width: min(440px, 100%);
+            padding: 5px;
+            gap: 5px;
+            border-radius: 999px;
+            background: rgba(31, 10, 69, 0.45);
+            border: 1.5px solid rgba(83, 230, 212, 0.28);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+        }
+        #s-mod4-limpeza .m4l-switch-btn {
+            flex: 1;
+            border: 0;
+            border-radius: 999px;
+            padding: 11px 14px;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.72);
+            font-family: var(--font-h);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+        #s-mod4-limpeza .m4l-switch-btn.is-active[data-m4l="mix"] {
+            background: #AD52C4;
+            color: #fff;
+            box-shadow: 0 0 16px rgba(173, 82, 196, 0.45);
+            transform: translateY(-1px);
+        }
+        #s-mod4-limpeza .m4l-switch-btn.is-active[data-m4l="dos"] {
+            background: #53E6D4;
+            color: #1F0A45;
+            box-shadow: 0 0 16px rgba(83, 230, 212, 0.45);
+            transform: translateY(-1px);
+        }
+        #s-mod4-limpeza .m4l-split {
             width: 100%;
+            position: relative;
+            min-height: 0;
         }
-        #s-mod4-limpeza .m4l-card {
+        #s-mod4-limpeza .m4l-pane {
             display: none;
+            width: 100%;
             background: #fff;
-            border: 1.5px solid rgba(173,82,196,0.18);
+            border: 1.5px solid rgba(173, 82, 196, 0.18);
             border-radius: 22px;
             overflow: hidden;
-            box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
             flex-direction: column;
-            min-width: 0;
-            width: 100%;
+            min-height: 0;
+            max-height: min(580px, calc(100vh - 230px));
         }
-        #s-mod4-limpeza .m4l-card.m4l-card-active {
+        #s-mod4-limpeza .m4l-pane.is-active {
             display: flex;
-            animation: m4l-card-in 0.35s ease;
+            animation: m4l-in 0.32s ease;
         }
-        @keyframes m4l-card-in {
-            from { opacity: 0; transform: translateY(10px); }
+        #s-mod4-limpeza .m4l-pane--mix { border-color: rgba(173, 82, 196, 0.4); }
+        #s-mod4-limpeza .m4l-pane--dos { border-color: rgba(83, 230, 212, 0.45); }
+        @keyframes m4l-in {
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
         #s-mod4-limpeza .m4l-media {
             position: relative;
             width: 100%;
-            aspect-ratio: 1 / 1;
-            height: auto;
+            height: min(220px, 30vh);
             flex: 0 0 auto;
             background: #f4eef8;
+            display: block;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 0;
+            box-sizing: border-box;
         }
-        #s-mod4-limpeza .m4l-card--dos .m4l-media { background: #ecfffc; }
+        #s-mod4-limpeza .m4l-pane--dos .m4l-media { background: #ecfffc; }
         #s-mod4-limpeza .m4l-media img {
-            position: relative; z-index: 1;
-            width: 100%; height: 100%;
-            max-width: 100%; max-height: 100%;
-            object-fit: contain; object-position: center; display: block;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            object-position: center;
+            display: block;
+            padding: 0;
+            box-sizing: border-box;
         }
         #s-mod4-limpeza .m4l-expand {
-            position: absolute; bottom: 12px; right: 12px; z-index: 3;
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 42px; height: 42px; padding: 0; border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.95); background: #53E6D4;
-            box-shadow: 0 6px 16px rgba(83,230,212,0.55); color: #1F0A45;
-            font-size: 17px; line-height: 1; cursor: pointer;
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            z-index: 3;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.95);
+            background: #53E6D4;
+            color: #1F0A45;
+            font-size: 16px;
+            line-height: 1;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            box-shadow: 0 6px 16px rgba(83, 230, 212, 0.5);
         }
         #s-mod4-limpeza .m4l-expand:hover { filter: brightness(1.08); transform: scale(1.06); }
         #s-mod4-limpeza .m4l-body {
-            padding: 14px 16px 16px; flex: 1 1 auto; min-height: 0;
-            display: flex; flex-direction: column; gap: 8px; overflow: visible;
+            padding: 16px 18px 18px;
+            flex: 1 1 auto;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(173, 82, 196, 0.4) transparent;
         }
-        #s-mod4-limpeza .m4l-card--mix .m4l-body {
-            background: linear-gradient(180deg, #faf0ff 0%, #fff 55%);
+        #s-mod4-limpeza .m4l-pane--mix .m4l-body {
+            background: linear-gradient(180deg, #faf0ff 0%, #fff 50%);
             border-top: 3px solid var(--m4l-mix);
         }
-        #s-mod4-limpeza .m4l-card--dos .m4l-body {
-            background: linear-gradient(180deg, #ecfffc 0%, #fff 55%);
+        #s-mod4-limpeza .m4l-pane--dos .m4l-body {
+            background: linear-gradient(180deg, #ecfffc 0%, #fff 50%);
             border-top: 3px solid var(--m4l-mint);
         }
         #s-mod4-limpeza .m4l-kicker {
-            margin: 0; font-family: var(--font-h); font-size: 12px; font-weight: 800;
-            letter-spacing: 0.1em; text-transform: uppercase;
+            margin: 0;
+            font-family: var(--font-h);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
-        #s-mod4-limpeza .m4l-card--mix .m4l-kicker { color: var(--m4l-mix); }
-        #s-mod4-limpeza .m4l-card--dos .m4l-kicker { color: #1a9e8f; }
+        #s-mod4-limpeza .m4l-pane--mix .m4l-kicker { color: var(--m4l-mix); }
+        #s-mod4-limpeza .m4l-pane--dos .m4l-kicker { color: var(--m4l-teal); }
         #s-mod4-limpeza .m4l-title {
-            margin: 0; font-family: var(--font-h); font-size: clamp(20px, 2.4vw, 26px);
-            font-weight: 800; line-height: 1.2; color: var(--m4l-mix-deep);
+            margin: 0;
+            font-family: var(--font-h);
+            font-size: clamp(22px, 2.6vw, 28px);
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--m4l-mix-deep);
         }
-        #s-mod4-limpeza .m4l-card--dos .m4l-title { color: var(--m4l-blue-deep); }
+        #s-mod4-limpeza .m4l-pane--dos .m4l-title { color: var(--m4l-teal-deep); }
         #s-mod4-limpeza .m4l-sec {
-            padding: 9px 11px; border-radius: 12px;
-            background: rgba(255,255,255,0.88); border: 1px solid rgba(173,82,196,0.12);
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(173, 82, 196, 0.12);
         }
-        #s-mod4-limpeza .m4l-card--dos .m4l-sec { border-color: rgba(83,230,212,0.28); }
+        #s-mod4-limpeza .m4l-pane--dos .m4l-sec { border-color: rgba(83, 230, 212, 0.28); }
         #s-mod4-limpeza .m4l-sec-title {
-            margin: 0 0 4px; font-family: var(--font-h); font-size: 13px; font-weight: 800;
-            color: var(--m4l-mix-deep); line-height: 1.2;
+            margin: 0 0 5px;
+            font-family: var(--font-h);
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--m4l-mix-deep);
+            line-height: 1.2;
         }
-        #s-mod4-limpeza .m4l-card--dos .m4l-sec-title { color: var(--m4l-blue-deep); }
-        #s-mod4-limpeza .m4l-sec ul {
-            margin: 0; padding: 0 0 0 16px; font-family: var(--font-b);
-            font-size: 14px; color: rgba(74,24,102,0.82); line-height: 1.4;
+        #s-mod4-limpeza .m4l-pane--dos .m4l-sec-title { color: var(--m4l-teal-deep); }
+        #s-mod4-limpeza .m4l-sec ul,
+        #s-mod4-limpeza .m4l-sec ol {
+            margin: 0;
+            padding: 0 0 0 16px;
+            font-family: var(--font-b);
+            font-size: 14.5px;
+            color: rgba(74, 24, 102, 0.84);
+            line-height: 1.4;
+        }
+        #s-mod4-limpeza .m4l-sec ol {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            counter-reset: m4lstep;
+        }
+        #s-mod4-limpeza .m4l-sec ol li {
+            display: grid;
+            grid-template-columns: 26px 1fr;
+            gap: 8px;
+            align-items: start;
+            padding: 0;
+            counter-increment: m4lstep;
+        }
+        #s-mod4-limpeza .m4l-sec ol li::before {
+            content: counter(m4lstep);
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #7AEEE0, #53E6D4);
+            color: #1F0A45;
+            font-family: var(--font-h);
+            font-size: 12px;
+            font-weight: 800;
+            line-height: 1;
         }
         #s-mod4-limpeza .m4l-alert {
-            display: inline-flex; align-items: center; gap: 7px; align-self: flex-start;
-            padding: 7px 12px; border-radius: 999px;
-            background: rgba(224,58,58,0.1); border: 1.5px solid rgba(224,58,58,0.28);
-            color: var(--m4l-red-deep); font-family: var(--font-h); font-size: 13px; font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            align-self: flex-start;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(224, 58, 58, 0.1);
+            border: 1.5px solid rgba(224, 58, 58, 0.28);
+            color: var(--m4l-red-deep);
+            font-family: var(--font-h);
+            font-size: 13px;
+            font-weight: 800;
         }
         #s-mod4-limpeza .m4l-alert svg { width: 15px; height: 15px; flex-shrink: 0; }
-        #s-mod4-limpeza .m4l-steps {
-            list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px;
-        }
-        #s-mod4-limpeza .m4l-step {
-            display: grid; grid-template-columns: 28px 1fr; gap: 8px; align-items: start;
-        }
-        #s-mod4-limpeza .m4l-step-num {
-            width: 28px; height: 28px; min-width: 28px; min-height: 28px;
-            border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
-            box-sizing: border-box; padding: 0; overflow: hidden; flex-shrink: 0;
-            background: linear-gradient(145deg, #7AEEE0, #53E6D4); color: #1F0A45;
-            font-family: var(--font-h); font-size: 12px; font-weight: 800;
-            line-height: 1; letter-spacing: 0;
-        }
-        #s-mod4-limpeza .m4l-step > span:not(.m4l-step-num) {
-            font-family: var(--font-b); font-size: 13.5px; color: rgba(74,24,102,0.82);
-            line-height: 1.35; padding-top: 4px;
-        }
-        #s-mod4-limpeza .m4l-carousel-nav {
-            display: flex; align-items: center; justify-content: center; gap: 18px;
-            flex-wrap: wrap; flex-shrink: 0; padding: 8px 0 4px; position: relative; z-index: 30;
-        }
-        #s-mod4-limpeza .m4l-nav-btn {
-            width: 52px; height: 52px; border-radius: 50%; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; padding: 0;
-            border: 2px solid rgba(255,255,255,0.9);
-            background: #53E6D4; color: #3A1480;
-            box-shadow: 0 6px 18px rgba(83,230,212,0.55), 0 0 28px rgba(83,230,212,0.45);
-            animation: m4l-nav-pulse 1.4s ease-in-out infinite;
-            transition: transform 0.15s ease, filter 0.15s ease;
-        }
-        #s-mod4-limpeza .m4l-nav-btn svg { width: 18px; height: 18px; pointer-events: none; }
-        #s-mod4-limpeza #m4l-next:not(:disabled) {
-            border: 2px solid rgba(255,255,255,0.8);
-            background: #53E6D4; color: #3A1480;
-            box-shadow: 0 6px 18px rgba(83,230,212,0.55), 0 0 28px rgba(83,230,212,0.45);
-            animation: m4l-nav-pulse 1.4s ease-in-out infinite;
-        }
-        #s-mod4-limpeza .m4l-nav-btn:hover:not(:disabled) { filter: brightness(1.12); transform: scale(1.08); }
-        #s-mod4-limpeza .m4l-nav-btn:disabled { opacity: 0.32; cursor: default; animation: none; }
-        #s-mod4-limpeza .m4l-counter {
-            font-family: var(--font-h); font-size: 15px; font-weight: 800;
-            color: var(--m4l-mint); min-width: 56px; text-align: center;
-        }
-        @keyframes m4l-nav-pulse {
-            0%, 100% { box-shadow: 0 6px 18px rgba(83,230,212,0.45), 0 0 18px rgba(83,230,212,0.3); }
-            50% { box-shadow: 0 8px 24px rgba(83,230,212,0.7), 0 0 32px rgba(83,230,212,0.55); }
-        }
         @media screen and (min-width: 769px) {
-            #s-mod4-limpeza .m4l-card.m4l-card-active {
+            #s-mod4-limpeza .m4l-pane.is-active {
                 display: grid;
-                grid-template-columns: auto 1fr;
-                height: auto;
-                min-height: 0;
-                max-height: none;
-                align-items: stretch;
+                grid-template-columns: 380px 1fr;
+                grid-template-rows: minmax(360px, 420px);
+                height: min(420px, calc(100vh - 210px));
+                max-height: min(420px, calc(100vh - 210px));
             }
             #s-mod4-limpeza .m4l-media {
-                width: auto;
-                height: auto;
-                min-width: 320px;
-                min-height: 320px;
-                max-width: 440px;
-                max-height: none;
-                aspect-ratio: 1 / 1;
+                width: 380px;
+                height: 100%;
                 align-self: stretch;
-                flex: none;
+                padding: 0;
             }
-            #s-mod4-limpeza .m4l-body {
-                overflow: visible;
-                min-height: 320px;
-            }
-            #s-mod4-limpeza .m4l-card--mix .m4l-body,
-            #s-mod4-limpeza .m4l-card--dos .m4l-body { border-top: none; }
-            #s-mod4-limpeza .m4l-card--mix .m4l-body { border-left: 3px solid var(--m4l-mix); }
-            #s-mod4-limpeza .m4l-card--dos .m4l-body { border-left: 3px solid var(--m4l-mint); }
+            #s-mod4-limpeza .m4l-pane--mix .m4l-body,
+            #s-mod4-limpeza .m4l-pane--dos .m4l-body { border-top: none; }
+            #s-mod4-limpeza .m4l-pane--mix .m4l-body { border-left: 3px solid var(--m4l-mix); }
+            #s-mod4-limpeza .m4l-pane--dos .m4l-body { border-left: 3px solid var(--m4l-mint); }
         }
         @media screen and (max-width: 768px) {
             #s-mod4-limpeza .content-area {
                 padding: 6px 12px 96px !important;
                 overflow-y: auto !important;
+                justify-content: flex-start !important;
             }
-            #s-mod4-limpeza .m4l-layout { width: min(440px, 100%); }
+            #s-mod4-limpeza .m4l-board { width: min(440px, 100%); }
+            #s-mod4-limpeza .m4l-pane { max-height: none; }
             #s-mod4-limpeza .m4l-media {
-                width: min(180px, 58%);
-                height: auto;
-                aspect-ratio: 1 / 1;
-                margin: 12px auto 0;
-                border-radius: 16px;
-                align-self: center;
+                width: 100%;
+                height: 200px;
+                aspect-ratio: auto;
+                margin: 0;
+                border-radius: 0;
+                align-self: stretch;
+                padding: 0;
             }
-            #s-mod4-limpeza .m4l-title { font-size: 20px; }
-            #s-mod4-limpeza .m4l-body { overflow: visible; min-height: 0; }
+            #s-mod4-limpeza .m4l-body { overflow: visible; }
+            #s-mod4-limpeza .m4l-title { font-size: 22px; }
         }
 
         /* ── Página 25: Pode / Não pode ── */
@@ -1093,9 +1174,14 @@
                     </h2>
                 </div>
                 <div class="content-area">
-                    <div class="m4l-layout">
-                        <div class="m4l-cols" id="m4l-viewport">
-                            <article class="m4l-card m4l-card--mix m4l-card-active" aria-label="Limpeza do misturador">
+                    <div class="m4l-board">
+                        <p class="m4l-hint">Toque em <strong>Misturador</strong> ou <strong>Dosador</strong> para ver a limpeza de cada equipamento</p>
+                        <div class="m4l-switch" role="tablist" aria-label="Equipamento">
+                            <button type="button" class="m4l-switch-btn is-active" data-m4l="mix" role="tab" aria-selected="true">Misturador</button>
+                            <button type="button" class="m4l-switch-btn" data-m4l="dos" role="tab" aria-selected="false">Dosador</button>
+                        </div>
+                        <div class="m4l-split" id="m4l-viewport">
+                            <article class="m4l-pane m4l-pane--mix is-active" data-m4l-pane="mix" aria-label="Limpeza do misturador">
                                 <div class="m4l-media">
                                     <img src="assets/fotos/misturador-maquina.png" alt="Limpeza do misturador">
                                     <button type="button" class="m4l-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/misturador-maquina.png')">🔍</button>
@@ -1121,7 +1207,7 @@
                                     </div>
                                 </div>
                             </article>
-                            <article class="m4l-card m4l-card--dos" aria-label="Limpeza do dosador">
+                            <article class="m4l-pane m4l-pane--dos" data-m4l-pane="dos" aria-label="Limpeza do dosador">
                                 <div class="m4l-media">
                                     <img src="assets/fotos/dosador-maquina.png" alt="Limpeza do dosador">
                                     <button type="button" class="m4l-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/dosador-maquina.png')">🔍</button>
@@ -1143,54 +1229,37 @@
                                     </div>
                                     <div class="m4l-sec">
                                         <p class="m4l-sec-title">Derramamento externo</p>
-                                        <ol class="m4l-steps">
-                                            <li class="m4l-step"><span class="m4l-step-num" aria-hidden="true">1</span><span>Desconectar o cabo de alimentação.</span></li>
-                                            <li class="m4l-step"><span class="m4l-step-num" aria-hidden="true">2</span><span>Limpar revestimentos e painéis com pano macio.</span></li>
-                                            <li class="m4l-step"><span class="m4l-step-num" aria-hidden="true">3</span><span>Reconectar o cabo e ligar a máquina.</span></li>
+                                        <ol>
+                                            <li>Desconectar o cabo de alimentação.</li>
+                                            <li>Limpar revestimentos e painéis com pano macio.</li>
+                                            <li>Reconectar o cabo e ligar a máquina.</li>
                                         </ol>
                                     </div>
                                 </div>
                             </article>
                         </div>
                     </div>
-                    <div class="m4l-carousel-nav" aria-label="Navegação dos cards">
-                        <button type="button" class="m4l-nav-btn" id="m4l-prev" onclick="m4lCarouselNav(-1)" aria-label="Anterior">
-                            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="15,3 3,10 15,17"/></svg>
-                        </button>
-                        <span class="m4l-counter" id="m4l-counter">1 / 2</span>
-                        <button type="button" class="m4l-nav-btn" id="m4l-next" onclick="m4lCarouselNav(1)" aria-label="Próximo">
-                            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="5,3 17,10 5,17"/></svg>
-                        </button>
-                    </div>
                     <script>
                         (function () {
-                            var m4lIdx = 0, m4lTotal = 2;
-                            function cards() { return document.querySelectorAll('#s-mod4-limpeza .m4l-card'); }
-                            function ui() {
-                                var c = cards(); m4lTotal = c.length || 2;
-                                c.forEach(function (el, i) { el.classList.toggle('m4l-card-active', i === m4lIdx); });
-                                var counter = document.getElementById('m4l-counter');
-                                if (counter) counter.textContent = (m4lIdx + 1) + ' / ' + m4lTotal;
-                                var prev = document.getElementById('m4l-prev'), next = document.getElementById('m4l-next');
-                                if (prev) prev.disabled = m4lIdx === 0;
-                                if (next) next.disabled = m4lIdx === m4lTotal - 1;
+                            var slide = document.getElementById('s-mod4-limpeza');
+                            if (!slide) return;
+                            function show(key) {
+                                slide.querySelectorAll('.m4l-switch-btn').forEach(function (btn) {
+                                    var on = btn.getAttribute('data-m4l') === key;
+                                    btn.classList.toggle('is-active', on);
+                                    btn.setAttribute('aria-selected', on ? 'true' : 'false');
+                                });
+                                slide.querySelectorAll('.m4l-pane').forEach(function (pane) {
+                                    pane.classList.toggle('is-active', pane.getAttribute('data-m4l-pane') === key);
+                                });
                             }
-                            window.m4lCarouselNav = function (dir) {
-                                var n = m4lIdx + dir; if (n < 0 || n >= m4lTotal) return;
-                                m4lIdx = n; try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
-                                ui();
-                            };
-                            var sx = 0, vp = document.getElementById('m4l-viewport');
-                            if (vp) {
-                                vp.addEventListener('touchstart', function (e) { sx = e.changedTouches[0].screenX; }, { passive: true });
-                                vp.addEventListener('touchend', function (e) {
-                                    var d = sx - e.changedTouches[0].screenX;
-                                    if (Math.abs(d) > 40) window.m4lCarouselNav(d > 0 ? 1 : -1);
-                                }, { passive: true });
-                            }
-                            function init() { m4lIdx = 0; ui(); }
-                            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
-                            window.addEventListener('resize', ui);
+                            slide.querySelectorAll('.m4l-switch-btn').forEach(function (btn) {
+                                btn.addEventListener('click', function () {
+                                    try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
+                                    show(btn.getAttribute('data-m4l') || 'mix');
+                                });
+                            });
+                            show('mix');
                         })();
                     </script>
                 </div>
@@ -1518,326 +1587,6 @@
             </div>
 
 
-            <div class="slide" id="s-mod6-mensagem-final"
-
-                style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; min-height: 100vh;">
-
-                <!-- Background Layer -->
-
-                <div class="bg-layer" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;">
-
-                    <img class="static-bg"
-
-                        src="assets/imgur/83kI3z0.png"
-
-                        alt="Operador em ambiente industrial"
-
-                        loading="eager"
-
-                        fetchpriority="high"
-
-                        decoding="async"
-
-                        style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85) contrast(1.15);">
-
-                    <!-- Gradient overlay -->
-
-                    <div class="grad-overlay"
-
-                        style="position: absolute; inset: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, transparent 25%, rgba(15, 23, 42, 0.95) 85%);">
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- Content Layer -->
-
-                <div class="content-area"
-
-                    style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; width: 100%; margin-top: 5vh;">
-
-                    <div class="glow-bg"
-
-                        style="position: fixed; inset: 0; width: 100vw; height: 100vh; background: radial-gradient(circle at center, rgba(83, 230, 212, 0.08) 0%, transparent 60%); z-index: -1;">
-
-                    </div>
-
-
-
-                    <div class="section-tag anim-tag"
-
-                        style="background: var(--red); color: #1F0A45; margin-bottom: 30px; position: relative;">🏁 Encerramento
-
-                    </div>
-
-                    <h2 class="anim-title"
-
-                        style="font-family: var(--font-h); font-size: clamp(36px, 6vw, 65px); font-weight: 800; color: var(--white); text-transform: uppercase; line-height: 1.25; margin-bottom: 15px; letter-spacing: 1px;">
-
-                        A SEGURANÇA É DIREITO<br><span style="color: var(--green);">E DEVER DE TODOS</span>
-
-                    </h2>
-
-                    <div class="anim-sub"
-
-                        style="font-family: var(--font-p); font-size: clamp(18px, 2.5vw, 24px); color: rgba(255,255,255,0.95); max-width: 1000px; line-height: 1.6; font-weight: 300; text-align: center; margin: 0 auto; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">
-
-                        Operar com responsabilidade protege vidas, equipamentos e toda a operação.
-
-                    </div>
-
-                </div>
-
-
-
-                <style>
-
-                    /* Initial States */
-
-                    #s-mod6-mensagem-final .grad-overlay {
-
-                        opacity: 0;
-
-                        transition: opacity 1.5s ease 0.5s;
-
-                    }
-
-
-
-                    #s-mod6-mensagem-final .glow-bg {
-
-                        opacity: 0;
-
-                        transition: opacity 2s ease 1s;
-
-                    }
-
-
-
-                    #s-mod6-mensagem-final .anim-tag {
-
-                        opacity: 0;
-
-                        transform: translateY(-20px);
-
-                        transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
-
-                    }
-
-
-
-                    #s-mod6-mensagem-final .anim-title {
-
-                        opacity: 0;
-
-                        transform: translateY(20px);
-
-                        text-shadow: 0 0 0 transparent;
-
-                        transition: opacity 1.5s ease 1s, transform 1.5s ease 1s, text-shadow 2s ease 1.5s;
-
-                    }
-
-
-
-                    #s-mod6-mensagem-final .anim-sub {
-
-                        opacity: 0;
-
-                        transform: translateY(20px);
-
-                        transition: opacity 1.5s ease 1.5s, transform 1.5s ease 1.5s;
-
-                    }
-
-
-
-                    /* Triggered States */
-
-                    #s-mod6-mensagem-final.is-active .grad-overlay {
-
-                        opacity: 1;
-
-                    }
-
-
-
-                    #s-mod6-mensagem-final.is-active .glow-bg {
-
-                        opacity: 1;
-
-                    }
-
-
-
-                    #s-mod6-mensagem-final.is-active .anim-tag {
-
-                        opacity: 1;
-
-                        transform: translateY(0);
-
-                    }
-
-
-
-                    #s-mod6-mensagem-final.is-active .anim-title {
-
-                        opacity: 1;
-
-                        transform: translateY(0);
-
-                        text-shadow: 0 0 15px rgba(83, 230, 212, 0.4), 0 0 30px rgba(83, 230, 212, 0.2);
-
-                    }
-
-
-
-                    #s-mod6-mensagem-final.is-active .anim-sub {
-
-                        opacity: 1;
-
-                        transform: translateY(0);
-
-                    }
-
-                </style>
-
-
-
-                <script>
-
-                    function playCinematicAudio() {
-
-                        try {
-
-                            const AudioContext = window.AudioContext || window.webkitAudioContext;
-
-                            if (!AudioContext) return;
-
-                            const ctx = new AudioContext();
-
-                            const now = ctx.currentTime;
-
-
-
-                            // Low boom
-
-                            const osc = ctx.createOscillator();
-
-                            const gain = ctx.createGain();
-
-                            osc.type = 'sine';
-
-                            osc.connect(gain);
-
-                            gain.connect(ctx.destination);
-
-                            osc.frequency.setValueAtTime(120, now);
-
-                            osc.frequency.exponentialRampToValueAtTime(30, now + 1.5);
-
-                            gain.gain.setValueAtTime(0, now);
-
-                            gain.gain.linearRampToValueAtTime(0.25, now + 0.1);
-
-                            gain.gain.exponentialRampToValueAtTime(0.01, now + 3);
-
-                            osc.start(now);
-
-                            osc.stop(now + 3);
-
-
-
-                            // Shimmer/sweep
-
-                            const osc2 = ctx.createOscillator();
-
-                            const gain2 = ctx.createGain();
-
-                            osc2.type = 'sine';
-
-                            osc2.connect(gain2);
-
-                            gain2.connect(ctx.destination);
-
-                            osc2.frequency.setValueAtTime(400, now + 0.5);
-
-                            osc2.frequency.linearRampToValueAtTime(800, now + 3);
-
-                            gain2.gain.setValueAtTime(0, now + 0.5);
-
-                            gain2.gain.linearRampToValueAtTime(0.03, now + 2);
-
-                            gain2.gain.linearRampToValueAtTime(0, now + 4);
-
-                            osc2.start(now + 0.5);
-
-                            osc2.stop(now + 4);
-
-                        } catch (e) { }
-
-                    }
-
-
-
-                    document.addEventListener('DOMContentLoaded', () => {
-
-                        const container = document.getElementById('s-mod6-mensagem-final');
-
-                        if (!container) return;
-
-
-
-                        function activateMensagemFinal() {
-
-                            if (!container.classList.contains('is-active')) {
-
-                                container.classList.add('is-active');
-
-                            }
-
-                        }
-
-
-
-                        const observer = new IntersectionObserver((entries) => {
-
-                            entries.forEach(entry => {
-
-                                if (entry.isIntersecting) activateMensagemFinal();
-
-                            });
-
-                        }, { threshold: 0.4 });
-
-
-
-                        observer.observe(container);
-
-
-
-                        const slideObserver = new MutationObserver(() => {
-
-                            if (container.classList.contains('active')) activateMensagemFinal();
-
-                        });
-
-                        slideObserver.observe(container, { attributes: true, attributeFilter: ['class'] });
-
-
-
-                        if (container.classList.contains('active')) activateMensagemFinal();
-
-                    });
-
-                </script>
-
-            </div>
-
-
-
             <div class="slide" id="s-mod6-video-final"
 
                 style="background: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(83, 230, 212, 0.12) 0%, transparent 62%), radial-gradient(circle at center, #AD52C4 0%, #4A1866 100%); overflow: hidden;">
@@ -1908,13 +1657,13 @@
 
                         <div class="slide" id="s-conclusion">
                     <style>
-                      /* NR12: neutraliza textura global, centraliza como na pág. 61 e protege tipografia */
+                      /* Conclusão — mesmo card do NR 06 (#s-fim), cores NR 12 */
                       #s-conclusion {
                         background-color: #AD52C4 !important;
                         background-image:
                           linear-gradient(180deg, rgba(74, 24, 102, 0.28) 0%, rgba(74, 24, 102, 0.12) 45%, rgba(74, 24, 102, 0.22) 100%),
-                          url('img/FINAL.png') !important;
-                        background-position: center, center !important;
+                          url('assets/fotos/final.png') !important;
+                        background-position: center, center 38% !important;
                         background-repeat: no-repeat, no-repeat !important;
                         background-size: auto, cover !important;
                       }
@@ -1943,72 +1692,9 @@
                         text-align: center !important;
                       }
                       #s-conclusion .fim-wrap {
-                        width: 100% !important;
-                        max-width: clamp(360px, 68cqw, 860px) !important;
-                        margin: 0 auto !important;
-                      }
-                      #s-conclusion .fim-card p {
-                        font-size: clamp(14px, 2.2cqw, 17px) !important;
-                        line-height: 1.65 !important;
-                        color: rgba(255,255,255,0.82) !important;
-                        margin-bottom: 24px !important;
-                        max-width: 560px !important;
-                        text-align: center !important;
-                      }
-                      #s-conclusion .fim-card h3 {
-                        font-size: clamp(26px, 4.5cqw, 40px) !important;
-                        line-height: 1.15 !important;
-                        margin-bottom: 10px !important;
-                        color: #fff !important;
-                        font-weight: 800 !important;
-                      }
-                      @media screen and (max-width: 768px) {
-                        #s-conclusion .top-bar {
-                          padding: 50px 80px 0 14px !important;
-                        }
-                        #s-conclusion .content-area {
-                          padding: 8px 16px calc(110px + env(safe-area-inset-bottom, 0px)) !important;
-                          justify-content: center !important;
-                          align-items: center !important;
-                        }
-                        #s-conclusion .fim-card {
-                          padding: clamp(22px, 6cqh, 40px) clamp(18px, 5cqw, 32px) !important;
-                        }
-                        #s-conclusion .fim-card p {
-                          font-size: clamp(13px, 3.6vw, 16px) !important;
-                        }
-                        #s-conclusion .fim-card h3 {
-                          font-size: clamp(24px, 7vw, 34px) !important;
-                        }
-                        #s-conclusion .fim-chip {
-                          padding: 10px 16px !important;
-                          font-size: 11px !important;
-                        }
-                      }
-            
-                      #s-conclusion {
-                        background-color: #AD52C4;
-                        background-image:
-                          linear-gradient(180deg, rgba(74, 24, 102, 0.28) 0%, rgba(74, 24, 102, 0.12) 45%, rgba(74, 24, 102, 0.22) 100%),
-                          url('img/FINAL.png');
-                        background-position: center, center;
-                        background-repeat: no-repeat, no-repeat;
-                        background-size: auto, cover;
-                      }
-                      #s-conclusion .slide-title {
-                        color: #fff !important;
-                        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
-                      }
-                      #s-conclusion .slide-title span {
-                        color: #53E6D4 !important;
-                      }
-                      #s-conclusion .content-area {
-                        display: flex; align-items: center; justify-content: center;
-                        overflow-y: auto;
-                        container-type: size;
-                      }
-                      #s-conclusion .fim-wrap {
-                        width: 100%; max-width: clamp(360px, 68cqw, 860px); margin: 0 auto;
+                        width: 100%;
+                        max-width: clamp(360px, 68cqw, 860px);
+                        margin: 0 auto;
                       }
                       #s-conclusion .fim-card {
                         position: relative;
@@ -2017,7 +1703,7 @@
                         padding: clamp(28px,10cqh,64px) clamp(24px,6cqw,48px);
                         background:
                           linear-gradient(145deg, rgba(255,255,255,0.08) 0%, transparent 42%),
-                          linear-gradient(160deg, #853F9E 0%, #6B2F85 40%, #4A1866 75%, #3A1480 100%);
+                          linear-gradient(160deg, #6B2F85 0%, #4A1866 40%, #3A1480 75%, #2A0D5C 100%);
                         border: 1.5px solid rgba(83, 230, 212, 0.48);
                         border-radius: clamp(16px,3cqw,26px);
                         box-shadow:
@@ -2162,7 +1848,7 @@
                         transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
                       }
                       #s-conclusion .fim-chip:nth-child(1) {
-                        background: linear-gradient(135deg, rgba(83, 230, 212,0.32), rgba(83, 230, 212,0.1));
+                        background: linear-gradient(135deg, rgba(83,230,212,0.32), rgba(83,230,212,0.1));
                         color: #A8F5EC;
                       }
                       #s-conclusion.active .fim-chip {
@@ -2221,6 +1907,92 @@
                           transform: scale(1.05);
                         }
                       }
+                      /* Desktop — mesmo tamanho do card final do NR 06 */
+                      @media (min-width: 768px) {
+                        #s-conclusion .fim-wrap {
+                          max-width: 980px !important;
+                          margin-top: 88px !important;
+                        }
+                        #s-conclusion .fim-card {
+                          padding: 52px 64px 56px !important;
+                          border-radius: 32px !important;
+                        }
+                        #s-conclusion .fim-card .ic-circle {
+                          width: 132px !important;
+                          height: 132px !important;
+                          margin: 0 auto 32px !important;
+                        }
+                        #s-conclusion .fim-card h3 {
+                          font-size: 40px !important;
+                          margin-bottom: 20px !important;
+                          line-height: 1.2 !important;
+                        }
+                        #s-conclusion .fim-card p {
+                          font-size: 20px !important;
+                          line-height: 1.7 !important;
+                          margin-bottom: 40px !important;
+                          max-width: 640px !important;
+                        }
+                        #s-conclusion .fim-chip {
+                          padding: 12px 22px !important;
+                          font-size: 12px !important;
+                        }
+                      }
+                      @media (min-width: 769px) and (max-height: 860px) {
+                        #s-conclusion .fim-wrap {
+                          max-width: 760px !important;
+                          margin-top: 48px !important;
+                        }
+                        #s-conclusion .fim-card {
+                          padding: 38px 46px 44px !important;
+                          border-radius: 28px !important;
+                        }
+                        #s-conclusion .fim-card .ic-circle {
+                          width: 110px !important;
+                          height: 110px !important;
+                          margin: 0 auto 24px !important;
+                        }
+                        #s-conclusion .fim-card h3 {
+                          font-size: 34px !important;
+                          margin-bottom: 14px !important;
+                        }
+                        #s-conclusion .fim-card p {
+                          font-size: 17px !important;
+                          margin-bottom: 28px !important;
+                        }
+                      }
+                      @media screen and (max-width: 768px) {
+                        #s-conclusion .top-bar {
+                          padding: 50px 80px 0 14px !important;
+                        }
+                        #s-conclusion .content-area {
+                          padding: 8px 16px calc(110px + env(safe-area-inset-bottom, 0px)) !important;
+                        }
+                        #s-conclusion .fim-wrap {
+                          max-width: 640px !important;
+                          width: 100%;
+                          margin: 24px auto 0 !important;
+                        }
+                        #s-conclusion .fim-card {
+                          padding: 32px 24px 36px !important;
+                          border-radius: 24px !important;
+                        }
+                        #s-conclusion .fim-card .ic-circle {
+                          width: 96px !important;
+                          height: 96px !important;
+                          margin: 0 auto 24px !important;
+                        }
+                        #s-conclusion .fim-card h3 {
+                          font-size: 26px !important;
+                          margin-bottom: 12px !important;
+                          line-height: 1.25 !important;
+                        }
+                        #s-conclusion .fim-card p {
+                          font-size: 16px !important;
+                          line-height: 1.65 !important;
+                          margin-bottom: 28px !important;
+                        }
+                      }
                       @media (prefers-reduced-motion: reduce) {
                         #s-conclusion .fim-card,
                         #s-conclusion.active .fim-card,
@@ -2237,7 +2009,7 @@
                           transform: none !important;
                         }
                       }
-                    </style>
+                    </style>                    </style>
                     <div class="top-bar">
                       <span class="section-tag">🏆 CONCLUSÃO</span>
                       <div class="slide-title" style="margin-top:6px">Treinamento — <span>Concluído</span></div>
@@ -2305,7 +2077,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=172"></script>
+    <script src="shared.js?v=174"></script>
 </body>
 
 </html>

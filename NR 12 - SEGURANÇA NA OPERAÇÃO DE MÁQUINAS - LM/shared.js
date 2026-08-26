@@ -247,8 +247,8 @@ const NR11_MODULE_OFFSETS = {
     'modulo-3': 16,
     'modulo-4': 22
 };
-const NR11_FULL_TOTAL_SLIDES = 33;
-const NR12_MODULE_END_PAGE = { 1: 11, 2: 16, 3: 22, 4: 33 };
+const NR11_FULL_TOTAL_SLIDES = 32;
+const NR12_MODULE_END_PAGE = { 1: 11, 2: 16, 3: 22, 4: 32 };
 
 const NR12_PREVIEW_ACTIVE = NR12_UNLOCK_THROUGH != null
     && NR12_UNLOCK_THROUGH >= 1
@@ -1319,11 +1319,38 @@ function createPremiumConfetti() {
 
 function playConclusionCinematicAudio() {
     try {
-        // Usando caminho relativo para evitar bloqueios do navegador e ajustando volume
-        const efeitofinal = new Audio('https://res.cloudinary.com/dzqns0zpe/video/upload/v1779288012/efeitofinal_kzr836.mp3');
-        efeitofinal.volume = 0.5; // Volume ajustado para um nível médio/baixo
-        efeitofinal.play().catch(e => console.log('Audio error:', e));
-    } catch (e) { console.log('Audio disabled', e); }
+        // Mesmo som de celebração da tela final do NR 06 (fanfarra curta)
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = playConclusionCinematicAudio._ctx || (playConclusionCinematicAudio._ctx = new AudioCtx());
+        if (ctx.state === 'suspended') ctx.resume();
+
+        const now = ctx.currentTime;
+        const notes = [
+            { f: 523.25, t: 0.00, d: 0.18 }, // C5
+            { f: 659.25, t: 0.12, d: 0.18 }, // E5
+            { f: 783.99, t: 0.24, d: 0.20 }, // G5
+            { f: 1046.5, t: 0.38, d: 0.45 }, // C6
+            { f: 783.99, t: 0.42, d: 0.40 }, // G5
+            { f: 659.25, t: 0.46, d: 0.40 }  // E5
+        ];
+
+        notes.forEach(function (n) {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.value = n.f;
+            gain.gain.setValueAtTime(0.0001, now + n.t);
+            gain.gain.exponentialRampToValueAtTime(0.22, now + n.t + 0.03);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + n.t + n.d);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now + n.t);
+            osc.stop(now + n.t + n.d + 0.02);
+        });
+    } catch (e) {
+        console.log('Celebration sound error:', e);
+    }
 }
 
 function finishTraining() {
