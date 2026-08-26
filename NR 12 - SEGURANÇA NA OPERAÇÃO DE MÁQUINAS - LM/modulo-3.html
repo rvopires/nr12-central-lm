@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=165">
+<link rel="stylesheet" href="shared.css?v=166">
     <style>
         #s-bateria .content-area > .video-wrap--std,
         #s-conducao .content-area > .video-wrap--std,
@@ -347,6 +347,7 @@
             align-items: center;
             justify-content: center;
             gap: 18px;
+            flex-wrap: wrap;
             flex-shrink: 0;
             position: relative;
             z-index: 30;
@@ -371,16 +372,8 @@
             transition: transform 0.15s ease, filter 0.15s ease;
         }
 
-        #s-rampas .opc-nav-btn:not(:disabled):not(#opc-next) {
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            background: rgba(255, 255, 255, 0.08);
-            color: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-            animation: none;
-        }
-
-        #s-rampas #opc-next:not(:disabled) {
-            border: 2px solid rgba(255, 255, 255, 0.8);
+        #s-rampas .opc-nav-btn:not(:disabled) {
+            border: 2px solid rgba(255, 255, 255, 0.9);
             background: #53E6D4;
             color: #3A1480;
             box-shadow:
@@ -1910,7 +1903,7 @@
         })();
     </script>
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=162"></script>
+    <script src="shared.js?v=163"></script>
 </body>
 
 </html>

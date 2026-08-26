@@ -1744,6 +1744,55 @@ body:has(#s-quiz5.active) #btn-fwd {
     filter: grayscale(0.4);
 }
 
+/* Todas as setas de carrossel — chamativas (esquerda e direita) */
+[class*="-nav-btn"]:not(.nav-btn):not(:disabled),
+[class*="-carousel-btn"]:not(:disabled) {
+    border: 2px solid rgba(255, 255, 255, 0.9) !important;
+    background: #53E6D4 !important;
+    color: #3A1480 !important;
+    box-shadow:
+        0 6px 18px rgba(83, 230, 212, 0.55),
+        0 0 28px rgba(83, 230, 212, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
+    animation: carousel-nav-pulse 1.4s ease-in-out infinite !important;
+}
+
+[class*="-nav-btn"]:not(.nav-btn):disabled,
+[class*="-carousel-btn"]:disabled {
+    animation: none !important;
+    opacity: 0.32 !important;
+    filter: grayscale(0.35) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    box-shadow: none !important;
+}
+
+[class*="-carousel-nav"] {
+    flex-wrap: wrap;
+}
+
+.carousel-hint {
+    flex: 1 0 100%;
+    width: 100%;
+    margin: 2px 0 0;
+    padding: 0 8px;
+    text-align: center;
+    font-family: var(--font-h);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: #53E6D4;
+    text-shadow: 0 0 14px rgba(83, 230, 212, 0.65);
+    animation: carousel-hint-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes carousel-hint-pulse {
+    0%,
+    100% { opacity: 0.75; }
+    50% { opacity: 1; }
+}
+
 @keyframes s1-wave-glow {
     0% {
         filter: drop-shadow(0 -6px 14px rgba(83, 230, 212, 0.45)) drop-shadow(0 0 28px rgba(83, 230, 212, 0.35));
@@ -5228,11 +5277,14 @@ body {
     .m6c-nav-btn:not(:disabled):not([id$="-next"]),
     .m6p-nav-btn:not(:disabled):not([id$="-next"]),
     .s2-nav-btn:not(:disabled):not([id$="-next"]) {
-        border: 1px solid rgba(255, 255, 255, 0.22) !important;
-        background: rgba(255, 255, 255, 0.08) !important;
-        color: rgba(255, 255, 255, 0.85) !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
-        animation: none !important;
+        border: 2px solid rgba(255, 255, 255, 0.9) !important;
+        background: #53E6D4 !important;
+        color: #3A1480 !important;
+        box-shadow:
+            0 6px 18px rgba(83, 230, 212, 0.55),
+            0 0 28px rgba(83, 230, 212, 0.45),
+            inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
+        animation: carousel-nav-pulse 1.4s ease-in-out infinite !important;
     }
 
     .s10-nav-btn[id$="-next"]:not(:disabled),

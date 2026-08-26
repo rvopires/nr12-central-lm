@@ -11,7 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=165">
+<link rel="stylesheet" href="shared.css?v=166">
     <style>
         #s-equipamento .content-area > .video-wrap--std,
         #s10 .content-area > .video-wrap--std {
@@ -140,214 +140,231 @@
             </div>
 
 
-            <div class="slide" id="s9">
-                <div class="top-bar">
+            <div class="slide" id="s9"
+                style="background: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(83, 230, 212, 0.12) 0%, transparent 62%), radial-gradient(circle at center, #AD52C4 0%, #4A1866 100%); overflow: hidden;">
+                <div style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 50% 50%, rgba(83, 230, 212, 0.12) 0%, transparent 65%);"></div>
+                <div style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(83, 230, 212, 0.08) 3px, rgba(83, 230, 212, 0.08) 4px);"></div>
+                <div class="top-bar" style="position: relative; z-index: 2;">
                     <div class="section-tag"
                         style="background: var(--red); color: #1F0A45; font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(83, 230, 212, 0.4);">
                         ⚙️ Módulo 2</div>
                     <h2 class="slide-title"
-                        style="font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.01em; text-shadow: 0 0 15px rgba(83, 230, 212, 0.4);">
+                        style="font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -0.015em; text-shadow: 0 0 15px rgba(83, 230, 212, 0.4);">
                         Componentes das <span>Máquinas</span></h2>
                 </div>
                 <div class="content-area">
                     <style>
+                        #s9 .content-area {
+                            justify-content: center !important;
+                            align-items: center !important;
+                            text-align: left !important;
+                            padding-top: 4px;
+                            padding-bottom: 88px;
+                            gap: 10px;
+                        }
+                        #s9 .p13-hint {
+                            margin: 0 0 2px;
+                            text-align: center;
+                            font-family: var(--font-h);
+                            font-size: 13px;
+                            font-weight: 700;
+                            letter-spacing: 0.04em;
+                            color: #53E6D4;
+                            text-shadow: 0 0 12px rgba(83, 230, 212, 0.45);
+                        }
                         #s9 .p13-grid {
                             display: grid;
                             grid-template-columns: repeat(2, minmax(0, 1fr));
-                            gap: clamp(16px, 2vw, 26px);
-                            width: min(1100px, 100%);
+                            gap: 18px;
+                            width: min(860px, 94%);
                             margin: 0 auto;
                         }
-
                         #s9 .p13-card {
                             position: relative;
-                            min-height: min(470px, 64vh);
+                            min-height: min(420px, 58vh);
                             overflow: hidden;
-                            border: 1px solid rgba(83, 230, 212, 0.35);
-                            border-radius: 18px;
-                            background: linear-gradient(150deg, rgba(24, 24, 24, 0.98), rgba(15, 6, 36, 0.98));
-                            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.42);
+                            border: 1.5px solid rgba(173, 82, 196, 0.22);
+                            border-radius: 22px;
+                            background: #fff;
+                            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
                             cursor: pointer;
-                            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+                            text-align: left;
+                            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
                         }
-
+                        #s9 .p13-card--mix { border-color: rgba(83, 230, 212, 0.4); }
                         #s9 .p13-card:hover {
                             transform: translateY(-4px);
-                            border-color: rgba(83, 230, 212, 0.75);
-                            box-shadow: 0 18px 42px rgba(83, 230, 212, 0.18);
+                            box-shadow: 0 20px 42px rgba(173, 82, 196, 0.28);
                         }
-
                         #s9 .p13-cover {
                             position: absolute;
                             inset: 0;
                             z-index: 5;
                             display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            padding: 30px 26px;
-                            overflow: hidden;
-                            background: linear-gradient(145deg, #151515, #080808);
-                            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-                            transform-origin: left center;
+                            flex-direction: column;
+                            background: #3A1458;
+                            transition: opacity 0.45s ease, visibility 0.45s;
                         }
-
-                        #s9 .p13-cover-bg {
-                            position: absolute;
-                            inset: 0;
-                            background-size: cover;
-                            background-position: center;
-                            opacity: 0.1;
-                            filter: grayscale(1) sepia(1) hue-rotate(80deg) brightness(0.8);
-                            z-index: 1;
+                        #s9 .p13-cover-img {
+                            flex: 1 1 auto;
+                            min-height: 0;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: center;
+                            display: block;
+                            background: #3A1458;
                         }
-
-                        #s9 .p13-cover-glow {
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            width: 180px;
-                            height: 180px;
-                            background: rgba(83, 230, 212, 0.2);
-                            filter: blur(40px);
-                            transform: translate(-50%, -50%);
-                            animation: pulseGlow 3s infinite alternate;
-                            z-index: 1;
-                        }
-
-                        #s9 .p13-cover-copy {
-                            position: relative;
-                            z-index: 2;
-                            text-align: center;
-                        }
-
+                        #s9 .p13-card--mix .p13-cover-img { background: #3A1458; }
                         #s9 .p13-cover-number {
                             position: absolute;
-                            top: 18px;
-                            left: 18px;
-                            z-index: 5;
-                            padding: 4px 9px;
-                            border: 1px solid rgba(83, 230, 212, 0.3);
-                            border-radius: 6px;
-                            background: rgba(83, 230, 212, 0.1);
-                            box-shadow: 0 0 10px rgba(83, 230, 212, 0.2);
-                            color: var(--green-lt);
-                            font: 800 15px var(--font-h);
+                            top: 14px;
+                            left: 14px;
+                            z-index: 6;
+                            padding: 5px 10px;
+                            border-radius: 999px;
+                            background: linear-gradient(145deg, #C47AD8, #AD52C4);
+                            color: #fff;
+                            font: 800 12px var(--font-h);
+                            letter-spacing: 0.06em;
+                            box-shadow: 0 6px 14px rgba(173, 82, 196, 0.4);
                         }
-
-                        #s9 .p13-cover-hint {
-                            color: var(--green-lt);
-                            font-size: clamp(14px, 1.4vw, 17px);
-                            font-weight: 700;
-                            opacity: 0.9;
-                            animation: floatText 2s infinite ease-in-out;
+                        #s9 .p13-card--mix .p13-cover-number {
+                            background: linear-gradient(145deg, #7AEEE0, #53E6D4);
+                            color: #1F0A45;
                         }
-
-                        @keyframes pulseGlow {
-                            0% {
-                                transform: translate(-50%, -50%) scale(0.8);
-                                opacity: 0.5;
-                            }
-
-                            100% {
-                                transform: translate(-50%, -50%) scale(1.3);
-                                opacity: 1;
-                            }
+                        #s9 .p13-cover-foot {
+                            flex-shrink: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            gap: 10px;
+                            min-height: 76px;
+                            box-sizing: border-box;
+                            padding: 14px 16px;
+                            background: linear-gradient(90deg, #faf0ff, #fff);
+                            border-top: 3px solid #AD52C4;
                         }
-
-                        @keyframes floatText {
-
-                            0%,
-                            100% {
-                                transform: translateY(0);
-                            }
-
-                            50% {
-                                transform: translateY(-5px);
-                            }
+                        #s9 .p13-card--mix .p13-cover-foot {
+                            background: linear-gradient(90deg, #ecfffc, #fff);
+                            border-top-color: #53E6D4;
                         }
-
+                        #s9 .p13-cover-foot h3 {
+                            margin: 0;
+                            font-family: var(--font-h);
+                            font-size: clamp(16px, 1.7vw, 20px);
+                            font-weight: 800;
+                            color: #4A1866;
+                            line-height: 1.2;
+                        }
+                        #s9 .p13-card--mix .p13-cover-foot h3 { color: #0d5c54; }
+                        #s9 .p13-tap {
+                            flex-shrink: 0;
+                            font-family: var(--font-h);
+                            font-size: 10px;
+                            font-weight: 800;
+                            letter-spacing: 0.08em;
+                            text-transform: uppercase;
+                            padding: 7px 11px;
+                            border-radius: 999px;
+                            background: #AD52C4;
+                            color: #fff;
+                            animation: p13-tap-pulse 1.6s ease-in-out infinite;
+                        }
+                        #s9 .p13-card--mix .p13-tap {
+                            background: #53E6D4;
+                            color: #1F0A45;
+                        }
+                        @keyframes p13-tap-pulse {
+                            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(173, 82, 196, 0.45); }
+                            50% { transform: scale(1.04); box-shadow: 0 0 0 8px rgba(173, 82, 196, 0); }
+                        }
                         #s9 .p13-card:not(.unrevealed) .p13-cover {
                             opacity: 0;
                             visibility: hidden;
                             pointer-events: none;
-                            transform: perspective(1000px) rotateY(-18deg) translateX(-8%);
                         }
-
                         #s9 .p13-content {
                             display: flex;
                             flex-direction: column;
+                            height: 100%;
                             min-height: inherit;
                             opacity: 0;
-                            transform: scale(0.96);
-                            transition: opacity 0.55s ease 0.12s, transform 0.55s ease 0.12s;
+                            transform: translateY(8px);
+                            transition: opacity 0.4s ease 0.08s, transform 0.4s ease 0.08s;
                         }
-
                         #s9 .p13-card:not(.unrevealed) .p13-content {
                             opacity: 1;
-                            transform: scale(1);
+                            transform: none;
                         }
-
                         #s9 .p13-image {
                             position: relative;
-                            height: clamp(215px, 33vh, 300px);
+                            height: clamp(200px, 32vh, 268px);
                             flex-shrink: 0;
                             overflow: hidden;
-                            background: transparent;
+                            background: #3A1458;
                         }
-
+                        #s9 .p13-card--mix .p13-image { background: #3A1458; }
                         #s9 .p13-image img {
                             width: 100%;
                             height: 100%;
                             object-fit: cover;
                             object-position: center;
+                            display: block;
                         }
-
                         #s9 .p13-expand {
                             position: absolute;
-                            right: 14px;
-                            bottom: 14px;
+                            right: 12px;
+                            bottom: 12px;
                             display: inline-flex;
                             align-items: center;
                             justify-content: center;
                             width: 40px;
                             height: 40px;
                             padding: 0;
-                            border: 1px solid rgba(255, 255, 255, 0.9);
+                            border: 2px solid rgba(255, 255, 255, 0.95);
                             border-radius: 50%;
                             background: #53E6D4;
                             color: #1F0A45;
-                            box-shadow: 0 5px 16px rgba(83, 230, 212, 0.48);
-                            font-size: 18px;
+                            box-shadow: 0 5px 16px rgba(83, 230, 212, 0.5);
+                            font-size: 16px;
                             cursor: pointer;
                         }
-
                         #s9 .p13-body {
-                            padding: 18px 20px 20px;
-                            text-align: left;
+                            padding: 14px 16px 18px;
+                            flex: 1 1 auto;
+                            min-height: 0;
                         }
-
+                        #s9 .p13-card--dos .p13-body {
+                            background: linear-gradient(180deg, #faf0ff 0%, #fff 55%);
+                            border-top: 3px solid #AD52C4;
+                        }
+                        #s9 .p13-card--mix .p13-body {
+                            background: linear-gradient(180deg, #ecfffc 0%, #fff 55%);
+                            border-top: 3px solid #53E6D4;
+                        }
+                        #s9 .p13-kicker { display: none; }
                         #s9 .p13-title {
-                            margin: 0 0 12px;
-                            color: #fff;
-                            font: 800 clamp(19px, 1.8vw, 24px)/1.2 var(--font-h);
+                            margin: 0 0 10px;
+                            color: #4A1866;
+                            font: 800 clamp(17px, 1.7vw, 21px)/1.2 var(--font-h);
                         }
-
+                        #s9 .p13-card--mix .p13-title { color: #0d5c54; }
                         #s9 .p13-list {
                             display: grid;
-                            gap: 8px;
+                            gap: 7px;
                             margin: 0;
                             padding: 0;
                             list-style: none;
                         }
-
                         #s9 .p13-list li {
                             position: relative;
-                            padding-left: 18px;
-                            color: rgba(255, 255, 255, 0.82);
-                            font-size: clamp(12px, 1.1vw, 14px);
-                            line-height: 1.35;
+                            padding-left: 16px;
+                            color: rgba(74, 24, 102, 0.82);
+                            font-size: clamp(12.5px, 1.15vw, 14.5px);
+                            line-height: 1.4;
+                            font-family: var(--font-b);
                         }
-
                         #s9 .p13-list li::before {
                             content: '';
                             position: absolute;
@@ -359,30 +376,26 @@
                             background: #53E6D4;
                             box-shadow: 0 0 8px rgba(83, 230, 212, 0.7);
                         }
-
                         @media (max-width: 768px) {
-                            #s9 .content-area {
-                                justify-content: flex-start !important;
-                            }
-
+                            #s9 .content-area { justify-content: flex-start !important; }
                             #s9 .p13-grid {
                                 grid-template-columns: 1fr;
+                                max-width: 420px;
                             }
-
-                            #s9 .p13-card {
-                                min-height: 460px;
-                            }
+                            #s9 .p13-card { min-height: 380px; }
+                            #s9 .p13-image { height: 180px; }
                         }
                     </style>
 
+                    <p class="p13-hint">Toque no card para ver as partes · Toque de novo para voltar</p>
                     <div class="p13-grid">
-                        <article class="p13-card unrevealed req-item" onclick="revealCard(this)" aria-label="Dosador de tintas — toque para visualizar">
+                        <article class="p13-card p13-card--dos unrevealed req-item" onclick="revealCard(this)" aria-label="Dosador de tintas — toque para visualizar">
                             <div class="p13-cover">
-                                <div class="p13-cover-bg" style="background-image: url('assets/fotos/dosador-13.png');"></div>
-                                <div class="p13-cover-glow"></div>
+                                <img class="p13-cover-img" src="assets/fotos/dosador-13.png" alt="">
                                 <div class="p13-cover-number">01</div>
-                                <div class="p13-cover-copy">
-                                    <span class="p13-cover-hint">Toque para visualizar</span>
+                                <div class="p13-cover-foot">
+                                    <h3>Dosador de tintas</h3>
+                                    <span class="p13-tap">Toque para visualizar</span>
                                 </div>
                             </div>
                             <div class="p13-content">
@@ -403,13 +416,13 @@
                             </div>
                         </article>
 
-                        <article class="p13-card unrevealed req-item" onclick="revealCard(this)" aria-label="Misturador de tintas — toque para visualizar">
+                        <article class="p13-card p13-card--mix unrevealed req-item" onclick="revealCard(this)" aria-label="Misturador de tintas — toque para visualizar">
                             <div class="p13-cover">
-                                <div class="p13-cover-bg" style="background-image: url('assets/fotos/misturador-13.png');"></div>
-                                <div class="p13-cover-glow"></div>
+                                <img class="p13-cover-img" src="assets/fotos/misturador-13.png" alt="">
                                 <div class="p13-cover-number">02</div>
-                                <div class="p13-cover-copy">
-                                    <span class="p13-cover-hint">Toque para visualizar</span>
+                                <div class="p13-cover-foot">
+                                    <h3>Misturador de tintas</h3>
+                                    <span class="p13-tap">Toque para visualizar</span>
                                 </div>
                             </div>
                             <div class="p13-content">
@@ -433,12 +446,12 @@
 
                     <script>
                         function revealCard(el) {
-                            if (el.classList.contains('unrevealed')) {
-                                el.classList.remove('unrevealed');
+                            el.classList.toggle('unrevealed');
+                            if (!el.classList.contains('unrevealed')) {
                                 el.classList.add('req-done');
-                                try { if (typeof window.playTechClick === 'function') window.playTechClick(); } catch (e) { }
                                 if (typeof updateNextButton === 'function') updateNextButton();
                             }
+                            try { if (typeof window.playTechClick === 'function') window.playTechClick(); } catch (e) { }
                         }
                     </script>
                 </div>
@@ -546,7 +559,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=162"></script>
+    <script src="shared.js?v=163"></script>
 </body>
 
 </html>

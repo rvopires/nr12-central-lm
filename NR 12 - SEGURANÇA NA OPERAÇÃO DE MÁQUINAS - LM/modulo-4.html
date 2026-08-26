@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=165">
+<link rel="stylesheet" href="shared.css?v=166">
     <script>
         window.MODULE_NAV = {
             id: "modulo-4",
@@ -178,14 +178,15 @@
         #s-mod4-inspecao .m4m-ok-chip svg { width: 16px; height: 16px; flex-shrink: 0; }
         #s-mod4-inspecao .m4m-carousel-nav {
             display: flex; align-items: center; justify-content: center; gap: 18px;
-            flex-shrink: 0; padding: 8px 0 4px; position: relative; z-index: 30;
+            flex-wrap: wrap; flex-shrink: 0; padding: 8px 0 4px; position: relative; z-index: 30;
         }
         #s-mod4-inspecao .m4m-nav-btn {
             width: 52px; height: 52px; border-radius: 50%; cursor: pointer;
             display: flex; align-items: center; justify-content: center; padding: 0;
-            border: 1px solid rgba(255,255,255,0.22);
-            background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.9);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            border: 2px solid rgba(255,255,255,0.9);
+            background: #53E6D4; color: #3A1480;
+            box-shadow: 0 6px 18px rgba(83,230,212,0.55), 0 0 28px rgba(83,230,212,0.45);
+            animation: m4m-nav-pulse 1.4s ease-in-out infinite;
             transition: transform 0.15s ease, filter 0.15s ease;
         }
         #s-mod4-inspecao .m4m-nav-btn svg { width: 18px; height: 18px; pointer-events: none; }
@@ -237,7 +238,7 @@
             #s-mod4-inspecao .m4m-title { font-size: 22px; }
         }
 
-        /* ── Página 24: Limpeza por equipamento (1 tela, sem scroll) ── */
+        /* ── Página 24: Limpeza por equipamento — carrossel ── */
         #s-mod4-limpeza {
             --m4l-mix: #AD52C4;
             --m4l-mix-deep: #4A1866;
@@ -255,54 +256,70 @@
             display: flex !important; flex-direction: column;
             justify-content: center !important; align-items: center !important;
             text-align: left !important;
-            padding: 4px 18px 78px !important; gap: 10px;
+            padding: 36px 18px 64px !important; gap: 12px;
             overflow: hidden !important; position: relative; z-index: 2;
         }
         #s-mod4-limpeza .m4l-layout {
-            width: 100%; max-width: 1080px; margin: 0 auto;
-            display: flex; flex-direction: column; gap: 10px;
-            max-height: 100%; min-height: 0;
+            width: min(920px, 94%);
+            margin: 0 auto;
+            display: block;
+            position: relative;
         }
         #s-mod4-limpeza .m4l-cols {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
-            align-items: stretch; min-height: 0; flex: 1 1 auto;
+            display: block;
+            position: relative;
+            width: 100%;
         }
         #s-mod4-limpeza .m4l-card {
-            background: #fff; border: 1.5px solid rgba(173,82,196,0.16);
-            border-radius: 18px; overflow: hidden;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.16);
-            display: flex; flex-direction: column; min-width: 0; min-height: 0;
-            height: 100%; max-height: 100%;
+            display: none;
+            background: #fff;
+            border: 1.5px solid rgba(173,82,196,0.18);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+            flex-direction: column;
+            min-width: 0;
+            width: 100%;
+        }
+        #s-mod4-limpeza .m4l-card.m4l-card-active {
+            display: flex;
+            animation: m4l-card-in 0.35s ease;
+        }
+        @keyframes m4l-card-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         #s-mod4-limpeza .m4l-media {
-            position: relative; width: 100%; flex: 0 0 auto;
-            height: clamp(90px, 15vh, 140px);
-            background: linear-gradient(145deg, rgba(173,82,196,0.12), rgba(83,230,212,0.1)), #f3f0f7;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            height: auto;
+            flex: 0 0 auto;
+            background: #f4eef8;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+        #s-mod4-limpeza .m4l-card--dos .m4l-media { background: #ecfffc; }
         #s-mod4-limpeza .m4l-media img {
-            position: relative; z-index: 1; width: 100%; height: 100%;
-            object-fit: cover; object-position: center; display: block;
+            position: relative; z-index: 1;
+            width: 100%; height: 100%;
+            max-width: 100%; max-height: 100%;
+            object-fit: contain; object-position: center; display: block;
         }
-        #s-mod4-limpeza .m4l-media-ph {
-            position: absolute; inset: 0; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 4px;
-            pointer-events: none; color: rgba(74,24,102,0.4);
-            font-family: var(--font-h); font-size: 11px; font-weight: 800;
-            letter-spacing: 0.06em; text-transform: uppercase; z-index: 0;
-        }
-        #s-mod4-limpeza .m4l-media-ph svg { width: 26px; height: 26px; opacity: 0.5; }
         #s-mod4-limpeza .m4l-expand {
-            position: absolute; bottom: 8px; right: 8px; z-index: 3;
+            position: absolute; bottom: 12px; right: 12px; z-index: 3;
             display: inline-flex; align-items: center; justify-content: center;
-            width: 32px; height: 32px; padding: 0; border-radius: 50%;
-            border: 1.5px solid rgba(255,255,255,0.9); background: #53E6D4;
-            box-shadow: 0 4px 10px rgba(83,230,212,0.45); color: #1F0A45;
-            font-size: 14px; line-height: 1; cursor: pointer;
+            width: 42px; height: 42px; padding: 0; border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.95); background: #53E6D4;
+            box-shadow: 0 6px 16px rgba(83,230,212,0.55); color: #1F0A45;
+            font-size: 17px; line-height: 1; cursor: pointer;
         }
+        #s-mod4-limpeza .m4l-expand:hover { filter: brightness(1.08); transform: scale(1.06); }
         #s-mod4-limpeza .m4l-body {
-            padding: 10px 12px 12px; flex: 1 1 auto; min-height: 0;
-            display: flex; flex-direction: column; gap: 7px; overflow: hidden;
+            padding: 14px 16px 16px; flex: 1 1 auto; min-height: 0;
+            display: flex; flex-direction: column; gap: 8px; overflow: visible;
         }
         #s-mod4-limpeza .m4l-card--mix .m4l-body {
             background: linear-gradient(180deg, #faf0ff 0%, #fff 55%);
@@ -313,87 +330,130 @@
             border-top: 3px solid var(--m4l-mint);
         }
         #s-mod4-limpeza .m4l-kicker {
-            margin: 0; font-family: var(--font-h); font-size: 10px; font-weight: 800;
+            margin: 0; font-family: var(--font-h); font-size: 12px; font-weight: 800;
             letter-spacing: 0.1em; text-transform: uppercase;
         }
         #s-mod4-limpeza .m4l-card--mix .m4l-kicker { color: var(--m4l-mix); }
         #s-mod4-limpeza .m4l-card--dos .m4l-kicker { color: #1a9e8f; }
         #s-mod4-limpeza .m4l-title {
-            margin: 0; font-family: var(--font-h); font-size: clamp(14px, 1.35vw, 16px);
+            margin: 0; font-family: var(--font-h); font-size: clamp(20px, 2.4vw, 26px);
             font-weight: 800; line-height: 1.2; color: var(--m4l-mix-deep);
         }
         #s-mod4-limpeza .m4l-card--dos .m4l-title { color: var(--m4l-blue-deep); }
         #s-mod4-limpeza .m4l-sec {
-            padding: 6px 8px; border-radius: 10px;
+            padding: 9px 11px; border-radius: 12px;
             background: rgba(255,255,255,0.88); border: 1px solid rgba(173,82,196,0.12);
         }
         #s-mod4-limpeza .m4l-card--dos .m4l-sec { border-color: rgba(83,230,212,0.28); }
         #s-mod4-limpeza .m4l-sec-title {
-            margin: 0 0 3px; font-family: var(--font-h); font-size: 12px; font-weight: 800;
+            margin: 0 0 4px; font-family: var(--font-h); font-size: 13px; font-weight: 800;
             color: var(--m4l-mix-deep); line-height: 1.2;
         }
         #s-mod4-limpeza .m4l-card--dos .m4l-sec-title { color: var(--m4l-blue-deep); }
         #s-mod4-limpeza .m4l-sec ul {
-            margin: 0; padding: 0 0 0 14px; font-family: var(--font-b);
-            font-size: 11.5px; color: rgba(74,24,102,0.82); line-height: 1.28;
+            margin: 0; padding: 0 0 0 16px; font-family: var(--font-b);
+            font-size: 14px; color: rgba(74,24,102,0.82); line-height: 1.4;
         }
         #s-mod4-limpeza .m4l-alert {
-            display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;
-            padding: 4px 9px; border-radius: 999px;
+            display: inline-flex; align-items: center; gap: 7px; align-self: flex-start;
+            padding: 7px 12px; border-radius: 999px;
             background: rgba(224,58,58,0.1); border: 1.5px solid rgba(224,58,58,0.28);
-            color: var(--m4l-red-deep); font-family: var(--font-h); font-size: 11px; font-weight: 800;
+            color: var(--m4l-red-deep); font-family: var(--font-h); font-size: 13px; font-weight: 800;
         }
-        #s-mod4-limpeza .m4l-alert svg { width: 13px; height: 13px; flex-shrink: 0; }
+        #s-mod4-limpeza .m4l-alert svg { width: 15px; height: 15px; flex-shrink: 0; }
         #s-mod4-limpeza .m4l-steps {
-            list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px;
+            list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px;
         }
         #s-mod4-limpeza .m4l-step {
-            display: grid; grid-template-columns: 20px 1fr; gap: 6px; align-items: start;
+            display: grid; grid-template-columns: 28px 1fr; gap: 8px; align-items: start;
         }
         #s-mod4-limpeza .m4l-step-num {
-            width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center;
+            width: 28px; height: 28px; min-width: 28px; min-height: 28px;
+            border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+            box-sizing: border-box; padding: 0; overflow: hidden; flex-shrink: 0;
             background: linear-gradient(145deg, #7AEEE0, #53E6D4); color: #1F0A45;
-            font-family: var(--font-h); font-size: 10px; font-weight: 900;
+            font-family: var(--font-h); font-size: 12px; font-weight: 800;
+            line-height: 1; letter-spacing: 0;
         }
-        #s-mod4-limpeza .m4l-step span {
-            font-family: var(--font-b); font-size: 11.5px; color: rgba(74,24,102,0.82);
-            line-height: 1.28; padding-top: 2px;
+        #s-mod4-limpeza .m4l-step > span:not(.m4l-step-num) {
+            font-family: var(--font-b); font-size: 13.5px; color: rgba(74,24,102,0.82);
+            line-height: 1.35; padding-top: 4px;
         }
-        #s-mod4-limpeza .m4l-carousel-nav { display: none; }
-        @media screen and (max-height: 760px) {
-            #s-mod4-limpeza .m4l-media { height: clamp(72px, 12vh, 100px); }
-            #s-mod4-limpeza .m4l-body { padding: 8px 10px; gap: 5px; }
-            #s-mod4-limpeza .m4l-sec ul, #s-mod4-limpeza .m4l-step span { font-size: 11px; }
+        #s-mod4-limpeza .m4l-carousel-nav {
+            display: flex; align-items: center; justify-content: center; gap: 18px;
+            flex-wrap: wrap; flex-shrink: 0; padding: 8px 0 4px; position: relative; z-index: 30;
         }
-        @media screen and (max-width: 900px) {
+        #s-mod4-limpeza .m4l-nav-btn {
+            width: 52px; height: 52px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; padding: 0;
+            border: 2px solid rgba(255,255,255,0.9);
+            background: #53E6D4; color: #3A1480;
+            box-shadow: 0 6px 18px rgba(83,230,212,0.55), 0 0 28px rgba(83,230,212,0.45);
+            animation: m4l-nav-pulse 1.4s ease-in-out infinite;
+            transition: transform 0.15s ease, filter 0.15s ease;
+        }
+        #s-mod4-limpeza .m4l-nav-btn svg { width: 18px; height: 18px; pointer-events: none; }
+        #s-mod4-limpeza #m4l-next:not(:disabled) {
+            border: 2px solid rgba(255,255,255,0.8);
+            background: #53E6D4; color: #3A1480;
+            box-shadow: 0 6px 18px rgba(83,230,212,0.55), 0 0 28px rgba(83,230,212,0.45);
+            animation: m4l-nav-pulse 1.4s ease-in-out infinite;
+        }
+        #s-mod4-limpeza .m4l-nav-btn:hover:not(:disabled) { filter: brightness(1.12); transform: scale(1.08); }
+        #s-mod4-limpeza .m4l-nav-btn:disabled { opacity: 0.32; cursor: default; animation: none; }
+        #s-mod4-limpeza .m4l-counter {
+            font-family: var(--font-h); font-size: 15px; font-weight: 800;
+            color: var(--m4l-mint); min-width: 56px; text-align: center;
+        }
+        @keyframes m4l-nav-pulse {
+            0%, 100% { box-shadow: 0 6px 18px rgba(83,230,212,0.45), 0 0 18px rgba(83,230,212,0.3); }
+            50% { box-shadow: 0 8px 24px rgba(83,230,212,0.7), 0 0 32px rgba(83,230,212,0.55); }
+        }
+        @media screen and (min-width: 769px) {
+            #s-mod4-limpeza .m4l-card.m4l-card-active {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                height: auto;
+                min-height: 0;
+                max-height: none;
+                align-items: stretch;
+            }
+            #s-mod4-limpeza .m4l-media {
+                width: auto;
+                height: auto;
+                min-width: 320px;
+                min-height: 320px;
+                max-width: 440px;
+                max-height: none;
+                aspect-ratio: 1 / 1;
+                align-self: stretch;
+                flex: none;
+            }
+            #s-mod4-limpeza .m4l-body {
+                overflow: visible;
+                min-height: 320px;
+            }
+            #s-mod4-limpeza .m4l-card--mix .m4l-body,
+            #s-mod4-limpeza .m4l-card--dos .m4l-body { border-top: none; }
+            #s-mod4-limpeza .m4l-card--mix .m4l-body { border-left: 3px solid var(--m4l-mix); }
+            #s-mod4-limpeza .m4l-card--dos .m4l-body { border-left: 3px solid var(--m4l-mint); }
+        }
+        @media screen and (max-width: 768px) {
             #s-mod4-limpeza .content-area {
-                overflow-y: auto !important; justify-content: flex-start !important;
-                padding: 6px 12px 88px !important;
+                padding: 6px 12px 96px !important;
+                overflow-y: auto !important;
             }
-            #s-mod4-limpeza .m4l-cols { grid-template-columns: 1fr; max-width: 420px; width: 100%; margin: 0 auto; }
-            #s-mod4-limpeza .m4l-media { height: 140px; }
-            #s-mod4-limpeza .m4l-card { height: auto; max-height: none; }
-        }
-        @media screen and (max-width: 768px) and (orientation: portrait) {
-            #s-mod4-limpeza .m4l-cols { display: block; }
-            #s-mod4-limpeza .m4l-card { display: none; }
-            #s-mod4-limpeza .m4l-card.m4l-card-active { display: flex; }
-            #s-mod4-limpeza .m4l-carousel-nav {
-                display: flex; align-items: center; justify-content: center; gap: 16px; flex-shrink: 0;
+            #s-mod4-limpeza .m4l-layout { width: min(440px, 100%); }
+            #s-mod4-limpeza .m4l-media {
+                width: min(180px, 58%);
+                height: auto;
+                aspect-ratio: 1 / 1;
+                margin: 12px auto 0;
+                border-radius: 16px;
+                align-self: center;
             }
-            #s-mod4-limpeza .m4l-nav-btn {
-                background: linear-gradient(145deg, #7AEEE0 0%, #53E6D4 45%, #AD52C4 100%);
-                color: #fff; border: 3px solid #fff; border-radius: 50%;
-                width: 48px; height: 48px; cursor: pointer;
-                display: flex; align-items: center; justify-content: center;
-                box-shadow: 0 0 0 3px rgba(83,230,212,0.55), 0 8px 22px rgba(173,82,196,0.55);
-            }
-            #s-mod4-limpeza .m4l-nav-btn svg { width: 18px; height: 18px; pointer-events: none; }
-            #s-mod4-limpeza .m4l-nav-btn:disabled { opacity: 0.28; cursor: default; }
-            #s-mod4-limpeza .m4l-counter {
-                font-family: var(--font-h); font-size: 14px; font-weight: 800;
-                color: var(--m4l-mint); min-width: 52px; text-align: center;
-            }
+            #s-mod4-limpeza .m4l-title { font-size: 20px; }
+            #s-mod4-limpeza .m4l-body { overflow: visible; min-height: 0; }
         }
 
         /* ── Página 25: Pode / Não pode ── */
@@ -1037,14 +1097,8 @@
                         <div class="m4l-cols" id="m4l-viewport">
                             <article class="m4l-card m4l-card--mix m4l-card-active" aria-label="Limpeza do misturador">
                                 <div class="m4l-media">
-                                    <span class="m4l-media-ph" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                            <rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/>
-                                        </svg>
-                                        Foto 1
-                                    </span>
-                                    <img src="assets/fotos/pag24-misturador.png" alt="Limpeza do misturador" onerror="this.onerror=null;this.src='assets/fotos/misturador-13.png'">
-                                    <button type="button" class="m4l-expand" aria-label="Ampliar imagem" onclick="openImageModal(this.parentElement.querySelector('img').currentSrc||this.parentElement.querySelector('img').src)">🔍</button>
+                                    <img src="assets/fotos/misturador-maquina.png" alt="Limpeza do misturador">
+                                    <button type="button" class="m4l-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/misturador-maquina.png')">🔍</button>
                                 </div>
                                 <div class="m4l-body">
                                     <p class="m4l-kicker">Misturador</p>
@@ -1069,14 +1123,8 @@
                             </article>
                             <article class="m4l-card m4l-card--dos" aria-label="Limpeza do dosador">
                                 <div class="m4l-media">
-                                    <span class="m4l-media-ph" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                            <rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/>
-                                        </svg>
-                                        Foto 2
-                                    </span>
-                                    <img src="assets/fotos/pag24-dosador.png" alt="Limpeza do dosador" onerror="this.onerror=null;this.src='assets/fotos/dosador-13.png'">
-                                    <button type="button" class="m4l-expand" aria-label="Ampliar imagem" onclick="openImageModal(this.parentElement.querySelector('img').currentSrc||this.parentElement.querySelector('img').src)">🔍</button>
+                                    <img src="assets/fotos/dosador-maquina.png" alt="Limpeza do dosador">
+                                    <button type="button" class="m4l-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/dosador-maquina.png')">🔍</button>
                                 </div>
                                 <div class="m4l-body">
                                     <p class="m4l-kicker">Dosador</p>
@@ -1104,20 +1152,19 @@
                                 </div>
                             </article>
                         </div>
-                        <div class="m4l-carousel-nav" aria-label="Navegação dos cards">
-                            <button type="button" class="m4l-nav-btn" id="m4l-prev" onclick="m4lCarouselNav(-1)" aria-label="Anterior">
-                                <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="15,3 3,10 15,17"/></svg>
-                            </button>
-                            <span class="m4l-counter" id="m4l-counter">1 / 2</span>
-                            <button type="button" class="m4l-nav-btn" id="m4l-next" onclick="m4lCarouselNav(1)" aria-label="Próximo">
-                                <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="5,3 17,10 5,17"/></svg>
-                            </button>
-                        </div>
+                    </div>
+                    <div class="m4l-carousel-nav" aria-label="Navegação dos cards">
+                        <button type="button" class="m4l-nav-btn" id="m4l-prev" onclick="m4lCarouselNav(-1)" aria-label="Anterior">
+                            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="15,3 3,10 15,17"/></svg>
+                        </button>
+                        <span class="m4l-counter" id="m4l-counter">1 / 2</span>
+                        <button type="button" class="m4l-nav-btn" id="m4l-next" onclick="m4lCarouselNav(1)" aria-label="Próximo">
+                            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><polygon points="5,3 17,10 5,17"/></svg>
+                        </button>
                     </div>
                     <script>
                         (function () {
                             var m4lIdx = 0, m4lTotal = 2;
-                            function isMob() { return window.matchMedia('screen and (max-width: 768px) and (orientation: portrait)').matches; }
                             function cards() { return document.querySelectorAll('#s-mod4-limpeza .m4l-card'); }
                             function ui() {
                                 var c = cards(); m4lTotal = c.length || 2;
@@ -1129,7 +1176,6 @@
                                 if (next) next.disabled = m4lIdx === m4lTotal - 1;
                             }
                             window.m4lCarouselNav = function (dir) {
-                                if (!isMob()) return;
                                 var n = m4lIdx + dir; if (n < 0 || n >= m4lTotal) return;
                                 m4lIdx = n; try { if (typeof playTechClick === 'function') playTechClick(); } catch (e) {}
                                 ui();
@@ -1138,14 +1184,13 @@
                             if (vp) {
                                 vp.addEventListener('touchstart', function (e) { sx = e.changedTouches[0].screenX; }, { passive: true });
                                 vp.addEventListener('touchend', function (e) {
-                                    if (!isMob()) return;
                                     var d = sx - e.changedTouches[0].screenX;
                                     if (Math.abs(d) > 40) window.m4lCarouselNav(d > 0 ? 1 : -1);
                                 }, { passive: true });
                             }
                             function init() { m4lIdx = 0; ui(); }
                             if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
-                            window.addEventListener('resize', function () { if (!isMob()) m4lIdx = 0; ui(); });
+                            window.addEventListener('resize', ui);
                         })();
                     </script>
                 </div>
@@ -2260,7 +2305,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=162"></script>
+    <script src="shared.js?v=163"></script>
 </body>
 
 </html>

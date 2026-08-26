@@ -140,7 +140,23 @@ if (_scrollBtnMq.addEventListener) {
     _scrollBtnMq.addListener(refreshActiveSlideScrollBtn);
 }
 
-const _CAROUSEL_NAV_BTN = '.s10-nav-btn, .m1o-nav-btn, .m4p-nav-btn, .m5c-nav-btn, .m5f-nav-btn, .m5e-nav-btn, .m6c-nav-btn, .m6p-nav-btn, .s2-nav-btn';
+const _CAROUSEL_NAV_BTN = '[class*="-nav-btn"]:not(.nav-btn), [class*="-carousel-btn"]';
+
+function initCarouselHints() {
+    document.querySelectorAll('[class*="-carousel-nav"]').forEach(function (nav) {
+        if (nav.querySelector('.carousel-hint')) return;
+        var p = document.createElement('p');
+        p.className = 'carousel-hint';
+        p.textContent = 'Clique na seta para passar';
+        nav.appendChild(p);
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCarouselHints);
+} else {
+    initCarouselHints();
+}
 
 function initCarouselNavTouchFix() {
     document.addEventListener('touchend', function (e) {
