@@ -243,12 +243,12 @@ const NR12_UNLOCK_THROUGH = (function () {
 const NR11_MODULE_OFFSETS = {
     'index': 0,
     'modulo-1': 3,
-    'modulo-2': 9,
-    'modulo-3': 14,
-    'modulo-4': 20
+    'modulo-2': 11,
+    'modulo-3': 16,
+    'modulo-4': 22
 };
-const NR11_FULL_TOTAL_SLIDES = 31;
-const NR12_MODULE_END_PAGE = { 1: 9, 2: 14, 3: 20, 4: 31 };
+const NR11_FULL_TOTAL_SLIDES = 33;
+const NR12_MODULE_END_PAGE = { 1: 11, 2: 16, 3: 22, 4: 33 };
 
 const NR12_PREVIEW_ACTIVE = NR12_UNLOCK_THROUGH != null
     && NR12_UNLOCK_THROUGH >= 1
@@ -286,7 +286,7 @@ function nr11GlobalSlide() {
     const offset = NR11_MODULE_OFFSETS[(window.MODULE_NAV && window.MODULE_NAV.id) || 'index'] || 0;
     return offset + currentSlide + 1;
 }
-const QUIZ_AUDIO_HELPER_PAGES = [9, 15, 27];
+const QUIZ_AUDIO_HELPER_PAGES = [11, 16, 30];
 const QUIZ_AUDIO_HELPER_PANELS = {
     sq1: 'q1-question-panel',
     sq2: 'q2-question-panel',
@@ -376,6 +376,16 @@ function playClickSound() {
     }
 }
 window.playClickSound = playClickSound;
+
+function initCarouselClickSound() {
+    document.addEventListener('click', function (e) {
+        const btn = e.target && e.target.closest && e.target.closest(_CAROUSEL_NAV_BTN);
+        if (!btn || btn.disabled) return;
+        if (btn.closest('#nav')) return;
+        playClickSound();
+    }, true);
+}
+initCarouselClickSound();
 
 function moduleNext(force) {
     const total = document.querySelectorAll('.slide').length;
@@ -534,9 +544,9 @@ window.addEventListener('keydown', (e) => {
     var modules = [
         { id: 'index', offset: 0, file: 'index.html', module: 0 },
         { id: 'modulo-1', offset: 3, file: 'modulo-1.html', module: 1 },
-        { id: 'modulo-2', offset: 9, file: 'modulo-2.html', module: 2 },
-        { id: 'modulo-3', offset: 14, file: 'modulo-3.html', module: 3 },
-        { id: 'modulo-4', offset: 20, file: 'modulo-4.html', module: 4 }
+        { id: 'modulo-2', offset: 11, file: 'modulo-2.html', module: 2 },
+        { id: 'modulo-3', offset: 16, file: 'modulo-3.html', module: 3 },
+        { id: 'modulo-4', offset: 22, file: 'modulo-4.html', module: 4 }
     ].filter(function (m) {
         return nr12IsModuleUnlocked(m.module);
     });

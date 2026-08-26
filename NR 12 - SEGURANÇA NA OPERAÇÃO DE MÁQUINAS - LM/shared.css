@@ -5326,6 +5326,13 @@ body {
         pointer-events: none !important;
     }
 
+    #s-o-que-e-nr12 > .slide-scroll-btn {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
     /* Página 7 (#s4): mantém a setinha de scroll no mobile */
     #s4 > .slide-scroll-btn {
         display: flex !important;
