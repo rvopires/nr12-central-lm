@@ -104,7 +104,7 @@ function registerSlideScrollBtn(slideId, btn, area) {
 
 function ensureSlideScrollBtn(slide) {
     const slideId = slide.id;
-    if (!slideId) return;
+    if (!slideId || slideId === 's-conclusion') return;
     const area = slide.querySelector('.content-area');
     if (!area) return;
 
@@ -1299,27 +1299,6 @@ function startConclusionEpic() {
     createCinematicParticles();
     createPremiumConfetti();
     playConclusionCinematicAudio();
-    try {
-        const slide = document.getElementById('s-conclusion');
-        if (slide) {
-            const area = slide.querySelector('.content-area');
-            if (area && !_slideScrollBtns['s-conclusion']) {
-                let btn = slide.querySelector(':scope > .slide-scroll-btn');
-                if (!btn) {
-                    btn = document.createElement('button');
-                    btn.type = 'button';
-                    btn.className = 'slide-scroll-btn is-hidden';
-                    btn.setAttribute('aria-label', 'Rolar para baixo');
-                    btn.innerHTML = _SCROLL_BTN_SVG;
-                    slide.appendChild(btn);
-                }
-                registerSlideScrollBtn('s-conclusion', btn, area);
-            }
-        }
-        scheduleScrollBtnRefresh();
-        setTimeout(scheduleScrollBtnRefresh, 600);
-        setTimeout(scheduleScrollBtnRefresh, 1600);
-    } catch (e) { }
 }
 
 function createCinematicParticles() {

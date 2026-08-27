@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=202">
+<link rel="stylesheet" href="shared.css?v=228">
     <script>
         window.MODULE_NAV = {
             id: "modulo-4",
@@ -232,13 +232,80 @@
             #s-mod4-inspecao .m4m-body { padding: 12px 14px; gap: 8px; }
         }
         @media screen and (max-width: 768px) {
-            #s-mod4-inspecao .content-area { padding: 6px 12px 96px !important; }
-            #s-mod4-inspecao .m4m-layout { width: min(440px, 100%); }
-            #s-mod4-inspecao .m4m-media { height: 180px; flex-basis: 180px; }
-            #s-mod4-inspecao .m4m-title { font-size: 22px; }
+            #s-mod4-inspecao .content-area {
+                justify-content: flex-start !important;
+                align-items: center !important;
+                padding: 4px 12px 96px !important;
+                gap: 8px !important;
+                overflow: hidden !important;
+            }
+            #s-mod4-inspecao .slide-title { font-size: 20px !important; }
+            #s-mod4-inspecao .m4m-layout { width: min(320px, 90vw); flex-shrink: 0; }
+            #s-mod4-inspecao .m4m-card {
+                border-radius: 18px;
+                max-height: none;
+            }
+            #s-mod4-inspecao .m4m-card.m4m-card-active {
+                animation: none;
+            }
+            #s-mod4-inspecao .m4m-media {
+                height: 150px;
+                flex: 0 0 150px;
+                flex-basis: 150px;
+            }
+            #s-mod4-inspecao .m4m-media img {
+                object-fit: cover;
+                object-position: center top;
+            }
+            #s-mod4-inspecao .m4m-expand {
+                width: 34px;
+                height: 34px;
+                font-size: 14px;
+                bottom: 8px;
+                right: 8px;
+            }
+            #s-mod4-inspecao .m4m-body {
+                padding: 10px 12px 12px;
+                gap: 6px;
+            }
+            #s-mod4-inspecao .m4m-kicker { font-size: 10px; }
+            #s-mod4-inspecao .m4m-title { font-size: 16px !important; line-height: 1.15; }
+            #s-mod4-inspecao .m4m-lead { font-size: 12.5px; line-height: 1.35; }
+            #s-mod4-inspecao .m4m-steps { gap: 5px; }
+            #s-mod4-inspecao .m4m-step {
+                grid-template-columns: 28px 1fr;
+                gap: 8px;
+                padding: 6px 8px;
+                border-radius: 10px;
+            }
+            #s-mod4-inspecao .m4m-step-num {
+                width: 28px;
+                height: 28px;
+                min-width: 28px;
+                min-height: 28px;
+                font-size: 10px !important;
+            }
+            #s-mod4-inspecao .m4m-step strong { font-size: 12px; }
+            #s-mod4-inspecao .m4m-step div span { font-size: 11px; line-height: 1.3; }
+            #s-mod4-inspecao .m4m-bans { gap: 5px; }
+            #s-mod4-inspecao .m4m-ban {
+                padding: 5px 9px;
+                font-size: 11px;
+            }
+            #s-mod4-inspecao .m4m-ok-chip {
+                padding: 6px 10px;
+                font-size: 11px;
+                gap: 5px;
+            }
+            #s-mod4-inspecao .m4m-ok-chip svg { width: 14px; height: 14px; }
+            #s-mod4-inspecao .m4m-nav-btn {
+                width: 44px;
+                height: 44px;
+            }
+            #s-mod4-inspecao .m4m-counter { font-size: 13px; }
         }
 
-        /* ── Página 26: Limpeza por equipamento — ficha com abas ── */
+        /* ── Página 26: Limpeza por equipamento — flip no mobile ── */
         #s-mod4-limpeza {
             --m4l-mix: #AD52C4;
             --m4l-mix-deep: #4A1866;
@@ -278,78 +345,242 @@
             color: rgba(255, 255, 255, 0.88);
             text-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
         }
-        #s-mod4-limpeza .m4l-hint strong {
-            color: #53E6D4;
-            font-weight: 800;
-        }
-        #s-mod4-limpeza .m4l-switch {
-            display: flex;
-            width: min(440px, 100%);
-            padding: 5px;
-            gap: 5px;
-            border-radius: 999px;
-            background: rgba(31, 10, 69, 0.45);
-            border: 1.5px solid rgba(83, 230, 212, 0.28);
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
-        }
-        #s-mod4-limpeza .m4l-switch-btn {
-            flex: 1;
-            border: 0;
-            border-radius: 999px;
-            padding: 11px 14px;
-            background: transparent;
-            color: rgba(255, 255, 255, 0.72);
+        #s-mod4-limpeza .m4l-hint strong { color: #53E6D4; font-weight: 800; }
+        #s-mod4-limpeza .m4l-flip-hint {
+            display: none;
             font-family: var(--font-h);
             font-size: 13px;
             font-weight: 800;
-            letter-spacing: 0.03em;
+            color: #53E6D4;
+            letter-spacing: 0.04em;
+            text-align: center;
+            margin: 0;
+            text-shadow: 0 0 12px rgba(83, 230, 212, 0.55);
+            flex-shrink: 0;
+            animation: m4l-hint-pulse 1.8s ease-in-out infinite;
+        }
+        @keyframes m4l-hint-pulse {
+            0%, 100% { opacity: 0.78; }
+            50% { opacity: 1; }
+        }
+        #s-mod4-limpeza .m4l-switch { display: none !important; }
+        #s-mod4-limpeza .m4l-carousel-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 30;
+            padding: 4px 0;
+            width: 100%;
+            max-width: 320px;
+            flex-wrap: wrap;
+            margin: 0 auto;
+        }
+        #s-mod4-limpeza .m4l-nav-btn {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            min-height: 48px;
+            border-radius: 50%;
+            font-size: 26px;
+            font-weight: 900;
+            line-height: 1;
+            padding: 0;
             cursor: pointer;
-            transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
-        }
-        #s-mod4-limpeza .m4l-switch-btn.is-active[data-m4l="mix"] {
-            background: #AD52C4;
-            color: #fff;
-            box-shadow: 0 0 16px rgba(173, 82, 196, 0.45);
-            transform: translateY(-1px);
-        }
-        #s-mod4-limpeza .m4l-switch-btn.is-active[data-m4l="dos"] {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s ease, filter 0.15s ease;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            border: 2px solid rgba(255, 255, 255, 0.9);
             background: #53E6D4;
-            color: #1F0A45;
-            box-shadow: 0 0 16px rgba(83, 230, 212, 0.45);
-            transform: translateY(-1px);
+            color: #3A1480;
+            box-shadow: 0 6px 18px rgba(83, 230, 212, 0.55), 0 0 28px rgba(83, 230, 212, 0.45);
+        }
+        #s-mod4-limpeza #m4l-next:not(:disabled) {
+            animation: m4l-next-pulse 1.35s ease-in-out infinite;
+        }
+        @keyframes m4l-next-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 6px 18px rgba(83, 230, 212, 0.55); }
+            50% { transform: scale(1.08); box-shadow: 0 8px 24px rgba(83, 230, 212, 0.75); }
+        }
+        #s-mod4-limpeza .m4l-nav-btn:disabled,
+        #s-mod4-limpeza .m4l-nav-btn.is-locked {
+            opacity: 0.4;
+            cursor: default;
+            filter: grayscale(0.25);
+            box-shadow: none;
+            animation: none !important;
+        }
+        #s-mod4-limpeza .m4l-counter {
+            font-family: var(--font-h);
+            font-size: 14px;
+            font-weight: 800;
+            color: #53E6D4;
+            min-width: 52px;
+            text-align: center;
+        }
+        #s-mod4-limpeza .m4l-nav-hint {
+            display: none !important;
+        }
+        /* Desktop: sem hint de flip (layout lado a lado) */
+        @media screen and (min-width: 769px) {
+            #s-mod4-limpeza .m4l-flip-hint,
+            #s-mod4-limpeza .m4l-carousel-nav .carousel-hint {
+                display: none !important;
+            }
+        }
+        #s-mod4-limpeza .m4l-carousel-nav.m4l-nav-floating {
+            position: fixed !important;
+            left: 50% !important;
+            bottom: calc(88px + env(safe-area-inset-bottom, 0px)) !important;
+            transform: translateX(-50%) !important;
+            z-index: 960 !important;
+            pointer-events: auto !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 14px 18px !important;
+            width: min(320px, 92vw) !important;
+            max-width: min(320px, 92vw) !important;
+            margin: 0 !important;
+            padding: 4px 0 2px !important;
+            flex-wrap: wrap !important;
+            visibility: visible !important;
+            height: auto !important;
+            overflow: visible !important;
+        }
+        .m4l-carousel-nav.m4l-nav-floating {
+            position: fixed !important;
+            left: 50% !important;
+            bottom: calc(88px + env(safe-area-inset-bottom, 0px)) !important;
+            transform: translateX(-50%) !important;
+            z-index: 960 !important;
+            pointer-events: auto !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 14px 18px !important;
+            width: min(320px, 92vw) !important;
+            max-width: min(320px, 92vw) !important;
+            margin: 0 !important;
+            padding: 4px 0 2px !important;
+            flex-wrap: wrap !important;
+            visibility: visible !important;
+            height: auto !important;
+            overflow: visible !important;
+        }
+        #s-mod4-limpeza .m4l-carousel-nav.m4l-nav-floating .m4l-nav-btn,
+        .m4l-carousel-nav.m4l-nav-floating .m4l-nav-btn {
+            width: 48px !important;
+            height: 48px !important;
+            min-width: 48px !important;
+            min-height: 48px !important;
+            max-width: 48px !important;
+            max-height: 48px !important;
+            font-size: 26px !important;
+            font-weight: 900 !important;
+            background: #53E6D4 !important;
+            color: #1F0A45 !important;
+            border: 2px solid rgba(255,255,255,0.95) !important;
+            border-radius: 50% !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-shadow: 0 6px 18px rgba(83,230,212,0.55), 0 0 22px rgba(83,230,212,0.4) !important;
+            pointer-events: auto !important;
+            touch-action: manipulation !important;
+            position: relative !important;
+            z-index: 961 !important;
+        }
+        .m4l-carousel-nav.m4l-nav-floating .m4l-counter {
+            font-family: var(--font-h) !important;
+            font-size: 13px !important;
+            font-weight: 800 !important;
+            color: #53E6D4 !important;
+            min-width: 48px !important;
+            text-align: center !important;
+            text-shadow: 0 0 12px rgba(83, 230, 212, 0.55);
+        }
+        #s-mod4-limpeza .m4l-carousel-nav.m4l-nav-floating .carousel-hint,
+        .m4l-carousel-nav.m4l-nav-floating .carousel-hint {
+            display: none !important;
+        }
+        .m4l-carousel-nav.m4l-nav-floating #m4l-next:not(:disabled) {
+            animation: m4l-next-pulse 1.35s ease-in-out infinite !important;
         }
         #s-mod4-limpeza .m4l-split {
             width: 100%;
             position: relative;
             min-height: 0;
+            perspective: 1200px;
         }
         #s-mod4-limpeza .m4l-pane {
             display: none;
             width: 100%;
-            background: #fff;
-            border: 1.5px solid rgba(173, 82, 196, 0.18);
+            background: transparent;
+            border: none;
             border-radius: 22px;
-            overflow: hidden;
-            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+            overflow: visible;
+            box-shadow: none;
             flex-direction: column;
             min-height: 0;
             max-height: min(580px, calc(100vh - 230px));
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
         }
         #s-mod4-limpeza .m4l-pane.is-active {
-            display: flex;
+            display: block;
             animation: m4l-in 0.32s ease;
         }
-        #s-mod4-limpeza .m4l-pane--mix { border-color: rgba(173, 82, 196, 0.4); }
-        #s-mod4-limpeza .m4l-pane--dos { border-color: rgba(83, 230, 212, 0.45); }
         @keyframes m4l-in {
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        #s-mod4-limpeza .m4l-flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.65s cubic-bezier(.2, .8, .2, 1);
+        }
+        #s-mod4-limpeza .m4l-pane.is-flipped .m4l-flip-inner {
+            transform: rotateY(180deg);
+        }
+        #s-mod4-limpeza .m4l-flip-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 22px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+        }
+        #s-mod4-limpeza .m4l-pane--mix .m4l-flip-front { border: 1.5px solid rgba(173, 82, 196, 0.4); }
+        #s-mod4-limpeza .m4l-pane--dos .m4l-flip-front { border: 1.5px solid rgba(83, 230, 212, 0.45); }
+        #s-mod4-limpeza .m4l-flip-back {
+            transform: rotateY(180deg);
+        }
+        #s-mod4-limpeza .m4l-pane--mix .m4l-flip-back {
+            background: linear-gradient(180deg, #faf0ff 0%, #fff 45%);
+            border: 1.5px solid rgba(173, 82, 196, 0.4);
+        }
+        #s-mod4-limpeza .m4l-pane--dos .m4l-flip-back {
+            background: linear-gradient(180deg, #ecfffc 0%, #fff 45%);
+            border: 1.5px solid rgba(83, 230, 212, 0.45);
+        }
         #s-mod4-limpeza .m4l-media {
             position: relative;
             width: 100%;
-            height: min(220px, 30vh);
-            flex: 0 0 auto;
+            flex: 1 1 auto;
+            min-height: 0;
             background: #f4eef8;
             display: block;
             overflow: hidden;
@@ -387,8 +618,45 @@
             box-shadow: 0 6px 16px rgba(83, 230, 212, 0.5);
         }
         #s-mod4-limpeza .m4l-expand:hover { filter: brightness(1.08); transform: scale(1.06); }
+        #s-mod4-limpeza .m4l-flip-foot {
+            flex-shrink: 0;
+            padding: 12px 14px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: linear-gradient(180deg, #faf0ff, #fff);
+        }
+        #s-mod4-limpeza .m4l-pane--dos .m4l-flip-foot {
+            background: linear-gradient(180deg, #ecfffc, #fff);
+        }
+        #s-mod4-limpeza .m4l-flip-tap {
+            align-self: flex-start;
+            margin-top: 2px;
+            font-family: var(--font-h);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: #AD52C4;
+            color: #fff;
+        }
+        #s-mod4-limpeza .m4l-pane--dos .m4l-flip-tap {
+            background: #53E6D4;
+            color: #1F0A45;
+        }
+        #s-mod4-limpeza .m4l-flip-back-foot {
+            flex-shrink: 0;
+            text-align: center;
+            padding: 8px 12px 12px;
+            font-family: var(--font-h);
+            font-size: 12px;
+            font-weight: 700;
+            color: rgba(74, 24, 102, 0.55);
+        }
         #s-mod4-limpeza .m4l-body {
-            padding: 16px 18px 18px;
+            padding: 16px 18px 10px;
             flex: 1 1 auto;
             min-height: 0;
             display: flex;
@@ -398,14 +666,6 @@
             -webkit-overflow-scrolling: touch;
             scrollbar-width: thin;
             scrollbar-color: rgba(173, 82, 196, 0.4) transparent;
-        }
-        #s-mod4-limpeza .m4l-pane--mix .m4l-body {
-            background: linear-gradient(180deg, #faf0ff 0%, #fff 50%);
-            border-top: 3px solid var(--m4l-mix);
-        }
-        #s-mod4-limpeza .m4l-pane--dos .m4l-body {
-            background: linear-gradient(180deg, #ecfffc 0%, #fff 50%);
-            border-top: 3px solid var(--m4l-mint);
         }
         #s-mod4-limpeza .m4l-kicker {
             margin: 0;
@@ -420,7 +680,7 @@
         #s-mod4-limpeza .m4l-title {
             margin: 0;
             font-family: var(--font-h);
-            font-size: clamp(22px, 2.6vw, 28px);
+            font-size: clamp(20px, 2.6vw, 28px);
             font-weight: 800;
             line-height: 1.15;
             color: var(--m4l-mix-deep);
@@ -497,44 +757,258 @@
             font-weight: 800;
         }
         #s-mod4-limpeza .m4l-alert svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+        /* Desktop: foto | texto (sem flip) */
         @media screen and (min-width: 769px) {
-            #s-mod4-limpeza .m4l-pane.is-active {
-                display: grid;
+            #s-mod4-limpeza .m4l-split { perspective: none; }
+            #s-mod4-limpeza .m4l-pane {
+                cursor: default;
+                max-height: min(420px, calc(100vh - 210px));
+                height: min(420px, calc(100vh - 210px));
+            }
+            #s-mod4-limpeza .m4l-pane.is-active { display: block; }
+            #s-mod4-limpeza .m4l-flip-inner {
+                display: grid !important;
                 grid-template-columns: 380px 1fr;
                 grid-template-rows: minmax(360px, 420px);
-                height: min(420px, calc(100vh - 210px));
-                max-height: min(420px, calc(100vh - 210px));
-            }
-            #s-mod4-limpeza .m4l-media {
-                width: 380px;
                 height: 100%;
-                align-self: stretch;
-                padding: 0;
+                transform: none !important;
+                transition: none !important;
+                transform-style: flat;
+                background: #fff;
+                border-radius: 22px;
+                overflow: hidden;
+                box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
             }
-            #s-mod4-limpeza .m4l-pane--mix .m4l-body,
-            #s-mod4-limpeza .m4l-pane--dos .m4l-body { border-top: none; }
-            #s-mod4-limpeza .m4l-pane--mix .m4l-body { border-left: 3px solid var(--m4l-mix); }
-            #s-mod4-limpeza .m4l-pane--dos .m4l-body { border-left: 3px solid var(--m4l-mint); }
-        }
-        @media screen and (max-width: 768px) {
-            #s-mod4-limpeza .content-area {
-                padding: 6px 12px 96px !important;
-                overflow-y: auto !important;
-                justify-content: flex-start !important;
+            #s-mod4-limpeza .m4l-pane--mix .m4l-flip-inner { border: 1.5px solid rgba(173, 82, 196, 0.4); }
+            #s-mod4-limpeza .m4l-pane--dos .m4l-flip-inner { border: 1.5px solid rgba(83, 230, 212, 0.45); }
+            #s-mod4-limpeza .m4l-pane.is-flipped .m4l-flip-inner { transform: none !important; }
+            #s-mod4-limpeza .m4l-flip-face {
+                position: relative !important;
+                inset: auto !important;
+                backface-visibility: visible !important;
+                -webkit-backface-visibility: visible !important;
+                transform: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+                height: 100%;
+                overflow: hidden;
             }
-            #s-mod4-limpeza .m4l-board { width: min(440px, 100%); }
-            #s-mod4-limpeza .m4l-pane { max-height: none; }
+            #s-mod4-limpeza .m4l-flip-back {
+                transform: none !important;
+                background: #fff !important;
+            }
+            #s-mod4-limpeza .m4l-pane--mix .m4l-flip-back {
+                background: linear-gradient(180deg, #faf0ff 0%, #fff 55%) !important;
+                border-left: 3px solid var(--m4l-mix) !important;
+            }
+            #s-mod4-limpeza .m4l-pane--dos .m4l-flip-back {
+                background: linear-gradient(180deg, #ecfffc 0%, #fff 55%) !important;
+                border-left: 3px solid var(--m4l-mint) !important;
+            }
             #s-mod4-limpeza .m4l-media {
-                width: 100%;
-                height: 200px;
-                aspect-ratio: auto;
-                margin: 0;
-                border-radius: 0;
-                align-self: stretch;
-                padding: 0;
+                height: 100%;
+                flex: 1 1 auto;
             }
-            #s-mod4-limpeza .m4l-body { overflow: visible; }
-            #s-mod4-limpeza .m4l-title { font-size: 22px; }
+            #s-mod4-limpeza .m4l-flip-foot,
+            #s-mod4-limpeza .m4l-flip-tap,
+            #s-mod4-limpeza .m4l-flip-back-foot,
+            #s-mod4-limpeza .m4l-flip-hint {
+                display: none !important;
+            }
+            #s-mod4-limpeza .m4l-body {
+                height: 100%;
+                border-top: none !important;
+            }
+        }
+
+        /* Mobile: igual pág. 20 — flip + setas flutuantes */
+        @media screen and (max-width: 768px) {
+            #s-mod4-limpeza .top-bar { padding-bottom: 0 !important; }
+            #s-mod4-limpeza .section-tag {
+                font-size: 12px !important;
+                padding: 4px 10px !important;
+            }
+            #s-mod4-limpeza .slide-title {
+                font-size: 20px !important;
+                line-height: 1.2 !important;
+                margin-top: 4px !important;
+            }
+            #s-mod4-limpeza .content-area {
+                padding-top: 14px !important;
+                padding-bottom: calc(132px + env(safe-area-inset-bottom, 0px)) !important;
+                gap: 6px !important;
+                overflow: hidden !important;
+                justify-content: flex-start !important;
+                align-items: center !important;
+            }
+            #s-mod4-limpeza .m4l-board {
+                width: min(340px, 90vw);
+                margin: 6px auto 0;
+                gap: 6px;
+                flex: 0 0 auto;
+                max-height: none;
+                align-self: center;
+            }
+            #s-mod4-limpeza .m4l-hint { display: none !important; }
+            #s-mod4-limpeza .m4l-flip-hint {
+                display: block !important;
+                font-size: 12px !important;
+                font-weight: 800 !important;
+                line-height: 1.25 !important;
+                margin: 0 0 2px !important;
+                padding: 0 10px;
+                color: #53E6D4 !important;
+                text-shadow: 0 0 14px rgba(83, 230, 212, 0.7) !important;
+            }
+            #s-mod4-limpeza .m4l-split {
+                width: 100%;
+                flex: 0 0 auto;
+                perspective: 1400px;
+            }
+            #s-mod4-limpeza .m4l-pane {
+                width: 100%;
+                height: min(320px, calc(100dvh - 320px));
+                max-height: 340px;
+                min-height: 0;
+                border-radius: 20px;
+                margin: 0 auto;
+            }
+            #s-mod4-limpeza .m4l-pane.is-active {
+                display: block;
+                animation: m4l-in 0.35s ease;
+            }
+            #s-mod4-limpeza .m4l-flip-face { border-radius: 20px; }
+            #s-mod4-limpeza .m4l-media {
+                flex: 1 1 auto;
+                min-height: 0;
+            }
+            #s-mod4-limpeza .m4l-media img { object-position: center top; }
+            #s-mod4-limpeza .m4l-expand {
+                width: 34px;
+                height: 34px;
+                font-size: 14px;
+                bottom: 10px;
+                right: 10px;
+            }
+            #s-mod4-limpeza .m4l-flip-foot {
+                display: flex !important;
+                padding: 8px 10px 10px;
+                gap: 3px;
+            }
+            #s-mod4-limpeza .m4l-flip-tap {
+                display: inline-flex !important;
+                font-size: 8px;
+                padding: 3px 7px;
+            }
+            #s-mod4-limpeza .m4l-flip-foot .m4l-title { font-size: 15px !important; }
+            #s-mod4-limpeza .m4l-flip-back-foot {
+                display: block !important;
+                padding: 5px 10px 8px;
+                font-size: 10px;
+            }
+            #s-mod4-limpeza .m4l-body {
+                padding: 10px 11px 6px;
+                gap: 6px;
+                overflow-y: auto !important;
+                -webkit-overflow-scrolling: touch;
+            }
+            #s-mod4-limpeza .m4l-body > .m4l-kicker { display: none; }
+            #s-mod4-limpeza .m4l-body .m4l-title { font-size: 14px !important; line-height: 1.15; }
+            #s-mod4-limpeza .m4l-sec { padding: 7px 9px; border-radius: 9px; }
+            #s-mod4-limpeza .m4l-sec-title { font-size: 11.5px; margin-bottom: 3px; }
+            #s-mod4-limpeza .m4l-sec ul,
+            #s-mod4-limpeza .m4l-sec ol {
+                font-size: 11.5px;
+                line-height: 1.32;
+                padding-left: 13px;
+            }
+            #s-mod4-limpeza .m4l-sec ol { padding-left: 0; gap: 4px; }
+            #s-mod4-limpeza .m4l-sec ol li {
+                grid-template-columns: 22px 1fr;
+                gap: 7px;
+            }
+            #s-mod4-limpeza .m4l-sec ol li::before {
+                width: 22px;
+                height: 22px;
+                font-size: 10px;
+            }
+            #s-mod4-limpeza .m4l-alert {
+                padding: 6px 9px;
+                font-size: 11px;
+                gap: 5px;
+            }
+            #s-mod4-limpeza .m4l-alert svg { width: 13px; height: 13px; }
+            #s-mod4-limpeza .m4l-carousel-nav {
+                /* flutuante via JS; mantém espaço local oculto */
+                visibility: hidden;
+                height: 0;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+            }
+            #s-mod4-limpeza .m4l-carousel-nav.m4l-nav-floating {
+                visibility: visible !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            #s-mod4-limpeza > .slide-scroll-btn {
+                display: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+            }
+        }
+
+        /* Cards 1 e 2 — mesma tipografia no mobile (flip) */
+        @media screen and (max-width: 768px) {
+            #s-mod4-limpeza .m4l-body .m4l-title,
+            #s-mod4-limpeza .m4l-body--compact .m4l-title {
+                font-size: 14px !important;
+                line-height: 1.15 !important;
+            }
+            #s-mod4-limpeza .m4l-sec-title,
+            #s-mod4-limpeza .m4l-body--compact .m4l-sec-title {
+                font-size: 11.5px !important;
+                margin-bottom: 3px !important;
+            }
+            #s-mod4-limpeza .m4l-body,
+            #s-mod4-limpeza .m4l-body--compact,
+            #s-mod4-limpeza .m4l-sec ul,
+            #s-mod4-limpeza .m4l-sec ol,
+            #s-mod4-limpeza .m4l-sec li,
+            #s-mod4-limpeza .m4l-body--compact .m4l-sec ul,
+            #s-mod4-limpeza .m4l-body--compact .m4l-sec ol,
+            #s-mod4-limpeza .m4l-body--compact .m4l-sec li {
+                font-size: 11.5px !important;
+                line-height: 1.32 !important;
+            }
+            #s-mod4-limpeza .m4l-alert,
+            #s-mod4-limpeza .m4l-body--compact .m4l-alert {
+                font-size: 11px !important;
+                padding: 6px 9px !important;
+            }
+            #s-mod4-limpeza .m4l-body,
+            #s-mod4-limpeza .m4l-body--compact {
+                padding: 10px 11px 6px !important;
+                gap: 6px !important;
+            }
+            #s-mod4-limpeza .m4l-sec,
+            #s-mod4-limpeza .m4l-body--compact .m4l-sec {
+                padding: 7px 9px !important;
+            }
+            #s-mod4-limpeza .m4l-sec ol li,
+            #s-mod4-limpeza .m4l-body--compact .m4l-sec ol li {
+                grid-template-columns: 22px 1fr !important;
+                gap: 7px !important;
+            }
+            #s-mod4-limpeza .m4l-sec ol li::before,
+            #s-mod4-limpeza .m4l-body--compact .m4l-sec ol li::before {
+                width: 22px !important;
+                height: 22px !important;
+                font-size: 10px !important;
+            }
         }
 
         /* ── Pode / Não pode — duelo visual ── */
@@ -547,6 +1021,14 @@
         }
         #s-mod4-pode-nao .top-bar { flex-shrink: 0; padding-bottom: 2px !important; }
         #s-mod4-pode-nao .slide-title { font-size: clamp(22px, 2.8vw, 34px) !important; }
+        #s-mod4-pode-nao .m4p-title-line {
+            display: block;
+            white-space: nowrap;
+        }
+        #s-mod4-pode-nao .m4p-title-line em {
+            font-style: normal;
+            color: var(--red);
+        }
         #s-mod4-pode-nao .content-area {
             flex: 1 1 auto; min-height: 0;
             display: flex !important; flex-direction: column;
@@ -711,26 +1193,173 @@
             border-color: rgba(255,107,122,0.4);
             background: rgba(224,58,58,0.18);
         }
-        @media screen and (max-height: 760px) {
+        @media screen and (max-height: 760px) and (min-width: 901px) {
             #s-mod4-pode-nao .m4p-media { min-height: 180px; height: clamp(180px, 36vh, 280px); }
             #s-mod4-pode-nao .m4p-chips { display: none; }
         }
         @media screen and (max-width: 900px) {
             #s-mod4-pode-nao .content-area {
-                overflow-y: auto !important; justify-content: flex-start !important;
-                padding: 6px 12px 88px !important; gap: 12px;
+                overflow: hidden !important;
+                justify-content: flex-start !important;
+                align-items: center !important;
+                padding: 6px 12px 88px !important;
+                gap: 10px;
             }
             #s-mod4-pode-nao .m4p-tabs { display: flex; }
             #s-mod4-pode-nao .m4p-arena {
                 grid-template-columns: 1fr;
                 width: min(440px, 100%);
                 gap: 0;
+                flex: 1 1 auto;
+                min-height: 0;
+                max-height: none;
             }
             #s-mod4-pode-nao .m4p-vs { display: none; }
             #s-mod4-pode-nao .m4p-panel { display: none; }
-            #s-mod4-pode-nao .m4p-panel.is-show { display: flex; animation: m4pIn 0.28s ease; }
-            #s-mod4-pode-nao .m4p-media { height: min(52vh, 360px); min-height: 240px; }
+            #s-mod4-pode-nao .m4p-panel.is-show {
+                display: flex;
+                flex: 1 1 auto;
+                min-height: 0;
+                height: 100%;
+                animation: m4pIn 0.28s ease;
+            }
+            #s-mod4-pode-nao .m4p-media {
+                height: auto;
+                min-height: 0;
+                flex: 1 1 auto;
+            }
             #s-mod4-pode-nao .m4p-chips { display: flex; }
+        }
+        /* Mobile fino: composição compacta, card preenche a tela */
+        @media screen and (max-width: 768px) {
+            #s-mod4-pode-nao .top-bar {
+                padding-bottom: 0 !important;
+                padding-right: 14px !important;
+                max-width: 100%;
+            }
+            #s-mod4-pode-nao .section-tag {
+                font-size: 12px !important;
+                padding: 4px 10px !important;
+            }
+            #s-mod4-pode-nao .slide-title {
+                font-size: 22px !important;
+                line-height: 1.2 !important;
+                margin-top: 6px !important;
+                max-width: none !important;
+                word-break: normal !important;
+                overflow-wrap: normal !important;
+                hyphens: none !important;
+            }
+            #s-mod4-pode-nao .m4p-title-line {
+                display: block !important;
+                white-space: nowrap !important;
+            }
+            #s-mod4-pode-nao .content-area {
+                padding: 10px 14px calc(100px + env(safe-area-inset-bottom, 0px)) !important;
+                gap: 8px !important;
+                overflow: hidden !important;
+                justify-content: flex-start !important;
+            }
+            #s-mod4-pode-nao .m4p-hint {
+                font-size: 12.5px !important;
+                font-weight: 700 !important;
+                line-height: 1.35 !important;
+                padding: 0 8px;
+                margin: 0 !important;
+                color: rgba(255, 255, 255, 0.92);
+                text-align: center;
+                max-width: 340px;
+            }
+            #s-mod4-pode-nao .m4p-hint strong {
+                color: #53E6D4 !important;
+                font-weight: 800 !important;
+            }
+            #s-mod4-pode-nao .m4p-tabs {
+                width: min(340px, 92vw);
+                padding: 3px;
+                flex-shrink: 0;
+            }
+            #s-mod4-pode-nao .m4p-tab {
+                padding: 9px 10px;
+                font-size: 12.5px;
+            }
+            #s-mod4-pode-nao .m4p-arena {
+                width: min(360px, 92vw);
+                flex: 1 1 auto;
+                min-height: 0;
+                align-self: center;
+            }
+            #s-mod4-pode-nao .m4p-panel.is-show {
+                border-radius: 20px;
+                min-height: min(420px, calc(100dvh - 280px));
+                height: min(460px, calc(100dvh - 260px));
+                max-height: calc(100dvh - 250px);
+            }
+            #s-mod4-pode-nao .m4p-media {
+                height: 100% !important;
+                min-height: 0 !important;
+                flex: 1 1 auto;
+            }
+            #s-mod4-pode-nao .m4p-media img {
+                object-position: center 20%;
+            }
+            #s-mod4-pode-nao .m4p-media::after {
+                height: 55%;
+                background: linear-gradient(180deg, transparent 0%, rgba(20, 6, 45, 0.55) 40%, rgba(20, 6, 45, 0.94) 100%);
+            }
+            #s-mod4-pode-nao .m4p-expand {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+                border: 2px solid rgba(255, 255, 255, 0.95);
+                background: #53E6D4;
+                color: #1F0A45;
+                box-shadow: 0 6px 16px rgba(83, 230, 212, 0.5);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+            #s-mod4-pode-nao .m4p-panel--no .m4p-expand {
+                background: #ff6b7a;
+                color: #fff;
+                box-shadow: 0 6px 16px rgba(224, 58, 58, 0.45);
+            }
+            #s-mod4-pode-nao .m4p-caption {
+                padding: 12px 14px 14px;
+            }
+            #s-mod4-pode-nao .m4p-stamp {
+                margin: 0 0 6px;
+                padding: 5px 10px;
+                font-size: 10px;
+            }
+            #s-mod4-pode-nao .m4p-caption p {
+                font-size: 13.5px !important;
+                line-height: 1.35 !important;
+                font-weight: 700;
+                color: #fff;
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+            }
+            #s-mod4-pode-nao .m4p-chips {
+                display: flex !important;
+                gap: 6px;
+                margin-top: 10px;
+            }
+            #s-mod4-pode-nao .m4p-chips span {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+            #s-mod4-pode-nao > .slide-scroll-btn {
+                display: none !important;
+            }
+        }
+        @media screen and (max-width: 768px) and (max-height: 700px) {
+            #s-mod4-pode-nao .m4p-panel.is-show {
+                min-height: min(340px, calc(100dvh - 250px));
+                height: min(380px, calc(100dvh - 230px));
+            }
+            #s-mod4-pode-nao .m4p-caption p { font-size: 12.5px !important; }
+            #s-mod4-pode-nao .m4p-chips span { padding: 5px 8px; font-size: 10px; }
         }
         @keyframes m4pIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -830,21 +1459,164 @@
             -webkit-backdrop-filter: blur(8px);
             transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
         }
-        #s-mod4-organizacao .m4o-back:hover:not(:disabled) {
+        #s-mod4-organizacao .m4o-fwd {
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(83,230,212,0.45);
+            background: rgba(31,10,69,0.72);
+            color: #53E6D4;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+        }
+        #s-mod4-organizacao .m4o-back:hover:not(:disabled),
+        #s-mod4-organizacao .m4o-fwd:hover:not(:disabled) {
             background: rgba(83,230,212,0.22);
             transform: translateY(-50%) scale(1.06);
         }
-        #s-mod4-organizacao .m4o-back:disabled {
+        #s-mod4-organizacao .m4o-back:disabled,
+        #s-mod4-organizacao .m4o-fwd:disabled {
             opacity: 0;
             pointer-events: none;
         }
-        @media screen and (max-width: 640px) {
-            #s-mod4-organizacao .m4o-back {
-                left: 4px;
-                width: 36px;
-                height: 36px;
-                font-size: 18px;
+        @media screen and (max-width: 768px) {
+            #s-mod4-organizacao .content-area {
+                overflow-y: auto !important;
+                justify-content: flex-start !important;
+                padding: 6px 12px calc(118px + env(safe-area-inset-bottom, 0px)) !important;
+                gap: 8px;
+                position: relative;
             }
+            #s-mod4-organizacao .m4o-stage {
+                width: min(480px, 100%);
+                min-height: 0;
+                display: block;
+                position: relative;
+            }
+            /* Setas centralizadas na base do card */
+            #s-mod4-organizacao .m4o-back,
+            #s-mod4-organizacao .m4o-fwd {
+                position: absolute !important;
+                top: auto !important;
+                bottom: 12px !important;
+                transform: none !important;
+                z-index: 25;
+                width: 42px;
+                height: 42px;
+                font-size: 20px;
+                margin: 0;
+                background: #53E6D4 !important;
+                color: #1F0A45 !important;
+                border: 2px solid rgba(255, 255, 255, 0.95) !important;
+                box-shadow: 0 6px 16px rgba(83, 230, 212, 0.45) !important;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+            #s-mod4-organizacao .m4o-back {
+                left: calc(50% - 52px) !important;
+                right: auto !important;
+            }
+            #s-mod4-organizacao .m4o-fwd {
+                left: auto !important;
+                right: calc(50% - 52px) !important;
+            }
+            /* Card 1: só a seta › — centralizada */
+            #s-mod4-organizacao .m4o-back:disabled + .m4o-fwd {
+                left: 50% !important;
+                right: auto !important;
+                transform: translateX(-50%) !important;
+            }
+            #s-mod4-organizacao .m4o-back:hover:not(:disabled),
+            #s-mod4-organizacao .m4o-fwd:hover:not(:disabled) {
+                transform: scale(1.06) !important;
+                background: #7AEEE0 !important;
+            }
+            #s-mod4-organizacao .m4o-back:disabled + .m4o-fwd:hover:not(:disabled) {
+                transform: translateX(-50%) scale(1.06) !important;
+            }
+            #s-mod4-organizacao .m4o-back:disabled,
+            #s-mod4-organizacao .m4o-fwd:disabled {
+                opacity: 0 !important;
+                pointer-events: none;
+            }
+            /* Só o card 1 (foto) fica menor */
+            #s-mod4-organizacao .m4o-card--photo {
+                width: min(300px, 88vw) !important;
+                border-radius: 18px;
+                padding-bottom: 56px !important;
+            }
+            #s-mod4-organizacao .m4o-card--photo .m4o-photo {
+                aspect-ratio: 16 / 9;
+                max-height: 140px !important;
+            }
+            #s-mod4-organizacao .m4o-card--photo .m4o-body-pad {
+                padding: 10px 12px 12px !important;
+                gap: 4px !important;
+            }
+            #s-mod4-organizacao .m4o-card--photo .m4o-kicker {
+                font-size: 10px !important;
+            }
+            #s-mod4-organizacao .m4o-card--photo .m4o-title {
+                font-size: 16px !important;
+                line-height: 1.15 !important;
+            }
+            #s-mod4-organizacao .m4o-card--photo .m4o-text {
+                font-size: 12.5px !important;
+                line-height: 1.3 !important;
+            }
+            /* Cards 2–6 */
+            #s-mod4-organizacao .m4o-card:not(.m4o-card--photo) {
+                padding-bottom: 56px !important;
+                width: min(360px, 92vw);
+                margin: 0 auto;
+            }
+            #s-mod4-organizacao .m4o-card:not(.m4o-card--photo) .m4o-card-top {
+                min-height: 72px;
+                padding: 12px 12px 8px;
+            }
+            #s-mod4-organizacao .m4o-card:not(.m4o-card--photo) .m4o-ico {
+                width: 48px;
+                height: 48px;
+                border-radius: 14px;
+                font-size: 24px;
+            }
+            #s-mod4-organizacao .m4o-card:not(.m4o-card--photo) .m4o-body-pad {
+                padding: 0 14px 2px;
+                gap: 6px;
+            }
+            #s-mod4-organizacao .m4o-hint {
+                flex-shrink: 0;
+                font-size: 13px !important;
+                margin: 6px 0 0 !important;
+                padding-bottom: 2px;
+            }
+        }
+        @media screen and (max-width: 640px) {
+            #s-mod4-organizacao .content-area {
+                overflow-y: auto !important; justify-content: flex-start !important;
+                padding: 4px 12px calc(118px + env(safe-area-inset-bottom, 0px)) !important; gap: 8px;
+            }
+            #s-mod4-organizacao .m4o-step { width: 38px; height: 38px; font-size: 16px; border-radius: 12px; }
+            #s-mod4-organizacao .m4o-card--photo {
+                width: min(280px, 86vw) !important;
+            }
+            #s-mod4-organizacao .m4o-card--photo .m4o-photo {
+                aspect-ratio: 16 / 9;
+                max-height: 128px !important;
+            }
+            #s-mod4-organizacao .m4o-stage { min-height: 0; }
         }
         #s-mod4-organizacao .m4o-card {
             display: none;
@@ -981,12 +1753,6 @@
             line-height: 1.4;
             color: rgba(255,255,255,0.9);
         }
-        #s-mod4-organizacao .m4o-card--photo .m4o-check-btn {
-            margin-top: 2px;
-            min-width: 150px;
-            padding: 11px 22px;
-            font-size: 12.5px;
-        }
         #s-mod4-organizacao .m4o-ico {
             width: 58px; height: 58px; border-radius: 16px;
             display: grid; place-items: center;
@@ -1024,30 +1790,6 @@
             font-size: 13.5px; line-height: 1.4;
             color: rgba(255,255,255,0.86);
         }
-        #s-mod4-organizacao .m4o-check-btn {
-            margin-top: 6px;
-            padding: 12px 26px;
-            border: none; border-radius: 999px;
-            background: linear-gradient(135deg, #ffe082, #53E6D4 40%, #7AEEE0);
-            color: #1F0A45;
-            font-family: var(--font-h); font-size: 13px; font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 8px 22px rgba(83,230,212,0.4);
-            transition: transform 0.15s ease, filter 0.15s ease;
-            animation: m4oPulse 1.8s ease-in-out infinite;
-        }
-        @keyframes m4oPulse {
-            0%, 100% { box-shadow: 0 8px 22px rgba(83,230,212,0.35); }
-            50% { box-shadow: 0 8px 28px rgba(83,230,212,0.65), 0 0 0 6px rgba(83,230,212,0.12); }
-        }
-        #s-mod4-organizacao .m4o-check-btn:hover { filter: brightness(1.06); transform: translateY(-1px); }
-        #s-mod4-organizacao .m4o-check-btn:disabled {
-            opacity: 1; cursor: default; transform: none; filter: none;
-            animation: none;
-            background: linear-gradient(135deg, #AD52C4, #7E36E3);
-            color: #fff;
-            box-shadow: 0 6px 16px rgba(173,82,196,0.4);
-        }
         #s-mod4-organizacao .m4o-hint {
             margin: 4px 0 0;
             font-family: var(--font-h);
@@ -1074,7 +1816,8 @@
         #s-mod4-organizacao.is-complete .m4o-hint,
         #s-mod4-organizacao.is-complete .m4o-rail,
         #s-mod4-organizacao.is-complete .m4o-meta,
-        #s-mod4-organizacao.is-complete .m4o-back { display: none !important; }
+        #s-mod4-organizacao.is-complete .m4o-back,
+        #s-mod4-organizacao.is-complete .m4o-fwd { display: none !important; }
         #s-mod4-organizacao.is-complete .m4o-done { display: flex; }
         #s-mod4-organizacao .m4o-done-ico {
             font-size: 48px; line-height: 1;
@@ -1111,15 +1854,6 @@
             font-family: var(--font-h); font-size: 12px; font-weight: 800;
             cursor: pointer;
             box-shadow: 0 6px 16px rgba(83,230,212,0.35);
-        }
-        @media screen and (max-width: 640px) {
-            #s-mod4-organizacao .content-area {
-                overflow-y: auto !important; justify-content: flex-start !important;
-                padding: 4px 12px 88px !important; gap: 10px;
-            }
-            #s-mod4-organizacao .m4o-step { width: 38px; height: 38px; font-size: 16px; border-radius: 12px; }
-            #s-mod4-organizacao .m4o-card--photo .m4o-photo { aspect-ratio: 16 / 10; max-height: 200px; }
-            #s-mod4-organizacao .m4o-stage { min-height: 0; }
         }
 
     </style>
@@ -1183,7 +1917,7 @@
 
                 </div>
                 <div class="content-area"
-                    style="align-items: center; text-align: center; justify-content: flex-start; position: relative; z-index: 2;">
+                    style="align-items: center; text-align: center; justify-content: center; position: relative; z-index: 2;">
                     <div class="video-wrap video-wrap--std"
                         style="max-width: 1240px; box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 60px rgba(83, 230, 212,0.3); border: 1px solid rgba(83, 230, 212,0.4); border-radius: 12px; transform: translateZ(0);">
                         <iframe id="panda-7fb9692a-0a05-4cbd-8bef-cfb28805065c" src="about:blank" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
@@ -1330,92 +2064,228 @@
                     </h2>
                 </div>
                 <div class="content-area">
+                    <p class="m4l-flip-hint">Toque no card para virar e avance com a seta · veja os 2</p>
                     <div class="m4l-board">
-                        <p class="m4l-hint">Toque em <strong>Misturador</strong> ou <strong>Dosador</strong> para ver a limpeza de cada equipamento</p>
-                        <div class="m4l-switch" role="tablist" aria-label="Equipamento">
-                            <button type="button" class="m4l-switch-btn is-active" data-m4l="mix" role="tab" aria-selected="true">Misturador</button>
-                            <button type="button" class="m4l-switch-btn" data-m4l="dos" role="tab" aria-selected="false">Dosador</button>
-                        </div>
                         <div class="m4l-split" id="m4l-viewport">
-                            <article class="m4l-pane m4l-pane--mix is-active" data-m4l-pane="mix" aria-label="Limpeza do misturador">
-                                <div class="m4l-media">
-                                    <img src="assets/fotos/misturador-maquina.png" alt="Limpeza do misturador">
-                                    <button type="button" class="m4l-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/misturador-maquina.png')">🔍</button>
-                                </div>
-                                <div class="m4l-body">
-                                    <p class="m4l-kicker">Misturador</p>
-                                    <h3 class="m4l-title">Limpeza do misturador</h3>
-                                    <div class="m4l-sec">
-                                        <p class="m4l-sec-title">Parte externa</p>
-                                        <ul>
-                                            <li>Usar pano macio e seco para a limpeza.</li>
-                                            <li>Ou pano levemente umedecido com solução suave.</li>
-                                        </ul>
+                            <article class="m4l-pane m4l-pane--mix is-active req-item" data-m4l-pane="mix" aria-label="Limpeza do misturador" aria-pressed="false">
+                                <div class="m4l-flip-inner">
+                                    <div class="m4l-flip-face m4l-flip-front">
+                                        <div class="m4l-media">
+                                            <img src="assets/fotos/misturador-maquina.png" alt="Limpeza do misturador">
+                                            <button type="button" class="m4l-expand" aria-label="Ampliar imagem" onclick="event.stopPropagation(); openImageModal('assets/fotos/misturador-maquina.png')">🔍</button>
+                                        </div>
+                                        <div class="m4l-flip-foot">
+                                            <p class="m4l-kicker">Misturador</p>
+                                            <h3 class="m4l-title">Limpeza do misturador</h3>
+                                            <span class="m4l-flip-tap">Toque para virar</span>
+                                        </div>
                                     </div>
-                                    <div class="m4l-sec">
-                                        <p class="m4l-sec-title">Vazamento interno</p>
-                                        <ul>
-                                            <li>Limpar imediatamente.</li>
-                                            <li>Usar pano úmido ou espátula.</li>
-                                            <li>Os líquidos escoam pelos furos de drenagem.</li>
-                                            <li>Inclinar levemente a máquina para facilitar o escoamento.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="m4l-pane m4l-pane--dos" data-m4l-pane="dos" aria-label="Limpeza do dosador">
-                                <div class="m4l-media">
-                                    <img src="assets/fotos/dosador-maquina.png" alt="Limpeza do dosador">
-                                    <button type="button" class="m4l-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/dosador-maquina.png')">🔍</button>
-                                </div>
-                                <div class="m4l-body">
-                                    <p class="m4l-kicker">Dosador</p>
-                                    <h3 class="m4l-title">Limpeza do dosador</h3>
-                                    <div class="m4l-alert" role="alert">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8"/></svg>
-                                        Nunca usar água ou solvente
-                                    </div>
-                                    <div class="m4l-sec">
-                                        <p class="m4l-sec-title">Corante derramado dentro da máquina</p>
-                                        <ul>
-                                            <li>Não tentar limpar.</li>
-                                            <li>Desligar a máquina.</li>
-                                            <li>Chamar serviço técnico autorizado.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="m4l-sec">
-                                        <p class="m4l-sec-title">Derramamento externo</p>
-                                        <ol>
-                                            <li>Desconectar o cabo de alimentação.</li>
-                                            <li>Limpar revestimentos e painéis com pano macio.</li>
-                                            <li>Reconectar o cabo e ligar a máquina.</li>
-                                        </ol>
+                                    <div class="m4l-flip-face m4l-flip-back">
+                                        <div class="m4l-body">
+                                            <p class="m4l-kicker">Misturador</p>
+                                            <h3 class="m4l-title">Limpeza do misturador</h3>
+                                            <div class="m4l-sec">
+                                                <p class="m4l-sec-title">Parte externa</p>
+                                                <ul>
+                                                    <li>Usar pano macio e seco para a limpeza.</li>
+                                                    <li>Ou pano levemente umedecido com solução suave.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="m4l-sec">
+                                                <p class="m4l-sec-title">Vazamento interno</p>
+                                                <ul>
+                                                    <li>Limpar imediatamente.</li>
+                                                    <li>Usar pano úmido ou espátula.</li>
+                                                    <li>Os líquidos escoam pelos furos de drenagem.</li>
+                                                    <li>Inclinar levemente a máquina para facilitar o escoamento.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="m4l-flip-back-foot">Toque para voltar</div>
                                     </div>
                                 </div>
                             </article>
+                            <article class="m4l-pane m4l-pane--dos req-item" data-m4l-pane="dos" aria-label="Limpeza do dosador" aria-pressed="false">
+                                <div class="m4l-flip-inner">
+                                    <div class="m4l-flip-face m4l-flip-front">
+                                        <div class="m4l-media">
+                                            <img src="assets/fotos/dosador-maquina.png" alt="Limpeza do dosador">
+                                            <button type="button" class="m4l-expand" aria-label="Ampliar imagem" onclick="event.stopPropagation(); openImageModal('assets/fotos/dosador-maquina.png')">🔍</button>
+                                        </div>
+                                        <div class="m4l-flip-foot">
+                                            <p class="m4l-kicker">Dosador</p>
+                                            <h3 class="m4l-title">Limpeza do dosador</h3>
+                                            <span class="m4l-flip-tap">Toque para virar</span>
+                                        </div>
+                                    </div>
+                                    <div class="m4l-flip-face m4l-flip-back">
+                                        <div class="m4l-body m4l-body--compact">
+                                            <p class="m4l-kicker">Dosador</p>
+                                            <h3 class="m4l-title">Limpeza do dosador</h3>
+                                            <div class="m4l-alert" role="alert">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8"/></svg>
+                                                Nunca usar água ou solvente
+                                            </div>
+                                            <div class="m4l-sec">
+                                                <p class="m4l-sec-title">Corante derramado dentro da máquina</p>
+                                                <ul>
+                                                    <li>Não tentar limpar.</li>
+                                                    <li>Desligar a máquina.</li>
+                                                    <li>Chamar serviço técnico autorizado.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="m4l-sec">
+                                                <p class="m4l-sec-title">Derramamento externo</p>
+                                                <ol>
+                                                    <li>Desconectar o cabo de alimentação.</li>
+                                                    <li>Limpar revestimentos e painéis com pano macio.</li>
+                                                    <li>Reconectar o cabo e ligar a máquina.</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                        <div class="m4l-flip-back-foot">Toque para voltar</div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="m4l-carousel-nav" aria-label="Navegação dos cards">
+                            <button type="button" class="m4l-nav-btn" id="m4l-prev" aria-label="Anterior">‹</button>
+                            <span class="m4l-counter" id="m4l-counter">1 / 2</span>
+                            <button type="button" class="m4l-nav-btn" id="m4l-next" aria-label="Próximo">›</button>
                         </div>
                     </div>
                     <script>
                         (function () {
                             var slide = document.getElementById('s-mod4-limpeza');
-                            if (!slide) return;
-                            function show(key) {
-                                slide.querySelectorAll('.m4l-switch-btn').forEach(function (btn) {
-                                    var on = btn.getAttribute('data-m4l') === key;
-                                    btn.classList.toggle('is-active', on);
-                                    btn.setAttribute('aria-selected', on ? 'true' : 'false');
-                                });
-                                slide.querySelectorAll('.m4l-pane').forEach(function (pane) {
-                                    pane.classList.toggle('is-active', pane.getAttribute('data-m4l-pane') === key);
-                                });
+                            if (!slide || slide.dataset.m4lBound) return;
+                            slide.dataset.m4lBound = '1';
+                            var keys = ['mix', 'dos'];
+                            var idx = 0;
+                            var prevBtn = document.getElementById('m4l-prev');
+                            var nextBtn = document.getElementById('m4l-next');
+                            var counter = document.getElementById('m4l-counter');
+                            var nav = slide.querySelector('.m4l-carousel-nav');
+                            var viewport = document.getElementById('m4l-viewport');
+                            function isMobile() {
+                                return window.matchMedia('(max-width: 768px)').matches;
                             }
-                            slide.querySelectorAll('.m4l-switch-btn').forEach(function (btn) {
-                                btn.addEventListener('click', function () {
+                            function panes() { return slide.querySelectorAll('.m4l-pane'); }
+                            function currentDone() {
+                                var list = panes();
+                                var cur = list[idx];
+                                return !!(cur && cur.classList.contains('req-done'));
+                            }
+                            function ui() {
+                                var list = panes();
+                                var total = list.length;
+                                var mobile = isMobile();
+                                list.forEach(function (pane, i) {
+                                    pane.classList.toggle('is-active', i === idx);
+                                    if (i !== idx) {
+                                        pane.classList.remove('is-flipped');
+                                        pane.setAttribute('aria-pressed', 'false');
+                                    }
+                                    if (!mobile && i === idx && !pane.classList.contains('req-done')) {
+                                        pane.classList.add('req-done');
+                                        if (typeof updateNextButton === 'function') updateNextButton();
+                                    }
+                                });
+                                if (counter) counter.textContent = (idx + 1) + ' / ' + total;
+                                var canFwd = mobile ? (currentDone() && idx < total - 1) : (idx < total - 1);
+                                if (prevBtn) {
+                                    prevBtn.disabled = idx === 0;
+                                    prevBtn.setAttribute('aria-disabled', idx === 0 ? 'true' : 'false');
+                                }
+                                if (nextBtn) {
+                                    nextBtn.disabled = !canFwd;
+                                    nextBtn.setAttribute('aria-disabled', canFwd ? 'false' : 'true');
+                                    nextBtn.classList.toggle('is-locked', !canFwd);
+                                    nextBtn.title = canFwd ? 'Próximo' : (mobile ? 'Vire o card para liberar' : 'Próximo');
+                                }
+                            }
+                            function go(dir) {
+                                var now = Date.now();
+                                if (now - (go._last || 0) < 300) return;
+                                var total = panes().length;
+                                var n = idx + dir;
+                                if (n < 0 || n >= total) return;
+                                if (dir > 0 && isMobile() && !currentDone()) return;
+                                go._last = now;
+                                idx = n;
+                                try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
+                                ui();
+                            }
+                            function flipPane(pane) {
+                                if (!pane || !isMobile()) return;
+                                var firstReveal = !pane.classList.contains('req-done');
+                                pane.classList.toggle('is-flipped');
+                                pane.setAttribute('aria-pressed', pane.classList.contains('is-flipped') ? 'true' : 'false');
+                                if (pane.classList.contains('is-flipped') && pane.classList.contains('req-item') && firstReveal) {
+                                    pane.classList.add('req-done');
+                                    try {
+                                        if (typeof playSoftCheckSound === 'function') playSoftCheckSound();
+                                        else if (typeof playClickSound === 'function') playClickSound();
+                                    } catch (e) {}
+                                    if (typeof updateNextButton === 'function') updateNextButton();
+                                } else {
                                     try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
-                                    show(btn.getAttribute('data-m4l') || 'mix');
+                                }
+                                ui();
+                            }
+                            if (prevBtn) prevBtn.addEventListener('click', function (e) {
+                                if (prevBtn.disabled) return;
+                                e.preventDefault();
+                                e.stopPropagation();
+                                go(-1);
+                            }, true);
+                            if (nextBtn) nextBtn.addEventListener('click', function (e) {
+                                if (nextBtn.disabled) return;
+                                e.preventDefault();
+                                e.stopPropagation();
+                                go(1);
+                            }, true);
+                            panes().forEach(function (pane) {
+                                pane.addEventListener('click', function (e) {
+                                    if (e.target.closest('.m4l-expand')) return;
+                                    flipPane(pane);
                                 });
                             });
-                            show('mix');
+                            if (viewport) {
+                                var sx = 0;
+                                viewport.addEventListener('touchstart', function (e) {
+                                    sx = e.changedTouches[0].screenX;
+                                }, { passive: true });
+                                viewport.addEventListener('touchend', function (e) {
+                                    var d = sx - e.changedTouches[0].screenX;
+                                    if (Math.abs(d) > 40) go(d > 0 ? 1 : -1);
+                                }, { passive: true });
+                            }
+                            (function setupFloat() {
+                                if (!nav) return;
+                                var homeParent = nav.parentNode;
+                                var homeNext = nav.nextSibling;
+                                var mq = window.matchMedia('(max-width: 900px)');
+                                function restore() {
+                                    nav.classList.remove('m4l-nav-floating');
+                                    if (nav.parentNode !== homeParent) {
+                                        if (homeNext && homeNext.parentNode === homeParent) homeParent.insertBefore(nav, homeNext);
+                                        else homeParent.appendChild(nav);
+                                    }
+                                }
+                                function sync() {
+                                    if (mq.matches && slide.classList.contains('active')) {
+                                        if (nav.parentNode !== document.body) document.body.appendChild(nav);
+                                        nav.classList.add('m4l-nav-floating');
+                                    } else {
+                                        restore();
+                                    }
+                                }
+                                mq.addEventListener ? mq.addEventListener('change', sync) : mq.addListener(sync);
+                                var obs = new MutationObserver(sync);
+                                obs.observe(slide, { attributes: true, attributeFilter: ['class'] });
+                                sync();
+                            })();
+                            ui();
                         })();
                     </script>
                 </div>
@@ -1437,11 +2307,12 @@
                         📋 Módulo 4</div>
                     <h2 class="slide-title"
                         style="font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -0.015em; text-shadow: 0 0 15px rgba(83, 230, 212, 0.4);">
-                        O que <span>pode</span> e o que <span>não pode</span>
+                        <span class="m4p-title-line">O que <em>pode</em></span>
+                        <span class="m4p-title-line">e <em>não pode</em></span>
                     </h2>
                 </div>
                 <div class="content-area">
-                    <p class="m4p-hint">Compare o certo e o errado · toque na <strong>lupa</strong> para ampliar</p>
+                    <p class="m4p-hint">Toque em <strong>Pode</strong> ou <strong>Não pode</strong> · use a <strong>lupa</strong> para ampliar</p>
                     <div class="m4p-tabs" role="tablist" aria-label="Pode ou não pode">
                         <button type="button" class="m4p-tab is-on" data-m4p="ok" role="tab" aria-selected="true">✓ Pode</button>
                         <button type="button" class="m4p-tab" data-m4p="no" role="tab" aria-selected="false">✕ Não pode</button>
@@ -1539,7 +2410,7 @@
                         Limpeza dos bicos e da <span>esponja</span></h2>
                 </div>
                 <div class="content-area"
-                    style="align-items: center; text-align: center; justify-content: flex-start; position: relative; z-index: 2;">
+                    style="align-items: center; text-align: center; justify-content: center; position: relative; z-index: 2;">
                     <div class="video-wrap video-wrap--std"
                         style="max-width: 1240px; box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 60px rgba(83, 230, 212,0.3); border: 1px solid rgba(83, 230, 212,0.4); border-radius: 12px; transform: translateZ(0);">
                         <iframe id="panda-3ee97e7d-1307-49fd-8f86-5eb0c4fc6646" src="about:blank" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
@@ -1563,7 +2434,7 @@
                 <div class="top-bar" style="position: relative; z-index: 2;">
                     <div class="section-tag"
                         style="background: var(--red); color: #1F0A45; font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(83, 230, 212, 0.4);">
-                        🕹️ Atividade · Módulo 4</div>
+                        🕹️ Módulo 4</div>
                     <h2 class="slide-title"
                         style="font-size: clamp(24px, 3.2vw, 36px); letter-spacing: -0.015em; text-shadow: 0 0 15px rgba(83, 230, 212, 0.25);">
                         Organização e <span class="m4o-accent">recomendações finais</span>
@@ -1577,6 +2448,7 @@
                     </div>
                     <div class="m4o-stage" id="m4o-stage">
                         <button type="button" class="m4o-back" id="m4o-prev" aria-label="Card anterior" onclick="m4oNav(-1)">‹</button>
+                        <button type="button" class="m4o-fwd" id="m4o-next" aria-label="Próximo card" onclick="m4oNav(1)">›</button>
                         <article class="m4o-card m4o-card--photo is-active" data-m4o="0" data-ico="✨">
                             <div class="m4o-card-top">
                                 <div class="m4o-photo is-empty" id="m4o-photo">
@@ -1592,7 +2464,6 @@
                                 <p class="m4o-kicker">Ambiente</p>
                                 <h3 class="m4o-title">Central limpa e organizada</h3>
                                 <p class="m4o-text">Evite sujeira, papéis e etiquetas atrás das máquinas.</p>
-                                <button type="button" class="m4o-check-btn" onclick="m4oMark()">✓ Entendi</button>
                             </div>
                         </article>
                         <article class="m4o-card m4o-card--warn" data-m4o="1" data-ico="🔥">
@@ -1601,7 +2472,6 @@
                                 <p class="m4o-kicker">Atenção</p>
                                 <h3 class="m4o-title">Descarte seguro</h3>
                                 <p class="m4o-text">Resíduos de tinta só em recipiente/palete de contenção.</p>
-                                <button type="button" class="m4o-check-btn" onclick="m4oMark()">✓ Entendi</button>
                             </div>
                         </article>
                         <article class="m4o-card" data-m4o="2" data-ico="🔧">
@@ -1610,7 +2480,6 @@
                                 <p class="m4o-kicker">Manutenção</p>
                                 <h3 class="m4o-title">Preventiva em dia</h3>
                                 <p class="m4o-text">Realize manutenções preventivas regularmente.</p>
-                                <button type="button" class="m4o-check-btn" onclick="m4oMark()">✓ Entendi</button>
                             </div>
                         </article>
                         <article class="m4o-card" data-m4o="3" data-ico="🛑">
@@ -1619,7 +2488,6 @@
                                 <p class="m4o-kicker">Falha</p>
                                 <h3 class="m4o-title">Não intervenha sozinho</h3>
                                 <p class="m4o-text">Avise o líder para acionar a manutenção corretiva.</p>
-                                <button type="button" class="m4o-check-btn" onclick="m4oMark()">✓ Entendi</button>
                             </div>
                         </article>
                         <article class="m4o-card" data-m4o="4" data-ico="🦺">
@@ -1628,7 +2496,6 @@
                                 <p class="m4o-kicker">Segurança</p>
                                 <h3 class="m4o-title">EPIs e instruções</h3>
                                 <p class="m4o-text">Use os equipamentos de segurança e siga o fabricante.</p>
-                                <button type="button" class="m4o-check-btn" onclick="m4oMark()">✓ Entendi</button>
                             </div>
                         </article>
                         <article class="m4o-card" data-m4o="5" data-ico="📘">
@@ -1637,11 +2504,10 @@
                                 <p class="m4o-kicker">Responsabilidade</p>
                                 <h3 class="m4o-title">Capacitar e inspecionar</h3>
                                 <p class="m4o-text">Só operadores capacitados. Faça testes e inspeções.</p>
-                                <button type="button" class="m4o-check-btn" onclick="m4oMark()">✓ Entendi</button>
                             </div>
                         </article>
                     </div>
-                    <p class="m4o-hint">Toque em <strong>Entendi</strong></p>
+                    <p class="m4o-hint">Use as <strong>setas</strong> para ver todas as dicas</p>
                     <div class="m4o-done" id="m4o-done">
                         <div class="m4o-done-ico" aria-hidden="true">🏅</div>
                         <h3>Checklist concluído!</h3>
@@ -1680,14 +2546,10 @@
                             function ui() {
                                 var c = cards();
                                 total = c.length || 6;
+                                done[idx] = true;
                                 c.forEach(function (el, i) {
                                     el.classList.toggle('is-active', i === idx);
                                     el.classList.toggle('is-done', !!done[i]);
-                                    var btn = el.querySelector('.m4o-check-btn');
-                                    if (btn) {
-                                        btn.disabled = !!done[i];
-                                        btn.textContent = done[i] ? '✓ Marcado' : '✓ Entendi';
-                                    }
                                 });
                                 var fill = document.getElementById('m4o-progress-fill');
                                 var lbl = document.getElementById('m4o-progress-lbl');
@@ -1702,9 +2564,8 @@
                                 var prev = document.getElementById('m4o-prev');
                                 var next = document.getElementById('m4o-next');
                                 if (prev) prev.disabled = idx === 0;
-                                if (next) next.disabled = idx === total - 1;
-                                var slide = document.getElementById('s-mod4-organizacao');
-                                if (slide) slide.classList.toggle('is-complete', n >= total);
+                                if (next) next.disabled = false;
+                                if (typeof updateNextButton === 'function') updateNextButton();
                             }
                             window.m4oGo = function (i) {
                                 if (i < 0 || i >= total) return;
@@ -1712,24 +2573,20 @@
                                 try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
                                 ui();
                             };
-                            window.m4oNav = function (dir) { window.m4oGo(idx + dir); };
-                            window.m4oMark = function () {
-                                done[idx] = true;
-                                var active = document.querySelector('#s-mod4-organizacao .m4o-card.is-active');
-                                if (active) {
-                                    active.classList.remove('is-pop');
-                                    void active.offsetWidth;
-                                    active.classList.add('is-pop');
+                            window.m4oNav = function (dir) {
+                                if (dir > 0 && idx >= total - 1) {
+                                    done[idx] = true;
+                                    var slide = document.getElementById('s-mod4-organizacao');
+                                    if (slide && countDone() >= total) {
+                                        slide.classList.add('is-complete');
+                                        try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
+                                        if (typeof updateNextButton === 'function') updateNextButton();
+                                        return;
+                                    }
                                 }
-                                try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
-                                ui();
-                                if (countDone() < total) {
-                                    var nextIdx = -1;
-                                    for (var i = idx + 1; i < total; i++) if (!done[i]) { nextIdx = i; break; }
-                                    if (nextIdx < 0) for (var j = 0; j < total; j++) if (!done[j]) { nextIdx = j; break; }
-                                    if (nextIdx >= 0) setTimeout(function () { idx = nextIdx; ui(); }, 320);
-                                }
+                                window.m4oGo(idx + dir);
                             };
+                            window.m4oMark = function () { window.m4oNav(1); };
                             window.m4oReset = function () {
                                 idx = 0; done = {};
                                 var slide = document.getElementById('s-mod4-organizacao');
@@ -1762,7 +2619,7 @@
                 <div class="top-bar">
                     <div class="section-tag"
                         style="background: var(--red); color: #1F0A45; font-size: 16px; padding: 6px 16px; font-weight: 800; box-shadow: 0 0 12px rgba(83, 230, 212, 0.4);">
-                        🕹️ Atividade · Módulo 4</div>
+                        🕹️ Módulo 4</div>
                     <h2 class="slide-title"
                         style="font-size: clamp(32px, 5vw, 48px); letter-spacing: 0.02em; text-shadow: 0 0 20px rgba(83, 230, 212, 0.6); position: relative; display: inline-block;">
                         <div
@@ -1902,15 +2759,27 @@
                         background-size: auto, cover !important;
                       }
                       #s-conclusion::after { display: none !important; content: none !important; }
+                      #s-conclusion > .slide-scroll-btn {
+                        display: none !important;
+                        opacity: 0 !important;
+                        visibility: hidden !important;
+                        pointer-events: none !important;
+                      }
                       #s-conclusion > .top-bar,
                       #s-conclusion > .content-area,
                       #s-conclusion > .wave { position: relative; z-index: 2; }
+                      #s-conclusion > .top-bar {
+                        align-items: flex-start !important;
+                        text-align: left !important;
+                      }
                       #s-conclusion .slide-title {
                         display: block !important;
                         flex-direction: unset !important;
-                        width: 100%;
+                        width: auto !important;
+                        max-width: calc(100% - 8px);
                         color: #fff !important;
                         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+                        text-align: left !important;
                       }
                       #s-conclusion .slide-title span { color: #53E6D4 !important; }
                       #s-conclusion .content-area {
@@ -2196,35 +3065,67 @@
                         }
                       }
                       @media screen and (max-width: 768px) {
+                        #s-conclusion > .slide-scroll-btn {
+                          display: none !important;
+                          opacity: 0 !important;
+                          visibility: hidden !important;
+                          pointer-events: none !important;
+                        }
                         #s-conclusion .top-bar {
                           padding: 50px 80px 0 14px !important;
+                          align-items: flex-start !important;
+                          text-align: left !important;
+                        }
+                        #s-conclusion .section-tag {
+                          align-self: flex-start !important;
+                        }
+                        #s-conclusion .slide-title {
+                          width: auto !important;
+                          text-align: left !important;
+                          margin-top: 6px !important;
                         }
                         #s-conclusion .content-area {
                           padding: 8px 16px calc(110px + env(safe-area-inset-bottom, 0px)) !important;
+                          justify-content: flex-start !important;
                         }
                         #s-conclusion .fim-wrap {
-                          max-width: 640px !important;
+                          max-width: 300px !important;
                           width: 100%;
-                          margin: 24px auto 0 !important;
+                          margin: 48px auto 0 !important;
                         }
                         #s-conclusion .fim-card {
-                          padding: 32px 24px 36px !important;
-                          border-radius: 24px !important;
+                          padding: 22px 16px 24px !important;
+                          border-radius: 18px !important;
+                        }
+                        #s-conclusion .fim-eyebrow {
+                          font-size: 9px !important;
+                          padding: 5px 10px !important;
+                          margin-bottom: 10px !important;
                         }
                         #s-conclusion .fim-card .ic-circle {
-                          width: 96px !important;
-                          height: 96px !important;
-                          margin: 0 auto 24px !important;
+                          width: 68px !important;
+                          height: 68px !important;
+                          margin: 0 auto 14px !important;
                         }
                         #s-conclusion .fim-card h3 {
-                          font-size: 26px !important;
-                          margin-bottom: 12px !important;
+                          font-size: 20px !important;
+                          margin-bottom: 8px !important;
                           line-height: 1.25 !important;
                         }
+                        #s-conclusion .fim-divider {
+                          margin: 0 auto 12px !important;
+                        }
                         #s-conclusion .fim-card p {
-                          font-size: 16px !important;
-                          line-height: 1.65 !important;
-                          margin-bottom: 28px !important;
+                          font-size: 13px !important;
+                          line-height: 1.5 !important;
+                          margin-bottom: 16px !important;
+                        }
+                        #s-conclusion .fim-chips {
+                          gap: 6px !important;
+                        }
+                        #s-conclusion .fim-chip {
+                          padding: 8px 12px !important;
+                          font-size: 10px !important;
                         }
                       }
                       @media (prefers-reduced-motion: reduce) {
@@ -2311,7 +3212,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=185"></script>
+    <script src="shared.js?v=186"></script>
 </body>
 
 </html>

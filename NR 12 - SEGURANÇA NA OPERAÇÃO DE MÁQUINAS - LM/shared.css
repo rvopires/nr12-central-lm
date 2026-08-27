@@ -5998,16 +5998,15 @@ body {
     height: 0;
 }
 
-/* MÃ“D 4 pÃ¡g 26 (s-mod4-video-finalizacao): carrossel passo a passo */
-#s-mod4-video-finalizacao .content-area {
+/* MÓD 4 pág 28 (s-mod4-video-finalizacao): página de vídeo — mesmo fluxo das demais */
+#s-mod4-video-finalizacao .content-area:has(> .video-wrap--std) {
     overflow: hidden;
     overflow-y: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding-bottom: 12px;
 }
 
-#s-mod4-video-finalizacao .content-area::-webkit-scrollbar {
+#s-mod4-video-finalizacao .content-area:has(> .video-wrap--std)::-webkit-scrollbar {
     display: none;
     width: 0;
     height: 0;
@@ -6118,33 +6117,28 @@ body {
         pointer-events: none !important;
     }
 
-    #s-mod4-video-finalizacao .content-area {
+    /* MÓD 4 pág 28: vídeo no padrão unificado (ref. pág. 13) */
+    #s-mod4-video .content-area:has(> .video-wrap--std),
+    #s-mod4-video-finalizacao .content-area:has(> .video-wrap--std) {
+        justify-content: center !important;
+        align-items: center !important;
+        padding-top: 0 !important;
+        padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px)) !important;
         overflow: hidden !important;
         overflow-y: hidden !important;
-        padding-top: 14px !important;
-        padding-bottom: 10px !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
     }
 
-    #s-mod4-video-finalizacao .m4p-layout {
-        padding-top: 16px !important;
+    #s-mod4-video .content-area:has(> .video-wrap--std) > .video-wrap--std,
+    #s-mod4-video-finalizacao .content-area:has(> .video-wrap--std) > .video-wrap--std {
         margin-top: 0 !important;
-        transform: none;
+        margin-bottom: 48px !important;
+        max-height: 65vh !important;
+        width: min(100%, calc(65vh * 16 / 9)) !important;
     }
 
-    #s-mod4-video-finalizacao .m4p-carousel-nav {
-        position: relative !important;
-        z-index: 30 !important;
-        pointer-events: auto !important;
-        margin-top: 0 !important;
-    }
-
-    #s-mod4-video-finalizacao .m4p-nav-btn:not(:disabled) {
-        pointer-events: auto !important;
-        touch-action: manipulation !important;
-    }
-
+    #s-mod4-video .wave,
     #s-mod4-video-finalizacao .wave {
         pointer-events: none !important;
     }
@@ -6742,7 +6736,17 @@ body {
         align-items: stretch !important;
         justify-content: flex-start !important;
         padding-top: 0 !important;
-        text-align: center !important;
+        text-align: left !important;
+    }
+
+    #s-conclusion .top-bar {
+        align-items: flex-start !important;
+        text-align: left !important;
+    }
+
+    #s-conclusion .slide-title {
+        text-align: left !important;
+        width: auto !important;
     }
 
     #s-conclusion::after {
@@ -6984,7 +6988,17 @@ body {
         align-items: stretch !important;
         justify-content: flex-start !important;
         padding-top: 0 !important;
-        text-align: center !important;
+        text-align: left !important;
+    }
+
+    #s-conclusion .top-bar {
+        align-items: flex-start !important;
+        text-align: left !important;
+    }
+
+    #s-conclusion .slide-title {
+        text-align: left !important;
+        width: auto !important;
     }
 
     #s-conclusion::after {
@@ -7651,7 +7665,9 @@ body {
     #s10 .content-area:has(> .video-wrap--std),
     #s-bateria .content-area:has(> .video-wrap--std),
     #s-conducao .content-area:has(> .video-wrap--std),
-    #s-bateria-troca .content-area:has(> .video-wrap--std) {
+    #s-bateria-troca .content-area:has(> .video-wrap--std),
+    #s-mod4-video .content-area:has(> .video-wrap--std),
+    #s-mod4-video-finalizacao .content-area:has(> .video-wrap--std) {
         justify-content: center !important;
         align-items: center !important;
         padding-top: 0 !important;
@@ -7676,6 +7692,8 @@ body {
     #s-bateria-troca .content-area > .video-wrap--std,
     #s-equipamento .content-area > .video-wrap--std,
     #s10 .content-area > .video-wrap--std,
+    #s-mod4-video .content-area > .video-wrap--std,
+    #s-mod4-video-finalizacao .content-area > .video-wrap--std,
     .video-wrap.video-wrap--std {
         margin-top: 0 !important;
         margin-bottom: 48px !important;
