@@ -12,3 +12,8 @@ Desktop.ini
 *.tmp
 *.temp
 .cache/
+
+# TTS / secrets (nunca versionar)
+.env
+.env.local
+**/tts-config.local.js

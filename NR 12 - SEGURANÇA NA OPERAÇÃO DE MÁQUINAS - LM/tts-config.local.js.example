@@ -1,0 +1,10 @@
+// Copie para tts-config.local.js (gitignored) e preencha.
+// Usado só no browser como fallback se o MP3 de audios/ não existir.
+window.__TTS_CONFIG__ = {
+  apiBase: 'https://texttospeech.escolatecnocursos.cloud',
+  ttsPath: '/api/tts',
+  authPath: '/api/auth/login',
+  username: 'SEU_USUARIO',
+  password: 'SUA_SENHA',
+  bearerToken: ''
+};

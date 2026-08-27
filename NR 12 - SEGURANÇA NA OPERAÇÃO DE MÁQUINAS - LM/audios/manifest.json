@@ -1,0 +1,636 @@
+{
+  "generatedAt": "2026-08-27T18:06:17.574Z",
+  "totalPages": 32,
+  "slides": [
+    {
+      "id": "s1",
+      "slideId": "s1",
+      "file": "audios/s1.mp3",
+      "text": "SEGURANÇA DO TRABALHO. NR 12 , Segurança na Operação de Máquinas. Aprenda a identificar riscos, aplicar proteções e operar máquinas com segurança no dia a dia. 4 Módulos. Conteúdo completo. Treinamento. 100% online",
+      "audioReady": true,
+      "globalN": 1,
+      "state": "main"
+    },
+    {
+      "id": "s1b",
+      "slideId": "s1b",
+      "file": "audios/s1b.mp3",
+      "text": "Segurança na Operação de Máquinas",
+      "audioReady": true,
+      "globalN": 2,
+      "state": "main"
+    },
+    {
+      "id": "s-sumario",
+      "slideId": "s-sumario",
+      "file": "audios/s-sumario.mp3",
+      "text": "Conteúdo Programático. Módulo 1 Abertura e Conceitos Módulo 2 Máquinas da Central de Cores Módulo 3 Segurança na Operação Módulo 4 Segurança e Advertências",
+      "audioReady": true,
+      "globalN": 3,
+      "state": "main"
+    },
+    {
+      "id": "intro-m1",
+      "slideId": "intro-m1",
+      "file": "audios/intro-m1.mp3",
+      "text": "INÍCIO MÓDULO 1 Abertura e Conceitos Imagem: Avatar do módulo 1.",
+      "audioReady": true,
+      "globalN": 4,
+      "state": "main"
+    },
+    {
+      "id": "s-o-que-e-nr12-c1",
+      "slideId": "s-o-que-e-nr12",
+      "file": "audios/s-o-que-e-nr12-c1.mp3",
+      "text": "O que é a NR 12. 01 . Norma O que é É uma norma regulamentadora do Ministério do Trabalho que trata da Segurança do Trabalho em Máquinas e Equipamentos.",
+      "audioReady": true,
+      "globalN": 5,
+      "state": "c1"
+    },
+    {
+      "id": "s-o-que-e-nr12-c2",
+      "slideId": "s-o-que-e-nr12",
+      "file": "audios/s-o-que-e-nr12-c2.mp3",
+      "text": "O que é a NR 12. 02 . Proteção Para que serve Define referências técnicas, princípios fundamentais e medidas de proteção para resguardar a saúde e a integridade física dos trabalhadores.",
+      "audioReady": true,
+      "globalN": 5,
+      "state": "c2"
+    },
+    {
+      "id": "s-o-que-e-nr12-c3",
+      "slideId": "s-o-que-e-nr12",
+      "file": "audios/s-o-que-e-nr12-c3.mp3",
+      "text": "O que é a NR 12. 03 . Alcance Onde se aplica Estabelece requisitos mínimos para prevenção de acidentes e doenças do trabalho nas fases de projeto e utilização de máquinas e equipamentos, e também na fabricação, importação, comercialização e exposição, em todas as atividades econômicas. Projeto Uso Fabricação Comércio",
+      "audioReady": true,
+      "globalN": 5,
+      "state": "c3"
+    },
+    {
+      "id": "s-conceito-maquinas-c1",
+      "slideId": "s-conceito-maquinas",
+      "file": "audios/s-conceito-maquinas-c1.mp3",
+      "text": "Máquina, dosador e misturador. 01 . Conceito O que é uma máquina? Dispositivo artificial Converte energia para um objetivo definido",
+      "audioReady": true,
+      "globalN": 6,
+      "state": "c1"
+    },
+    {
+      "id": "s-conceito-maquinas-c2",
+      "slideId": "s-conceito-maquinas",
+      "file": "audios/s-conceito-maquinas-c2.mp3",
+      "text": "Máquina, dosador e misturador. 02 . Dosificador Dosador Dosagem automática de corantes fluidos Recipientes de 0,5 a 18 L com base Áreas: dosagem/posicionamento + enchimento dos canisters",
+      "audioReady": true,
+      "globalN": 6,
+      "state": "c2"
+    },
+    {
+      "id": "s-conceito-maquinas-c3",
+      "slideId": "s-conceito-maquinas",
+      "file": "audios/s-conceito-maquinas-c3.mp3",
+      "text": "Máquina, dosador e misturador. 03 . Agitador giroscópico Misturador Porta cortina deslizante + latas de 0,9 a 18 L Acionamento eletrônico: liga/desliga + timer Segurança: não liga com porta aberta e para se abrir no ciclo",
+      "audioReady": true,
+      "globalN": 6,
+      "state": "c3"
+    },
+    {
+      "id": "s2",
+      "slideId": "s2",
+      "file": "audios/s2.mp3",
+      "text": "Máquinas da Central de Cores. Dois equipamentos.Uma regra: operar com segurança. No dia a dia da loja você encontra o dosador e o misturador. A NR 12 define proteção, atenção e o procedimento certo , proteções e bloqueios ativos, e só opera quem foi capacitado. 01 Dosador Dosagem precisa de tintas e pigmentos 02 Misturador Homogeneização após a dosagem Central Imagem: Máquinas da Central de Cores , aberta e fechada. Máquinas da Central de Cores. dosador. Dois equipamentos.Uma regra: operar com segurança.",
+      "audioReady": true,
+      "globalN": 7,
+      "state": "main"
+    },
+    {
+      "id": "s4-c1",
+      "slideId": "s4",
+      "file": "audios/s4-c1.mp3",
+      "text": "Limites de Atuação. Força Humana ou Animal. Força Humana ou Animal. Equipamentos movidos exclusivamente por força humana (como as paleteiras manuais da loja) ou força animal.",
+      "audioReady": true,
+      "globalN": 8,
+      "state": "c1"
+    },
+    {
+      "id": "s4-c2",
+      "slideId": "s4",
+      "file": "audios/s4-c2.mp3",
+      "text": "Limites de Atuação. Ferramentas Portáteis. Ferramentas Portáteis. Ferramentas elétricas manuais e transportáveis que atendam às normas técnicas de fabricação (como as furadeiras e serras tico-tico de uso da loja).",
+      "audioReady": true,
+      "globalN": 8,
+      "state": "c2"
+    },
+    {
+      "id": "s4-c3",
+      "slideId": "s4",
+      "file": "audios/s4-c3.mp3",
+      "text": "Limites de Atuação. Eletrodomésticos. Eletrodomésticos. Aparelhos domésticos certificados com o selo do INMETRO.",
+      "audioReady": true,
+      "globalN": 8,
+      "state": "c3"
+    },
+    {
+      "id": "s4-c4",
+      "slideId": "s4",
+      "file": "audios/s4-c4.mp3",
+      "text": "Limites de Atuação. Equipamentos Estáticos. Equipamentos Estáticos. Vasos de pressão, caldeiras, auto-fornos e tanques de armazenamento.",
+      "audioReady": true,
+      "globalN": 8,
+      "state": "c4"
+    },
+    {
+      "id": "s4-c5",
+      "slideId": "s4",
+      "file": "audios/s4-c5.mp3",
+      "text": "Limites de Atuação. Museus e Eventos. Museus e Eventos. Máquinas expostas em museus, feiras e eventos, com fins históricos ou consideradas antiguidades, não mais empregadas com fins produtivos , desde que preservada a integridade física de visitantes e expositores.",
+      "audioReady": true,
+      "globalN": 8,
+      "state": "c5"
+    },
+    {
+      "id": "s4-c6",
+      "slideId": "s4",
+      "file": "audios/s4-c6.mp3",
+      "text": "Limites de Atuação. Certificação INMETRO. Certificação INMETRO. Máquinas certificadas pelo INMETRO, desde que atendidos todos os requisitos técnicos de construção relacionados à segurança.",
+      "audioReady": true,
+      "globalN": 8,
+      "state": "c6"
+    },
+    {
+      "id": "s4-c7",
+      "slideId": "s4",
+      "file": "audios/s4-c7.mp3",
+      "text": "Limites de Atuação. Atenção. Atenção. Embora esses itens comuns fiquem de fora da norma, as máquinas da Central de Cores (dosador e misturador) exigem o cumprimento obrigatório e rigoroso da NR 12.",
+      "audioReady": true,
+      "globalN": 8,
+      "state": "c7"
+    },
+    {
+      "id": "s6",
+      "slideId": "s6",
+      "file": "audios/s6.mp3",
+      "text": "Diretrizes de Proteção",
+      "audioReady": true,
+      "globalN": 9,
+      "state": "main"
+    },
+    {
+      "id": "s-central-cores",
+      "slideId": "s-central-cores",
+      "file": "audios/s-central-cores.mp3",
+      "text": "Central de Cores. Imagem: Dosador da Central de Cores. Dosador Equipamento da Central de Cores usado para dosar tintas e pigmentos com precisão nas embalagens. Imagem: Misturador da Central de Cores. Misturador Equipamento da Central de Cores responsável por homogeneizar a tinta após a dosagem. 1 / 2",
+      "audioReady": true,
+      "globalN": 10,
+      "state": "main"
+    },
+    {
+      "id": "sq1-intro",
+      "slideId": "sq1",
+      "file": "audios/sq1-intro.mp3",
+      "text": "Hora do Desafio. Quiz do Módulo 1. Desafio NR 12 , Módulo 1. Responda 3 perguntas. Você precisa acertar no mínimo 2 para avançar. Toque em Iniciar Desafio para começar.",
+      "audioReady": true,
+      "globalN": 11,
+      "state": "intro"
+    },
+    {
+      "id": "sq1-q1",
+      "slideId": "sq1",
+      "file": "audios/sq1-q1.mp3",
+      "text": "Hora do Desafio. Quiz do Módulo 1. Pergunta 1 de 3. Qual é o objetivo principal da NR-12 na Central de Cores? Alternativa A: Ensinar os operadores a realizarem misturas de cores personalizadas para os clientes da loja. Alternativa B: Estabelecer referências técnicas e medidas de proteção para resguardar a saúde e a integridade física dos trabalhadores. Alternativa C: Definir quais marcas de tintas e corantes químicos podem ser comercializados na loja.",
+      "audioReady": true,
+      "globalN": 11,
+      "state": "q1"
+    },
+    {
+      "id": "sq1-q2",
+      "slideId": "sq1",
+      "file": "audios/sq1-q2.mp3",
+      "text": "Hora do Desafio. Quiz do Módulo 1. Pergunta 2 de 3. De acordo com o item 12.1.4 da norma, a NR-12 NÃO se aplica a qual dos seguintes itens da loja? Alternativa A: Ao dosador automático computadorizado de corantes da Central. Alternativa B: Às paleteiras manuais, movidas por força humana, e ferramentas elétricas portáteis, como furadeiras. Alternativa C: Ao misturador mecânico giroscópico utilizado para homogeneizar as tintas.",
+      "audioReady": true,
+      "globalN": 11,
+      "state": "q2"
+    },
+    {
+      "id": "sq1-q3",
+      "slideId": "sq1",
+      "file": "audios/sq1-q3.mp3",
+      "text": "Hora do Desafio. Quiz do Módulo 1. Pergunta 3 de 3. Segundo as exigências do Anexo II da NR-12, quem está legalmente autorizado a utilizar o dosador e o misturador de tintas? Alternativa A: Qualquer colaborador da loja que precise preparar uma tinta de forma rápida. Alternativa B: Apenas clientes, desde que acompanhados por um operador de caixa. Alternativa C: Exclusivamente os colaboradores capacitados e aprovados no treinamento de segurança.",
+      "audioReady": true,
+      "globalN": 11,
+      "state": "q3"
+    },
+    {
+      "id": "sq1-result",
+      "slideId": "sq1",
+      "file": "audios/sq1-result.mp3",
+      "text": "Resultado do Quiz do Módulo 1. Veja sua pontuação na tela. Toque em Jogar Novamente para refazer ou siga para o próximo módulo.",
+      "audioReady": true,
+      "globalN": 11,
+      "state": "result"
+    },
+    {
+      "id": "intro-m2",
+      "slideId": "intro-m2",
+      "file": "audios/intro-m2.mp3",
+      "text": "INÍCIO MÓDULO 2 Máquinas da Central de Cores",
+      "audioReady": true,
+      "globalN": 12,
+      "state": "main"
+    },
+    {
+      "id": "s-equipamento",
+      "slideId": "s-equipamento",
+      "file": "audios/s-equipamento.mp3",
+      "text": "Dosador de tintas",
+      "audioReady": true,
+      "globalN": 13,
+      "state": "main"
+    },
+    {
+      "id": "s10",
+      "slideId": "s10",
+      "file": "audios/s10.mp3",
+      "text": "Misturador de tintas",
+      "audioReady": true,
+      "globalN": 14,
+      "state": "main"
+    },
+    {
+      "id": "s9-c1",
+      "slideId": "s9",
+      "file": "audios/s9-c1.mp3",
+      "text": "Componentes das Máquinas. 01 Dosador de tintas Toque para visualizar Dosador de tintas Área de dosagem e posicionamento das embalagens; Área de enchimento dos canisters; Placa de identificação e etiquetas “Advertências gerais” e “Perigo Laser”; Interruptor geral, caixa de fusíveis, tomada de alimentação, tomadas auxiliares, portas seriais (USB e serial).",
+      "audioReady": true,
+      "globalN": 15,
+      "state": "c1"
+    },
+    {
+      "id": "s9-c2",
+      "slideId": "s9",
+      "file": "audios/s9-c2.mp3",
+      "text": "Componentes das Máquinas. 02 Misturador de tintas Toque para visualizar Misturador de tintas Lâmpada/botão de início de ciclo e timer (máx. 6 min); Botão de emergência; Porta tipo cortina deslizante; Mecanismo de travamento (rotor) e pratos de fechamento superior/inferior.",
+      "audioReady": true,
+      "globalN": 15,
+      "state": "c2"
+    },
+    {
+      "id": "sq2-intro",
+      "slideId": "sq2",
+      "file": "audios/sq2-intro.mp3",
+      "text": "Hora do Desafio. Quiz do Módulo 2. Desafio NR 12 , Módulo 2. Responda 3 perguntas de verdadeiro ou falso. Você precisa acertar no mínimo 2 para avançar. Toque em Iniciar Desafio para começar.",
+      "audioReady": true,
+      "globalN": 16,
+      "state": "intro"
+    },
+    {
+      "id": "sq2-q1",
+      "slideId": "sq2",
+      "file": "audios/sq2-q1.mp3",
+      "text": "Hora do Desafio. Quiz do Módulo 2. Pergunta 1 de 3. O timer do misturador permite ajustar o tempo de mistura em até 6 minutos. Alternativas: Verdadeiro ou Falso.",
+      "audioReady": true,
+      "globalN": 16,
+      "state": "q1"
+    },
+    {
+      "id": "sq2-q2",
+      "slideId": "sq2",
+      "file": "audios/sq2-q2.mp3",
+      "text": "Hora do Desafio. Quiz do Módulo 2. Pergunta 2 de 3. A porta cortina do misturador pode ficar aberta durante o ciclo de mistura. Alternativas: Verdadeiro ou Falso.",
+      "audioReady": true,
+      "globalN": 16,
+      "state": "q2"
+    },
+    {
+      "id": "sq2-q3",
+      "slideId": "sq2",
+      "file": "audios/sq2-q3.mp3",
+      "text": "Hora do Desafio. Quiz do Módulo 2. Pergunta 3 de 3. Os canisters ficam na área de enchimento do dosador. Alternativas: Verdadeiro ou Falso.",
+      "audioReady": true,
+      "globalN": 16,
+      "state": "q3"
+    },
+    {
+      "id": "sq2-result",
+      "slideId": "sq2",
+      "file": "audios/sq2-result.mp3",
+      "text": "Resultado do Quiz do Módulo 2. Veja sua pontuação na tela. Toque em Jogar Novamente para refazer ou siga para o próximo módulo.",
+      "audioReady": true,
+      "globalN": 16,
+      "state": "result"
+    },
+    {
+      "id": "intro-m3",
+      "slideId": "intro-m3",
+      "file": "audios/intro-m3.mp3",
+      "text": "INÍCIO MÓDULO 3 Segurança na Operação",
+      "audioReady": true,
+      "globalN": 17,
+      "state": "main"
+    },
+    {
+      "id": "s-bateria",
+      "slideId": "s-bateria",
+      "file": "audios/s-bateria.mp3",
+      "text": "Instrução de Trabalho",
+      "audioReady": true,
+      "globalN": 18,
+      "state": "main"
+    },
+    {
+      "id": "s-conducao",
+      "slideId": "s-conducao",
+      "file": "audios/s-conducao.mp3",
+      "text": "Operação Segura",
+      "audioReady": true,
+      "globalN": 19,
+      "state": "main"
+    },
+    {
+      "id": "s-rampas-c1",
+      "slideId": "s-rampas",
+      "file": "audios/s-rampas-c1.mp3",
+      "text": "Obrigatório, proibido e cuidados gerais. Obrigatório. Obrigatório",
+      "audioReady": true,
+      "globalN": 20,
+      "state": "c1"
+    },
+    {
+      "id": "s-rampas-c2",
+      "slideId": "s-rampas",
+      "file": "audios/s-rampas-c2.mp3",
+      "text": "Obrigatório, proibido e cuidados gerais. Proibido. Proibido",
+      "audioReady": true,
+      "globalN": 20,
+      "state": "c2"
+    },
+    {
+      "id": "s-rampas-c3",
+      "slideId": "s-rampas",
+      "file": "audios/s-rampas-c3.mp3",
+      "text": "Obrigatório, proibido e cuidados gerais. Cuidados gerais. Cuidados gerais",
+      "audioReady": true,
+      "globalN": 20,
+      "state": "c3"
+    },
+    {
+      "id": "s-bateria-troca",
+      "slideId": "s-bateria-troca",
+      "file": "audios/s-bateria-troca.mp3",
+      "text": "Riscos elétricos, corantes e EPI",
+      "audioReady": true,
+      "globalN": 21,
+      "state": "main"
+    },
+    {
+      "id": "s-quiz3-intro",
+      "slideId": "s-quiz3",
+      "file": "audios/s-quiz3-intro.mp3",
+      "text": "Hora do Desafio. Encontre os riscos. Módulo 3. Desafio NR 12 , Módulo 3. Observe 3 fotos e decida se libera ou não libera o procedimento. Você precisa acertar no mínimo 2 para avançar. Toque em Iniciar Desafio para começar.",
+      "audioReady": true,
+      "globalN": 22,
+      "state": "intro"
+    },
+    {
+      "id": "s-quiz3-q1",
+      "slideId": "s-quiz3",
+      "file": "audios/s-quiz3-q1.mp3",
+      "text": "Hora do Desafio. Encontre os riscos. Módulo 3. Pergunta 1 de 3. Imagem: Operador sem calçado de segurança perto do misturador. Você libera este procedimento? Alternativas: Liberado ou Não liberado.",
+      "audioReady": true,
+      "globalN": 22,
+      "state": "q1"
+    },
+    {
+      "id": "s-quiz3-q2",
+      "slideId": "s-quiz3",
+      "file": "audios/s-quiz3-q2.mp3",
+      "text": "Hora do Desafio. Encontre os riscos. Módulo 3. Pergunta 2 de 3. Imagem: Painel elétrico do dosador aberto. Você libera este procedimento? Alternativas: Liberado ou Não liberado.",
+      "audioReady": true,
+      "globalN": 22,
+      "state": "q2"
+    },
+    {
+      "id": "s-quiz3-q3",
+      "slideId": "s-quiz3",
+      "file": "audios/s-quiz3-q3.mp3",
+      "text": "Hora do Desafio. Encontre os riscos. Módulo 3. Pergunta 3 de 3. Imagem: Lata fora do centro do prato do misturador. Você libera este procedimento? Alternativas: Liberado ou Não liberado.",
+      "audioReady": true,
+      "globalN": 22,
+      "state": "q3"
+    },
+    {
+      "id": "s-quiz3-result",
+      "slideId": "s-quiz3",
+      "file": "audios/s-quiz3-result.mp3",
+      "text": "Resultado do desafio Encontre os riscos. Veja sua pontuação na tela. Toque em Jogar Novamente para refazer ou siga para o próximo módulo.",
+      "audioReady": true,
+      "globalN": 22,
+      "state": "result"
+    },
+    {
+      "id": "s-mod4-intro",
+      "slideId": "s-mod4-intro",
+      "file": "audios/s-mod4-intro.mp3",
+      "text": "INÍCIO MÓDULO 4 Segurança e Advertências",
+      "audioReady": true,
+      "globalN": 23,
+      "state": "main"
+    },
+    {
+      "id": "s-mod4-video",
+      "slideId": "s-mod4-video",
+      "file": "audios/s-mod4-video.mp3",
+      "text": "Regras do dia a dia",
+      "audioReady": true,
+      "globalN": 24,
+      "state": "main"
+    },
+    {
+      "id": "s-mod4-inspecao-c1",
+      "slideId": "s-mod4-inspecao",
+      "file": "audios/s-mod4-inspecao-c1.mp3",
+      "text": "Manutenção e limpeza , regras gerais. Preparação Antes de qualquer manutenção 01Desligue a máquinaDesligue antes de qualquer intervenção. 02Desconecte o caboRetire o cabo da tomada antes de iniciar. 03Risco com coranteAtenção ao contato elevado com corante.",
+      "audioReady": true,
+      "globalN": 25,
+      "state": "c1"
+    },
+    {
+      "id": "s-mod4-inspecao-c2",
+      "slideId": "s-mod4-inspecao",
+      "file": "audios/s-mod4-inspecao-c2.mp3",
+      "text": "Manutenção e limpeza , regras gerais. Proibido Produtos proibidos Nunca utilize produtos químicos inflamáveis ou à base de solvente. Álcool Aguarrás Desengraxante (WD-40) Thinner",
+      "audioReady": true,
+      "globalN": 25,
+      "state": "c2"
+    },
+    {
+      "id": "s-mod4-inspecao-c3",
+      "slideId": "s-mod4-inspecao",
+      "file": "audios/s-mod4-inspecao-c3.mp3",
+      "text": "Manutenção e limpeza , regras gerais. Segurança Atenção geral Segurança sempre. Siga as orientações e, em caso de dúvida, chame o serviço técnico autorizado. Serviço técnico autorizado",
+      "audioReady": true,
+      "globalN": 25,
+      "state": "c3"
+    },
+    {
+      "id": "s-mod4-limpeza-c1",
+      "slideId": "s-mod4-limpeza",
+      "file": "audios/s-mod4-limpeza-c1.mp3",
+      "text": "Limpeza por equipamento. Limpeza do misturador. Limpeza do misturador. Misturador",
+      "audioReady": true,
+      "globalN": 26,
+      "state": "c1"
+    },
+    {
+      "id": "s-mod4-limpeza-c2",
+      "slideId": "s-mod4-limpeza",
+      "file": "audios/s-mod4-limpeza-c2.mp3",
+      "text": "Limpeza por equipamento. Limpeza do dosador. Limpeza do dosador. Dosador",
+      "audioReady": true,
+      "globalN": 26,
+      "state": "c2"
+    },
+    {
+      "id": "s-mod4-pode-nao-c1",
+      "slideId": "s-mod4-pode-nao",
+      "file": "audios/s-mod4-pode-nao-c1.mp3",
+      "text": "O que pode e não pode. Não pode Água, solventes e limpeza interna do dosador são proibidos. Sem águaSem solventesSem limpeza interna",
+      "audioReady": true,
+      "globalN": 27,
+      "state": "c1"
+    },
+    {
+      "id": "s-mod4-pode-nao-c2",
+      "slideId": "s-mod4-pode-nao",
+      "file": "audios/s-mod4-pode-nao-c2.mp3",
+      "text": "O que pode e não pode. Pode Desligue, desconecte e limpe com pano macio e solução suave. DesligarDesconectarPano macio Solução suaveAssistência",
+      "audioReady": true,
+      "globalN": 27,
+      "state": "c2"
+    },
+    {
+      "id": "s-mod4-video-finalizacao",
+      "slideId": "s-mod4-video-finalizacao",
+      "file": "audios/s-mod4-video-finalizacao.mp3",
+      "text": "Limpeza dos bicos e da esponja",
+      "audioReady": true,
+      "globalN": 28,
+      "state": "main"
+    },
+    {
+      "id": "s-mod4-organizacao-c1",
+      "slideId": "s-mod4-organizacao",
+      "file": "audios/s-mod4-organizacao-c1.mp3",
+      "text": "Organização e recomendações finais. Foto: pag29.png Ambiente Central limpa e organizada Evite sujeira, papéis e etiquetas atrás das máquinas.",
+      "audioReady": true,
+      "globalN": 29,
+      "state": "c1"
+    },
+    {
+      "id": "s-mod4-organizacao-c2",
+      "slideId": "s-mod4-organizacao",
+      "file": "audios/s-mod4-organizacao-c2.mp3",
+      "text": "Organização e recomendações finais. Atenção Descarte seguro Resíduos de tinta só em recipiente/palete de contenção.",
+      "audioReady": true,
+      "globalN": 29,
+      "state": "c2"
+    },
+    {
+      "id": "s-mod4-organizacao-c3",
+      "slideId": "s-mod4-organizacao",
+      "file": "audios/s-mod4-organizacao-c3.mp3",
+      "text": "Organização e recomendações finais. Manutenção Preventiva em dia Realize manutenções preventivas regularmente.",
+      "audioReady": true,
+      "globalN": 29,
+      "state": "c3"
+    },
+    {
+      "id": "s-mod4-organizacao-c4",
+      "slideId": "s-mod4-organizacao",
+      "file": "audios/s-mod4-organizacao-c4.mp3",
+      "text": "Organização e recomendações finais. Falha Não intervenha sozinho Avise o líder para acionar a manutenção corretiva.",
+      "audioReady": true,
+      "globalN": 29,
+      "state": "c4"
+    },
+    {
+      "id": "s-mod4-organizacao-c5",
+      "slideId": "s-mod4-organizacao",
+      "file": "audios/s-mod4-organizacao-c5.mp3",
+      "text": "Organização e recomendações finais. Segurança EPIs e instruções Use os equipamentos de segurança e siga o fabricante.",
+      "audioReady": true,
+      "globalN": 29,
+      "state": "c5"
+    },
+    {
+      "id": "s-mod4-organizacao-c6",
+      "slideId": "s-mod4-organizacao",
+      "file": "audios/s-mod4-organizacao-c6.mp3",
+      "text": "Organização e recomendações finais. Responsabilidade Capacitar e inspecionar Só operadores capacitados. Faça testes e inspeções.",
+      "audioReady": true,
+      "globalN": 29,
+      "state": "c6"
+    },
+    {
+      "id": "s-quiz4-intro",
+      "slideId": "s-quiz4",
+      "file": "audios/s-quiz4-intro.mp3",
+      "text": "Hora do Desafio. Quiz do Módulo 4. Desafio NR 12 , Módulo 4. Mini-quiz de manutenção e limpeza. Responda 3 missões. Você precisa acertar no mínimo 2 para avançar. Toque em Iniciar Desafio para começar.",
+      "audioReady": true,
+      "globalN": 30,
+      "state": "intro"
+    },
+    {
+      "id": "s-quiz4-q1",
+      "slideId": "s-quiz4",
+      "file": "audios/s-quiz4-q1.mp3",
+      "text": "Hora do Desafio. Quiz do Módulo 4. Pergunta 1 de 3. Situação na loja. Hora de limpar o dosador. Um colega pega álcool e aguarrás e pergunta se pode usar. Quais produtos são proibidos na limpeza? Alternativa A: Pano seco. Alternativa B: Água e solventes como álcool, aguarrás e thinner. Alternativa C: Solução suave. Alternativa D: Pano úmido.",
+      "audioReady": true,
+      "globalN": 30,
+      "state": "q1"
+    },
+    {
+      "id": "s-quiz4-q2",
+      "slideId": "s-quiz4",
+      "file": "audios/s-quiz4-q2.mp3",
+      "text": "Hora do Desafio. Quiz do Módulo 4. Pergunta 2 de 3. Situação na loja. Durante o uso, um corante derrama para dentro do dosador. A máquina ainda está ligada. Qual é a atitude correta agora? Alternativa A: Limpar com pano imediatamente. Alternativa B: Desligar e chamar técnico autorizado. Alternativa C: Continuar operando. Alternativa D: Usar água para diluir.",
+      "audioReady": true,
+      "globalN": 30,
+      "state": "q2"
+    },
+    {
+      "id": "s-quiz4-q3",
+      "slideId": "s-quiz4",
+      "file": "audios/s-quiz4-q3.mp3",
+      "text": "Hora do Desafio. Quiz do Módulo 4. Pergunta 3 de 3. Situação na loja. Você precisa movimentar recipientes de tinta sozinho até a área de uso. Qual o peso máximo permitido? Alternativa A: 10 kg. Alternativa B: 15 kg. Alternativa C: 25 kg. Alternativa D: 40 kg.",
+      "audioReady": true,
+      "globalN": 30,
+      "state": "q3"
+    },
+    {
+      "id": "s-quiz4-result",
+      "slideId": "s-quiz4",
+      "file": "audios/s-quiz4-result.mp3",
+      "text": "Resultado do Quiz do Módulo 4. Veja sua pontuação na tela. Toque em Jogar Novamente para refazer ou siga para o próximo módulo.",
+      "audioReady": true,
+      "globalN": 30,
+      "state": "result"
+    },
+    {
+      "id": "s-mod6-video-final",
+      "slideId": "s-mod6-video-final",
+      "file": "audios/s-mod6-video-final.mp3",
+      "text": "Mensagem final",
+      "audioReady": true,
+      "globalN": 31,
+      "state": "main"
+    },
+    {
+      "id": "s-conclusion",
+      "slideId": "s-conclusion",
+      "file": "audios/s-conclusion.mp3",
+      "text": "Treinamento , Concluído. Certificado de conclusão Parabéns! Você concluiu o treinamento NR 12 , Segurança na Operação de Máquinas. Por mérito, dedicação e compromisso com a segurança, você percorreu os 4 módulos. 4 módulos NR 12 Máquinas",
+      "audioReady": true,
+      "globalN": 32,
+      "state": "main"
+    }
+  ]
+}

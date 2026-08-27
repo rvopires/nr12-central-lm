@@ -297,10 +297,15 @@ const QUIZ_AUDIO_HELPER_PANELS = {
 window.updateQuizAudioHelper = function updateQuizAudioHelper() {
     const bar = document.getElementById('a11y-bar');
     const audioHelper = bar && bar.querySelector('.audio-helper');
-    if (!audioHelper) return;
-    // Não exibir aviso de áudio nas perguntas do quiz
-    audioHelper.classList.remove('is-active');
-    if (bar) bar.classList.remove('quiz-audio-helper');
+    if (audioHelper) {
+        audioHelper.classList.remove('is-active');
+        if (bar) bar.classList.remove('quiz-audio-helper');
+    }
+    try {
+        if (typeof window.notifyNarrationStateChange === 'function') {
+            window.notifyNarrationStateChange();
+        }
+    } catch (e) { /* ignore */ }
 };
 
 function persistSlideHash(idx) {
@@ -3486,124 +3491,476 @@ function resetQuiz6() { quiz6.reset(); }
             }
         }
 
-        // ── OUVIR (ÁUDIO LOCAL) — mesma regra de áudio ──
+        // ── Transcrição (padrão NR 06): pasta audios/ primeiro, TTS só se faltar MP3 ──
         const btnA11y = document.getElementById('btn-accessibility');
-        const a11yText = a11yItem.querySelector('.a11y-text');
-        let currentAudio = null;
-
-        function stopSpeak() {
-            if (currentAudio) {
-                currentAudio.pause();
-                currentAudio.currentTime = 0;
-            }
-            if (btnA11y) {
-                btnA11y.classList.remove('active', 'is-active');
-                btnA11y.setAttribute('aria-pressed', 'false');
-                btnA11y.setAttribute('aria-label', 'Ouvir transcrição em áudio do slide');
-            }
-            if (a11yText) a11yText.textContent = 'Transcrição';
+        let a11yAudio = document.getElementById('accessibility-audio');
+        if (!a11yAudio) {
+            a11yAudio = document.createElement('audio');
+            a11yAudio.id = 'accessibility-audio';
+            a11yAudio.preload = 'metadata';
+            a11yAudio.setAttribute('aria-hidden', 'true');
+            a11yAudio.hidden = true;
+            document.body.appendChild(a11yAudio);
         }
 
-        const AUDIO_DIR = 'audios-novos';
-        function resolveAudioFile(pageNum) {
-            const fallback = `${AUDIO_DIR}/pagina-${pageNum}.mp3`;
+        let narrationActive = false;
+        let narrationPlaybackId = 0;
+        let narrationDebounceTimer = null;
+        let ttsObjectUrl = null;
+        let ttsBearerToken = '';
+        const narrationBlobCache = new Map();
+        const audioManifestById = new Map();
+        let audioManifestLoaded = false;
+
+        // Fase 1: só s1 com MP3 gerado; demais IDs entram no Set para expansão gradual
+        const NARRATION_LIVE_SLIDE_IDS = new Set([
+            's1', 's1b', 's-sumario',
+            'intro-m1', 's-o-que-e-nr12', 's-conceito-maquinas', 's2', 's4', 's6', 's-central-cores', 'sq1',
+            'intro-m2', 's-equipamento', 's10', 's9', 'sq2',
+            'intro-m3', 's-bateria', 's-conducao', 's-rampas', 's-bateria-troca', 's-quiz3',
+            's-mod4-intro', 's-mod4-video', 's-mod4-inspecao', 's-mod4-limpeza', 's-mod4-pode-nao',
+            's-mod4-video-finalizacao', 's-mod4-organizacao', 's-quiz4', 's-mod6-video-final', 's-conclusion'
+        ]);
+
+        const TTS_CONFIG = Object.assign({
+            apiBase: 'https://texttospeech.escolatecnocursos.cloud',
+            ttsPath: '/api/tts',
+            authPath: '/api/auth/login',
+            username: '',
+            password: '',
+            bearerToken: ''
+        }, window.__TTS_CONFIG__ || {});
+        ttsBearerToken = TTS_CONFIG.bearerToken || '';
+
+        function ingestAudioManifest(data) {
+            if (!data || !Array.isArray(data.slides)) return;
+            data.slides.forEach(function (entry) { audioManifestById.set(entry.id, entry); });
+        }
+
+        async function loadAudioManifest() {
+            if (audioManifestLoaded) return;
+            if (window.__AUDIO_NARRATION__) ingestAudioManifest(window.__AUDIO_NARRATION__);
+            if (!audioManifestById.size) {
+                try {
+                    const res = await fetch('audios/manifest.json', { cache: 'no-cache' });
+                    if (res.ok) ingestAudioManifest(await res.json());
+                } catch (err) {
+                    console.log('Audio manifest load error:', err);
+                }
+            }
+            audioManifestLoaded = true;
+        }
+
+        function getAccessibilityEntry(slide) {
+            if (!slide) return null;
+            return audioManifestById.get(slide.id) || null;
+        }
+
+        function stopSpeech() {
+            const audio = document.getElementById('accessibility-audio');
+            if (audio) {
+                try { audio.pause(); } catch (e) { /* ignore */ }
+                audio.removeAttribute('src');
+                try { audio.load(); } catch (e2) { /* ignore */ }
+            }
+            if (ttsObjectUrl) {
+                URL.revokeObjectURL(ttsObjectUrl);
+                ttsObjectUrl = null;
+            }
+        }
+
+        function pauseNarrationVideos() {
             try {
-                if (typeof AUDIO_DATA === 'undefined' || !AUDIO_DATA.MULTI_STATE) return fallback;
+                document.querySelectorAll('.slide.active .video-wrap iframe').forEach(function (iframe) {
+                    pauseSlideVideoIframe(iframe);
+                });
+            } catch (e) { /* ignore */ }
+        }
 
-                const activeSlide = document.querySelector('.slide.active');
-                if (!activeSlide || !activeSlide.id) return fallback;
+        function onNarrationStart() {
+            const bgMusic = document.getElementById('bg-music') || window.bgMusic;
+            if (bgMusic && !bgMusic.paused) bgMusic.pause();
+            pauseNarrationVideos();
+        }
 
-                const cfg = AUDIO_DATA.MULTI_STATE[activeSlide.id];
-                if (!cfg) return fallback;
+        function showNarrationError(message) {
+            console.warn('[Narração]', message);
+            const n = document.getElementById('notification');
+            if (!n) return;
+            n.textContent = message;
+            n.classList.add('show');
+            setTimeout(function () { n.classList.remove('show'); }, 3500);
+        }
 
-                const isVisible = (sel) => {
-                    if (!sel) return false;
-                    const el = activeSlide.querySelector(sel) || document.querySelector(sel);
-                    if (!el) return false;
-                    const cs = window.getComputedStyle(el);
-                    if (cs.display === 'none' || cs.visibility === 'hidden') return false;
-                    return el.offsetParent !== null || el.getClientRects().length > 0;
-                };
-
-                if (cfg.panels && cfg.panels.result && isVisible(cfg.panels.result)) {
-                    return `${AUDIO_DIR}/pagina-${pageNum}-result.mp3`;
+        function getPageLabel() {
+            const counter = document.getElementById('slide-counter');
+            if (counter && counter.textContent && counter.textContent.indexOf('/') !== -1) {
+                const parts = counter.textContent.split('/').map(function (p) { return p.trim(); });
+                if (parts.length === 2 && parts[0] && parts[1]) {
+                    return 'Página ' + parts[0] + ' de ' + parts[1] + '.';
                 }
-                if (cfg.panels && cfg.panels.intro && isVisible(cfg.panels.intro)) {
-                    return `${AUDIO_DIR}/pagina-${pageNum}-intro.mp3`;
-                }
-                if (cfg.panels && cfg.panels.question && isVisible(cfg.panels.question)) {
-                    const counter = activeSlide.querySelector(cfg.counterSelector) ||
-                                    document.querySelector(cfg.counterSelector);
-                    let qNum = 1;
-                    if (counter) {
-                        const pat = cfg.counterPattern || /(\d+)/;
-                        const m = (counter.textContent || '').match(pat);
-                        if (m && m[1]) qNum = parseInt(m[1], 10) || 1;
-                    }
-                    return `${AUDIO_DIR}/pagina-${pageNum}-q${qNum}.mp3`;
-                }
+            }
+            try {
+                return 'Página ' + nr11GlobalSlide() + ' de ' + NR11_TOTAL_SLIDES + '.';
             } catch (e) {
-                console.warn('resolveAudioFile falhou, usando fallback:', e);
+                return 'Página 1.';
             }
-            return fallback;
         }
 
-        async function startSpeak() {
-            if (btnA11y) {
-                btnA11y.classList.add('active', 'is-active');
-                btnA11y.setAttribute('aria-pressed', 'true');
-                btnA11y.setAttribute('aria-label', 'Parar transcrição em áudio');
+        function cleanNarrationText(text) {
+            return String(text || '')
+                .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, ' ')
+                .replace(/[•·►▶◄◀→←↑↓✦✧★☆✓✔✕✖]/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function normalizeNarrationKey(text) {
+            return cleanNarrationText(text).toLowerCase();
+        }
+
+        function hashNarrationText(text) {
+            const s = normalizeNarrationKey(text);
+            let h = 5381;
+            for (let i = 0; i < s.length; i++) h = ((h << 5) + h) ^ s.charCodeAt(i);
+            return (h >>> 0).toString(16);
+        }
+
+        function isElementVisibleForNarration(el) {
+            if (!el || !(el instanceof Element)) return false;
+            if (el.closest('[hidden], [aria-hidden="true"]')) return false;
+            const style = window.getComputedStyle(el);
+            if (style.display === 'none' || style.visibility === 'hidden' || parseFloat(style.opacity || '1') === 0) return false;
+            return true;
+        }
+
+        function shouldSkipNarrationNode(el) {
+            if (!el || !(el instanceof Element)) return true;
+            if (el.matches('script, style, svg, iframe, button, noscript, .wave, .nav-btn, .zoom-btn')) return true;
+            if (el.matches('.btn-start, .btn-retry, .btn-nav, .nav-controls, #nav, .s1-actions, .s1-secondary-actions')) return true;
+            if (el.matches('.section-tag, .slide-subtitle, .epi-flip-hint, .epi-flip-carousel-hint, .epi-flip-tap, .epi-flip-back-foot')) return true;
+            if (el.matches('.m4l-flip-hint, .m4l-hint, .m4l-expand')) return true;
+            return false;
+        }
+
+        function collectVisibleSlideText(slide) {
+            if (!slide) return '';
+            const parts = [];
+            function walk(node) {
+                if (!node) return;
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const t = String(node.textContent || '').replace(/\s+/g, ' ').trim();
+                    if (t) parts.push(t);
+                    return;
+                }
+                if (node.nodeType !== Node.ELEMENT_NODE) return;
+                const el = node;
+                if (shouldSkipNarrationNode(el)) return;
+                if (!isElementVisibleForNarration(el)) return;
+                if (el.tagName === 'IMG') {
+                    const alt = (el.getAttribute('alt') || '').trim();
+                    if (alt) parts.push('Imagem: ' + alt + '.');
+                    return;
+                }
+                for (let i = 0; i < el.childNodes.length; i++) walk(el.childNodes[i]);
             }
-            if (a11yText) a11yText.textContent = 'Lendo...';
+            walk(slide);
+            return cleanNarrationText(parts.join(' '));
+        }
 
-            const pageNum = nr11GlobalSlide();
-            const audioSrc = resolveAudioFile(pageNum);
+        function getCurrentNarrationText() {
+            const slide = document.querySelector('.slide.active');
+            if (!slide) return '';
+            return cleanNarrationText(collectVisibleSlideText(slide));
+        }
 
+        function isPanelVisible(el) {
+            if (!el) return false;
+            if (el.classList.contains('is-active')) return true;
+            const d = el.style && el.style.display;
+            if (d === 'none') return false;
+            if (d === 'block' || d === 'flex') return true;
             try {
-                currentAudio = new Audio(audioSrc);
-
-                const wasPlayingMusic = window.musicEnabled && window.bgMusic && !window.bgMusic.paused;
-                if (wasPlayingMusic) window.bgMusic.pause();
-
-                await currentAudio.play();
-
-                currentAudio.onended = () => {
-                    stopSpeak();
-                    if (window.musicEnabled && window.bgMusic) window.bgMusic.play().catch(() => { });
-                };
-
-                currentAudio.onerror = () => {
-                    console.error('Áudio local não encontrado: ' + audioSrc);
-                    stopSpeak();
-                };
-            } catch (err) {
-                console.error('Erro ao iniciar áudio:', err);
-                stopSpeak();
+                return window.getComputedStyle(el).display !== 'none';
+            } catch (e) {
+                return false;
             }
         }
+
+        function counterQuestionNum(elId) {
+            const el = document.getElementById(elId);
+            if (!el || !el.textContent) return 1;
+            const m = String(el.textContent).match(/(\d+)/);
+            return m ? parseInt(m[1], 10) : 1;
+        }
+
+        /** Mapa quiz slideId → painéis / contador (igual audio-data QUIZ_META). */
+        const QUIZ_FOLDER_MAP = {
+            sq1: { intro: 'q1-intro-panel', play: 'q1-question-panel', result: 'q1-result-panel', counter: 'q1-counter' },
+            sq2: { intro: 'q2-intro-panel', play: 'q2-question-panel', result: 'q2-result-panel', counter: 'q2-counter' },
+            's-quiz3': { intro: 'find-risk-intro', play: 'find-risk-play', result: 'q3-result-panel', counter: 'find-risk-counter' },
+            's-quiz4': { intro: 'q4-intro-panel', play: 'q4-question-panel', result: 'q4-result-panel', counter: 'q4-counter' }
+        };
+
+        /** Carrosséis / flip-cards — um MP3 por card (via AUDIO_DATA). */
+        function getCarouselIndexForSlide(slide) {
+            if (!slide || typeof AUDIO_DATA === 'undefined' || !AUDIO_DATA.getCarouselIndex) return 0;
+            if (!AUDIO_DATA.CAROUSEL_META || !AUDIO_DATA.CAROUSEL_META[slide.id]) return 0;
+            return AUDIO_DATA.getCarouselIndex(slide.id, document);
+        }
+
+        function resolveNarrationFolderSrc(slide) {
+            if (!slide || !slide.id) return null;
+            const qmap = QUIZ_FOLDER_MAP[slide.id];
+            if (qmap) {
+                const resultEl = document.getElementById(qmap.result);
+                const playEl = document.getElementById(qmap.play);
+                const introEl = document.getElementById(qmap.intro);
+                if (resultEl && isPanelVisible(resultEl)) return 'audios/' + slide.id + '-result.mp3';
+                if (playEl && isPanelVisible(playEl)) {
+                    return 'audios/' + slide.id + '-q' + counterQuestionNum(qmap.counter) + '.mp3';
+                }
+                if (introEl && isPanelVisible(introEl)) return 'audios/' + slide.id + '-intro.mp3';
+                return 'audios/' + slide.id + '-intro.mp3';
+            }
+            if (typeof AUDIO_DATA !== 'undefined' && AUDIO_DATA.carouselNarrationSrc) {
+                const csrc = AUDIO_DATA.carouselNarrationSrc(slide.id, document);
+                if (csrc) return csrc;
+            }
+            const entry = getAccessibilityEntry(slide);
+            if (entry && entry.file) return entry.file;
+            return 'audios/' + slide.id + '.mp3';
+        }
+
+        function isCarouselSlide(slide) {
+            if (!slide || typeof AUDIO_DATA === 'undefined' || !AUDIO_DATA.CAROUSEL_META) return false;
+            return !!AUDIO_DATA.CAROUSEL_META[slide.id];
+        }
+
+        function isQuizPlayActive(slide) {
+            if (!slide) return false;
+            const qmap = QUIZ_FOLDER_MAP[slide.id];
+            if (!qmap) return false;
+            const playEl = document.getElementById(qmap.play);
+            return !!(playEl && isPanelVisible(playEl));
+        }
+
+        function setNarrationButtonState(active) {
+            const btn = document.getElementById('btn-accessibility');
+            const label = a11yItem.querySelector('.a11y-text');
+            if (!btn) return;
+            btn.classList.toggle('active', active);
+            btn.classList.toggle('is-active', active);
+            btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+            btn.setAttribute('aria-label', active ? 'Parar transcrição em áudio' : 'Ouvir transcrição em áudio do slide');
+            if (label) label.textContent = active ? 'Lendo...' : 'Transcrição';
+        }
+
+        function tryPlayMp3(audio, src, playbackId) {
+            return new Promise(function (resolve) {
+                if (!src) { resolve(false); return; }
+                // Já tocando o mesmo arquivo — não reiniciar
+                if (audio.getAttribute('data-current-src') === src && !audio.paused && !audio.ended) {
+                    resolve(true);
+                    return;
+                }
+                let settled = false;
+                const finish = function (ok) {
+                    if (settled || playbackId !== narrationPlaybackId) return;
+                    settled = true;
+                    clearTimeout(timer);
+                    audio.removeEventListener('error', onError);
+                    audio.removeEventListener('canplaythrough', onReady);
+                    resolve(ok);
+                };
+                const onError = function () { finish(false); };
+                const onReady = async function () {
+                    if (playbackId !== narrationPlaybackId) { finish(false); return; }
+                    try {
+                        if (audio.currentTime > 0.05) audio.currentTime = 0;
+                        await audio.play();
+                        finish(true);
+                    } catch (e) {
+                        finish(false);
+                    }
+                };
+                audio.addEventListener('error', onError, { once: true });
+                audio.addEventListener('canplaythrough', onReady, { once: true });
+                audio.setAttribute('data-current-src', src);
+                audio.src = src;
+                audio.load();
+                const timer = setTimeout(function () { finish(false); }, 10000);
+            });
+        }
+
+        async function getTtsBearerToken() {
+            if (ttsBearerToken) return ttsBearerToken;
+            if (!TTS_CONFIG.username || !TTS_CONFIG.password) {
+                throw new Error('TTS: configure username/password em tts-config.local.js');
+            }
+            const res = await fetch(TTS_CONFIG.apiBase + TTS_CONFIG.authPath, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: TTS_CONFIG.username, password: TTS_CONFIG.password })
+            });
+            if (!res.ok) throw new Error('TTS login falhou (' + res.status + ')');
+            const data = await res.json();
+            ttsBearerToken = data.token || data.accessToken || '';
+            if (!ttsBearerToken) throw new Error('TTS: token ausente na resposta de login');
+            return ttsBearerToken;
+        }
+
+        async function fetchTtsBlob(text) {
+            const token = await getTtsBearerToken();
+            const res = await fetch(TTS_CONFIG.apiBase + TTS_CONFIG.ttsPath, {
+                method: 'POST',
+                headers: {
+                    Authorization: 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: text })
+            });
+            if (!res.ok) throw new Error('TTS falhou (' + res.status + ')');
+            return res.blob();
+        }
+
+        async function playBlobOnAudio(audio, blob, playbackId) {
+            if (ttsObjectUrl) URL.revokeObjectURL(ttsObjectUrl);
+            ttsObjectUrl = URL.createObjectURL(blob);
+            audio.onended = function () {
+                if (playbackId !== narrationPlaybackId) return;
+                setNarrationButtonState(false);
+                narrationActive = false;
+                if (window.musicEnabled && window.bgMusic) window.bgMusic.play().catch(function () { });
+            };
+            audio.onplay = function () {
+                if (playbackId !== narrationPlaybackId) return;
+                onNarrationStart();
+            };
+            audio.src = ttsObjectUrl;
+            await audio.play();
+            return playbackId === narrationPlaybackId;
+        }
+
+        async function playAccessibilityAudioForActiveSlide() {
+            const slide = document.querySelector('.slide.active');
+            const audio = document.getElementById('accessibility-audio');
+            if (!slide || !audio) return false;
+
+            const folderSrc = resolveNarrationFolderSrc(slide);
+            // Evita reiniciar se o MP3 certo já está tocando
+            if (narrationActive && folderSrc && audio.getAttribute('data-current-src') === folderSrc && !audio.paused && !audio.ended) {
+                return true;
+            }
+
+            const playbackId = ++narrationPlaybackId;
+            stopSpeech();
+            await loadAudioManifest();
+
+            const keepQuizNarrationOn = isQuizPlayActive(slide);
+            const keepCarouselNarrationOn = isCarouselSlide(slide);
+
+            audio.onended = function () {
+                if (playbackId !== narrationPlaybackId) return;
+                if (keepQuizNarrationOn || keepCarouselNarrationOn) {
+                    narrationActive = true;
+                    setNarrationButtonState(true);
+                    return;
+                }
+                setNarrationButtonState(false);
+                narrationActive = false;
+                if (window.musicEnabled && window.bgMusic) window.bgMusic.play().catch(function () { });
+            };
+            audio.onplay = function () {
+                if (playbackId !== narrationPlaybackId) return;
+                onNarrationStart();
+            };
+
+            // Prioridade absoluta: MP3 da pasta — NÃO chama API no clique
+            let folderOk = await tryPlayMp3(audio, folderSrc, playbackId);
+            if (!folderOk && isCarouselSlide(slide)) {
+                folderOk = await tryPlayMp3(audio, 'audios/' + slide.id + '.mp3', playbackId);
+            }
+            if (playbackId !== narrationPlaybackId) return false;
+            if (folderOk) {
+                console.log('[Narração] pasta:', folderSrc);
+                return true;
+            }
+
+            console.warn('[Narração] MP3 ausente:', folderSrc);
+            showNarrationError('Áudio não encontrado: ' + folderSrc + '. Gere com generate-audios-proxy.js');
+            setNarrationButtonState(false);
+            narrationActive = false;
+            return false;
+        }
+
+        async function toggleAccessibilityNarration() {
+            if (narrationActive) {
+                narrationActive = false;
+                narrationPlaybackId++;
+                stopSpeech();
+                setNarrationButtonState(false);
+                if (window.musicEnabled && window.bgMusic) window.bgMusic.play().catch(function () { });
+                return;
+            }
+            narrationActive = true;
+            setNarrationButtonState(true);
+            const started = await playAccessibilityAudioForActiveSlide();
+            if (!started && narrationActive) {
+                console.log('Transcrição ativa — aguardando próximo slide ou nova tentativa.');
+            }
+        }
+
+        function notifyNarrationStateChange() {
+            if (!narrationActive) return;
+            clearTimeout(narrationDebounceTimer);
+            narrationDebounceTimer = setTimeout(async function () {
+                if (!narrationActive) return;
+                const slide = document.querySelector('.slide.active');
+                const audio = document.getElementById('accessibility-audio');
+                const nextSrc = slide ? resolveNarrationFolderSrc(slide) : null;
+                if (nextSrc && audio && audio.getAttribute('data-current-src') === nextSrc && !audio.paused && !audio.ended) {
+                    return;
+                }
+                stopSpeech();
+                await playAccessibilityAudioForActiveSlide();
+            }, 250);
+        }
+
+        window.toggleAccessibilityNarration = toggleAccessibilityNarration;
+        window.notifyNarrationStateChange = notifyNarrationStateChange;
+        window.handleSlideAccessibilityAudio = notifyNarrationStateChange;
+        window.getCurrentNarrationText = getCurrentNarrationText;
+        window.resolveNarrationFolderSrc = resolveNarrationFolderSrc;
 
         if (btnA11y) {
             btnA11y.addEventListener('click', function (e) {
                 e.stopPropagation();
-                if (btnA11y.classList.contains('active')) {
-                    stopSpeak();
-                } else {
-                    startSpeak();
-                }
-                window.updateQuizAudioHelper();
+                toggleAccessibilityNarration();
             });
         }
 
         document.addEventListener('visibilitychange', function () {
-            if (document.hidden) stopSpeak();
+            if (document.hidden) {
+                narrationActive = false;
+                narrationPlaybackId++;
+                stopSpeech();
+                setNarrationButtonState(false);
+            }
         });
-        window.addEventListener('beforeunload', stopSpeak);
+        window.addEventListener('beforeunload', function () {
+            narrationActive = false;
+            stopSpeech();
+        });
 
         if (typeof window.goTo === 'function' && !window.goTo.__a11yHooked) {
             const origGoTo = window.goTo;
             window.goTo = function () {
-                stopSpeak();
                 const result = origGoTo.apply(this, arguments);
+                if (!narrationActive) {
+                    stopSpeech();
+                    setNarrationButtonState(false);
+                }
                 window.updateQuizAudioHelper();
                 return result;
             };
@@ -3611,11 +3968,31 @@ function resetQuiz6() { quiz6.reset(); }
         }
 
         window.updateQuizAudioHelper();
-        ['q1-question-panel', 'q2-question-panel', 'conducao-question-panel', 'q3-question-panel', 'q4-question-panel', 'q5-question-panel', 'q6-question-panel'].forEach(function (id) {
+        ['q1-question-panel', 'q1-intro-panel', 'q1-result-panel',
+         'q2-question-panel', 'q2-intro-panel', 'q2-result-panel',
+         'q4-question-panel', 'q4-intro-panel', 'q4-result-panel',
+         'find-risk-play', 'find-risk-intro', 'q3-result-panel',
+         'find-risk-counter', 'q1-counter', 'q2-counter', 'q4-counter',
+         'nr12-counter', 'cm-counter', 's4-counter', 's9-counter', 'opc-counter',
+         'm4m-counter', 'm4l-counter', 'm4o-progress-lbl'
+        ].forEach(function (id) {
             const panel = document.getElementById(id);
             if (panel) {
-                new MutationObserver(window.updateQuizAudioHelper).observe(panel, { attributes: true, attributeFilter: ['style', 'class'] });
+                new MutationObserver(function () {
+                    window.notifyNarrationStateChange();
+                }).observe(panel, { attributes: true, attributeFilter: ['style', 'class'], childList: true, characterData: true, subtree: true });
             }
+        });
+        var m4pTabs = document.querySelector('#s-mod4-pode-nao .m4p-tabs');
+        if (m4pTabs) {
+            new MutationObserver(function () {
+                window.notifyNarrationStateChange();
+            }).observe(m4pTabs, { attributes: true, attributeFilter: ['class'], subtree: true, childList: true });
+        }
+        document.querySelectorAll('#s-mod4-pode-nao .m4p-tab').forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                window.notifyNarrationStateChange();
+            });
         });
 
         if (typeof applyDemoModeUI === 'function') applyDemoModeUI();
