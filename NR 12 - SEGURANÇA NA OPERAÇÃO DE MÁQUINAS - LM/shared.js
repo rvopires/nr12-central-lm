@@ -768,9 +768,10 @@ function updateNextButton() {
 /* ── Slide video lazy load (Panda / Vimeo) ── */
 var SLIDE_VIDEO_BLANK = 'about:blank';
 var _videoWrapInited = new WeakSet();
-// Regras NR 06: não pular + libera avanço com ~3s restantes
-var VIDEO_TIMEUPDATE_TOLERANCE = 2.5;
-var VIDEO_SEEKING_TOLERANCE = 1.25;
+// Regras: não pular (nem de pouquinho) + libera avanço com ~3s restantes
+// Tolerâncias baixas: seeks pequenos não podem “empilhar” o maxWatched
+var VIDEO_TIMEUPDATE_TOLERANCE = 0.55;
+var VIDEO_SEEKING_TOLERANCE = 0.15;
 var VIDEO_COMPLETE_MARGIN = 3;
 
 function getVimeoIdFromSrc(src) {
@@ -985,7 +986,9 @@ function initPandaWrapPlayer(wrap) {
         maxWatched: 0,
         duration: 0,
         completed: false,
-        seekingBack: false
+        seekingBack: false,
+        isSeeking: false,
+        lastTickWall: 0
     };
 
     function complete() {
@@ -1006,7 +1009,24 @@ function initPandaWrapPlayer(wrap) {
                 iframe.contentWindow.postMessage({ type: 'currentTime', parameter: target }, '*');
             }
         } catch (e) { }
-        setTimeout(function () { state.seekingBack = false; }, 350);
+        setTimeout(function () {
+            state.seekingBack = false;
+            state.lastTickWall = Date.now();
+        }, 350);
+    }
+
+    function handleSeek(t, player) {
+        if (state.completed || wrap.classList.contains('req-done')) return;
+        state.isSeeking = true;
+        if (typeof t === 'number' && !isNaN(t) && t > state.maxWatched + VIDEO_SEEKING_TOLERANCE) {
+            snapBack(player);
+        }
+        // Nunca avança maxWatched no seek (bloqueia “pouquinho e pouquinho”)
+        clearTimeout(state._seekEndTimer);
+        state._seekEndTimer = setTimeout(function () {
+            state.isSeeking = false;
+            state.lastTickWall = Date.now();
+        }, 280);
     }
 
     function handleTime(t, dur, player) {
@@ -1014,7 +1034,20 @@ function initPandaWrapPlayer(wrap) {
         if (typeof dur === 'number' && dur > 0) state.duration = dur;
         if (typeof t !== 'number' || isNaN(t)) return;
         if (state.seekingBack) return;
-        if (t > state.maxWatched + VIDEO_TIMEUPDATE_TOLERANCE) {
+
+        // Durante/logo após seek: só volta, não “aprende” o novo tempo
+        if (state.isSeeking) {
+            if (t > state.maxWatched + VIDEO_SEEKING_TOLERANCE) snapBack(player);
+            return;
+        }
+
+        var now = Date.now();
+        var wallDt = state.lastTickWall ? Math.max(0, (now - state.lastTickWall) / 1000) : 0.25;
+        state.lastTickWall = now;
+        // Só cresce no ritmo real de reprodução (+ folga p/ lag); seek disfarçado estoura isso
+        var allowed = state.maxWatched + Math.min(VIDEO_TIMEUPDATE_TOLERANCE, wallDt * 1.4 + 0.12);
+
+        if (t > allowed) {
             snapBack(player);
             return;
         }
@@ -1025,7 +1058,7 @@ function initPandaWrapPlayer(wrap) {
     }
 
     // postMessage: funciona mesmo sem PandaPlayer API
-    initPandaPostMessageFallback(wrap, iframe, warn, state, handleTime, complete, snapBack);
+    initPandaPostMessageFallback(wrap, iframe, warn, state, handleTime, complete, snapBack, handleSeek);
 
     function bindPlayer(player) {
         _videoWrapInited.add(wrap);
@@ -1036,13 +1069,17 @@ function initPandaWrapPlayer(wrap) {
             var d = player.getDuration && player.getDuration();
             if (typeof d === 'number' && d > 0) state.duration = d;
         } catch (e) { }
+        state.lastTickWall = Date.now();
 
         player.onEvent(function (e) {
             if (!e || state.completed) return;
             var msg = e.message;
             var t = typeof e.currentTime === 'number' ? e.currentTime : null;
 
-            if (msg === 'panda_play') setVideoWarnVisible(warn, false);
+            if (msg === 'panda_play') {
+                setVideoWarnVisible(warn, false);
+                state.lastTickWall = Date.now();
+            }
             if (msg === 'panda_pause' && !wrap.classList.contains('req-done')) {
                 setVideoWarnVisible(warn, true);
             }
@@ -1059,7 +1096,7 @@ function initPandaWrapPlayer(wrap) {
                 handleTime(t, state.duration, player);
             }
             if (msg === 'panda_seeking' || msg === 'panda_seeked') {
-                if (t !== null && t > state.maxWatched + VIDEO_SEEKING_TOLERANCE) snapBack(player);
+                handleSeek(t, player);
             }
         });
     }
@@ -1085,7 +1122,7 @@ function initPandaWrapPlayer(wrap) {
     startPanda();
 }
 
-function initPandaPostMessageFallback(wrap, iframe, warn, state, onTime, onEnded, snapBack) {
+function initPandaPostMessageFallback(wrap, iframe, warn, state, onTime, onEnded, snapBack, onSeek) {
     if (iframe.dataset.pandaMsgBound) return;
     iframe.dataset.pandaMsgBound = '1';
     var videoId = getPandaIdFromSrc(iframe.getAttribute('src') || iframe.dataset.videoSrc || '')
@@ -1101,7 +1138,10 @@ function initPandaPostMessageFallback(wrap, iframe, warn, state, onTime, onEnded
         var t = typeof data.currentTime === 'number' ? data.currentTime : null;
         var dur = typeof data.duration === 'number' ? data.duration : null;
 
-        if (data.message === 'panda_play') setVideoWarnVisible(warn, false);
+        if (data.message === 'panda_play') {
+            setVideoWarnVisible(warn, false);
+            state.lastTickWall = Date.now();
+        }
         if (data.message === 'panda_pause' && !wrap.classList.contains('req-done')) {
             setVideoWarnVisible(warn, true);
         }
@@ -1112,8 +1152,9 @@ function initPandaPostMessageFallback(wrap, iframe, warn, state, onTime, onEnded
             return;
         }
         if (data.message === 'panda_seeking' || data.message === 'panda_seeked') {
-            if (t !== null && t > state.maxWatched + VIDEO_SEEKING_TOLERANCE) {
-                if (typeof snapBack === 'function') snapBack(null);
+            if (typeof onSeek === 'function') onSeek(t, null);
+            else if (t !== null && t > state.maxWatched + VIDEO_SEEKING_TOLERANCE && typeof snapBack === 'function') {
+                snapBack(null);
             }
             return;
         }
@@ -1138,6 +1179,10 @@ function initVimeoWrapPlayer(wrap) {
     var maxWatched = 0;
     var duration = 0;
     var completed = false;
+    var isSeeking = false;
+    var seekingBack = false;
+    var lastTickWall = Date.now();
+    var seekEndTimer = null;
 
     function markVideoComplete() {
         if (completed) return;
@@ -1145,24 +1190,46 @@ function initVimeoWrapPlayer(wrap) {
         markWrapVideoComplete(wrap, warn);
     }
 
+    function snapVimeo() {
+        if (completed || wrap.classList.contains('req-done')) return;
+        seekingBack = true;
+        player.setCurrentTime(maxWatched).catch(function () { });
+        setTimeout(function () {
+            seekingBack = false;
+            lastTickWall = Date.now();
+        }, 350);
+    }
+
+    function handleVimeoSeek(data) {
+        if (completed) return;
+        isSeeking = true;
+        if (data && data.seconds > maxWatched + VIDEO_SEEKING_TOLERANCE) snapVimeo();
+        clearTimeout(seekEndTimer);
+        seekEndTimer = setTimeout(function () {
+            isSeeking = false;
+            lastTickWall = Date.now();
+        }, 280);
+    }
+
     player.getDuration().then(function (d) {
         duration = d || 0;
     }).catch(function () { });
 
-    var enforceTime = function (data) {
-        if (completed) return;
-        if (data.seconds > maxWatched + VIDEO_SEEKING_TOLERANCE) {
-            player.setCurrentTime(maxWatched);
-        }
-    };
-
     player.on('timeupdate', function (data) {
-        if (completed) return;
+        if (completed || seekingBack) return;
         if (typeof data.duration === 'number' && data.duration > 0) {
             duration = data.duration;
         }
-        if (data.seconds > maxWatched + VIDEO_TIMEUPDATE_TOLERANCE) {
-            player.setCurrentTime(maxWatched);
+        if (isSeeking) {
+            if (data.seconds > maxWatched + VIDEO_SEEKING_TOLERANCE) snapVimeo();
+            return;
+        }
+        var now = Date.now();
+        var wallDt = lastTickWall ? Math.max(0, (now - lastTickWall) / 1000) : 0.25;
+        lastTickWall = now;
+        var allowed = maxWatched + Math.min(VIDEO_TIMEUPDATE_TOLERANCE, wallDt * 1.4 + 0.12);
+        if (data.seconds > allowed) {
+            snapVimeo();
             return;
         }
         if (data.seconds > maxWatched) {
@@ -1173,13 +1240,14 @@ function initVimeoWrapPlayer(wrap) {
         }
     });
 
-    player.on('seeking', enforceTime);
-    player.on('seeked', enforceTime);
+    player.on('seeking', handleVimeoSeek);
+    player.on('seeked', handleVimeoSeek);
 
     player.on('play', function () {
         setVideoWarnVisible(warn, false);
+        lastTickWall = Date.now();
         player.getCurrentTime().then(function (seconds) {
-            if (!completed && seconds > maxWatched + VIDEO_SEEKING_TOLERANCE) player.setCurrentTime(maxWatched);
+            if (!completed && seconds > maxWatched + VIDEO_SEEKING_TOLERANCE) snapVimeo();
         });
     });
 
