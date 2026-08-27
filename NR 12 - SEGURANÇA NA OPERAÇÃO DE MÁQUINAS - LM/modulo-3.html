@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=185">
+<link rel="stylesheet" href="shared.css?v=213">
     <style>
         #s-bateria .content-area > .video-wrap--std,
         #s-conducao .content-area > .video-wrap--std,
@@ -22,28 +22,26 @@
             #s-bateria .content-area > .video-wrap--std,
             #s-conducao .content-area > .video-wrap--std,
             #s-bateria-troca .content-area > .video-wrap--std {
-                margin-top: 28px !important;
+                margin-top: 0 !important;
+                margin-bottom: 48px !important;
+            }
+
+            #s-bateria .content-area,
+            #s-conducao .content-area,
+            #s-bateria-troca .content-area {
+                justify-content: center !important;
+                align-items: center !important;
+                padding-top: 0 !important;
+                overflow: hidden !important;
+                overflow-y: hidden !important;
             }
         }
 
-        /* ── Página 18: Obrigatório / Proibido / Cuidados ── */
+        /* ── Página 20: Obrigatório / Proibido / Cuidados (flip como pág. 8) ── */
         #s-rampas {
             --opc-cyan: #53E6D4;
             --opc-pink: #ff4d9a;
             --opc-yellow: #f5c518;
-        }
-
-        #s-rampas .content-area {
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: center !important;
-            align-items: center !important;
-            text-align: left !important;
-            gap: 14px;
-            padding-top: 36px;
-            padding-bottom: 88px;
-            overflow-y: auto !important;
-            -webkit-overflow-scrolling: touch;
         }
 
         #s-rampas .slide-title .opc-pink {
@@ -56,87 +54,168 @@
             text-shadow: 0 0 18px rgba(245, 197, 24, 0.4);
         }
 
+        #s-rampas .slide-title .opc-tail {
+            white-space: nowrap;
+        }
+
+        #s-rampas .slide-title {
+            display: block !important;
+        }
+
+        #s-rampas .content-area {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+            text-align: left !important;
+            gap: 10px;
+            padding-top: 28px;
+            padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px));
+            overflow: hidden !important;
+        }
+
+        #s-rampas .opc-flip-hint {
+            font-family: var(--font-h);
+            font-size: 12px;
+            font-weight: 700;
+            color: #53E6D4;
+            letter-spacing: .04em;
+            text-align: center;
+            margin: 0;
+            text-shadow: 0 0 10px rgba(83, 230, 212, 0.3);
+            flex-shrink: 0;
+        }
+
         #s-rampas .opc-grid {
-            width: min(640px, 100%);
+            width: min(400px, 92vw);
             margin: 0 auto;
             position: relative;
+            perspective: 1400px;
+            flex-shrink: 0;
         }
 
         #s-rampas .opc-card {
+            position: relative;
             display: none;
-            flex-direction: column;
             width: 100%;
+            height: min(380px, calc(100vh - 280px));
+            max-height: 420px;
             margin: 0 auto;
-            border-radius: 22px;
-            overflow: hidden;
-            background: #fff;
-            border: 1.5px solid rgba(173, 82, 196, 0.18);
-            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
             text-align: left;
+            -webkit-tap-highlight-color: transparent;
             outline: none;
         }
 
         #s-rampas .opc-card.is-active {
-            display: flex;
+            display: block;
             animation: opc-card-in 0.35s ease;
         }
 
-        @media screen and (min-width: 769px) {
-            #s-rampas .opc-grid {
-                width: min(820px, 90%);
-            }
-
-            #s-rampas .opc-card.is-active {
-                display: grid;
-                grid-template-columns: 380px 1fr;
-                grid-template-rows: 380px;
-                height: 380px;
-                min-height: 380px;
-                max-height: 380px;
-                align-items: stretch;
-            }
-        }
-
         @keyframes opc-card-in {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        #s-rampas .opc-card--ok { border-color: rgba(83, 230, 212, 0.55); }
-        #s-rampas .opc-card--no { border-color: rgba(255, 77, 154, 0.45); }
-        #s-rampas .opc-card--care { border-color: rgba(245, 197, 24, 0.5); }
-
-        #s-rampas .opc-media {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            height: auto;
-            margin: 0;
-            background: #1a0a32;
-            overflow: hidden;
-            border-radius: 0;
-            flex-shrink: 0;
+        #s-rampas .opc-flip-check {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 8;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #7AEEE0, #53E6D4);
+            color: #1F0A45;
+            border: 2.5px solid #fff;
+            box-shadow: 0 0 0 3px rgba(83, 230, 212, 0.45), 0 6px 18px rgba(83, 230, 212, 0.55);
+            opacity: 0;
+            transform: scale(0.4);
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.9, 0.2, 1.2);
         }
 
-        #s-rampas .opc-media img {
+        #s-rampas .opc-flip-check svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 3.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        #s-rampas .opc-card.req-done .opc-flip-check {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        #s-rampas .opc-flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform .65s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        #s-rampas .opc-card.is-flipped .opc-flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        #s-rampas .opc-flip-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, .28);
+            background: #fff;
+        }
+
+        #s-rampas .opc-card--ok .opc-flip-front { border: 1.5px solid rgba(83, 230, 212, 0.55); }
+        #s-rampas .opc-card--no .opc-flip-front { border: 1.5px solid rgba(255, 77, 154, 0.45); }
+        #s-rampas .opc-card--care .opc-flip-front { border: 1.5px solid rgba(245, 197, 24, 0.5); }
+
+        #s-rampas .opc-flip-back {
+            transform: rotateY(180deg);
+        }
+
+        #s-rampas .opc-card--ok .opc-flip-back {
+            background: linear-gradient(180deg, #ecfffc 0%, #fff 45%);
+            border: 1.5px solid rgba(83, 230, 212, 0.55);
+        }
+        #s-rampas .opc-card--no .opc-flip-back {
+            background: linear-gradient(180deg, #fff1f5 0%, #fff 45%);
+            border: 1.5px solid rgba(255, 77, 154, 0.45);
+        }
+        #s-rampas .opc-card--care .opc-flip-back {
+            background: linear-gradient(180deg, #fff8e1 0%, #fff 45%);
+            border: 1.5px solid rgba(245, 197, 24, 0.5);
+        }
+
+        #s-rampas .opc-flip-img {
+            position: relative;
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow: hidden;
+            background: #0d061c;
+        }
+
+        #s-rampas .opc-flip-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
             display: block;
-        }
-
-        @media screen and (min-width: 769px) {
-            #s-rampas .opc-media {
-                width: 380px;
-                height: 380px;
-                min-height: 380px;
-                max-height: 380px;
-                aspect-ratio: 1 / 1;
-                margin: 0;
-                border-radius: 0;
-                align-self: stretch;
-            }
         }
 
         #s-rampas .opc-expand {
@@ -147,75 +226,35 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             padding: 0;
             border-radius: 50%;
             border: 1.5px solid rgba(255, 255, 255, 0.9);
             background: #53E6D4;
             box-shadow: 0 5px 14px rgba(83, 230, 212, 0.5);
             color: #1F0A45;
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1;
             cursor: pointer;
         }
 
-        #s-rampas .opc-body {
-            padding: 16px 18px 18px;
+        #s-rampas .opc-flip-foot {
+            flex-shrink: 0;
+            padding: 12px 14px 14px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            gap: 10px;
-            min-height: 0;
-            overflow: hidden;
+            gap: 6px;
         }
 
-        @media screen and (min-width: 769px) {
-            #s-rampas .opc-body {
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: thin;
-                scrollbar-color: rgba(173, 82, 196, 0.45) transparent;
-            }
-            #s-rampas .opc-body::-webkit-scrollbar {
-                width: 6px;
-            }
-            #s-rampas .opc-body::-webkit-scrollbar-thumb {
-                background: rgba(173, 82, 196, 0.45);
-                border-radius: 99px;
-            }
-        }
-
-        #s-rampas .opc-card--ok .opc-body {
-            background: linear-gradient(180deg, #ecfffc 0%, #fff 55%);
-            border-top: 3px solid var(--opc-cyan);
-        }
-
-        #s-rampas .opc-card--no .opc-body {
-            background: linear-gradient(180deg, #fff1f5 0%, #fff 55%);
-            border-top: 3px solid var(--opc-pink);
-        }
-
-        #s-rampas .opc-card--care .opc-body {
-            background: linear-gradient(180deg, #fff8e1 0%, #fff 55%);
-            border-top: 3px solid var(--opc-yellow);
-        }
-
-        @media screen and (min-width: 769px) {
-            #s-rampas .opc-card--ok .opc-body,
-            #s-rampas .opc-card--no .opc-body,
-            #s-rampas .opc-card--care .opc-body {
-                border-top: none;
-            }
-            #s-rampas .opc-card--ok .opc-body { border-left: 3px solid var(--opc-cyan); }
-            #s-rampas .opc-card--no .opc-body { border-left: 3px solid var(--opc-pink); }
-            #s-rampas .opc-card--care .opc-body { border-left: 3px solid var(--opc-yellow); }
-        }
+        #s-rampas .opc-card--ok .opc-flip-foot { background: linear-gradient(180deg, #ecfffc, #fff); }
+        #s-rampas .opc-card--no .opc-flip-foot { background: linear-gradient(180deg, #fff1f5, #fff); }
+        #s-rampas .opc-card--care .opc-flip-foot { background: linear-gradient(180deg, #fff8e1, #fff); }
 
         #s-rampas .opc-kicker {
             margin: 0;
             font-family: var(--font-h);
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 800;
             letter-spacing: 0.1em;
             text-transform: uppercase;
@@ -228,139 +267,179 @@
         #s-rampas .opc-card-title {
             margin: 0;
             font-family: var(--font-h);
-            font-size: clamp(24px, 2.8vw, 32px);
+            font-size: 20px;
             font-weight: 800;
             letter-spacing: -0.01em;
             line-height: 1.15;
         }
 
         #s-rampas .opc-card--ok .opc-card-title { color: #0d5c54; }
-        #s-rampas .opc-card--no .opc-card-title {
-            color: #9f1c4a;
-            font-size: clamp(20px, 2.2vw, 26px);
-        }
+        #s-rampas .opc-card--no .opc-card-title { color: #ad1457; }
         #s-rampas .opc-card--care .opc-card-title { color: #6b4e00; }
 
-        #s-rampas .opc-card--no .opc-list {
-            gap: 7px;
+        #s-rampas .opc-flip-tap {
+            align-self: flex-start;
+            margin-top: 2px;
+            font-family: var(--font-h);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: #53E6D4;
+            color: #1F0A45;
         }
 
-        #s-rampas .opc-card--no .opc-list li {
-            font-size: clamp(13px, 1.2vw, 14.5px);
-            line-height: 1.35;
+        #s-rampas .opc-card--no .opc-flip-tap { background: #ff4d9a; color: #fff; }
+        #s-rampas .opc-card--care .opc-flip-tap { background: #f5c518; color: #3A1480; }
+
+        #s-rampas .opc-flip-back-inner {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 14px 14px 8px;
+            display: flex;
+            flex-direction: column;
             gap: 8px;
         }
 
+        #s-rampas .opc-flip-back-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        #s-rampas .opc-flip-back-top h3 {
+            margin: 0;
+            font-family: var(--font-h);
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1.15;
+        }
+
+        #s-rampas .opc-card--ok .opc-flip-back-top h3 { color: #0d5c54; }
+        #s-rampas .opc-card--no .opc-flip-back-top h3 { color: #ad1457; }
+        #s-rampas .opc-card--care .opc-flip-back-top h3 { color: #6b4e00; }
+
+        #s-rampas .opc-flip-badge {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-h);
+            font-size: 12px;
+            font-weight: 900;
+            color: #1F0A45;
+            background: #53E6D4;
+        }
+
+        #s-rampas .opc-card--no .opc-flip-badge { background: #ff4d9a; color: #fff; }
+        #s-rampas .opc-card--care .opc-flip-badge { background: #f5c518; color: #3A1480; }
+
         #s-rampas .opc-list {
-            list-style: none;
             margin: 0;
             padding: 0;
+            list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 5px;
         }
 
         #s-rampas .opc-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-family: var(--font-b);
-            font-size: clamp(15px, 1.5vw, 18px);
-            line-height: 1.45;
-            color: rgba(31, 10, 69, 0.88);
+            position: relative;
+            padding-left: 14px;
+            font-size: 12.5px;
+            line-height: 1.32;
+            color: #2a1a3a;
+            font-weight: 600;
         }
 
         #s-rampas .opc-list li::before {
             content: '';
-            width: 8px;
-            height: 8px;
-            margin-top: 6px;
+            position: absolute;
+            left: 0;
+            top: 0.45em;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        #s-rampas .opc-card--ok .opc-list li::before {
             background: var(--opc-cyan);
-            box-shadow: 0 0 0 3px rgba(83, 230, 212, 0.22);
         }
 
-        #s-rampas .opc-card--no .opc-list li::before {
-            background: var(--opc-pink);
-            box-shadow: 0 0 0 3px rgba(255, 77, 154, 0.18);
-        }
-
-        #s-rampas .opc-card--care .opc-list li::before {
-            background: var(--opc-yellow);
-            box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.22);
-        }
+        #s-rampas .opc-card--no .opc-list li { font-size: 11.5px; line-height: 1.28; }
+        #s-rampas .opc-card--no .opc-list li::before { background: var(--opc-pink); }
+        #s-rampas .opc-card--care .opc-list li::before { background: var(--opc-yellow); }
 
         #s-rampas .opc-fire {
-            margin-top: 4px;
             display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 7px 9px;
-            border-radius: 12px;
-            background: #fff1f5;
-            border: 1px solid rgba(255, 77, 154, 0.4);
-            color: #9f1c4a;
-            font-family: var(--font-b);
-            font-size: 12.5px;
+            align-items: flex-start;
+            gap: 6px;
+            margin-top: 4px;
+            padding: 7px 8px;
+            border-radius: 10px;
+            background: rgba(255, 77, 154, 0.1);
+            border: 1px solid rgba(255, 77, 154, 0.25);
+            color: #ad1457;
+            font-size: 11px;
             font-weight: 700;
             line-height: 1.3;
         }
 
         #s-rampas .opc-fire svg {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             flex-shrink: 0;
             color: var(--opc-pink);
         }
 
-        #s-rampas .opc-limit-line {
-            display: inline-flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            line-height: 1.35;
-        }
-
+        #s-rampas .opc-limit-line { display: inline; }
         #s-rampas .opc-kg {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            padding: 3px 10px;
+            display: inline-block;
+            padding: 1px 7px;
             border-radius: 999px;
             background: var(--opc-yellow);
-            color: #1a1200;
-            font-family: var(--font-h);
-            font-size: 15px;
+            color: #3A1480;
             font-weight: 900;
-            letter-spacing: 0.02em;
-            line-height: 1.2;
-            white-space: nowrap;
+            font-size: 11px;
+        }
+
+        #s-rampas .opc-flip-back-foot {
+            flex-shrink: 0;
+            padding: 8px 12px 10px;
+            text-align: center;
+            font-family: var(--font-h);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(42, 26, 58, 0.55);
         }
 
         #s-rampas .opc-carousel-nav {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 18px;
-            flex-wrap: wrap;
+            gap: 16px;
             flex-shrink: 0;
             position: relative;
             z-index: 30;
-            padding: 6px 0 4px;
+            padding: 4px 0;
+            width: 100%;
+            max-width: 320px;
         }
 
         #s-rampas .opc-nav-btn {
-            width: 52px;
-            height: 52px;
-            min-width: 52px;
-            min-height: 52px;
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            min-height: 48px;
             border-radius: 50%;
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 900;
             line-height: 1;
             padding: 0;
@@ -370,35 +449,53 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.15s ease, filter 0.15s ease;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            background: #53E6D4;
+            color: #3A1480;
+            box-shadow: 0 6px 18px rgba(83, 230, 212, 0.55), 0 0 28px rgba(83, 230, 212, 0.45);
         }
 
         #s-rampas .opc-nav-btn:not(:disabled) {
             border: 2px solid rgba(255, 255, 255, 0.9);
             background: #53E6D4;
             color: #3A1480;
-            box-shadow:
-                0 6px 18px rgba(83, 230, 212, 0.55),
-                0 0 28px rgba(83, 230, 212, 0.45),
-                inset 0 1px 0 rgba(255, 255, 255, 0.45);
-            animation: carousel-nav-pulse 1.4s ease-in-out infinite;
+            box-shadow: 0 6px 18px rgba(83, 230, 212, 0.55), 0 0 28px rgba(83, 230, 212, 0.45);
         }
 
-        #s-rampas .opc-nav-btn:hover:not(:disabled) {
-            filter: brightness(1.12);
-            transform: scale(1.08);
-        }
-
-        #s-rampas .opc-nav-btn:not(:disabled):active {
-            transform: scale(0.94);
+        #s-rampas #opc-prev:not(:disabled) {
             animation: none;
         }
 
-        #s-rampas .opc-nav-btn:disabled {
-            opacity: 0.32;
+        #s-rampas #opc-next:not(:disabled) {
+            animation: opcNextPulse 1.35s ease-in-out infinite;
+        }
+
+        @keyframes opcNextPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 6px 18px rgba(83, 230, 212, 0.55); }
+            50% { transform: scale(1.08); box-shadow: 0 8px 24px rgba(83, 230, 212, 0.75); }
+        }
+
+        #s-rampas .opc-nav-btn:disabled,
+        #s-rampas .opc-nav-btn.is-locked {
+            opacity: 0.4;
             cursor: default;
-            filter: grayscale(0.35);
+            filter: grayscale(0.25);
             box-shadow: none;
-            animation: none;
+            animation: none !important;
+        }
+
+        #s-rampas .opc-carousel-nav .carousel-hint,
+        .opc-carousel-nav.opc-nav-floating .carousel-hint {
+            display: none !important;
+        }
+
+        #s-rampas > .slide-scroll-btn {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
         }
 
         #s-rampas .opc-counter {
@@ -415,44 +512,31 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            min-height: 44px;
+            gap: 6px;
+            flex-shrink: 0;
         }
 
         #s-rampas .opc-explore-label {
             font-family: var(--font-h);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.55);
+            color: #53E6D4;
+            letter-spacing: 0.03em;
         }
 
         #s-rampas .opc-explore-dots {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 10px;
         }
 
         #s-rampas .opc-dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            border: 2px solid currentColor;
-            background: transparent;
-            position: relative;
-            transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-        }
-
-        #s-rampas .opc-dot + .opc-dot::before {
-            content: "";
-            position: absolute;
-            right: calc(100% + 2px);
-            top: 50%;
-            width: 12px;
-            height: 0;
-            border-top: 1.5px dashed rgba(255, 255, 255, 0.28);
-            transform: translateY(-50%);
+            opacity: 0.35;
+            background: currentColor;
+            transition: opacity 0.2s, transform 0.2s;
         }
 
         #s-rampas .opc-dot--ok { color: var(--opc-cyan); }
@@ -460,22 +544,18 @@
         #s-rampas .opc-dot--care { color: var(--opc-yellow); }
 
         #s-rampas .opc-dot.is-on {
-            background: currentColor;
-            box-shadow: 0 0 12px currentColor;
-            transform: scale(1.08);
+            opacity: 1;
+            transform: scale(1.2);
         }
 
         #s-rampas .opc-done {
             font-family: var(--font-h);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 800;
-            letter-spacing: 0.04em;
             color: var(--opc-cyan);
-            text-shadow: 0 0 12px rgba(83, 230, 212, 0.45);
             opacity: 0;
-            transform: translateY(6px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            pointer-events: none;
+            transform: translateY(4px);
+            transition: opacity 0.25s, transform 0.25s;
         }
 
         #s-rampas .opc-done.is-show {
@@ -483,42 +563,220 @@
             transform: translateY(0);
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            #s-rampas .opc-card.is-active {
-                animation: none;
+        @media screen and (min-width: 769px) {
+            /* Desktop: layout original (foto | texto), sem flip */
+            #s-rampas .content-area {
+                justify-content: center !important;
+                padding-top: 36px !important;
+                padding-bottom: 88px !important;
+                overflow-y: auto !important;
+                gap: 14px !important;
             }
-        }
 
-        @media screen and (max-height: 760px) {
-            #s-rampas .opc-body { padding: 16px 18px; gap: 10px; }
-            #s-rampas .opc-list { gap: 8px; }
+            #s-rampas .opc-grid {
+                width: min(820px, 90%);
+                perspective: none;
+            }
+
+            #s-rampas .opc-card {
+                height: 380px;
+                min-height: 380px;
+                max-height: 380px;
+                cursor: default;
+                background: #fff;
+                border-radius: 22px;
+                overflow: hidden;
+                box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+                border: 1.5px solid rgba(173, 82, 196, 0.18);
+            }
+
+            #s-rampas .opc-card--ok { border-color: rgba(83, 230, 212, 0.55); }
+            #s-rampas .opc-card--no { border-color: rgba(255, 77, 154, 0.45); }
+            #s-rampas .opc-card--care { border-color: rgba(245, 197, 24, 0.5); }
+
+            #s-rampas .opc-card.is-active {
+                display: block;
+            }
+
+            #s-rampas .opc-flip-inner {
+                display: grid !important;
+                grid-template-columns: 380px 1fr;
+                grid-template-rows: 380px;
+                height: 380px;
+                transform: none !important;
+                transition: none !important;
+                transform-style: flat;
+            }
+
+            #s-rampas .opc-card.is-flipped .opc-flip-inner {
+                transform: none !important;
+            }
+
+            #s-rampas .opc-flip-face {
+                position: relative !important;
+                inset: auto !important;
+                backface-visibility: visible !important;
+                -webkit-backface-visibility: visible !important;
+                transform: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                height: 380px;
+                overflow: hidden;
+                border: none !important;
+            }
+
+            #s-rampas .opc-flip-front {
+                border-radius: 0 !important;
+            }
+
+            #s-rampas .opc-flip-back {
+                transform: none !important;
+                background: #fff !important;
+            }
+
+            #s-rampas .opc-card--ok .opc-flip-back {
+                background: linear-gradient(180deg, #ecfffc 0%, #fff 55%) !important;
+                border-left: 3px solid var(--opc-cyan) !important;
+            }
+            #s-rampas .opc-card--no .opc-flip-back {
+                background: linear-gradient(180deg, #fff1f5 0%, #fff 55%) !important;
+                border-left: 3px solid var(--opc-pink) !important;
+            }
+            #s-rampas .opc-card--care .opc-flip-back {
+                background: linear-gradient(180deg, #fff8e1 0%, #fff 55%) !important;
+                border-left: 3px solid var(--opc-yellow) !important;
+            }
+
+            #s-rampas .opc-flip-img {
+                height: 100%;
+                flex: 1 1 auto;
+            }
+
+            #s-rampas .opc-flip-foot,
+            #s-rampas .opc-flip-tap,
+            #s-rampas .opc-flip-back-foot,
+            #s-rampas .opc-flip-check,
+            #s-rampas .opc-flip-hint {
+                display: none !important;
+            }
+
+            #s-rampas .opc-flip-back-inner {
+                height: 100%;
+                padding: 18px 20px;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 10px;
+            }
+
+            #s-rampas .opc-flip-back-top h3 {
+                font-size: 26px;
+            }
+
+            #s-rampas .opc-card--no .opc-flip-back-top h3 {
+                font-size: 22px;
+            }
+
+            #s-rampas .opc-list {
+                gap: 8px;
+            }
+
+            #s-rampas .opc-list li {
+                font-size: 14.5px;
+                line-height: 1.4;
+            }
+
+            #s-rampas .opc-card--no .opc-list li {
+                font-size: 13.5px;
+                line-height: 1.35;
+            }
+
+            #s-rampas .opc-carousel-nav {
+                position: relative !important;
+                bottom: auto !important;
+                transform: none !important;
+                max-width: none;
+            }
+
+            #s-rampas .opc-nav-btn {
+                width: 52px;
+                height: 52px;
+                min-width: 52px;
+                min-height: 52px;
+                font-size: 28px;
+            }
+
+            #s-rampas .opc-explore {
+                margin-top: 4px;
+            }
         }
 
         @media screen and (max-width: 768px) {
-            #s-rampas .content-area { padding-bottom: 100px; gap: 10px; }
-            #s-rampas .opc-grid { width: min(440px, 100%); }
-            #s-rampas .opc-card.is-active {
-                height: min(520px, calc(100vh - 280px));
-                min-height: min(520px, calc(100vh - 280px));
-                max-height: min(520px, calc(100vh - 280px));
+            #s-rampas .slide-title {
+                font-size: 20px !important;
+                line-height: 1.2 !important;
+                margin-top: 4px !important;
             }
-            #s-rampas .opc-media {
-                width: 100%;
-                height: 180px;
-                min-height: 180px;
-                max-height: 180px;
-                aspect-ratio: auto;
-                margin: 0;
+
+            #s-rampas .content-area {
+                padding-top: 18px !important;
+                padding-bottom: calc(118px + env(safe-area-inset-bottom, 0px)) !important;
+                gap: 8px !important;
             }
-            #s-rampas .opc-body {
-                padding: 16px 16px 18px;
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
+
+            #s-rampas .opc-grid {
+                width: min(350px, 92vw);
+                margin-top: 10px;
             }
-            #s-rampas .opc-list li { font-size: 15.5px; }
-            #s-rampas .opc-card-title { font-size: 24px; }
-            #s-rampas .opc-card--no .opc-card-title { font-size: 22px; }
-            #s-rampas .opc-card--no .opc-list li { font-size: 13.5px; }
+
+            #s-rampas .opc-card {
+                height: min(340px, calc(100dvh - 300px));
+                max-height: 360px;
+            }
+
+            #s-rampas .opc-flip-hint { font-size: 11px; }
+
+            #s-rampas .opc-flip-foot { padding: 10px 12px 12px; gap: 4px; }
+            #s-rampas .opc-card-title { font-size: 17px; }
+            #s-rampas .opc-kicker { font-size: 10px; }
+            #s-rampas .opc-flip-tap { font-size: 9px; padding: 4px 8px; }
+
+            #s-rampas .opc-flip-back-inner { padding: 12px 12px 6px; gap: 6px; }
+            #s-rampas .opc-flip-back-top h3 { font-size: 16px; }
+            #s-rampas .opc-list { gap: 4px; }
+            #s-rampas .opc-list li { font-size: 11.5px !important; line-height: 1.28 !important; }
+            #s-rampas .opc-card--no .opc-list li { font-size: 10.5px !important; }
+
+            #s-rampas .opc-explore-label { font-size: 11px; }
+
+            /* “Regras revisadas” mais embaixo, logo acima das setas */
+            #s-rampas .opc-done,
+            #s-rampas .opc-done.is-show {
+                position: fixed !important;
+                left: 50% !important;
+                bottom: calc(152px + env(safe-area-inset-bottom, 0px)) !important;
+                z-index: 962 !important;
+                margin: 0 !important;
+                white-space: nowrap;
+                pointer-events: none;
+            }
+
+            #s-rampas .opc-done {
+                opacity: 0;
+                transform: translate(-50%, 6px);
+            }
+
+            #s-rampas .opc-done.is-show {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+
+            #s-rampas .opc-nav-btn {
+                width: 44px;
+                height: 44px;
+                min-width: 44px;
+                min-height: 44px;
+                font-size: 24px;
+            }
         }
 
         /* ── Encontre os riscos — foto grande + botões chamativos ── */
@@ -591,7 +849,7 @@
 
         #s-quiz3 .find-risk-scene {
             position: relative;
-            width: min(420px, 86vw);
+            width: min(300px, 68vw);
             aspect-ratio: 1 / 1;
             height: auto;
             border-radius: 18px;
@@ -606,7 +864,7 @@
         }
 
         #s-quiz3 .find-risk-step.is-answered .find-risk-scene {
-            width: min(340px, 72vw);
+            width: min(250px, 58vw);
         }
 
         #s-quiz3 .find-risk-scene .media-placeholder {
@@ -902,8 +1160,8 @@
         #s-quiz3 .find-risk-result {
             display: none;
             width: 100%;
-            padding: 10px 12px;
-            border-radius: 12px;
+            padding: 7px 10px;
+            border-radius: 10px;
             box-sizing: border-box;
             border: 1px solid rgba(255, 77, 154, 0.5);
             background: rgba(0, 0, 0, 0.38);
@@ -911,7 +1169,7 @@
             flex-shrink: 1;
             min-height: 0;
             overflow: auto;
-            max-height: min(28vh, 180px);
+            max-height: min(20vh, 130px);
         }
 
         #s-quiz3 .find-risk-step.is-answered .find-risk-result {
@@ -925,12 +1183,12 @@
         }
 
         #s-quiz3 .find-risk-status {
-            margin: 0 0 6px;
+            margin: 0 0 4px;
             padding: 0;
             font-family: var(--font-h);
-            font-size: clamp(11px, 1.15vw, 13px);
+            font-size: clamp(10px, 1.05vw, 12px);
             font-weight: 800;
-            line-height: 1.3;
+            line-height: 1.25;
             letter-spacing: 0.01em;
         }
 
@@ -945,24 +1203,24 @@
         #s-quiz3 .find-risk-explain-tag {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            margin: 0 0 4px;
-            padding: 2px 8px;
+            gap: 4px;
+            margin: 0 0 3px;
+            padding: 1px 7px;
             border-radius: 999px;
             background: rgba(255, 77, 154, 0.18);
             border: 1px solid rgba(255, 77, 154, 0.5);
             color: #ff7ab3;
             font-family: var(--font-h);
-            font-size: 9px;
+            font-size: 8px;
             font-weight: 800;
             letter-spacing: 0.06em;
             text-transform: uppercase;
         }
 
         #s-quiz3 .find-risk-result h3 {
-            margin: 0 0 3px;
+            margin: 0 0 2px;
             font-family: var(--font-h);
-            font-size: clamp(14px, 1.5vw, 16px);
+            font-size: clamp(12px, 1.3vw, 14px);
             font-weight: 800;
             color: #fff;
             letter-spacing: -0.01em;
@@ -971,8 +1229,8 @@
         #s-quiz3 .find-risk-result p.find-risk-desc {
             margin: 0;
             font-family: var(--font-b);
-            font-size: clamp(11px, 1.15vw, 13px);
-            line-height: 1.35;
+            font-size: clamp(10px, 1.05vw, 12px);
+            line-height: 1.3;
             color: rgba(255, 255, 255, 0.82);
         }
 
@@ -1031,7 +1289,7 @@
                 width: 100%;
                 max-width: none;
                 height: auto;
-                max-height: min(480px, calc(100vh - 210px));
+                max-height: min(380px, calc(100vh - 230px));
                 aspect-ratio: 1 / 1;
                 align-self: center;
             }
@@ -1060,11 +1318,11 @@
             }
 
             #s-quiz3 .find-risk-scene {
-                width: min(360px, 88vw);
+                width: min(250px, 68vw);
             }
 
             #s-quiz3 .find-risk-step.is-answered .find-risk-scene {
-                width: min(280px, 78vw);
+                width: min(210px, 58vw);
             }
 
             #s-quiz3 .find-risk-choice {
@@ -1074,7 +1332,22 @@
             }
 
             #s-quiz3 .find-risk-result {
-                max-height: min(22vh, 150px);
+                max-height: min(16vh, 110px);
+                padding: 6px 8px;
+            }
+
+            #s-quiz3 .find-risk-result h3 {
+                font-size: 12px !important;
+            }
+
+            #s-quiz3 .find-risk-result p.find-risk-desc {
+                font-size: 10px !important;
+                line-height: 1.28 !important;
+            }
+
+            #s-quiz3 .find-risk-status {
+                font-size: 10px !important;
+                margin-bottom: 3px;
             }
 
             #s-quiz3.is-find-playing .content-area {
@@ -1208,75 +1481,126 @@
                         🛡️ Módulo 3</div>
                     <h2 class="slide-title"
                         style="font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -0.015em; text-shadow: 0 0 15px rgba(83, 230, 212, 0.25);">
-                        Obrigatório, <span class="opc-pink">proibido</span> e <span class="opc-yellow">cuidados gerais</span>
+                        Obrigatório, <span class="opc-pink">proibido</span><span class="opc-tail"> e <span class="opc-yellow">cuidados gerais</span></span>
                     </h2>
                 </div>
-                <div class="content-area" style="position: relative; z-index: 2;">
+                    <div class="content-area" style="position: relative; z-index: 2;">
                     <div class="opc-grid" id="opc-viewport" role="list">
-                        <article class="opc-card opc-card--ok is-active" role="listitem" data-opc="ok" aria-label="Categoria Obrigatório">
-                            <div class="opc-media">
-                                <img src="assets/fotos/obrigatorio.png" alt="Operador lendo o manual ao lado das máquinas e do EPI">
-                                <button type="button" class="opc-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/obrigatorio.png')">🔍</button>
-                            </div>
-                            <div class="opc-body">
-                                <p class="opc-kicker">Categoria 01</p>
-                                <h3 class="opc-card-title">Obrigatório</h3>
-                                <ul class="opc-list">
-                                    <li>Ler o manual antes de operar</li>
-                                    <li>Usar a máquina somente para sua finalidade</li>
-                                    <li>Observar sinalizações e usar EPI</li>
-                                    <li>Manutenção só com a máquina desligada e desconectada</li>
-                                    <li>Operação por um único operador</li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="opc-card opc-card--no" role="listitem" data-opc="no" aria-label="Categoria Proibido">
-                            <div class="opc-media">
-                                <img src="assets/fotos/proibido.png" alt="Itens proibidos na operação das máquinas">
-                                <button type="button" class="opc-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/proibido.png')">🔍</button>
-                            </div>
-                            <div class="opc-body">
-                                <p class="opc-kicker">Categoria 02</p>
-                                <h3 class="opc-card-title">Proibido</h3>
-                                <ul class="opc-list">
-                                    <li>Não usar embalagens fora do padrão</li>
-                                    <li>Não operar em ambiente com risco de explosão</li>
-                                    <li>Não usar a máquina para fins alimentares</li>
-                                    <li>Não usar os pratos do misturador para fechar tampa</li>
-                                    <li>Não operar sem proteções ou com dispositivos de segurança avariados, ausentes ou desativados</li>
-                                    <li>Caso o dosador possua o item opcional “batoque de laser”, não olhar fixamente para o centralizador deste</li>
-                                    <li>Em caso de incêndio, nunca usar água</li>
-                                </ul>
-                                <div class="opc-fire">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                        <path d="M8 20h8"/>
-                                        <path d="M9 20V9a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"/>
-                                        <path d="M13 11h3a2 2 0 0 1 2 2v2a3 3 0 0 1-3 3h-1"/>
-                                        <path d="M9 13h4"/>
-                                        <path d="M12 4c.8 1.2.8 2.4 0 3.2-.8.8-1.2 1.5-1.2 2.3 0 1.1.9 2 2 2s2-.9 2-2c0-1.5-1.2-2.6-2.8-5.5z"/>
-                                    </svg>
-                                    <span>Use apenas extintor de pó químico seco ou CO₂</span>
+                        <button type="button" class="opc-card opc-card--ok is-active req-item" data-opc="ok" data-opc-idx="0"
+                            onclick="opcFlipCard(this)" aria-pressed="false" aria-label="Categoria Obrigatório">
+                            <span class="opc-flip-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>
+                            <div class="opc-flip-inner">
+                                <div class="opc-flip-face opc-flip-front">
+                                    <div class="opc-flip-img">
+                                        <img src="assets/fotos/obrigatorio.png" alt="Operador lendo o manual ao lado das máquinas e do EPI">
+                                        <span class="opc-expand" role="button" tabindex="0" aria-label="Ampliar imagem"
+                                            onclick="event.stopPropagation(); openImageModal('assets/fotos/obrigatorio.png')">🔍</span>
+                                    </div>
+                                    <div class="opc-flip-foot">
+                                        <p class="opc-kicker">Categoria 01</p>
+                                        <h3 class="opc-card-title">Obrigatório</h3>
+                                        <span class="opc-flip-tap">Toque para virar</span>
+                                    </div>
+                                </div>
+                                <div class="opc-flip-face opc-flip-back">
+                                    <div class="opc-flip-back-inner">
+                                        <div class="opc-flip-back-top">
+                                            <h3>Obrigatório</h3>
+                                            <span class="opc-flip-badge">01</span>
+                                        </div>
+                                        <ul class="opc-list">
+                                            <li>Ler o manual antes de operar</li>
+                                            <li>Usar a máquina somente para sua finalidade</li>
+                                            <li>Observar sinalizações e usar EPI</li>
+                                            <li>Manutenção só com a máquina desligada e desconectada</li>
+                                            <li>Operação por um único operador</li>
+                                        </ul>
+                                    </div>
+                                    <div class="opc-flip-back-foot">Toque para voltar</div>
                                 </div>
                             </div>
-                        </article>
+                        </button>
 
-                        <article class="opc-card opc-card--care" role="listitem" data-opc="care" aria-label="Categoria Cuidados gerais">
-                            <div class="opc-media">
-                                <img src="assets/fotos/cuidadosgerais.png" alt="Operador colocando a embalagem no misturador com cuidado">
-                                <button type="button" class="opc-expand" aria-label="Ampliar imagem" onclick="openImageModal('assets/fotos/cuidadosgerais.png')">🔍</button>
+                        <button type="button" class="opc-card opc-card--no req-item" data-opc="no" data-opc-idx="1"
+                            onclick="opcFlipCard(this)" aria-pressed="false" aria-label="Categoria Proibido">
+                            <span class="opc-flip-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>
+                            <div class="opc-flip-inner">
+                                <div class="opc-flip-face opc-flip-front">
+                                    <div class="opc-flip-img">
+                                        <img src="assets/fotos/proibido.png" alt="Itens proibidos na operação das máquinas">
+                                        <span class="opc-expand" role="button" tabindex="0" aria-label="Ampliar imagem"
+                                            onclick="event.stopPropagation(); openImageModal('assets/fotos/proibido.png')">🔍</span>
+                                    </div>
+                                    <div class="opc-flip-foot">
+                                        <p class="opc-kicker">Categoria 02</p>
+                                        <h3 class="opc-card-title">Proibido</h3>
+                                        <span class="opc-flip-tap">Toque para virar</span>
+                                    </div>
+                                </div>
+                                <div class="opc-flip-face opc-flip-back">
+                                    <div class="opc-flip-back-inner">
+                                        <div class="opc-flip-back-top">
+                                            <h3>Proibido</h3>
+                                            <span class="opc-flip-badge">02</span>
+                                        </div>
+                                        <ul class="opc-list">
+                                            <li>Não usar embalagens fora do padrão</li>
+                                            <li>Não operar em ambiente com risco de explosão</li>
+                                            <li>Não usar a máquina para fins alimentares</li>
+                                            <li>Não usar os pratos do misturador para fechar tampa</li>
+                                            <li>Não operar sem proteções ou com dispositivos de segurança avariados, ausentes ou desativados</li>
+                                            <li>Caso o dosador possua o item opcional “batoque de laser”, não olhar fixamente para o centralizador deste</li>
+                                            <li>Em caso de incêndio, nunca usar água</li>
+                                        </ul>
+                                        <div class="opc-fire">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <path d="M8 20h8"/>
+                                                <path d="M9 20V9a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"/>
+                                                <path d="M13 11h3a2 2 0 0 1 2 2v2a3 3 0 0 1-3 3h-1"/>
+                                                <path d="M9 13h4"/>
+                                                <path d="M12 4c.8 1.2.8 2.4 0 3.2-.8.8-1.2 1.5-1.2 2.3 0 1.1.9 2 2 2s2-.9 2-2c0-1.5-1.2-2.6-2.8-5.5z"/>
+                                            </svg>
+                                            <span>Use apenas extintor de pó químico seco ou CO₂</span>
+                                        </div>
+                                    </div>
+                                    <div class="opc-flip-back-foot">Toque para voltar</div>
+                                </div>
                             </div>
-                            <div class="opc-body">
-                                <p class="opc-kicker">Categoria 03</p>
-                                <h3 class="opc-card-title">Cuidados gerais</h3>
-                                <ul class="opc-list">
-                                    <li>Mãos fora da área de dosagem/mistura durante o funcionamento</li>
-                                    <li>Exceto para carregar e descarregar</li>
-                                    <li>Não usar a máquina como mesa de trabalho</li>
-                                    <li><span class="opc-limit-line">Respeitar o limite de <span class="opc-kg" aria-label="25 quilogramas">25 kg</span></span></li>
-                                </ul>
+                        </button>
+
+                        <button type="button" class="opc-card opc-card--care req-item" data-opc="care" data-opc-idx="2"
+                            onclick="opcFlipCard(this)" aria-pressed="false" aria-label="Categoria Cuidados gerais">
+                            <span class="opc-flip-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>
+                            <div class="opc-flip-inner">
+                                <div class="opc-flip-face opc-flip-front">
+                                    <div class="opc-flip-img">
+                                        <img src="assets/fotos/cuidadosgerais.png" alt="Operador colocando a embalagem no misturador com cuidado">
+                                        <span class="opc-expand" role="button" tabindex="0" aria-label="Ampliar imagem"
+                                            onclick="event.stopPropagation(); openImageModal('assets/fotos/cuidadosgerais.png')">🔍</span>
+                                    </div>
+                                    <div class="opc-flip-foot">
+                                        <p class="opc-kicker">Categoria 03</p>
+                                        <h3 class="opc-card-title">Cuidados gerais</h3>
+                                        <span class="opc-flip-tap">Toque para virar</span>
+                                    </div>
+                                </div>
+                                <div class="opc-flip-face opc-flip-back">
+                                    <div class="opc-flip-back-inner">
+                                        <div class="opc-flip-back-top">
+                                            <h3>Cuidados gerais</h3>
+                                            <span class="opc-flip-badge">03</span>
+                                        </div>
+                                        <ul class="opc-list">
+                                            <li>Mãos fora da área de dosagem/mistura durante o funcionamento</li>
+                                            <li>Exceto para carregar e descarregar</li>
+                                            <li>Não usar a máquina como mesa de trabalho</li>
+                                            <li><span class="opc-limit-line">Respeitar o limite de <span class="opc-kg" aria-label="25 quilogramas">25 kg</span></span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="opc-flip-back-foot">Toque para voltar</div>
+                                </div>
                             </div>
-                        </article>
+                        </button>
                     </div>
 
                     <div class="opc-carousel-nav" aria-label="Navegação dos cards">
@@ -1286,13 +1610,11 @@
                     </div>
 
                     <div class="opc-explore" aria-live="polite">
-                        <div class="opc-explore-label">Explore as 3 categorias</div>
                         <div class="opc-explore-dots" aria-hidden="true">
                             <span class="opc-dot opc-dot--ok" data-opc-dot="ok"></span>
                             <span class="opc-dot opc-dot--no" data-opc-dot="no"></span>
                             <span class="opc-dot opc-dot--care" data-opc-dot="care"></span>
                         </div>
-                        <div class="opc-done" id="opc-done-msg">✓ Regras revisadas</div>
                     </div>
                 </div>
                 <div class="wave" style="position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;"><svg
@@ -1302,7 +1624,7 @@
                     </svg></div>
             </div>
 
-            <div class="slide" id="s-bateria-troca"
+<div class="slide" id="s-bateria-troca"
                 style="background: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(83, 230, 212, 0.12) 0%, transparent 62%), radial-gradient(circle at center, #AD52C4 0%, #4A1866 100%); overflow: hidden;">
                 <!-- Fundo HUD Cinematográfico -->
                 <div
@@ -1505,57 +1827,118 @@
                 if (!slide || slide.dataset.opcBound) return;
                 slide.dataset.opcBound = '1';
 
-                const cards = slide.querySelectorAll('.opc-card[data-opc]');
-                const doneMsg = document.getElementById('opc-done-msg');
+                const cards = function () { return slide.querySelectorAll('.opc-card[data-opc]'); };
+                const doneMsg = null;
                 const counter = document.getElementById('opc-counter');
                 const prev = document.getElementById('opc-prev');
                 const next = document.getElementById('opc-next');
                 const viewport = document.getElementById('opc-viewport');
-                const visited = {};
+                const nav = slide.querySelector('.opc-carousel-nav');
                 let idx = 0;
-                const total = cards.length;
 
-                function refreshDots() {
-                    const keys = ['ok', 'no', 'care'];
-                    let count = 0;
-                    keys.forEach(function (key) {
-                        if (visited[key]) count += 1;
-                        const dot = slide.querySelector('[data-opc-dot="' + key + '"]');
-                        if (dot) dot.classList.toggle('is-on', !!visited[key]);
-                    });
-                    if (doneMsg) doneMsg.classList.toggle('is-show', count === 3);
+                function isMobile() {
+                    return window.matchMedia('(max-width: 768px)').matches;
                 }
 
-                function markCurrent() {
-                    const card = cards[idx];
-                    if (!card) return;
-                    const key = card.getAttribute('data-opc');
-                    if (!key) return;
-                    visited[key] = true;
-                    card.classList.add('is-visited');
-                    refreshDots();
+                function refreshDots() {
+                    const list = cards();
+                    let count = 0;
+                    list.forEach(function (card) {
+                        const key = card.getAttribute('data-opc');
+                        const on = card.classList.contains('req-done');
+                        if (on) count += 1;
+                        const dot = slide.querySelector('[data-opc-dot="' + key + '"]');
+                        if (dot) dot.classList.toggle('is-on', on);
+                    });
+                    if (doneMsg) doneMsg.classList.toggle('is-show', count === list.length);
+                }
+
+                function currentDone() {
+                    const list = cards();
+                    const cur = list[idx];
+                    return !!(cur && cur.classList.contains('req-done'));
                 }
 
                 function ui() {
-                    cards.forEach(function (card, i) {
+                    const list = cards();
+                    const total = list.length;
+                    const mobile = isMobile();
+                    list.forEach(function (card, i) {
                         card.classList.toggle('is-active', i === idx);
+                        if (i !== idx) {
+                            card.classList.remove('is-flipped');
+                            card.setAttribute('aria-pressed', 'false');
+                        }
+                        // Desktop: marcar como visto ao exibir (sem flip)
+                        if (!mobile && i === idx && !card.classList.contains('req-done')) {
+                            card.classList.add('req-done');
+                            if (typeof updateNextButton === 'function') updateNextButton();
+                        }
                     });
                     if (counter) counter.textContent = (idx + 1) + ' / ' + total;
-                    if (prev) prev.disabled = idx === 0;
-                    if (next) next.disabled = idx === total - 1;
-                    markCurrent();
+                    const canFwd = mobile
+                        ? (currentDone() && idx < total - 1)
+                        : (idx < total - 1);
+                    if (prev) {
+                        prev.disabled = idx === 0;
+                        prev.setAttribute('aria-disabled', idx === 0 ? 'true' : 'false');
+                    }
+                    if (next) {
+                        next.disabled = !canFwd;
+                        next.setAttribute('aria-disabled', canFwd ? 'false' : 'true');
+                        next.classList.toggle('is-locked', !canFwd);
+                        next.title = canFwd ? 'Próximo' : (mobile ? 'Vire o card para liberar' : 'Próximo');
+                    }
+                    refreshDots();
                 }
 
+                window.opcFlipCard = function (el) {
+                    if (!el) return;
+                    // Desktop não vira — só mobile
+                    if (!isMobile()) return;
+                    const firstReveal = !el.classList.contains('req-done');
+                    el.classList.toggle('is-flipped');
+                    el.setAttribute('aria-pressed', el.classList.contains('is-flipped') ? 'true' : 'false');
+                    if (el.classList.contains('is-flipped') && el.classList.contains('req-item') && firstReveal) {
+                        el.classList.add('req-done');
+                        try {
+                            if (typeof playSoftCheckSound === 'function') playSoftCheckSound();
+                            else if (typeof playClickSound === 'function') playClickSound();
+                        } catch (e) {}
+                        if (typeof updateNextButton === 'function') updateNextButton();
+                    } else {
+                        try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
+                    }
+                    ui();
+                };
+
                 function go(dir) {
+                    const now = Date.now();
+                    if (now - (go._last || 0) < 300) return;
+                    const list = cards();
+                    const total = list.length;
                     const n = idx + dir;
                     if (n < 0 || n >= total) return;
+                    if (dir > 0 && isMobile() && !currentDone()) return;
+                    go._last = now;
                     idx = n;
                     try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
                     ui();
                 }
 
-                if (prev) prev.addEventListener('click', function () { go(-1); });
-                if (next) next.addEventListener('click', function () { go(1); });
+                function bindNavBtn(btn, dir) {
+                    if (!btn || btn.dataset.opcNavBound === '1') return;
+                    btn.dataset.opcNavBound = '1';
+                    btn.addEventListener('click', function (e) {
+                        if (btn.disabled) return;
+                        e.preventDefault();
+                        e.stopPropagation();
+                        go(dir);
+                    }, true);
+                }
+
+                bindNavBtn(prev, -1);
+                bindNavBtn(next, 1);
 
                 if (viewport) {
                     var sx = 0;
@@ -1567,6 +1950,35 @@
                         if (Math.abs(d) > 40) go(d > 0 ? 1 : -1);
                     }, { passive: true });
                 }
+
+                (function setupOpcNavFloat() {
+                    if (!nav) return;
+                    var homeParent = nav.parentNode;
+                    var homeNext = nav.nextSibling;
+                    var mq = window.matchMedia('(max-width: 900px)');
+                    function restoreHome() {
+                        nav.classList.remove('opc-nav-floating');
+                        if (nav.parentNode !== homeParent) {
+                            if (homeNext && homeNext.parentNode === homeParent) homeParent.insertBefore(nav, homeNext);
+                            else homeParent.appendChild(nav);
+                        }
+                    }
+                    function syncFloat() {
+                        if (mq.matches && slide.classList.contains('active')) {
+                            if (nav.parentNode !== document.body) document.body.appendChild(nav);
+                            nav.classList.add('opc-nav-floating');
+                        } else {
+                            restoreHome();
+                        }
+                        ui();
+                    }
+                    syncFloat();
+                    if (mq.addEventListener) mq.addEventListener('change', syncFloat);
+                    else if (mq.addListener) mq.addListener(syncFloat);
+                    if (typeof MutationObserver !== 'undefined') {
+                        new MutationObserver(syncFloat).observe(slide, { attributes: true, attributeFilter: ['class'] });
+                    }
+                })();
 
                 ui();
             }

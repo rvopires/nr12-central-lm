@@ -5525,6 +5525,132 @@ body {
         font-size: 12px !important;
     }
 
+    body:has(#s-rampas.active) #nav {
+        display: grid !important;
+        grid-template-columns: max-content 1fr max-content !important;
+        justify-content: stretch !important;
+        align-items: center !important;
+        gap: 0 !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    body:has(#s-rampas.active) #nav #btn-back {
+        grid-column: 1 !important;
+        flex: 0 0 auto !important;
+        width: auto !important;
+        max-width: 102px !important;
+        min-width: 0 !important;
+        padding: 12px 10px !important;
+        font-size: 12px !important;
+    }
+
+    body:has(#s-rampas.active) #nav #btn-fwd {
+        grid-column: 3 !important;
+        flex: 0 0 auto !important;
+        width: auto !important;
+        max-width: 102px !important;
+        min-width: 0 !important;
+        padding: 12px 10px !important;
+        font-size: 12px !important;
+    }
+
+    .opc-carousel-nav.opc-nav-floating {
+        position: fixed !important;
+        left: 50% !important;
+        bottom: calc(96px + env(safe-area-inset-bottom, 0px)) !important;
+        transform: translateX(-50%) !important;
+        z-index: 960 !important;
+        pointer-events: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 18px !important;
+        width: min(320px, 92vw) !important;
+        margin: 0 !important;
+        padding: 6px 0 !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .opc-carousel-nav .carousel-hint,
+    .opc-carousel-nav.opc-nav-floating .carousel-hint {
+        display: none !important;
+    }
+
+    /* Setas fora de #s-rampas (portal no body) — tamanho próprio, sem depender do #s-rampas */
+    .opc-carousel-nav .opc-nav-btn,
+    .opc-carousel-nav.opc-nav-floating .opc-nav-btn {
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+        position: relative !important;
+        z-index: 961 !important;
+        box-sizing: border-box !important;
+        width: 52px !important;
+        height: 52px !important;
+        min-width: 52px !important;
+        min-height: 52px !important;
+        max-width: 52px !important;
+        max-height: 52px !important;
+        border-radius: 50% !important;
+        font-size: 28px !important;
+        font-weight: 900 !important;
+        line-height: 1 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        flex: 0 0 52px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: 2px solid rgba(255, 255, 255, 0.95) !important;
+        background: #53E6D4 !important;
+        color: #1F0A45 !important;
+        box-shadow:
+            0 6px 18px rgba(83, 230, 212, 0.55),
+            0 0 22px rgba(83, 230, 212, 0.4) !important;
+        opacity: 1 !important;
+        filter: none !important;
+        visibility: visible !important;
+    }
+
+    .opc-carousel-nav .opc-nav-btn:disabled,
+    .opc-carousel-nav .opc-nav-btn.is-locked,
+    .opc-carousel-nav.opc-nav-floating .opc-nav-btn:disabled,
+    .opc-carousel-nav.opc-nav-floating .opc-nav-btn.is-locked {
+        opacity: 0.45 !important;
+        filter: grayscale(0.2) !important;
+        animation: none !important;
+        box-shadow: none !important;
+        background: #53E6D4 !important;
+        color: #1F0A45 !important;
+        cursor: default !important;
+    }
+
+    .opc-carousel-nav.opc-nav-floating #opc-prev:not(:disabled) {
+        animation: none !important;
+    }
+
+    .opc-carousel-nav.opc-nav-floating #opc-next:not(:disabled) {
+        animation: carousel-nav-pulse 1.35s ease-in-out infinite !important;
+    }
+
+    .opc-carousel-nav .opc-counter,
+    .opc-carousel-nav.opc-nav-floating .opc-counter {
+        font-family: var(--font-h) !important;
+        font-size: 14px !important;
+        font-weight: 800 !important;
+        color: #53E6D4 !important;
+        min-width: 52px !important;
+        text-align: center !important;
+        flex: 0 0 auto !important;
+    }
+
+    #s-rampas > .slide-scroll-btn {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
     #s9 > .slide-scroll-btn {
         display: none !important;
     }
@@ -5824,9 +5950,9 @@ body {
 }
 
 
-/* MOBILE: s-conducao alinhado ao quiz do módulo 1 */
+/* MOBILE: s-conducao — só se ainda houver painel de quiz (legado); vídeo usa o padrão unificado */
 @media screen and (max-width: 768px) {
-    #s-conducao .content-area {
+    #s-conducao .content-area:has(#conducao-question-panel) {
         justify-content: flex-start !important;
         padding-top: 12px !important;
     }
@@ -5912,21 +6038,6 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-
-    /* MÓD 2 pág 14 (s10): vídeo na mesma posição da pág 13 (#s-equipamento) */
-    #s10 .content-area:has(> .video-wrap--std) {
-        justify-content: center !important;
-        align-items: center !important;
-        padding-top: 0 !important;
-        padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px)) !important;
-        overflow: hidden !important;
-        overflow-y: hidden !important;
-    }
-
-    #s10 .content-area:has(> .video-wrap--std) > .video-wrap--std {
-        margin-top: 0 !important;
-        margin-bottom: 48px !important;
-    }
 
     /* Legacy carrossel s10 (se voltar a existir) */
     #s10 .content-area:has(.s10-layout) {
@@ -6793,8 +6904,8 @@ body {
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
     }
 
-    /* MÓD 3 s-conducao: espaço inferior */
-    #s-conducao .content-area {
+    /* MÓD 3 s-conducao (legado quiz): espaço inferior — não aplica em página de vídeo */
+    #s-conducao .content-area:has(#conducao-question-panel) {
         padding-bottom: calc(160px + env(safe-area-inset-bottom, 0px)) !important;
     }
 
@@ -7035,8 +7146,8 @@ body {
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
     }
 
-    /* MÓD 3 s-conducao: espaço inferior */
-    #s-conducao .content-area {
+    /* MÓD 3 s-conducao (legado quiz): espaço inferior — não aplica em página de vídeo */
+    #s-conducao .content-area:has(#conducao-question-panel) {
         padding-bottom: calc(160px + env(safe-area-inset-bottom, 0px)) !important;
     }
 
@@ -7516,6 +7627,7 @@ body {
     }
 
     #s-equipamento .content-area,
+    #s10 .content-area,
     #s8 .content-area,
     #s4 .content-area,
     #s1b .content-area,
@@ -7524,36 +7636,56 @@ body {
     #s-bateria-troca .content-area {
         padding-top: 8px !important;
     }
+
+    /* Páginas só de vídeo: sem padding-top extra (padrão unificado) */
+    .slide .content-area:has(> .video-wrap--std) {
+        padding-top: 0 !important;
+    }
 }
 
 @media screen and (max-width: 768px) {
-    .slide .content-area > .video-wrap--std,
-    .video-wrap.video-wrap--std {
-        margin-top: 28px !important;
-    }
-
-    /* Páginas de vídeo: centraliza o player verticalmente (layout da página 7)
-       para o vídeo não ficar "mais pra cima" quando o título é curto */
-    .slide .content-area:has(> .video-wrap--std) {
+    /* Padrão único mobile (ref. pág. 13) — IDs garantem prioridade sobre CSS legado de quiz */
+    .slide .content-area:has(> .video-wrap--std),
+    #s6 .content-area:has(> .video-wrap--std),
+    #s-equipamento .content-area:has(> .video-wrap--std),
+    #s10 .content-area:has(> .video-wrap--std),
+    #s-bateria .content-area:has(> .video-wrap--std),
+    #s-conducao .content-area:has(> .video-wrap--std),
+    #s-bateria-troca .content-area:has(> .video-wrap--std) {
         justify-content: center !important;
+        align-items: center !important;
         padding-top: 0 !important;
-    }
-
-    .slide .content-area:has(> .video-wrap--std) > .video-wrap--std {
-        margin-top: 0 !important;
-        margin-bottom: 48px !important;
-    }
-
-    #s10 .content-area,
-    #s9 .content-area {
-        overflow-y: auto !important;
-    }
-
-    #s10 .content-area:has(> .video-wrap--std) {
+        padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px)) !important;
         overflow: hidden !important;
         overflow-y: hidden !important;
-        justify-content: center !important;
-        padding-top: 0 !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+
+    .slide .content-area:has(> .video-wrap--std)::-webkit-scrollbar,
+    #s-conducao .content-area:has(> .video-wrap--std)::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+
+    .slide .content-area:has(> .video-wrap--std) > .video-wrap--std,
+    .slide .content-area > .video-wrap.video-wrap--std,
+    #s-conducao .content-area > .video-wrap--std,
+    #s-bateria .content-area > .video-wrap--std,
+    #s-bateria-troca .content-area > .video-wrap--std,
+    #s-equipamento .content-area > .video-wrap--std,
+    #s10 .content-area > .video-wrap--std,
+    .video-wrap.video-wrap--std {
+        margin-top: 0 !important;
+        margin-bottom: 48px !important;
+        max-height: 65vh !important;
+        width: min(100%, calc(65vh * 16 / 9)) !important;
+    }
+
+    /* #s9 (componentes) continua com scroll; páginas de vídeo usam o bloco acima */
+    #s9 .content-area {
+        overflow-y: auto !important;
     }
 }
 
