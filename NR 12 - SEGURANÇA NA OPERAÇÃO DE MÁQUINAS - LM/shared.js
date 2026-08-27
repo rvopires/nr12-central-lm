@@ -417,7 +417,7 @@ function buildDots() {
     for (let i = 0; i < TOTAL; i++) {
         const d = document.createElement('div');
         d.className = 'ndot' + (i === currentSlide ? ' cur' : '');
-        d.onclick = () => goTo(i, true);
+        d.onclick = () => goTo(i);
         dots.appendChild(d);
     }
 }
@@ -656,12 +656,18 @@ function isSlideCompleted(idx) {
     const slide = document.querySelectorAll('.slide')[idx];
     if (!slide) return true;
     const resultPanel = slide.querySelector('[id$="-result-panel"]');
-    if (resultPanel && resultPanel.style.display === 'none') return false;
-    if (resultPanel && resultPanel.style.display === 'block') {
+    if (resultPanel) {
+        const disp = (resultPanel.style.display || '').trim();
+        const visible = disp !== 'none' && (
+            disp === 'block' ||
+            disp === 'flex' ||
+            resultPanel.classList.contains('is-visible')
+        );
+        if (!visible) return false;
         const status = resultPanel.querySelector('.r-status');
         if (status && status.classList.contains('ref')) return false;
     }
-    // Vídeos bloqueiam o PRÓXIMO até assistir (mesmo antes do player marcar req-item)
+    // Vídeos bloqueiam o PRÓXIMO até assistir (libera nos ~3s finais)
     const videoWraps = slide.querySelectorAll('.video-wrap');
     for (let i = 0; i < videoWraps.length; i++) {
         if (!videoWraps[i].classList.contains('req-done')) return false;
@@ -669,6 +675,10 @@ function isSlideCompleted(idx) {
     const reqs = slide.querySelectorAll('.req-item');
     for (let i = 0; i < reqs.length; i++) {
         if (!reqs[i].classList.contains('req-done')) return false;
+    }
+    // Atividades com checklist/conclusão própria
+    if (slide.hasAttribute('data-require-complete') && !slide.classList.contains('is-complete')) {
+        return false;
     }
     return true;
 }
@@ -758,6 +768,10 @@ function updateNextButton() {
 /* ── Slide video lazy load (Panda / Vimeo) ── */
 var SLIDE_VIDEO_BLANK = 'about:blank';
 var _videoWrapInited = new WeakSet();
+// Regras NR 06: não pular + libera avanço com ~3s restantes
+var VIDEO_TIMEUPDATE_TOLERANCE = 2.5;
+var VIDEO_SEEKING_TOLERANCE = 1.25;
+var VIDEO_COMPLETE_MARGIN = 3;
 
 function getVimeoIdFromSrc(src) {
     var m = (src || '').match(/vimeo\.com\/video\/(\d+)/);
@@ -933,19 +947,23 @@ function loadSlideVideoIframe(iframe) {
 }
 
 function ensureVideoWarn(wrap) {
+    if (!wrap) return null;
     var warn = wrap.querySelector('.video-warn');
     if (warn) warn.remove();
     return null;
 }
 
+function setVideoWarnVisible(warn, visible) {
+    if (!warn) return;
+    warn.style.opacity = visible ? '1' : '0';
+    warn.style.pointerEvents = visible ? 'auto' : 'none';
+}
+
 function markWrapVideoComplete(wrap, warn) {
-    if (wrap.classList.contains('req-done')) return;
+    if (!wrap || wrap.classList.contains('req-done')) return;
     wrap.classList.add('req-done');
-    if (warn) {
-        warn.style.display = 'none';
-        warn.style.opacity = '0';
-        warn.style.pointerEvents = 'none';
-    }
+    setVideoWarnVisible(warn, false);
+    if (warn) warn.style.display = 'none';
     updateNextButton();
 }
 
@@ -969,7 +987,6 @@ function initPandaWrapPlayer(wrap) {
         completed: false,
         seekingBack: false
     };
-    var SEEK_TOLERANCE = 1.0;
 
     function complete() {
         if (state.completed) return;
@@ -997,12 +1014,14 @@ function initPandaWrapPlayer(wrap) {
         if (typeof dur === 'number' && dur > 0) state.duration = dur;
         if (typeof t !== 'number' || isNaN(t)) return;
         if (state.seekingBack) return;
-        if (t > state.maxWatched + SEEK_TOLERANCE) {
+        if (t > state.maxWatched + VIDEO_TIMEUPDATE_TOLERANCE) {
             snapBack(player);
             return;
         }
         if (t > state.maxWatched) state.maxWatched = t;
-        if (state.duration > 0 && state.maxWatched >= Math.max(0, state.duration - 3)) complete();
+        if (state.duration > 0 && state.maxWatched >= Math.max(0, state.duration - VIDEO_COMPLETE_MARGIN)) {
+            complete();
+        }
     }
 
     // postMessage: funciona mesmo sem PandaPlayer API
@@ -1023,13 +1042,9 @@ function initPandaWrapPlayer(wrap) {
             var msg = e.message;
             var t = typeof e.currentTime === 'number' ? e.currentTime : null;
 
-            if (msg === 'panda_play') {
-                warn.style.opacity = '0';
-                warn.style.pointerEvents = 'none';
-            }
+            if (msg === 'panda_play') setVideoWarnVisible(warn, false);
             if (msg === 'panda_pause' && !wrap.classList.contains('req-done')) {
-                warn.style.opacity = '1';
-                warn.style.pointerEvents = 'auto';
+                setVideoWarnVisible(warn, true);
             }
             if (msg === 'panda_ended') {
                 complete();
@@ -1044,7 +1059,7 @@ function initPandaWrapPlayer(wrap) {
                 handleTime(t, state.duration, player);
             }
             if (msg === 'panda_seeking' || msg === 'panda_seeked') {
-                if (t !== null && t > state.maxWatched + SEEK_TOLERANCE) snapBack(player);
+                if (t !== null && t > state.maxWatched + VIDEO_SEEKING_TOLERANCE) snapBack(player);
             }
         });
     }
@@ -1086,13 +1101,9 @@ function initPandaPostMessageFallback(wrap, iframe, warn, state, onTime, onEnded
         var t = typeof data.currentTime === 'number' ? data.currentTime : null;
         var dur = typeof data.duration === 'number' ? data.duration : null;
 
-        if (data.message === 'panda_play') {
-            warn.style.opacity = '0';
-            warn.style.pointerEvents = 'none';
-        }
+        if (data.message === 'panda_play') setVideoWarnVisible(warn, false);
         if (data.message === 'panda_pause' && !wrap.classList.contains('req-done')) {
-            warn.style.opacity = '1';
-            warn.style.pointerEvents = 'auto';
+            setVideoWarnVisible(warn, true);
         }
         if (data.message === 'panda_ended') {
             state.completed = true;
@@ -1101,7 +1112,7 @@ function initPandaPostMessageFallback(wrap, iframe, warn, state, onTime, onEnded
             return;
         }
         if (data.message === 'panda_seeking' || data.message === 'panda_seeked') {
-            if (t !== null && t > state.maxWatched + 1.0) {
+            if (t !== null && t > state.maxWatched + VIDEO_SEEKING_TOLERANCE) {
                 if (typeof snapBack === 'function') snapBack(null);
             }
             return;
@@ -1140,7 +1151,7 @@ function initVimeoWrapPlayer(wrap) {
 
     var enforceTime = function (data) {
         if (completed) return;
-        if (data.seconds > maxWatched + 1.25) {
+        if (data.seconds > maxWatched + VIDEO_SEEKING_TOLERANCE) {
             player.setCurrentTime(maxWatched);
         }
     };
@@ -1150,14 +1161,14 @@ function initVimeoWrapPlayer(wrap) {
         if (typeof data.duration === 'number' && data.duration > 0) {
             duration = data.duration;
         }
-        if (data.seconds > maxWatched + 2.5) {
+        if (data.seconds > maxWatched + VIDEO_TIMEUPDATE_TOLERANCE) {
             player.setCurrentTime(maxWatched);
             return;
         }
         if (data.seconds > maxWatched) {
             maxWatched = data.seconds;
         }
-        if (duration > 0 && maxWatched >= Math.max(0, duration - 3)) {
+        if (duration > 0 && maxWatched >= Math.max(0, duration - VIDEO_COMPLETE_MARGIN)) {
             markVideoComplete();
         }
     });
@@ -1166,18 +1177,14 @@ function initVimeoWrapPlayer(wrap) {
     player.on('seeked', enforceTime);
 
     player.on('play', function () {
-        warn.style.opacity = '0';
-        warn.style.pointerEvents = 'none';
+        setVideoWarnVisible(warn, false);
         player.getCurrentTime().then(function (seconds) {
-            if (!completed && seconds > maxWatched + 1.25) player.setCurrentTime(maxWatched);
+            if (!completed && seconds > maxWatched + VIDEO_SEEKING_TOLERANCE) player.setCurrentTime(maxWatched);
         });
     });
 
     player.on('pause', function () {
-        if (!wrap.classList.contains('req-done')) {
-            warn.style.opacity = '1';
-            warn.style.pointerEvents = 'auto';
-        }
+        if (!wrap.classList.contains('req-done')) setVideoWarnVisible(warn, true);
     });
 
     player.on('ended', function () {
@@ -1290,7 +1297,7 @@ function goTo(idx, force = false, skipHistory = false) {
 }
 
 document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') moduleNext(true);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') moduleNext(false);
     if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') modulePrev(true);
 });
 
