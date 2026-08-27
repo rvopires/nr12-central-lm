@@ -11,7 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=194">
+<link rel="stylesheet" href="shared.css?v=195">
     <script>
         window.MODULE_NAV = {
             id: "modulo-1",
@@ -1680,7 +1680,7 @@
                     <div class="s2-stage">
                         <div class="s2-photo">
                             <span class="s2-cap">Central</span>
-                            <img src="assets/fotos/maquinas-introdução.png?v=194" alt="Máquinas da Central de Cores — aberta e fechada">
+                            <img src="assets/fotos/maquinas-introdução.png?v=195" alt="Máquinas da Central de Cores — aberta e fechada">
                             <button type="button" class="s2-expand" aria-label="Ampliar imagem" title="Ampliar imagem"
                                 onclick="openImageModal('assets/fotos/maquinas-introdução.png')">🔍</button>
                         </div>
@@ -1694,7 +1694,7 @@
                                 <div class="s2-flip-face s2-flip-front">
                                     <div class="s2-flip-front-img">
                                         <span class="s2-cap">Central</span>
-                                        <img src="assets/fotos/maquinas-introdução.png?v=194" alt="Máquinas da Central de Cores — aberta e fechada">
+                                        <img src="assets/fotos/maquinas-introdução.png?v=195" alt="Máquinas da Central de Cores — aberta e fechada">
                                         <span class="s2-flip-zoom" role="button" tabindex="0" aria-label="Ampliar imagem"
                                             onclick="event.stopPropagation(); openImageModal('assets/fotos/maquinas-introdução.png')">🔍</span>
                                     </div>
@@ -1771,12 +1771,11 @@
                             flex-direction: column !important;
                             align-items: center !important;
                             justify-content: flex-start !important;
-                            gap: 6px;
+                            gap: 12px;
                             overflow-y: auto !important;
-                            overflow-x: hidden !important;
                             -webkit-overflow-scrolling: touch;
-                            padding: 10px 14px calc(110px + env(safe-area-inset-bottom, 0px)) !important;
-                            z-index: auto !important;
+                            padding-top: 8px !important;
+                            padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px)) !important;
                         }
 
                         #s4 > .slide-scroll-btn {
@@ -1786,16 +1785,14 @@
                         #s4 .s4-flip-hint,
                         #s4 .content-area p.s4-flip-hint {
                             font-family: var(--font-h);
-                            font-size: 11px !important;
+                            font-size: 13px;
                             font-weight: 700;
                             color: #53E6D4;
-                            letter-spacing: .03em;
+                            letter-spacing: .04em;
                             text-align: center;
-                            margin: 0 0 2px !important;
-                            padding: 0 10px;
-                            line-height: 1.25 !important;
-                            text-shadow: 0 0 8px rgba(83, 230, 212, 0.25);
-                            order: 1;
+                            margin: 0;
+                            text-shadow: 0 0 10px rgba(83, 230, 212, 0.3);
+                            order: 3;
                             flex-shrink: 0;
                         }
 
@@ -1806,11 +1803,11 @@
 
                         #s4 .s4-flip-grid {
                             display: block;
-                            width: min(320px, 86vw);
+                            width: min(420px, 92vw);
                             margin: 0 auto;
                             position: relative;
                             perspective: 1400px;
-                            order: 2;
+                            order: 1;
                             flex-shrink: 0;
                         }
 
@@ -1818,8 +1815,8 @@
                             position: relative;
                             display: none;
                             width: 100%;
-                            height: min(300px, calc(100vh - 360px));
-                            max-height: 340px;
+                            height: min(420px, calc(100vh - 280px));
+                            max-height: 440px;
                             cursor: pointer;
                             border: none;
                             background: transparent;
@@ -1973,11 +1970,11 @@
                         #s4 .s4-flip-tap {
                             flex-shrink: 0;
                             font-family: var(--font-h);
-                            font-size: 8px;
+                            font-size: 9px;
                             font-weight: 800;
-                            letter-spacing: .05em;
+                            letter-spacing: .06em;
                             text-transform: uppercase;
-                            padding: 5px 8px;
+                            padding: 7px 10px;
                             border-radius: 999px;
                             white-space: nowrap;
                             background: #AD52C4;
@@ -1990,32 +1987,14 @@
                             justify-content: center;
                             gap: 16px;
                             position: relative;
-                            z-index: 30;
-                            pointer-events: auto;
-                            margin: 8px auto 0;
-                            padding: 4px 0 6px;
-                            width: 100%;
-                            max-width: 320px;
-                            order: 3;
+                            z-index: 20;
+                            order: 2;
                             flex-shrink: 0;
-                        }
-
-                        .s4-carousel-nav.s4-nav-floating {
-                            position: fixed !important;
-                            left: 50% !important;
-                            bottom: calc(102px + env(safe-area-inset-bottom, 0px)) !important;
-                            transform: translateX(-50%) !important;
-                            width: min(320px, 92vw) !important;
-                            max-width: 320px !important;
-                            margin: 0 !important;
-                            padding: 6px 0 !important;
-                            z-index: 960 !important;
-                            pointer-events: auto !important;
-                            order: 0 !important;
-                        }
-
-                        .s4-carousel-nav.s4-nav-floating .carousel-hint {
-                            display: none !important;
+                            pointer-events: auto;
+                            margin: 0 auto;
+                            padding: 0;
+                            width: 100%;
+                            max-width: 420px;
                         }
 
                         #s4 .s4-nav-btn,
@@ -2037,7 +2016,7 @@
                                 0 8px 22px rgba(173, 82, 196, 0.55);
                             transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
                             position: relative;
-                            z-index: 31;
+                            z-index: 21;
                             pointer-events: auto;
                             touch-action: manipulation;
                             -webkit-tap-highlight-color: transparent;
@@ -2225,9 +2204,75 @@
                             text-shadow: 0 0 12px rgba(83, 230, 212, 0.55);
                         }
 
-                        @media (max-width: 768px) {
-                            #s4 .s4-flip-hint {
-                                font-size: 12px;
+                        @media (max-width: 900px) {
+                            #s4 .content-area {
+                                gap: 6px;
+                                overflow-x: hidden !important;
+                                padding: 10px 14px calc(110px + env(safe-area-inset-bottom, 0px)) !important;
+                            }
+
+                            #s4 .s4-flip-hint,
+                            #s4 .content-area p.s4-flip-hint {
+                                font-size: 11px !important;
+                                margin: 0 0 2px !important;
+                                padding: 0 10px;
+                                line-height: 1.25 !important;
+                                order: 1;
+                            }
+
+                            #s4 .s4-flip-grid {
+                                width: min(320px, 86vw);
+                                order: 2;
+                            }
+
+                            #s4 .s4-flip-card {
+                                height: min(300px, calc(100vh - 360px));
+                                max-height: 340px;
+                            }
+
+                            #s4 .s4-flip-tap {
+                                font-size: 8px;
+                                padding: 5px 8px;
+                            }
+
+                            #s4 .s4-carousel-nav {
+                                z-index: 30;
+                                margin: 8px auto 0;
+                                padding: 4px 0 6px;
+                                max-width: 320px;
+                                order: 3;
+                            }
+
+                            .s4-carousel-nav.s4-nav-floating {
+                                position: fixed !important;
+                                left: 50% !important;
+                                bottom: calc(102px + env(safe-area-inset-bottom, 0px)) !important;
+                                transform: translateX(-50%) !important;
+                                width: min(320px, 92vw) !important;
+                                max-width: 320px !important;
+                                margin: 0 !important;
+                                padding: 6px 0 !important;
+                                z-index: 960 !important;
+                                pointer-events: auto !important;
+                                order: 0 !important;
+                            }
+
+                            .s4-carousel-nav.s4-nav-floating .carousel-hint {
+                                display: none !important;
+                            }
+                        }
+
+                        @media (min-width: 901px) {
+                            .s4-carousel-nav.s4-nav-floating {
+                                position: relative !important;
+                                left: auto !important;
+                                bottom: auto !important;
+                                transform: none !important;
+                                width: 100% !important;
+                                max-width: 420px !important;
+                                margin: 0 auto !important;
+                                padding: 0 !important;
+                                z-index: 20 !important;
                             }
                         }
                     </style>
@@ -2548,30 +2593,37 @@
                             bindNavBtn(document.getElementById('s4-prev'), -1);
                             bindNavBtn(document.getElementById('s4-next'), 1);
 
-                            /* Tira as setas de cima da barra Anterior/Próximo (z-index do slide) */
+                            /* Float das setas só no mobile (desktop mantém no fluxo) */
                             (function setupS4NavFloat() {
                                 var nav = document.querySelector('#s4 .s4-carousel-nav');
                                 var slide = document.getElementById('s4');
                                 if (!nav || !slide) return;
                                 var homeParent = nav.parentNode;
                                 var homeNext = nav.nextSibling;
-                                function syncFloat() {
-                                    var on = slide.classList.contains('active');
-                                    if (on) {
-                                        if (nav.parentNode !== document.body) document.body.appendChild(nav);
-                                        nav.classList.add('s4-nav-floating');
-                                    } else {
-                                        nav.classList.remove('s4-nav-floating');
-                                        if (nav.parentNode !== homeParent) {
-                                            if (homeNext && homeNext.parentNode === homeParent) {
-                                                homeParent.insertBefore(nav, homeNext);
-                                            } else {
-                                                homeParent.appendChild(nav);
-                                            }
+                                var mq = window.matchMedia('(max-width: 900px)');
+                                function restoreHome() {
+                                    nav.classList.remove('s4-nav-floating');
+                                    if (nav.parentNode !== homeParent) {
+                                        if (homeNext && homeNext.parentNode === homeParent) {
+                                            homeParent.insertBefore(nav, homeNext);
+                                        } else {
+                                            homeParent.appendChild(nav);
                                         }
                                     }
                                 }
+                                function syncFloat() {
+                                    var onMobile = mq.matches;
+                                    var onSlide = slide.classList.contains('active');
+                                    if (onMobile && onSlide) {
+                                        if (nav.parentNode !== document.body) document.body.appendChild(nav);
+                                        nav.classList.add('s4-nav-floating');
+                                    } else {
+                                        restoreHome();
+                                    }
+                                }
                                 syncFloat();
+                                if (mq.addEventListener) mq.addEventListener('change', syncFloat);
+                                else if (mq.addListener) mq.addListener(syncFloat);
                                 if (typeof MutationObserver !== 'undefined') {
                                     new MutationObserver(syncFloat).observe(slide, {
                                         attributes: true,
@@ -3140,7 +3192,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=194"></script>
+    <script src="shared.js?v=195"></script>
 </body>
 
 </html>
