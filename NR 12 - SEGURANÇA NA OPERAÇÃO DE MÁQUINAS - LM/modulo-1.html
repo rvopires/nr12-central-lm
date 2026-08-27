@@ -11,7 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=185">
+<link rel="stylesheet" href="shared.css?v=187">
     <script>
         window.MODULE_NAV = {
             id: "modulo-1",
@@ -1469,6 +1469,7 @@
                                 order: 2;
                             }
                             #s2 .carousel-hint { display: none !important; }
+                            #s2 .s2-flip-hint { display: none !important; }
                             #s2 .s2-flip-grid {
                                 display: block;
                                 width: min(380px, 94vw);
@@ -1518,9 +1519,10 @@
                                 display: flex;
                                 flex-direction: column;
                                 box-shadow: 0 16px 36px rgba(0, 0, 0, .28);
+                                transform: translateZ(0);
                             }
                             #s2 .s2-flip-front {
-                                background: #fff;
+                                background: #0d061c;
                                 border: none;
                             }
                             #s2 .s2-flip-front-img {
@@ -1529,6 +1531,8 @@
                                 min-height: 0;
                                 overflow: hidden;
                                 background: #0d061c;
+                                backface-visibility: hidden;
+                                -webkit-backface-visibility: hidden;
                             }
                             #s2 .s2-flip-front-img img {
                                 width: 100%;
@@ -1550,6 +1554,14 @@
                                 font-weight: 900;
                                 letter-spacing: 0.12em;
                                 text-transform: uppercase;
+                                backface-visibility: hidden;
+                                -webkit-backface-visibility: hidden;
+                            }
+                            #s2 .s2-flip-card.is-flipped .s2-cap,
+                            #s2 .s2-flip-card.is-flipped .s2-flip-zoom {
+                                visibility: hidden;
+                                opacity: 0;
+                                pointer-events: none;
                             }
                             #s2 .s2-flip-zoom {
                                 position: absolute;
@@ -1668,7 +1680,7 @@
                     <div class="s2-stage">
                         <div class="s2-photo">
                             <span class="s2-cap">Central</span>
-                            <img src="assets/fotos/maquinas-introdução.png?v=185" alt="Máquinas da Central de Cores — aberta e fechada">
+                            <img src="assets/fotos/maquinas-introdução.png?v=187" alt="Máquinas da Central de Cores — aberta e fechada">
                             <button type="button" class="s2-expand" aria-label="Ampliar imagem" title="Ampliar imagem"
                                 onclick="openImageModal('assets/fotos/maquinas-introdução.png')">🔍</button>
                         </div>
@@ -1676,21 +1688,19 @@
                     </div>
 
                     <div class="s2-mobile-flip">
-                    <p class="s2-flip-hint">Toque no card para virar e ver a descrição</p>
-
                     <div class="s2-flip-grid" id="s2-flip-grid">
                         <button type="button" class="s2-flip-card is-active" onclick="s2FlipCard(this)" aria-pressed="false">
                             <div class="s2-flip-inner">
                                 <div class="s2-flip-face s2-flip-front">
                                     <div class="s2-flip-front-img">
                                         <span class="s2-cap">Central</span>
-                                        <img src="assets/fotos/maquinas-introdução.png?v=185" alt="Máquinas da Central de Cores — aberta e fechada">
+                                        <img src="assets/fotos/maquinas-introdução.png?v=187" alt="Máquinas da Central de Cores — aberta e fechada">
                                         <span class="s2-flip-zoom" role="button" tabindex="0" aria-label="Ampliar imagem"
                                             onclick="event.stopPropagation(); openImageModal('assets/fotos/maquinas-introdução.png')">🔍</span>
                                     </div>
                                     <div class="s2-flip-front-foot">
                                         <h4>Máquinas da Central de Cores</h4>
-                                        <span class="s2-flip-tap">Clique no card</span>
+                                        <span class="s2-flip-tap">Toque para virar</span>
                                     </div>
                                 </div>
                                 <div class="s2-flip-face s2-flip-back">
@@ -1761,11 +1771,14 @@
                             flex-direction: column !important;
                             align-items: center !important;
                             justify-content: flex-start !important;
-                            gap: 12px;
+                            gap: 10px;
                             overflow-y: auto !important;
                             -webkit-overflow-scrolling: touch;
-                            padding-top: 8px !important;
-                            padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px)) !important;
+                            padding: 6px 14px calc(120px + env(safe-area-inset-bottom, 0px)) !important;
+                        }
+
+                        #s4 > .slide-scroll-btn {
+                            display: none !important;
                         }
 
                         #s4 .s4-flip-hint {
@@ -1787,7 +1800,7 @@
 
                         #s4 .s4-flip-grid {
                             display: block;
-                            width: min(420px, 92vw);
+                            width: min(380px, 94vw);
                             margin: 0 auto;
                             position: relative;
                             perspective: 1400px;
@@ -1799,7 +1812,7 @@
                             position: relative;
                             display: none;
                             width: 100%;
-                            height: min(420px, calc(100vh - 280px));
+                            height: min(380px, calc(100vh - 300px));
                             max-height: 440px;
                             cursor: pointer;
                             border: none;
@@ -2153,20 +2166,8 @@
                         }
 
                         @media (max-width: 768px) {
-                            #s4 .content-area {
-                                padding-bottom: calc(140px + env(safe-area-inset-bottom, 0px)) !important;
-                            }
-
                             #s4 .s4-flip-hint {
                                 font-size: 12px;
-                            }
-
-                            #s4 .s4-flip-grid {
-                                width: min(380px, 94vw);
-                            }
-
-                            #s4 .s4-flip-card {
-                                height: min(380px, calc(100vh - 300px));
                             }
                         }
                     </style>
@@ -3014,7 +3015,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=185"></script>
+    <script src="shared.js?v=187"></script>
 </body>
 
 </html>

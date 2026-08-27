@@ -5337,19 +5337,12 @@ body {
         pointer-events: none !important;
     }
 
-    /* Página 7 (#s4): mantém a setinha de scroll no mobile */
+    /* Página 8 (#s4): sem setinha de scroll (igual página 7) */
     #s4 > .slide-scroll-btn {
-        display: flex !important;
-        z-index: 30 !important;
-        pointer-events: auto !important;
-        bottom: calc(118px + env(safe-area-inset-bottom, 0px)) !important;
-    }
-
-    #s4 > .slide-scroll-btn.is-hidden {
+        display: none !important;
         opacity: 0 !important;
+        visibility: hidden !important;
         pointer-events: none !important;
-        animation: none !important;
-        transform: translateX(-50%) translateY(8px) !important;
     }
 
     .slide:has([class*="-carousel-nav"]) .content-area {
@@ -5358,8 +5351,8 @@ body {
     }
 
     #s4 .content-area {
-        z-index: 1 !important;
-        padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px)) !important;
+        z-index: 12 !important;
+        padding: 6px 14px calc(120px + env(safe-area-inset-bottom, 0px)) !important;
     }
 
     #s4 .slide-title {
