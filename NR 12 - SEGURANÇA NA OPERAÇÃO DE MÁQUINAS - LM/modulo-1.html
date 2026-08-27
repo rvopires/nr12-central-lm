@@ -11,7 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=182">
+<link rel="stylesheet" href="shared.css?v=184">
     <script>
         window.MODULE_NAV = {
             id: "modulo-1",
@@ -1467,34 +1467,40 @@
                                 width: 0 !important;
                                 height: 0 !important;
                             }
-                            /* Card unificado: foto + texto */
+                            /* Card unificado: foto em altura natural (sem corte) */
                             #s2 .s2-stage {
                                 order: 1;
-                                width: min(100%, 400px);
-                                max-width: 400px;
-                                margin: 0;
-                                padding: 0;
-                                border-radius: 16px 16px 0 0;
-                                overflow: hidden;
-                                background: #1a0630;
-                                box-shadow: none;
-                                line-height: normal;
+                                width: min(100%, 400px) !important;
+                                max-width: 400px !important;
+                                margin: 0 !important;
+                                padding: 0 !important;
+                                border-radius: 16px 16px 0 0 !important;
+                                overflow: hidden !important;
+                                background: #2A0A4A !important;
+                                box-shadow: none !important;
+                                line-height: 0 !important;
+                                height: auto !important;
+                                max-height: none !important;
                             }
                             #s2 .s2-photo {
+                                position: relative !important;
                                 width: 100% !important;
-                                height: min(36vh, 250px) !important;
-                                min-height: 200px !important;
+                                height: auto !important;
+                                min-height: 0 !important;
                                 max-height: none !important;
                                 aspect-ratio: auto !important;
                                 border-radius: 0 !important;
                                 background: #2A0A4A !important;
+                                overflow: visible !important;
+                                line-height: 0 !important;
                             }
                             #s2 .s2-photo img {
                                 width: 100% !important;
-                                height: 100% !important;
+                                height: auto !important;
+                                max-width: 100% !important;
+                                max-height: none !important;
                                 display: block !important;
-                                object-fit: contain !important;
-                                object-position: center center !important;
+                                object-fit: initial !important;
                             }
                             #s2 .s2-cap {
                                 top: 10px;
@@ -1552,10 +1558,6 @@
                             }
                         }
                         @media (max-width: 900px) and (max-height: 700px) {
-                            #s2 .s2-photo {
-                                height: min(30vh, 200px) !important;
-                                min-height: 160px !important;
-                            }
                             #s2 .s2-copy {
                                 padding: 10px 12px 12px;
                                 gap: 5px;
@@ -1605,7 +1607,7 @@
                     <div class="s2-stage">
                         <div class="s2-photo">
                             <span class="s2-cap">Central</span>
-                            <img src="assets/fotos/maquinas-introdução.png" alt="Máquinas da Central de Cores — aberta e fechada">
+                            <img src="assets/fotos/maquinas-introdução.png?v=184" alt="Máquinas da Central de Cores — aberta e fechada">
                             <button type="button" class="s2-expand" aria-label="Ampliar imagem" title="Ampliar imagem"
                                 onclick="openImageModal('assets/fotos/maquinas-introdução.png')">🔍</button>
                         </div>
@@ -2893,7 +2895,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=182"></script>
+    <script src="shared.js?v=184"></script>
 </body>
 
 </html>
