@@ -60,8 +60,9 @@ img {
     }
 
     .section-tag {
-        font-size: 15px;
-        padding: 4px 10px;
+        font-size: 14px !important;
+        padding: 4px 12px !important;
+        letter-spacing: 0.1em;
     }
 
     .slide-title {
@@ -5173,6 +5174,12 @@ body {
         padding: 50px 80px 0 14px !important;
     }
 
+    .section-tag {
+        font-size: 14px !important;
+        padding: 4px 12px !important;
+        letter-spacing: 0.1em;
+    }
+
     .slide-title {
         font-size: 22px !important;
         line-height: 1.15;
@@ -5488,6 +5495,69 @@ body {
         font-size: 12px !important;
     }
 
+    body:has(#s9.active) #nav {
+        display: grid !important;
+        grid-template-columns: max-content 1fr max-content !important;
+        justify-content: stretch !important;
+        align-items: center !important;
+        gap: 0 !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    body:has(#s9.active) #nav #btn-back {
+        grid-column: 1 !important;
+        flex: 0 0 auto !important;
+        width: auto !important;
+        max-width: 102px !important;
+        min-width: 0 !important;
+        padding: 12px 10px !important;
+        font-size: 12px !important;
+    }
+
+    body:has(#s9.active) #nav #btn-fwd {
+        grid-column: 3 !important;
+        flex: 0 0 auto !important;
+        width: auto !important;
+        max-width: 102px !important;
+        min-width: 0 !important;
+        padding: 12px 10px !important;
+        font-size: 12px !important;
+    }
+
+    #s9 > .slide-scroll-btn {
+        display: none !important;
+    }
+
+    .s9-carousel-nav.s9-nav-floating {
+        position: fixed !important;
+        left: 50% !important;
+        bottom: calc(90px + env(safe-area-inset-bottom, 0px)) !important;
+        transform: translateX(-50%) !important;
+        z-index: 960 !important;
+        pointer-events: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 16px !important;
+        width: min(320px, 92vw) !important;
+    }
+
+    .s9-carousel-nav .carousel-hint,
+    .s9-carousel-nav.s9-nav-floating .carousel-hint {
+        display: none !important;
+    }
+
+    .s9-carousel-nav.s9-nav-floating #s9-prev:not(:disabled) {
+        animation: none !important;
+        background: #53E6D4 !important;
+        color: #1F0A45 !important;
+    }
+
+    .s9-carousel-nav.s9-nav-floating #s9-next:not(:disabled) {
+        animation: s9NextPulse 1.35s ease-in-out infinite !important;
+    }
+
     #s4 .slide-title {
         font-size: 18px !important;
         line-height: 1.2 !important;
@@ -5773,8 +5843,22 @@ body {
     visibility: hidden !important;
 }
 
-/* MÃ“D 2 pÃ¡g 13 (s10): sem barra de rolagem */
-#s10 .content-area {
+/* MÓD 2 pág 14 (s10): página de vídeo — mesmo fluxo da pág 13 (#s-equipamento) */
+#s10 .content-area:has(> .video-wrap--std) {
+    overflow: hidden;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#s10 .content-area:has(> .video-wrap--std)::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* Legacy: só quando ainda houver carrossel .s10-layout */
+#s10 .content-area:has(.s10-layout) {
     overflow: hidden;
     overflow-y: hidden;
     scrollbar-width: none;
@@ -5782,7 +5866,7 @@ body {
     padding-bottom: 12px;
 }
 
-#s10 .content-area::-webkit-scrollbar {
+#s10 .content-area:has(.s10-layout)::-webkit-scrollbar {
     display: none;
     width: 0;
     height: 0;
@@ -5829,8 +5913,23 @@ body {
 
 @media screen and (max-width: 768px) {
 
-    /* â”€â”€â”€ MÃ“D 2 pÃ¡g 13 (s10): carrossel de aplicaÃ§Ãµes â”€â”€â”€ */
-    #s10 .content-area {
+    /* MÓD 2 pág 14 (s10): vídeo na mesma posição da pág 13 (#s-equipamento) */
+    #s10 .content-area:has(> .video-wrap--std) {
+        justify-content: center !important;
+        align-items: center !important;
+        padding-top: 0 !important;
+        padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px)) !important;
+        overflow: hidden !important;
+        overflow-y: hidden !important;
+    }
+
+    #s10 .content-area:has(> .video-wrap--std) > .video-wrap--std {
+        margin-top: 0 !important;
+        margin-bottom: 48px !important;
+    }
+
+    /* Legacy carrossel s10 (se voltar a existir) */
+    #s10 .content-area:has(.s10-layout) {
         justify-content: flex-start !important;
         align-items: center !important;
         padding-top: 6px !important;
@@ -5841,7 +5940,7 @@ body {
         -ms-overflow-style: none !important;
     }
 
-    #s10 .content-area::-webkit-scrollbar {
+    #s10 .content-area:has(.s10-layout)::-webkit-scrollbar {
         display: none !important;
         width: 0 !important;
         height: 0 !important;
@@ -7449,6 +7548,13 @@ body {
     #s9 .content-area {
         overflow-y: auto !important;
     }
+
+    #s10 .content-area:has(> .video-wrap--std) {
+        overflow: hidden !important;
+        overflow-y: hidden !important;
+        justify-content: center !important;
+        padding-top: 0 !important;
+    }
 }
 
 /* Quiz 2 — página 16 — espaçamento confortável no painel */
@@ -8234,6 +8340,16 @@ body {
     background: linear-gradient(135deg, #ff7a18, #ff5500) !important;
     color: #fff !important;
     box-shadow: 0 8px 22px rgba(255, 102, 0, 0.4) !important;
+}
+
+@media (max-width: 768px) {
+    #sq2 #q2-question-panel .btn-next-q.show {
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: fit-content !important;
+        text-align: center !important;
+    }
 }
 
 @media (max-width: 768px) {

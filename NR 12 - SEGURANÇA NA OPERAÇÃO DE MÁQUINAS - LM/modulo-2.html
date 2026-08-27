@@ -11,7 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=185">
+<link rel="stylesheet" href="shared.css?v=200">
     <style>
         #s-equipamento .content-area > .video-wrap--std,
         #s10 .content-area > .video-wrap--std {
@@ -21,7 +21,15 @@
         @media screen and (max-width: 768px) {
             #s-equipamento .content-area > .video-wrap--std,
             #s10 .content-area > .video-wrap--std {
-                margin-top: 28px !important;
+                margin-top: 0 !important;
+                margin-bottom: 48px !important;
+            }
+
+            #s-equipamento .content-area,
+            #s10 .content-area {
+                justify-content: center !important;
+                align-items: center !important;
+                padding-top: 0 !important;
             }
         }
     </style>
@@ -376,20 +384,226 @@
                             background: #53E6D4;
                             box-shadow: 0 0 8px rgba(83, 230, 212, 0.7);
                         }
-                        @media (max-width: 768px) {
-                            #s9 .content-area { justify-content: flex-start !important; }
-                            #s9 .p13-grid {
-                                grid-template-columns: 1fr;
-                                max-width: 420px;
+                        @media (max-width: 900px) {
+                            #s9 > .slide-scroll-btn { display: none !important; }
+                            #s9 .content-area {
+                                display: flex !important;
+                                flex-direction: column !important;
+                                justify-content: flex-start !important;
+                                align-items: center !important;
+                                gap: 6px !important;
+                                padding: 10px 14px calc(110px + env(safe-area-inset-bottom, 0px)) !important;
+                                overflow-x: hidden !important;
                             }
-                            #s9 .p13-card { min-height: 380px; }
-                            #s9 .p13-image { height: 180px; }
+                            #s9 .p13-hint,
+                            #s9 .content-area p.p13-hint {
+                                font-size: 11px !important;
+                                margin: 0 0 2px !important;
+                                line-height: 1.25 !important;
+                                order: 1;
+                            }
+                            #s9 .carousel-hint,
+                            .s9-carousel-nav .carousel-hint {
+                                display: none !important;
+                            }
+                            #s9 .p13-grid {
+                                display: block;
+                                width: min(340px, 88vw);
+                                margin: 0 auto;
+                                position: relative;
+                                order: 2;
+                                flex-shrink: 0;
+                            }
+                            #s9 .p13-card {
+                                display: none;
+                                width: 100%;
+                                min-height: 0;
+                                height: min(350px, calc(100vh - 340px));
+                                max-height: 380px;
+                                margin: 0;
+                            }
+                            #s9 .p13-card.is-active {
+                                display: block;
+                                animation: s9FadeIn 0.35s ease;
+                            }
+                            @keyframes s9FadeIn {
+                                from { opacity: 0; transform: translateY(6px); }
+                                to { opacity: 1; transform: translateY(0); }
+                            }
+                            #s9 .p13-image { height: 38%; min-height: 120px; max-height: 160px; flex-shrink: 0; }
+                            #s9 .p13-content {
+                                min-height: 100%;
+                                height: 100%;
+                            }
+                            #s9 .p13-body {
+                                padding: 10px 12px 12px;
+                                overflow-y: auto;
+                                -webkit-overflow-scrolling: touch;
+                                flex: 1 1 auto;
+                                min-height: 0;
+                            }
+                            #s9 .p13-title { font-size: 15px !important; margin-bottom: 6px; }
+                            #s9 .p13-list { gap: 5px; }
+                            #s9 .p13-list li { font-size: 11.5px !important; line-height: 1.32; }
+                            #s9 .p13-cover-foot {
+                                min-height: 58px;
+                                padding: 10px 12px;
+                            }
+                            #s9 .p13-cover-foot h3 { font-size: 15px !important; }
+                            #s9 .p13-tap {
+                                font-size: 8px;
+                                padding: 5px 8px;
+                                animation: none;
+                            }
+                            #s9 .p13-check {
+                                position: absolute;
+                                top: 12px;
+                                right: 12px;
+                                z-index: 8;
+                                width: 40px;
+                                height: 40px;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background: linear-gradient(145deg, #7AEEE0, #53E6D4);
+                                color: #1F0A45;
+                                border: 2.5px solid #fff;
+                                box-shadow:
+                                    0 0 0 3px rgba(83, 230, 212, 0.45),
+                                    0 6px 18px rgba(83, 230, 212, 0.55);
+                                opacity: 0;
+                                transform: scale(0.4);
+                                pointer-events: none;
+                                transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.9, 0.2, 1.2);
+                            }
+                            #s9 .p13-check svg {
+                                width: 22px;
+                                height: 22px;
+                                stroke: currentColor;
+                                fill: none;
+                                stroke-width: 3.2;
+                                stroke-linecap: round;
+                                stroke-linejoin: round;
+                            }
+                            #s9 .p13-card.req-done .p13-check {
+                                opacity: 1;
+                                transform: scale(1);
+                            }
+                            #s9 .s9-carousel-nav {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 16px;
+                                position: relative;
+                                z-index: 30;
+                                margin: 8px auto 0;
+                                padding: 4px 0 6px;
+                                width: 100%;
+                                max-width: 320px;
+                                order: 3;
+                                flex-shrink: 0;
+                                pointer-events: auto;
+                            }
+                            #s9 .s9-nav-btn,
+                            .s9-carousel-nav .s9-nav-btn {
+                                width: 52px;
+                                height: 52px;
+                                border-radius: 50%;
+                                border: 2.5px solid #fff;
+                                background: linear-gradient(145deg, #7AEEE0 0%, #53E6D4 45%, #AD52C4 100%);
+                                color: #fff;
+                                font-size: 30px;
+                                font-weight: 900;
+                                line-height: 1;
+                                cursor: pointer;
+                                box-shadow:
+                                    0 0 0 4px rgba(83, 230, 212, 0.45),
+                                    0 0 28px rgba(83, 230, 212, 0.65),
+                                    0 8px 22px rgba(173, 82, 196, 0.55);
+                                pointer-events: auto;
+                                touch-action: manipulation;
+                                -webkit-tap-highlight-color: transparent;
+                            }
+                            #s9-prev:not(:disabled),
+                            .s9-carousel-nav #s9-prev:not(:disabled) {
+                                animation: none !important;
+                                background: #53E6D4 !important;
+                                color: #1F0A45 !important;
+                                border: 2px solid rgba(255, 255, 255, 0.95) !important;
+                                box-shadow:
+                                    0 6px 18px rgba(83, 230, 212, 0.45),
+                                    0 0 18px rgba(83, 230, 212, 0.3) !important;
+                            }
+                            #s9-next:not(:disabled),
+                            .s9-carousel-nav #s9-next:not(:disabled) {
+                                animation: s9NextPulse 1.35s ease-in-out infinite !important;
+                            }
+                            #s9-next.is-locked,
+                            #s9-next:disabled {
+                                animation: none !important;
+                                opacity: 0.28 !important;
+                            }
+                            @keyframes s9NextPulse {
+                                0%, 100% {
+                                    transform: translateX(0) scale(1);
+                                    box-shadow:
+                                        0 0 0 4px rgba(83, 230, 212, 0.45),
+                                        0 0 28px rgba(83, 230, 212, 0.65),
+                                        0 8px 22px rgba(173, 82, 196, 0.55);
+                                }
+                                50% {
+                                    transform: translateX(5px) scale(1.1);
+                                    box-shadow:
+                                        0 0 0 6px rgba(83, 230, 212, 0.75),
+                                        0 0 42px rgba(83, 230, 212, 0.95),
+                                        0 10px 28px rgba(173, 82, 196, 0.75);
+                                }
+                            }
+                            #s9 .s9-counter {
+                                font-family: var(--font-h);
+                                font-size: 16px;
+                                font-weight: 800;
+                                color: #53E6D4;
+                                min-width: 52px;
+                                text-align: center;
+                                text-shadow: 0 0 12px rgba(83, 230, 212, 0.55);
+                            }
+                            .s9-carousel-nav.s9-nav-floating {
+                                position: fixed !important;
+                                left: 50% !important;
+                                bottom: calc(90px + env(safe-area-inset-bottom, 0px)) !important;
+                                transform: translateX(-50%) !important;
+                                width: min(320px, 92vw) !important;
+                                max-width: 320px !important;
+                                margin: 0 !important;
+                                padding: 6px 0 !important;
+                                z-index: 960 !important;
+                                pointer-events: auto !important;
+                                display: flex !important;
+                                order: 0 !important;
+                            }
+                            .s9-carousel-nav.s9-nav-floating .carousel-hint {
+                                display: none !important;
+                            }
+                        }
+                        @media (min-width: 901px) {
+                            #s9 .s9-carousel-nav { display: none !important; }
+                            .s9-carousel-nav.s9-nav-floating {
+                                position: relative !important;
+                                left: auto !important;
+                                bottom: auto !important;
+                                transform: none !important;
+                                display: none !important;
+                            }
+                            #s9 .p13-card { display: block !important; }
+                            #s9 .p13-check { display: none !important; }
                         }
                     </style>
 
-                    <p class="p13-hint">Toque no card para ver as partes · Toque de novo para voltar</p>
-                    <div class="p13-grid">
-                        <article class="p13-card p13-card--dos unrevealed req-item" onclick="revealCard(this)" aria-label="Dosador de tintas — toque para visualizar">
+                    <p class="p13-hint">Toque no card para liberar a seta · veja os 2</p>
+                    <div class="p13-grid" id="s9-card-grid">
+                        <article class="p13-card p13-card--dos unrevealed req-item is-active" data-s9-idx="0" onclick="revealCard(this)" aria-label="Dosador de tintas — toque para visualizar">
                             <div class="p13-cover">
                                 <img class="p13-cover-img" src="assets/fotos/dosador-13.png" alt="">
                                 <div class="p13-cover-number">01</div>
@@ -416,7 +630,7 @@
                             </div>
                         </article>
 
-                        <article class="p13-card p13-card--mix unrevealed req-item" onclick="revealCard(this)" aria-label="Misturador de tintas — toque para visualizar">
+                        <article class="p13-card p13-card--mix unrevealed req-item" data-s9-idx="1" onclick="revealCard(this)" aria-label="Misturador de tintas — toque para visualizar">
                             <div class="p13-cover">
                                 <img class="p13-cover-img" src="assets/fotos/misturador-13.png" alt="">
                                 <div class="p13-cover-number">02</div>
@@ -444,15 +658,171 @@
                         </article>
                     </div>
 
+                    <div class="s9-carousel-nav" aria-label="Navegação dos cards">
+                        <button type="button" class="s9-nav-btn" id="s9-prev" aria-label="Anterior">‹</button>
+                        <span class="s9-counter" id="s9-counter">1 / 2</span>
+                        <button type="button" class="s9-nav-btn" id="s9-next" aria-label="Próximo">›</button>
+                    </div>
+
                     <script>
-                        function revealCard(el) {
-                            el.classList.toggle('unrevealed');
-                            if (!el.classList.contains('unrevealed')) {
-                                el.classList.add('req-done');
-                                if (typeof updateNextButton === 'function') updateNextButton();
+                        (function () {
+                            var s9Idx = 0;
+                            var cards = function () {
+                                return document.querySelectorAll('#s9 .p13-card');
+                            };
+
+                            function ensureChecks() {
+                                cards().forEach(function (c) {
+                                    if (c.querySelector('.p13-check')) return;
+                                    var mark = document.createElement('span');
+                                    mark.className = 'p13-check';
+                                    mark.setAttribute('aria-hidden', 'true');
+                                    mark.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>';
+                                    c.insertBefore(mark, c.firstChild);
+                                });
                             }
-                            try { if (typeof window.playClickSound === 'function') window.playClickSound(); } catch (e) { }
-                        }
+
+                            function s9CurrentDone() {
+                                var list = cards();
+                                var cur = list[s9Idx];
+                                return !!(cur && cur.classList.contains('req-done'));
+                            }
+
+                            function s9UpdateUI() {
+                                var list = cards();
+                                var total = list.length;
+                                var mobile = window.matchMedia('(max-width: 900px)').matches;
+                                list.forEach(function (c, i) {
+                                    if (mobile) c.classList.toggle('is-active', i === s9Idx);
+                                    else c.classList.add('is-active');
+                                });
+                                var counter = document.getElementById('s9-counter');
+                                if (counter) counter.textContent = (s9Idx + 1) + ' / ' + total;
+                                var prev = document.getElementById('s9-prev');
+                                var next = document.getElementById('s9-next');
+                                var canFwd = s9CurrentDone() && s9Idx < total - 1;
+                                if (prev) {
+                                    prev.disabled = (s9Idx === 0);
+                                    prev.setAttribute('aria-disabled', s9Idx === 0 ? 'true' : 'false');
+                                }
+                                if (next) {
+                                    next.disabled = !canFwd;
+                                    next.setAttribute('aria-disabled', canFwd ? 'false' : 'true');
+                                    next.classList.toggle('is-locked', !canFwd);
+                                    next.title = canFwd ? 'Próximo' : 'Toque no card para liberar';
+                                }
+                            }
+
+                            function s9Go(dir) {
+                                var now = Date.now();
+                                if (now - (s9Go._last || 0) < 300) return;
+                                if (!window.matchMedia('(max-width: 900px)').matches) return;
+                                var list = cards();
+                                var total = list.length;
+                                if (!total) return;
+                                var nextIdx = s9Idx + dir;
+                                if (nextIdx < 0 || nextIdx >= total) return;
+                                if (dir > 0 && !s9CurrentDone()) return;
+                                s9Go._last = now;
+                                s9Idx = nextIdx;
+                                try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
+                                s9UpdateUI();
+                            }
+                            window.s9Go = s9Go;
+
+                            window.revealCard = function (el) {
+                                if (!el) return;
+                                var wasDone = el.classList.contains('req-done');
+                                el.classList.toggle('unrevealed');
+                                if (!el.classList.contains('unrevealed')) {
+                                    el.classList.add('req-done');
+                                    if (!wasDone) {
+                                        try {
+                                            if (typeof playSoftCheckSound === 'function') playSoftCheckSound();
+                                            else if (typeof playClickSound === 'function') playClickSound();
+                                        } catch (e) {}
+                                        if (typeof updateNextButton === 'function') updateNextButton();
+                                    } else {
+                                        try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
+                                    }
+                                } else {
+                                    try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
+                                }
+                                s9UpdateUI();
+                            };
+
+                            function bindNavBtn(btn, dir) {
+                                if (!btn || btn.dataset.s9Bound === '1') return;
+                                btn.dataset.s9Bound = '1';
+                                btn.addEventListener('click', function (e) {
+                                    if (btn.disabled) return;
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    s9Go(dir);
+                                }, true);
+                            }
+
+                            bindNavBtn(document.getElementById('s9-prev'), -1);
+                            bindNavBtn(document.getElementById('s9-next'), 1);
+
+                            (function setupS9NavFloat() {
+                                var nav = document.querySelector('#s9 .s9-carousel-nav');
+                                var slide = document.getElementById('s9');
+                                if (!nav || !slide) return;
+                                var homeParent = nav.parentNode;
+                                var homeNext = nav.nextSibling;
+                                var mq = window.matchMedia('(max-width: 900px)');
+                                function restoreHome() {
+                                    nav.classList.remove('s9-nav-floating');
+                                    if (nav.parentNode !== homeParent) {
+                                        if (homeNext && homeNext.parentNode === homeParent) {
+                                            homeParent.insertBefore(nav, homeNext);
+                                        } else {
+                                            homeParent.appendChild(nav);
+                                        }
+                                    }
+                                }
+                                function syncFloat() {
+                                    if (mq.matches && slide.classList.contains('active')) {
+                                        if (nav.parentNode !== document.body) document.body.appendChild(nav);
+                                        nav.classList.add('s9-nav-floating');
+                                    } else {
+                                        restoreHome();
+                                    }
+                                    s9UpdateUI();
+                                }
+                                syncFloat();
+                                if (mq.addEventListener) mq.addEventListener('change', syncFloat);
+                                else if (mq.addListener) mq.addListener(syncFloat);
+                                if (typeof MutationObserver !== 'undefined') {
+                                    new MutationObserver(syncFloat).observe(slide, {
+                                        attributes: true,
+                                        attributeFilter: ['class']
+                                    });
+                                }
+                            })();
+
+                            var grid = document.getElementById('s9-card-grid');
+                            var touchX = null;
+                            if (grid) {
+                                grid.addEventListener('touchstart', function (e) {
+                                    touchX = e.touches[0].clientX;
+                                }, { passive: true });
+                                grid.addEventListener('touchend', function (e) {
+                                    if (!window.matchMedia('(max-width: 900px)').matches) return;
+                                    if (touchX === null) return;
+                                    var dx = e.changedTouches[0].clientX - touchX;
+                                    touchX = null;
+                                    if (Math.abs(dx) < 40) return;
+                                    if (dx < 0 && !s9CurrentDone()) return;
+                                    s9Go(dx < 0 ? 1 : -1);
+                                }, { passive: true });
+                            }
+
+                            ensureChecks();
+                            s9UpdateUI();
+                            if (typeof updateNextButton === 'function') updateNextButton();
+                        })();
                     </script>
                 </div>
                 <button type="button" id="s9-scroll-down" class="slide-scroll-btn"
@@ -635,6 +1005,27 @@
                             font-weight: 800 !important;
                             letter-spacing: 0.04em;
                         }
+                        #sq2 #q2-question-panel .btn-next-q.show {
+                            display: block !important;
+                            margin-left: auto !important;
+                            margin-right: auto !important;
+                            width: fit-content;
+                            text-align: center;
+                        }
+                        @media (max-width: 768px) {
+                            #sq2 #q2-question-panel .btn-next-q,
+                            #sq2 #q2-question-panel .btn-next-q.show {
+                                display: block !important;
+                                margin-left: auto !important;
+                                margin-right: auto !important;
+                                width: fit-content !important;
+                                min-width: 200px;
+                                text-align: center !important;
+                            }
+                            #sq2 #q2-question-panel .btn-next-q:not(.show) {
+                                display: none !important;
+                            }
+                        }
                         #sq2 #q2-question-panel .q-feedback {
                             text-align: center;
                             border-radius: 14px;
@@ -739,7 +1130,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=185"></script>
+    <script src="shared.js?v=197"></script>
 </body>
 
 </html>
