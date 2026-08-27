@@ -371,29 +371,34 @@
                         }
                         @media (max-width: 900px) {
                             #s-o-que-e-nr12 .nr12-wrap {
-                                width: min(100%, 420px);
-                                gap: 12px;
+                                width: min(100%, 400px);
+                                gap: 8px;
                             }
-                            #s-o-que-e-nr12 .nr12-watermark { opacity: 0.35; font-size: 160px; right: -8%; }
+                            #s-o-que-e-nr12 .nr12-watermark { opacity: 0.28; font-size: 140px; right: -8%; }
                             #s-o-que-e-nr12 .content-area {
                                 justify-content: flex-start !important;
-                                padding: 8px 14px calc(110px + env(safe-area-inset-bottom, 0px)) !important;
+                                padding: 4px 14px calc(118px + env(safe-area-inset-bottom, 0px)) !important;
                                 overflow: hidden !important;
                                 scrollbar-width: none !important;
+                                gap: 0 !important;
+                            }
+                            #s-o-que-e-nr12 .top-bar .slide-title,
+                            #s-o-que-e-nr12 .slide-title {
+                                font-size: clamp(20px, 5.2vw, 26px) !important;
                             }
                             #s-o-que-e-nr12 .nr12-hero {
-                                padding: 12px 14px;
-                                gap: 12px;
-                                border-radius: 16px;
+                                padding: 10px 12px;
+                                gap: 10px;
+                                border-radius: 14px;
                             }
-                            #s-o-que-e-nr12 .nr12-seal { width: 52px; height: 52px; }
+                            #s-o-que-e-nr12 .nr12-seal { width: 46px; height: 46px; }
                             #s-o-que-e-nr12 .nr12-badge { inset: 5px; }
-                            #s-o-que-e-nr12 .nr12-badge strong { font-size: 17px; }
-                            #s-o-que-e-nr12 .nr12-badge em { font-size: 9px; }
-                            #s-o-que-e-nr12 .nr12-hero-label { font-size: 10px; margin-bottom: 4px; }
+                            #s-o-que-e-nr12 .nr12-badge strong { font-size: 15px; }
+                            #s-o-que-e-nr12 .nr12-badge em { font-size: 8px; }
+                            #s-o-que-e-nr12 .nr12-hero-label { font-size: 9px; margin-bottom: 3px; }
                             #s-o-que-e-nr12 .nr12-hero p {
-                                font-size: clamp(13.5px, 3.6vw, 15px);
-                                line-height: 1.4;
+                                font-size: clamp(12.5px, 3.3vw, 14px);
+                                line-height: 1.35;
                             }
                             #s-o-que-e-nr12 .nr12-grid {
                                 display: block;
@@ -402,39 +407,62 @@
                             #s-o-que-e-nr12 .nr12-card {
                                 display: none;
                                 min-height: 0;
-                                padding: 16px 14px 14px;
-                                border-radius: 16px;
+                                padding: 12px 12px 10px;
+                                border-radius: 14px;
+                                gap: 6px;
                             }
                             #s-o-que-e-nr12 .nr12-card.nr12-card-active {
                                 display: flex;
                                 animation: nr12CardFadeIn 0.3s ease;
                             }
+                            #s-o-que-e-nr12 .nr12-icon {
+                                width: 34px;
+                                height: 34px;
+                                border-radius: 11px;
+                            }
+                            #s-o-que-e-nr12 .nr12-icon svg {
+                                width: 18px;
+                                height: 18px;
+                            }
+                            #s-o-que-e-nr12 .nr12-kicker { font-size: 10px; }
                             #s-o-que-e-nr12 .nr12-card h3 {
-                                font-size: clamp(17px, 4.5vw, 20px);
+                                font-size: clamp(15.5px, 4.2vw, 18px);
                             }
                             #s-o-que-e-nr12 .nr12-card p {
-                                font-size: clamp(13.5px, 3.7vw, 15px);
-                                line-height: 1.45;
+                                font-size: clamp(12.5px, 3.4vw, 13.5px);
+                                line-height: 1.38;
+                            }
+                            #s-o-que-e-nr12 .nr12-chips { gap: 4px; margin-top: 0; }
+                            #s-o-que-e-nr12 .nr12-chips span {
+                                font-size: 9px;
+                                padding: 3px 7px;
                             }
                             #s-o-que-e-nr12 .nr12-carousel-nav {
                                 display: flex;
+                                flex-wrap: wrap;
                                 align-items: center;
                                 justify-content: center;
-                                gap: 18px;
-                                margin-top: 4px;
+                                gap: 8px 14px !important;
+                                margin-top: 2px;
+                                padding: 4px 0 6px !important;
                                 position: relative;
                                 z-index: 30;
                                 pointer-events: auto;
+                            }
+                            #s-o-que-e-nr12 .nr12-carousel-nav .carousel-hint {
+                                font-size: 12px !important;
+                                margin-top: 0 !important;
+                                line-height: 1.2;
                             }
                             #s-o-que-e-nr12 .nr12-nav-btn {
                                 background: linear-gradient(145deg, #7AEEE0 0%, #53E6D4 45%, #AD52C4 100%);
                                 color: #fff;
                                 border: 3px solid #fff;
                                 border-radius: 50%;
-                                width: 52px;
-                                height: 52px;
-                                min-width: 52px;
-                                min-height: 52px;
+                                width: 46px;
+                                height: 46px;
+                                min-width: 46px;
+                                min-height: 46px;
                                 cursor: pointer;
                                 display: flex;
                                 align-items: center;
@@ -482,19 +510,15 @@
                             }
                             #s-o-que-e-nr12 .nr12-counter {
                                 font-family: var(--font-h);
-                                font-size: 15px;
+                                font-size: 14px;
                                 font-weight: 800;
                                 color: #53E6D4;
-                                min-width: 52px;
+                                min-width: 48px;
                                 text-align: center;
                                 text-shadow: 0 0 12px rgba(83, 230, 212, 0.55);
                             }
                             #s-o-que-e-nr12 .nr12-dots {
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                gap: 8px;
-                                margin-top: 2px;
+                                display: none;
                             }
                             #s-o-que-e-nr12 .nr12-dot {
                                 width: 8px;
@@ -910,10 +934,13 @@
                         }
                         @media (max-width: 900px) {
                             #s-conceito-maquinas .content-area {
-                                padding: 8px 14px calc(110px + env(safe-area-inset-bottom, 0px)) !important;
+                                padding: 4px 14px calc(118px + env(safe-area-inset-bottom, 0px)) !important;
                                 justify-content: flex-start !important;
-                                gap: 10px;
+                                gap: 6px;
                                 overflow: hidden !important;
+                            }
+                            #s-conceito-maquinas .slide-title {
+                                font-size: clamp(20px, 5.2vw, 26px) !important;
                             }
                             #s-conceito-maquinas .cm-stage,
                             #s-conceito-maquinas .cm-carousel-nav {
@@ -921,29 +948,37 @@
                             }
                             #s-conceito-maquinas .cm-stage {
                                 grid-template-columns: 1fr;
-                                width: min(100%, 420px);
-                                gap: 10px;
+                                width: min(100%, 400px);
+                                gap: 6px;
                             }
                             #s-conceito-maquinas .cm-photo-card {
-                                width: min(100%, 100%);
+                                width: 100%;
+                                max-width: 400px;
                                 margin: 0 auto;
-                                border-radius: 16px;
+                                border-radius: 14px;
                                 padding: 3px;
+                                justify-self: center;
                             }
                             #s-conceito-maquinas .cm-photo {
+                                width: 100%;
                                 aspect-ratio: 16 / 10;
-                                max-height: min(28vh, 180px);
-                                border-radius: 13px;
+                                max-height: min(22vh, 150px);
+                                border-radius: 12px;
+                                background: #1a0630;
                             }
                             #s-conceito-maquinas .cm-photo img {
+                                width: 100%;
+                                height: 100%;
+                                display: block;
                                 object-fit: cover;
+                                object-position: center center;
                             }
                             #s-conceito-maquinas .cm-expand {
-                                width: 36px;
-                                height: 36px;
-                                right: 8px;
-                                bottom: 8px;
-                                font-size: 14px;
+                                width: 32px;
+                                height: 32px;
+                                right: 6px;
+                                bottom: 6px;
+                                font-size: 13px;
                             }
                             #s-conceito-maquinas .cm-tabs {
                                 display: none !important;
@@ -953,36 +988,45 @@
                             }
                             #s-conceito-maquinas .cm-card {
                                 min-height: 0;
-                                padding: 14px 14px 12px;
-                                border-radius: 16px;
+                                padding: 11px 12px 10px;
+                                border-radius: 14px;
                             }
                             #s-conceito-maquinas .cm-kicker {
-                                margin-bottom: 6px;
-                                font-size: 11px;
+                                margin-bottom: 4px;
+                                font-size: 10px;
                             }
                             #s-conceito-maquinas .cm-card h3 {
-                                font-size: clamp(17px, 4.5vw, 20px);
-                                margin-bottom: 8px;
+                                font-size: clamp(15.5px, 4.2vw, 18px);
+                                margin-bottom: 6px;
                             }
+                            #s-conceito-maquinas .cm-card ul { gap: 5px; }
                             #s-conceito-maquinas .cm-card li {
-                                font-size: clamp(13.5px, 3.7vw, 15px);
-                                line-height: 1.4;
+                                font-size: clamp(12.5px, 3.4vw, 13.5px);
+                                line-height: 1.35;
+                                padding-left: 16px;
                             }
                             #s-conceito-maquinas .cm-carousel-nav {
                                 display: flex;
+                                flex-wrap: wrap;
                                 align-items: center;
                                 justify-content: center;
-                                gap: 18px;
+                                gap: 8px 14px !important;
                                 position: relative;
                                 z-index: 30;
                                 pointer-events: auto;
-                                margin-top: 2px;
+                                margin-top: 0;
+                                padding: 4px 0 6px !important;
+                            }
+                            #s-conceito-maquinas .cm-carousel-nav .carousel-hint {
+                                font-size: 12px !important;
+                                margin-top: 0 !important;
+                                line-height: 1.2;
                             }
                             #s-conceito-maquinas .cm-nav-btn {
-                                width: 52px;
-                                height: 52px;
-                                min-width: 52px;
-                                min-height: 52px;
+                                width: 46px;
+                                height: 46px;
+                                min-width: 46px;
+                                min-height: 46px;
                                 border: 3px solid #fff;
                                 background: linear-gradient(145deg, #7AEEE0 0%, #53E6D4 45%, #AD52C4 100%);
                                 color: #fff;
@@ -1021,16 +1065,12 @@
                                 border-color: rgba(255, 255, 255, 0.5);
                             }
                             #s-conceito-maquinas .cm-counter {
-                                font-size: 15px;
-                                min-width: 52px;
+                                font-size: 14px;
+                                min-width: 48px;
                                 text-shadow: 0 0 12px rgba(83, 230, 212, 0.55);
                             }
                             #s-conceito-maquinas .cm-dots {
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                gap: 8px;
-                                margin-top: 2px;
+                                display: none;
                             }
                             #s-conceito-maquinas .cm-dot {
                                 width: 8px;
@@ -1394,18 +1434,144 @@
                             text-transform: uppercase;
                         }
                         @media (max-width: 900px) {
-                            #s2 .content-area {
-                                grid-template-columns: 1fr !important;
-                                gap: 18px;
-                                padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px)) !important;
-                                overflow-y: auto !important;
-                                align-content: start !important;
+                            #s2 > .top-bar {
+                                flex-shrink: 0 !important;
+                                position: relative;
+                                z-index: 6 !important;
+                                padding-bottom: 6px !important;
                             }
-                            #s2 .s2-stage { order: 1; max-width: 520px; margin: 0 auto; width: 100%; justify-self: center; }
-                            #s2 .s2-copy { order: 2; max-width: 380px; margin: 0 auto; width: 100%; justify-self: center; }
-                            #s2 .s2-photo { max-height: min(36vh, 300px); }
+                            #s2 .slide-title {
+                                font-size: clamp(18px, 5vw, 22px) !important;
+                                line-height: 1.2 !important;
+                                margin-top: 6px !important;
+                            }
+                            #s2 .section-tag {
+                                font-size: 12px !important;
+                                padding: 4px 12px !important;
+                            }
+                            #s2 .content-area {
+                                display: flex !important;
+                                flex-direction: column !important;
+                                grid-template-columns: none !important;
+                                align-items: center !important;
+                                justify-content: flex-start !important;
+                                align-content: start !important;
+                                gap: 0 !important;
+                                padding: 10px 16px calc(120px + env(safe-area-inset-bottom, 0px)) !important;
+                                overflow-x: hidden !important;
+                                overflow-y: auto !important;
+                                scrollbar-width: none !important;
+                            }
+                            #s2 .content-area::-webkit-scrollbar {
+                                display: none !important;
+                                width: 0 !important;
+                                height: 0 !important;
+                            }
+                            /* Card unificado: foto + texto */
+                            #s2 .s2-stage {
+                                order: 1;
+                                width: min(100%, 400px);
+                                max-width: 400px;
+                                margin: 0;
+                                padding: 0;
+                                border-radius: 16px 16px 0 0;
+                                overflow: hidden;
+                                background: #1a0630;
+                                box-shadow: none;
+                                line-height: normal;
+                            }
+                            #s2 .s2-photo {
+                                width: 100% !important;
+                                height: min(36vh, 250px) !important;
+                                min-height: 200px !important;
+                                max-height: none !important;
+                                aspect-ratio: auto !important;
+                                border-radius: 0 !important;
+                                background: #2A0A4A !important;
+                            }
+                            #s2 .s2-photo img {
+                                width: 100% !important;
+                                height: 100% !important;
+                                display: block !important;
+                                object-fit: contain !important;
+                                object-position: center center !important;
+                            }
+                            #s2 .s2-cap {
+                                top: 10px;
+                                left: 0;
+                                padding: 5px 10px;
+                                font-size: 10px;
+                            }
+                            #s2 .s2-expand {
+                                width: 36px;
+                                height: 36px;
+                                right: 10px;
+                                bottom: 10px;
+                                font-size: 14px;
+                            }
+                            #s2 .s2-copy {
+                                order: 2;
+                                width: min(100%, 400px);
+                                max-width: 400px;
+                                margin: 0;
+                                padding: 14px 14px 16px;
+                                gap: 8px;
+                                border-radius: 0 0 16px 16px;
+                                box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+                                background: #fff;
+                            }
+                            #s2 .s2-lead {
+                                font-size: clamp(16px, 4.4vw, 18px);
+                                line-height: 1.2;
+                            }
+                            #s2 .s2-text {
+                                font-size: clamp(13px, 3.5vw, 14px);
+                                line-height: 1.4;
+                            }
+                            #s2 .s2-lines {
+                                margin-top: 2px;
+                            }
+                            #s2 .s2-line {
+                                padding: 7px 0;
+                                gap: 8px;
+                                grid-template-columns: 28px 1fr;
+                            }
+                            #s2 .s2-line-n {
+                                font-size: 12px;
+                            }
+                            #s2 .s2-line strong {
+                                font-size: clamp(14.5px, 3.9vw, 16px);
+                                margin-bottom: 1px;
+                            }
+                            #s2 .s2-line span {
+                                font-size: 13px;
+                                line-height: 1.35;
+                            }
+                            #s2 > .slide-scroll-btn {
+                                display: none !important;
+                            }
                         }
-                        @media (max-height: 720px) {
+                        @media (max-width: 900px) and (max-height: 700px) {
+                            #s2 .s2-photo {
+                                height: min(30vh, 200px) !important;
+                                min-height: 160px !important;
+                            }
+                            #s2 .s2-copy {
+                                padding: 10px 12px 12px;
+                                gap: 5px;
+                            }
+                            #s2 .s2-lead {
+                                font-size: clamp(14.5px, 4vw, 16px);
+                            }
+                            #s2 .s2-text {
+                                font-size: 12px;
+                                line-height: 1.32;
+                            }
+                            #s2 .s2-line {
+                                padding: 4px 0;
+                            }
+                        }
+                        @media (min-width: 901px) and (max-height: 720px) {
                             #s2 .s2-copy { padding: 12px 14px; gap: 10px; }
                             #s2 .s2-lead { font-size: clamp(16px, 2.2vw, 20px); }
                             #s2 .s2-text { font-size: 13.5px; line-height: 1.45; }
