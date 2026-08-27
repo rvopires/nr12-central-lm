@@ -11,7 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=187">
+<link rel="stylesheet" href="shared.css?v=194">
     <script>
         window.MODULE_NAV = {
             id: "modulo-1",
@@ -1680,7 +1680,7 @@
                     <div class="s2-stage">
                         <div class="s2-photo">
                             <span class="s2-cap">Central</span>
-                            <img src="assets/fotos/maquinas-introdução.png?v=187" alt="Máquinas da Central de Cores — aberta e fechada">
+                            <img src="assets/fotos/maquinas-introdução.png?v=194" alt="Máquinas da Central de Cores — aberta e fechada">
                             <button type="button" class="s2-expand" aria-label="Ampliar imagem" title="Ampliar imagem"
                                 onclick="openImageModal('assets/fotos/maquinas-introdução.png')">🔍</button>
                         </div>
@@ -1694,7 +1694,7 @@
                                 <div class="s2-flip-face s2-flip-front">
                                     <div class="s2-flip-front-img">
                                         <span class="s2-cap">Central</span>
-                                        <img src="assets/fotos/maquinas-introdução.png?v=187" alt="Máquinas da Central de Cores — aberta e fechada">
+                                        <img src="assets/fotos/maquinas-introdução.png?v=194" alt="Máquinas da Central de Cores — aberta e fechada">
                                         <span class="s2-flip-zoom" role="button" tabindex="0" aria-label="Ampliar imagem"
                                             onclick="event.stopPropagation(); openImageModal('assets/fotos/maquinas-introdução.png')">🔍</span>
                                     </div>
@@ -1771,40 +1771,46 @@
                             flex-direction: column !important;
                             align-items: center !important;
                             justify-content: flex-start !important;
-                            gap: 10px;
+                            gap: 6px;
                             overflow-y: auto !important;
+                            overflow-x: hidden !important;
                             -webkit-overflow-scrolling: touch;
-                            padding: 6px 14px calc(120px + env(safe-area-inset-bottom, 0px)) !important;
+                            padding: 10px 14px calc(110px + env(safe-area-inset-bottom, 0px)) !important;
+                            z-index: auto !important;
                         }
 
                         #s4 > .slide-scroll-btn {
                             display: none !important;
                         }
 
-                        #s4 .s4-flip-hint {
+                        #s4 .s4-flip-hint,
+                        #s4 .content-area p.s4-flip-hint {
                             font-family: var(--font-h);
-                            font-size: 13px;
+                            font-size: 11px !important;
                             font-weight: 700;
                             color: #53E6D4;
-                            letter-spacing: .04em;
+                            letter-spacing: .03em;
                             text-align: center;
-                            margin: 0;
-                            text-shadow: 0 0 10px rgba(83, 230, 212, 0.3);
-                            order: 3;
+                            margin: 0 0 2px !important;
+                            padding: 0 10px;
+                            line-height: 1.25 !important;
+                            text-shadow: 0 0 8px rgba(83, 230, 212, 0.25);
+                            order: 1;
                             flex-shrink: 0;
                         }
 
-                        #s4 .carousel-hint {
+                        #s4 .carousel-hint,
+                        .s4-carousel-nav .carousel-hint {
                             display: none !important;
                         }
 
                         #s4 .s4-flip-grid {
                             display: block;
-                            width: min(380px, 94vw);
+                            width: min(320px, 86vw);
                             margin: 0 auto;
                             position: relative;
                             perspective: 1400px;
-                            order: 1;
+                            order: 2;
                             flex-shrink: 0;
                         }
 
@@ -1812,8 +1818,8 @@
                             position: relative;
                             display: none;
                             width: 100%;
-                            height: min(380px, calc(100vh - 300px));
-                            max-height: 440px;
+                            height: min(300px, calc(100vh - 360px));
+                            max-height: 340px;
                             cursor: pointer;
                             border: none;
                             background: transparent;
@@ -1967,15 +1973,74 @@
                         #s4 .s4-flip-tap {
                             flex-shrink: 0;
                             font-family: var(--font-h);
-                            font-size: 9px;
+                            font-size: 8px;
                             font-weight: 800;
-                            letter-spacing: .06em;
+                            letter-spacing: .05em;
                             text-transform: uppercase;
-                            padding: 7px 10px;
+                            padding: 5px 8px;
                             border-radius: 999px;
                             white-space: nowrap;
                             background: #AD52C4;
                             color: #fff;
+                        }
+
+                        #s4 .s4-carousel-nav {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 16px;
+                            position: relative;
+                            z-index: 30;
+                            pointer-events: auto;
+                            margin: 8px auto 0;
+                            padding: 4px 0 6px;
+                            width: 100%;
+                            max-width: 320px;
+                            order: 3;
+                            flex-shrink: 0;
+                        }
+
+                        .s4-carousel-nav.s4-nav-floating {
+                            position: fixed !important;
+                            left: 50% !important;
+                            bottom: calc(102px + env(safe-area-inset-bottom, 0px)) !important;
+                            transform: translateX(-50%) !important;
+                            width: min(320px, 92vw) !important;
+                            max-width: 320px !important;
+                            margin: 0 !important;
+                            padding: 6px 0 !important;
+                            z-index: 960 !important;
+                            pointer-events: auto !important;
+                            order: 0 !important;
+                        }
+
+                        .s4-carousel-nav.s4-nav-floating .carousel-hint {
+                            display: none !important;
+                        }
+
+                        #s4 .s4-nav-btn,
+                        .s4-carousel-nav .s4-nav-btn {
+                            width: 52px;
+                            height: 52px;
+                            border-radius: 50%;
+                            border: 2.5px solid #fff;
+                            background: linear-gradient(145deg, #7AEEE0 0%, #53E6D4 45%, #AD52C4 100%);
+                            color: #fff;
+                            font-size: 30px;
+                            font-weight: 900;
+                            line-height: 1;
+                            cursor: pointer;
+                            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+                            box-shadow:
+                                0 0 0 4px rgba(83, 230, 212, 0.45),
+                                0 0 28px rgba(83, 230, 212, 0.65),
+                                0 8px 22px rgba(173, 82, 196, 0.55);
+                            transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+                            position: relative;
+                            z-index: 31;
+                            pointer-events: auto;
+                            touch-action: manipulation;
+                            -webkit-tap-highlight-color: transparent;
                         }
 
                         #s4 .s4-flip-back {
@@ -2088,37 +2153,8 @@
                             box-shadow: 0 20px 44px rgba(173, 82, 196, 0.22);
                         }
 
-                        #s4 .s4-carousel-nav {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            gap: 16px;
-                            position: relative;
-                            z-index: 20;
-                            order: 2;
-                            flex-shrink: 0;
-                        }
-
-                        #s4 .s4-nav-btn {
-                            width: 52px;
-                            height: 52px;
-                            border-radius: 50%;
-                            border: 2.5px solid #fff;
-                            background: linear-gradient(145deg, #7AEEE0 0%, #53E6D4 45%, #AD52C4 100%);
-                            color: #fff;
-                            font-size: 30px;
-                            font-weight: 900;
-                            line-height: 1;
-                            cursor: pointer;
-                            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-                            box-shadow:
-                                0 0 0 4px rgba(83, 230, 212, 0.45),
-                                0 0 28px rgba(83, 230, 212, 0.65),
-                                0 8px 22px rgba(173, 82, 196, 0.55);
-                            transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
-                        }
-
-                        #s4 .s4-nav-btn:hover:not(:disabled) {
+                        #s4 .s4-nav-btn:hover:not(:disabled),
+                        .s4-carousel-nav .s4-nav-btn:hover:not(:disabled) {
                             filter: brightness(1.12);
                             transform: scale(1.08);
                             box-shadow:
@@ -2127,15 +2163,39 @@
                                 0 10px 28px rgba(173, 82, 196, 0.65);
                         }
 
-                        #s4 .s4-nav-btn:disabled {
+                        #s4 .s4-nav-btn:disabled,
+                        .s4-carousel-nav .s4-nav-btn:disabled {
                             opacity: 0.28;
                             cursor: not-allowed;
                             filter: grayscale(0.4);
                             box-shadow: none;
+                            animation: none !important;
+                        }
+
+                        #s4-prev:not(:disabled),
+                        #s4 .s4-nav-btn#s4-prev:not(:disabled) {
+                            animation: none !important;
+                            background: #53E6D4 !important;
+                            color: #1F0A45 !important;
+                            border: 2px solid rgba(255, 255, 255, 0.95) !important;
+                            box-shadow:
+                                0 6px 18px rgba(83, 230, 212, 0.45),
+                                0 0 18px rgba(83, 230, 212, 0.3) !important;
+                        }
+
+                        #s4-next:not(:disabled),
+                        #s4 .s4-nav-btn#s4-next:not(:disabled) {
+                            animation: s4NextPulse 1.35s ease-in-out infinite !important;
+                        }
+
+                        #s4-next.is-locked,
+                        #s4-next:disabled {
+                            animation: none !important;
+                            opacity: 0.28 !important;
                         }
 
                         #s4 .s4-nav-btn:not(:disabled) {
-                            animation: s4NextPulse 1.35s ease-in-out infinite;
+                            animation: none;
                         }
 
                         @keyframes s4NextPulse {
@@ -2147,11 +2207,11 @@
                                     0 8px 22px rgba(173, 82, 196, 0.55);
                             }
                             50% {
-                                transform: translateX(4px) scale(1.08);
+                                transform: translateX(5px) scale(1.1);
                                 box-shadow:
-                                    0 0 0 6px rgba(83, 230, 212, 0.7),
-                                    0 0 40px rgba(83, 230, 212, 0.9),
-                                    0 10px 28px rgba(173, 82, 196, 0.7);
+                                    0 0 0 6px rgba(83, 230, 212, 0.75),
+                                    0 0 42px rgba(83, 230, 212, 0.95),
+                                    0 10px 28px rgba(173, 82, 196, 0.75);
                             }
                         }
 
@@ -2172,7 +2232,7 @@
                         }
                     </style>
 
-                    <p class="s4-flip-hint">Toque no card para virar e veja os 7 para poder avançar</p>
+                    <p class="s4-flip-hint">Toque no card para liberar a seta · veja os 7</p>
 
                     <div class="s4-flip-grid" id="s4-flip-grid">
                         <button type="button" class="s4-flip-card s4-flip--purple is-active req-item" data-s4-idx="0"
@@ -2422,7 +2482,14 @@
                                 } else {
                                     try { if (typeof playTechClick === 'function') playTechClick(); } catch (e) {}
                                 }
+                                s4UpdateUI();
                             };
+
+                            function s4CurrentDone() {
+                                var list = cards();
+                                var cur = list[s4Idx];
+                                return !!(cur && cur.classList.contains('req-done'));
+                            }
 
                             function s4UpdateUI() {
                                 var list = cards();
@@ -2438,23 +2505,80 @@
                                 if (counter) counter.textContent = (s4Idx + 1) + ' / ' + total;
                                 var prev = document.getElementById('s4-prev');
                                 var next = document.getElementById('s4-next');
-                                if (prev) prev.disabled = (s4Idx === 0);
-                                if (next) next.disabled = (s4Idx >= total - 1);
+                                var canFwd = s4CurrentDone() && s4Idx < total - 1;
+                                if (prev) {
+                                    prev.disabled = (s4Idx === 0);
+                                    prev.setAttribute('aria-disabled', s4Idx === 0 ? 'true' : 'false');
+                                }
+                                if (next) {
+                                    next.disabled = !canFwd;
+                                    next.setAttribute('aria-disabled', canFwd ? 'false' : 'true');
+                                    next.classList.toggle('is-locked', !canFwd);
+                                    next.title = canFwd ? 'Próximo' : 'Toque no card para liberar';
+                                }
                             }
 
                             function s4Go(dir) {
+                                var now = Date.now();
+                                if (now - (s4Go._last || 0) < 300) return;
                                 var list = cards();
-                                var next = s4Idx + dir;
-                                if (next < 0 || next >= list.length) return;
-                                s4Idx = next;
+                                var total = list.length;
+                                if (!total) return;
+                                var nextIdx = s4Idx + dir;
+                                if (nextIdx < 0 || nextIdx >= total) return;
+                                if (dir > 0 && !s4CurrentDone()) return;
+                                s4Go._last = now;
+                                s4Idx = nextIdx;
                                 try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
                                 s4UpdateUI();
                             }
+                            window.s4Go = s4Go;
 
-                            var prevBtn = document.getElementById('s4-prev');
-                            var nextBtn = document.getElementById('s4-next');
-                            if (prevBtn) prevBtn.addEventListener('click', function () { s4Go(-1); });
-                            if (nextBtn) nextBtn.addEventListener('click', function () { s4Go(1); });
+                            function bindNavBtn(btn, dir) {
+                                if (!btn || btn.dataset.s4Bound === '1') return;
+                                btn.dataset.s4Bound = '1';
+                                btn.addEventListener('click', function (e) {
+                                    if (btn.disabled) return;
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    s4Go(dir);
+                                }, true);
+                            }
+
+                            bindNavBtn(document.getElementById('s4-prev'), -1);
+                            bindNavBtn(document.getElementById('s4-next'), 1);
+
+                            /* Tira as setas de cima da barra Anterior/Próximo (z-index do slide) */
+                            (function setupS4NavFloat() {
+                                var nav = document.querySelector('#s4 .s4-carousel-nav');
+                                var slide = document.getElementById('s4');
+                                if (!nav || !slide) return;
+                                var homeParent = nav.parentNode;
+                                var homeNext = nav.nextSibling;
+                                function syncFloat() {
+                                    var on = slide.classList.contains('active');
+                                    if (on) {
+                                        if (nav.parentNode !== document.body) document.body.appendChild(nav);
+                                        nav.classList.add('s4-nav-floating');
+                                    } else {
+                                        nav.classList.remove('s4-nav-floating');
+                                        if (nav.parentNode !== homeParent) {
+                                            if (homeNext && homeNext.parentNode === homeParent) {
+                                                homeParent.insertBefore(nav, homeNext);
+                                            } else {
+                                                homeParent.appendChild(nav);
+                                            }
+                                        }
+                                    }
+                                }
+                                syncFloat();
+                                if (typeof MutationObserver !== 'undefined') {
+                                    new MutationObserver(syncFloat).observe(slide, {
+                                        attributes: true,
+                                        attributeFilter: ['class']
+                                    });
+                                }
+                            })();
 
                             var grid = document.getElementById('s4-flip-grid');
                             var touchX = null;
@@ -2467,6 +2591,7 @@
                                     var dx = e.changedTouches[0].clientX - touchX;
                                     touchX = null;
                                     if (Math.abs(dx) < 40) return;
+                                    if (dx < 0 && !s4CurrentDone()) return;
                                     s4Go(dx < 0 ? 1 : -1);
                                 }, { passive: true });
                             }
@@ -3015,7 +3140,7 @@
     </div>
 
     <script src="audio-data.js"></script>
-    <script src="shared.js?v=187"></script>
+    <script src="shared.js?v=194"></script>
 </body>
 
 </html>

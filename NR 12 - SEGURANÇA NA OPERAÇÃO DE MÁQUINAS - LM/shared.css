@@ -5228,7 +5228,8 @@ body {
     .m5e-nav-btn:disabled,
     .m4p-nav-btn:disabled,
     .s10-nav-btn:disabled,
-    .s2-nav-btn:disabled {
+    .s2-nav-btn:disabled,
+    .s4-nav-btn:disabled {
         opacity: 0.35 !important;
         cursor: not-allowed !important;
         pointer-events: none !important;
@@ -5254,7 +5255,8 @@ body {
     .m5e-nav-btn:not(:disabled),
     .m6c-nav-btn:not(:disabled),
     .m6p-nav-btn:not(:disabled),
-    .s2-nav-btn:not(:disabled) {
+    .s2-nav-btn:not(:disabled),
+    .s4-nav-btn:not(:disabled) {
         min-width: 52px !important;
         min-height: 52px !important;
         width: 52px !important;
@@ -5352,7 +5354,138 @@ body {
 
     #s4 .content-area {
         z-index: 12 !important;
-        padding: 6px 14px calc(120px + env(safe-area-inset-bottom, 0px)) !important;
+        padding: 10px 14px calc(110px + env(safe-area-inset-bottom, 0px)) !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+
+    #s4 .s4-flip-grid {
+        margin-top: 0 !important;
+    }
+
+    #s4 .s4-flip-hint,
+    #s4 .content-area p.s4-flip-hint {
+        font-size: 11px !important;
+        margin: 0 0 2px !important;
+        line-height: 1.25 !important;
+    }
+
+    /* Setas depois do card: flutuam acima da #nav (fora do slide) p/ o toque funcionar */
+    #s4 .s4-carousel-nav {
+        position: relative !important;
+        z-index: 30 !important;
+        pointer-events: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 16px !important;
+        margin: 8px auto 0 !important;
+        padding: 4px 0 6px !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        flex-shrink: 0 !important;
+        order: 3 !important;
+    }
+
+    #s4 .s4-flip-grid {
+        order: 2 !important;
+        margin-top: 0 !important;
+    }
+
+    #s4 .s4-flip-hint,
+    #s4 .content-area p.s4-flip-hint {
+        order: 1 !important;
+        font-size: 11px !important;
+        margin: 0 0 2px !important;
+        line-height: 1.25 !important;
+    }
+
+    .s4-carousel-nav.s4-nav-floating {
+        position: fixed !important;
+        left: 50% !important;
+        right: auto !important;
+        bottom: calc(102px + env(safe-area-inset-bottom, 0px)) !important;
+        transform: translateX(-50%) !important;
+        width: min(320px, 92vw) !important;
+        max-width: 320px !important;
+        margin: 0 !important;
+        padding: 6px 0 !important;
+        z-index: 960 !important;
+        pointer-events: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 16px !important;
+    }
+
+    .s4-carousel-nav .carousel-hint,
+    .s4-carousel-nav.s4-nav-floating .carousel-hint {
+        display: none !important;
+    }
+
+    .s4-carousel-nav.s4-nav-floating .s4-nav-btn {
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+        position: relative !important;
+        z-index: 961 !important;
+    }
+
+    .s4-carousel-nav.s4-nav-floating #s4-prev:not(:disabled) {
+        animation: none !important;
+        background: #53E6D4 !important;
+        color: #1F0A45 !important;
+        border: 2px solid rgba(255, 255, 255, 0.95) !important;
+        box-shadow:
+            0 6px 18px rgba(83, 230, 212, 0.45),
+            0 0 18px rgba(83, 230, 212, 0.3) !important;
+    }
+
+    .s4-carousel-nav.s4-nav-floating #s4-next:not(:disabled) {
+        animation: s4NextPulse 1.35s ease-in-out infinite !important;
+    }
+
+    #s4 .s4-carousel-nav .s4-nav-btn {
+        position: relative !important;
+        z-index: 31 !important;
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    #s4 .s4-carousel-nav .s4-nav-btn:disabled,
+    .s4-carousel-nav.s4-nav-floating .s4-nav-btn:disabled {
+        pointer-events: none !important;
+    }
+
+    /* Centro da barra livre — Anterior/Próximo só nas laterais */
+    body:has(#s4.active) #nav {
+        display: grid !important;
+        grid-template-columns: max-content 1fr max-content !important;
+        justify-content: stretch !important;
+        align-items: center !important;
+        gap: 0 !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    body:has(#s4.active) #nav #btn-back {
+        grid-column: 1 !important;
+        flex: 0 0 auto !important;
+        width: auto !important;
+        max-width: 102px !important;
+        min-width: 0 !important;
+        padding: 12px 10px !important;
+        font-size: 12px !important;
+    }
+
+    body:has(#s4.active) #nav #btn-fwd {
+        grid-column: 3 !important;
+        flex: 0 0 auto !important;
+        width: auto !important;
+        max-width: 102px !important;
+        min-width: 0 !important;
+        padding: 12px 10px !important;
+        font-size: 12px !important;
     }
 
     #s4 .slide-title {
@@ -5362,6 +5495,7 @@ body {
 
     #s4 .top-bar {
         padding-bottom: 4px !important;
+        flex-shrink: 0 !important;
     }
 
     /* â”€â”€â”€ NAV BOTTOM: padding e safe-area â”€â”€â”€ */
