@@ -631,17 +631,17 @@ img {
     overflow: hidden;
 }
 
+.slide.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(0);
+}
+
 /* Fundo + textura alinhados à página 6 (Lavender / Turquoise) */
 .slide:not(#s1) {
     background:
         radial-gradient(ellipse 90% 70% at 50% 0%, rgba(83, 230, 212, 0.12) 0%, transparent 62%),
         radial-gradient(circle at center, #AD52C4 0%, #4A1866 100%);
-}
-
-.slide.active {
-    opacity: 1;
-    pointer-events: all;
-    transform: translateX(0);
 }
 
 .slide.exit-left {
@@ -3077,6 +3077,91 @@ body:has(#s-quiz5.active) #btn-fwd {
     margin-top: 16px;
     max-width: 600px;
     line-height: 1.4;
+}
+
+/* Avatar decorativo nas aberturas dos módulos */
+.slide > .mod-intro-avatar {
+    position: absolute;
+    bottom: clamp(48px, 6vh, 90px);
+    z-index: 1;
+    width: clamp(560px, 68vw, 960px);
+    height: auto;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    transform: scale(1.35);
+    filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.45));
+    user-select: none;
+    pointer-events: none;
+}
+
+.slide > .mod-intro-avatar--left {
+    left: clamp(-20px, 1vw, 24px);
+    right: auto;
+    object-position: left bottom;
+    transform-origin: left bottom;
+}
+
+#intro-m1 > .mod-intro-avatar--left {
+    left: clamp(-48px, -2vw, -4px);
+}
+
+.slide > .mod-intro-avatar--right {
+    left: auto;
+    right: clamp(-20px, 1vw, 24px);
+    object-position: right bottom;
+    transform-origin: right bottom;
+}
+
+@media (max-width: 768px) {
+    .slide > .mod-intro-avatar {
+        width: 460px;
+        bottom: 80px;
+        transform: scale(1.2);
+    }
+
+    .slide > .mod-intro-avatar--left {
+        left: -10px;
+    }
+
+    #intro-m1 > .mod-intro-avatar--left {
+        left: -18px !important;
+        width: 460px !important;
+        max-width: 94vw !important;
+        bottom: calc(275px + env(safe-area-inset-bottom, 0px)) !important;
+        transform: scale(1.15) translateY(-120px) !important;
+        transform-origin: left bottom !important;
+    }
+
+    #intro-m2 > .mod-intro-avatar--right {
+        width: 435px !important;
+        max-width: 92vw !important;
+        bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
+        transform: scale(1.12) translateY(18px) !important;
+        transform-origin: right bottom !important;
+        right: -12px !important;
+    }
+
+    #intro-m3 > .mod-intro-avatar--right {
+        width: 410px !important;
+        bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
+        transform: scale(1.08) translateY(9px) !important;
+        transform-origin: right bottom !important;
+        right: -14px !important;
+    }
+
+    #s-mod4-intro > .mod-intro-avatar--left {
+        left: -16px !important;
+        width: 540px !important;
+        max-width: 98vw !important;
+        bottom: calc(268px + env(safe-area-inset-bottom, 0px)) !important;
+        transform: scale(1.38) translateY(-115px) !important;
+        transform-origin: left bottom !important;
+    }
+
+    .slide > .mod-intro-avatar--right {
+        right: -10px;
+    }
 }
 
 /* â”€â”€ CINEMATIC ANIMATIONS (TITLES E MÃ“DULOS) â”€â”€ */
