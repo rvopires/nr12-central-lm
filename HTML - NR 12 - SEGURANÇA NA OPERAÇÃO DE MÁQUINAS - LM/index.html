@@ -73,14 +73,20 @@
             overflow: hidden;
             border: none !important;
             box-shadow: none !important;
+            border-radius: 8px;
         }
 
+        /* Recorta a moldura preta do player Panda (cantos arredondados + fundo #000) */
         #tutorialModal .tut-video-wrap iframe {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
+            position: absolute !important;
+            inset: auto !important;
+            top: 50% !important;
+            left: 50% !important;
+            width: calc(100% + 22px) !important;
+            height: calc(100% + 22px) !important;
+            transform: translate(-50%, -50%);
             border: none !important;
+            outline: none !important;
             background: transparent !important;
         }
 
@@ -1041,7 +1047,7 @@
                 <!-- VIDEO -->
                 <div class="tut-video-wrap"
                     style="position:relative; aspect-ratio:16/9; width:100%; border-radius:8px; overflow:hidden; margin:5px 0; border:none; background:transparent;">
-                    <iframe id="panda-58c2b207-5c32-4336-acba-6df97de39825" src="https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=58c2b207-5c32-4336-acba-6df97de39825&saveProgress=false" style="border:none;position:absolute;inset:0;width:100%;height:100%;background:transparent;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
+                    <iframe id="panda-58c2b207-5c32-4336-acba-6df97de39825" src="https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=58c2b207-5c32-4336-acba-6df97de39825&saveProgress=false" frameborder="0" style="border:none;outline:none;position:absolute;top:50%;left:50%;width:calc(100% + 22px);height:calc(100% + 22px);transform:translate(-50%,-50%);background:transparent;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
                 </div>
                 <script src="https://player.pandavideo.com.br/api.v2.js"></script>
 <!-- FOOTER -->
