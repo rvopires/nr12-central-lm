@@ -526,49 +526,6 @@ window.addEventListener('keydown', (e) => {
     });
 })();
 
-/* Mobile: 5 toques na logo ligam/desligam o modo simulação */
-(function initDemoLogoTapShortcut() {
-    var taps = 0;
-    var resetTimer = null;
-    var TAP_WINDOW_MS = 2500;
-
-    function isMobileUi() {
-        return window.matchMedia('(max-width: 900px)').matches ||
-            (navigator.maxTouchPoints > 0 && window.matchMedia('(pointer: coarse)').matches);
-    }
-
-    function onLogoActivate(e) {
-        if (!isMobileUi()) return;
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        taps += 1;
-        clearTimeout(resetTimer);
-        resetTimer = setTimeout(function () { taps = 0; }, TAP_WINDOW_MS);
-        if (taps < 5) return;
-        taps = 0;
-        clearTimeout(resetTimer);
-        toggleDemoMode();
-    }
-
-    function bindLogo() {
-        var logo = document.getElementById('logo');
-        if (!logo || logo.dataset.demoTapBound === '1') return;
-        logo.dataset.demoTapBound = '1';
-        logo.style.cursor = 'pointer';
-        logo.setAttribute('role', 'button');
-        logo.setAttribute('aria-label', 'Logo');
-        logo.addEventListener('click', onLogoActivate);
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', bindLogo);
-    } else {
-        bindLogo();
-    }
-})();
-
 (function initGoPageShortcut() {
     var buf = '';
     var timer = null;
