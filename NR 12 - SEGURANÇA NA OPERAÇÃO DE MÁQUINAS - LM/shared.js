@@ -3365,21 +3365,49 @@ function resetQuiz6() { quiz6.reset(); }
                 window.musicEnabled = true;
                 bgMusic.play().catch(function (e) { console.log('Music play error:', e); });
             }
-            try { sessionStorage.setItem('nr12-musicEnabled', window.musicEnabled ? '1' : '0'); } catch (e) { }
+            writeMusicPref(window.musicEnabled);
             syncMusicButtonUI();
         }
         window.toggleMusic = toggleMusic;
 
+        const MUSIC_PREF_KEY = 'nr12-musicEnabled';
+        const NARRATION_PREF_KEY = 'nr12-narrationEnabled';
+
+        function readMusicPref() {
+            try { return sessionStorage.getItem(MUSIC_PREF_KEY) === '1'; } catch (e) { return false; }
+        }
+        function writeMusicPref(on) {
+            try { sessionStorage.setItem(MUSIC_PREF_KEY, on ? '1' : '0'); } catch (e) { }
+        }
+        function readNarrationPref() {
+            try { return sessionStorage.getItem(NARRATION_PREF_KEY) === '1'; } catch (e) { return false; }
+        }
+        function writeNarrationPref(on) {
+            try { sessionStorage.setItem(NARRATION_PREF_KEY, on ? '1' : '0'); } catch (e) { }
+        }
+
+        function resumeMusicIfEnabled() {
+            window.musicEnabled = readMusicPref();
+            syncMusicButtonUI();
+            if (window.musicEnabled && window.bgMusic) {
+                window.bgMusic.play().catch(function () { /* autoplay bloqueado até interação */ });
+            }
+        }
+
         try {
-            window.musicEnabled = sessionStorage.getItem('nr12-musicEnabled') === '1';
+            window.musicEnabled = readMusicPref();
         } catch (e) {
             window.musicEnabled = false;
         }
         musicItem.querySelector('#btn-music').addEventListener('click', toggleMusic);
         syncMusicButtonUI();
-        if (window.musicEnabled) {
-            bgMusicEl.play().catch(function () { /* autoplay bloqueado até interação */ });
-        }
+        resumeMusicIfEnabled();
+        window.addEventListener('pageshow', resumeMusicIfEnabled);
+        document.addEventListener('click', function resumeMusicOnGesture() {
+            if (window.musicEnabled && window.bgMusic && window.bgMusic.paused) {
+                window.bgMusic.play().catch(function () { });
+            }
+        }, { once: true, capture: true });
 
         const a11yItem = document.createElement('div');
         a11yItem.className = 'top-control-item';
@@ -3469,6 +3497,7 @@ function resetQuiz6() { quiz6.reset(); }
         }
 
         let narrationActive = false;
+        let narrationModeEnabled = readNarrationPref();
         let narrationPlaybackId = 0;
         let narrationDebounceTimer = null;
         let ttsObjectUrl = null;
@@ -3794,6 +3823,12 @@ function resetQuiz6() { quiz6.reset(); }
             ttsObjectUrl = URL.createObjectURL(blob);
             audio.onended = function () {
                 if (playbackId !== narrationPlaybackId) return;
+                if (narrationModeEnabled) {
+                    narrationActive = true;
+                    setNarrationButtonState(true);
+                    if (window.musicEnabled && window.bgMusic) window.bgMusic.play().catch(function () { });
+                    return;
+                }
                 setNarrationButtonState(false);
                 narrationActive = false;
                 if (window.musicEnabled && window.bgMusic) window.bgMusic.play().catch(function () { });
@@ -3827,9 +3862,12 @@ function resetQuiz6() { quiz6.reset(); }
 
             audio.onended = function () {
                 if (playbackId !== narrationPlaybackId) return;
-                if (keepQuizNarrationOn || keepCarouselNarrationOn) {
+                if (keepQuizNarrationOn || keepCarouselNarrationOn || narrationModeEnabled) {
                     narrationActive = true;
                     setNarrationButtonState(true);
+                    if (narrationModeEnabled && window.musicEnabled && window.bgMusic) {
+                        window.bgMusic.play().catch(function () { });
+                    }
                     return;
                 }
                 setNarrationButtonState(false);
@@ -3860,15 +3898,19 @@ function resetQuiz6() { quiz6.reset(); }
         }
 
         async function toggleAccessibilityNarration() {
-            if (narrationActive) {
+            if (narrationModeEnabled || narrationActive) {
+                narrationModeEnabled = false;
                 narrationActive = false;
+                writeNarrationPref(false);
                 narrationPlaybackId++;
                 stopSpeech();
                 setNarrationButtonState(false);
                 if (window.musicEnabled && window.bgMusic) window.bgMusic.play().catch(function () { });
                 return;
             }
+            narrationModeEnabled = true;
             narrationActive = true;
+            writeNarrationPref(true);
             setNarrationButtonState(true);
             const started = await playAccessibilityAudioForActiveSlide();
             if (!started && narrationActive) {
@@ -3877,10 +3919,11 @@ function resetQuiz6() { quiz6.reset(); }
         }
 
         function notifyNarrationStateChange() {
-            if (!narrationActive) return;
+            if (!narrationModeEnabled && !narrationActive) return;
+            if (narrationModeEnabled) narrationActive = true;
             clearTimeout(narrationDebounceTimer);
             narrationDebounceTimer = setTimeout(async function () {
-                if (!narrationActive) return;
+                if (!narrationModeEnabled && !narrationActive) return;
                 const slide = document.querySelector('.slide.active');
                 const audio = document.getElementById('accessibility-audio');
                 const nextSrc = slide ? resolveNarrationFolderSrc(slide) : null;
@@ -3907,14 +3950,22 @@ function resetQuiz6() { quiz6.reset(); }
 
         document.addEventListener('visibilitychange', function () {
             if (document.hidden) {
-                narrationActive = false;
                 narrationPlaybackId++;
                 stopSpeech();
-                setNarrationButtonState(false);
+                if (!narrationModeEnabled) {
+                    narrationActive = false;
+                    setNarrationButtonState(false);
+                }
+                return;
             }
+            if (narrationModeEnabled) {
+                narrationActive = true;
+                setNarrationButtonState(true);
+                playAccessibilityAudioForActiveSlide();
+            }
+            resumeMusicIfEnabled();
         });
         window.addEventListener('beforeunload', function () {
-            narrationActive = false;
             stopSpeech();
         });
 
@@ -3922,7 +3973,10 @@ function resetQuiz6() { quiz6.reset(); }
             const origGoTo = window.goTo;
             window.goTo = function () {
                 const result = origGoTo.apply(this, arguments);
-                if (!narrationActive) {
+                if (narrationModeEnabled) {
+                    narrationActive = true;
+                    setNarrationButtonState(true);
+                } else if (!narrationActive) {
                     stopSpeech();
                     setNarrationButtonState(false);
                 }
@@ -3959,6 +4013,14 @@ function resetQuiz6() { quiz6.reset(); }
                 window.notifyNarrationStateChange();
             });
         });
+
+        if (narrationModeEnabled) {
+            narrationActive = true;
+            setNarrationButtonState(true);
+            setTimeout(function () {
+                if (narrationModeEnabled) playAccessibilityAudioForActiveSlide();
+            }, 400);
+        }
 
         if (typeof applyDemoModeUI === 'function') applyDemoModeUI();
     }
