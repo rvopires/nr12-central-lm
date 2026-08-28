@@ -1026,10 +1026,22 @@
         }
         #s-mod4-pode-nao .top-bar { flex-shrink: 0; padding-bottom: 2px !important; }
         #s-mod4-pode-nao .slide-title { font-size: clamp(22px, 2.8vw, 34px) !important; }
+        #s-mod4-pode-nao .m4p-title-line {
+            display: block;
+            white-space: nowrap;
+        }
+        #s-mod4-pode-nao .m4p-title-line em {
+            font-style: normal;
+            color: var(--red);
+        }
         @media screen and (min-width: 769px) {
             #s-mod4-pode-nao .slide-title {
                 white-space: nowrap;
                 line-height: 1.15 !important;
+            }
+            #s-mod4-pode-nao .m4p-title-line {
+                display: inline;
+                white-space: nowrap;
             }
         }
         #s-mod4-pode-nao .content-area {
@@ -1265,6 +1277,10 @@
                 word-break: normal !important;
                 overflow-wrap: normal !important;
                 hyphens: none !important;
+            }
+            #s-mod4-pode-nao .m4p-title-line {
+                display: block !important;
+                white-space: nowrap !important;
             }
             #s-mod4-pode-nao .content-area {
                 padding: 10px 14px calc(100px + env(safe-area-inset-bottom, 0px)) !important;
@@ -2321,7 +2337,8 @@
                         📋 Módulo 4</div>
                     <h2 class="slide-title"
                         style="letter-spacing: -0.015em; text-shadow: 0 0 15px rgba(83, 230, 212, 0.4);">
-                        O que <span>pode</span> e <span>não pode</span>
+                        <span class="m4p-title-line">O que <em>pode</em></span>
+                        <span class="m4p-title-line">e <em>não pode</em></span>
                     </h2>
                 </div>
                 <div class="content-area">
