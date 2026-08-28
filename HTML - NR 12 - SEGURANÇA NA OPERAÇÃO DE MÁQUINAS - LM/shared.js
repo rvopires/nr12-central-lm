@@ -4084,6 +4084,10 @@ function resetQuiz6() { quiz6.reset(); }
         replay.className = 'btn-tutorial tutorial-replay';
         replay.innerHTML = '▶ Ver tutorial';
         replay.onclick = function () {
+            if (window.openTutorialModalVoluntary) {
+                window.openTutorialModalVoluntary();
+                return;
+            }
             const staticModal = document.getElementById('tutorialModal');
             if (staticModal) staticModal.classList.add('active');
         };
