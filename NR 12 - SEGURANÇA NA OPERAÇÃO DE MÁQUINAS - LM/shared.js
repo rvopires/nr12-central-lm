@@ -2,6 +2,10 @@
    NR 12 — Segurança na Operação de Máquinas — Shared logic (split refactor)
    ============================================================ */
 function openImageModal(src) {
+    try {
+        if (typeof playTechClick === 'function') playTechClick();
+        else if (typeof playClickSound === 'function') playClickSound();
+    } catch (e) {}
     const modal = document.getElementById('imgModal');
     const img = document.getElementById('modalImg');
     if (!modal || !img) return;
@@ -1457,6 +1461,7 @@ function finishTraining() {
 }
 
 function restartCourse() {
+    try { if (typeof playClickSound === 'function') playClickSound(); } catch (e) {}
     try {
         window.location.href = 'index.html';
     } catch (e) {
@@ -3285,6 +3290,9 @@ function resetQuiz6() { quiz6.reset(); }
 (function () {
     const cardSelectors = [
         '.flip-card',
+        '.s2-flip-card',
+        '.s4-flip-card',
+        '.opc-card',
         '.comp-card-modern',
         '.compare-card',
         '.hub-spoke',
@@ -3303,7 +3311,7 @@ function resetQuiz6() { quiz6.reset(); }
         '.epi-img-wrapper',
         '.epi-card'
     ];
-    const soundPatterns = /playBeep|playHUDBeep|playTechClick|playQuiz6Audio|soundClick|playClick|clickAudio|new Audio/;
+    const soundPatterns = /playBeep|playHUDBeep|playTechClick|playQuiz6Audio|soundClick|playClick|clickAudio|new Audio|FlipCard|flipPane|revealCard/;
 
     function hasOwnSound(el) {
         if (!el) return false;

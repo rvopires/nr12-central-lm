@@ -3531,6 +3531,16 @@ body:has(#s-quiz5.active) #btn-fwd {
     z-index: 2;
 }
 
+/* Flip cards: esconder lupa ao virar (mobile) */
+.is-flipped .s2-flip-zoom,
+.is-flipped .s4-flip-zoom,
+.is-flipped .opc-expand,
+.is-flipped .m4l-expand {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
 .flip-card .flip-front>div:first-child,
 .flip-card .flip-back>div:first-child {
     transition: transform 0.35s ease, filter 0.35s ease;
