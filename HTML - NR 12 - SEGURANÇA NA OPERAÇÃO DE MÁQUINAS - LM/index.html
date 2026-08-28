@@ -69,26 +69,18 @@
             aspect-ratio: 16 / 9;
             width: 100%;
             position: relative;
-            background: #AD52C4 !important;
+            background: transparent !important;
             overflow: hidden;
             border: none !important;
             box-shadow: none !important;
-            border-radius: 8px;
         }
 
-        /* Recorta moldura preta do player Panda (pillarbox + cantos arredondados) */
         #tutorialModal .tut-video-wrap iframe {
-            position: absolute !important;
-            inset: auto !important;
-            top: 50% !important;
-            left: 50% !important;
-            width: 100% !important;
-            height: 100% !important;
-            transform: translate(-50%, -50%) scale(1.34);
-            transform-origin: center center;
-            border: none !important;
-            outline: none !important;
-            background: transparent !important;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         #tutorialModal[data-tutorial-mode="voluntary"] #tutorialUnlockHint {
@@ -1055,8 +1047,8 @@
 
                 <!-- VIDEO -->
                 <div class="tut-video-wrap"
-                    style="position:relative; aspect-ratio:16/9; width:100%; border-radius:8px; overflow:hidden; margin:5px 0; border:none; background:#AD52C4;">
-                    <iframe id="panda-58c2b207-5c32-4336-acba-6df97de39825" src="https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=58c2b207-5c32-4336-acba-6df97de39825&saveProgress=false" frameborder="0" style="border:none;outline:none;position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%) scale(1.34);transform-origin:center center;background:transparent;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
+                    style="position:relative; aspect-ratio:16/9; width:100%; border-radius:8px; overflow:hidden; margin:5px 0; border:none; background:transparent;">
+                    <iframe id="panda-58c2b207-5c32-4336-acba-6df97de39825" src="https://player-vz-d35edf2a-8e7.tv.pandavideo.com.br/embed/?v=58c2b207-5c32-4336-acba-6df97de39825&saveProgress=false" frameborder="0" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen="true" fetchpriority="high"></iframe>
                 </div>
                 <script src="https://player.pandavideo.com.br/api.v2.js"></script>
 <!-- FOOTER -->
