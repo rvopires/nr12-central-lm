@@ -619,6 +619,13 @@ img {
     overflow: hidden;
 }
 
+/* Evita flash da abertura ao voltar de módulo (?last=1 / restoreslide / hash) */
+html.slide-boot-pending:not(.slide-booted) #slides > .slide {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateX(40px);
+}
+
 .slide {
     position: absolute;
     inset: 0;
