@@ -3464,7 +3464,7 @@ function resetQuiz6() { quiz6.reset(); }
             const logo = document.getElementById('logo');
             if (!logo) return;
             const r = logo.getBoundingClientRect();
-            const gapBelow = 8;
+            const gapBelow = window.innerWidth > 768 ? -2 : 8;
             const topPx = Math.max(48, Math.round(r.bottom + gapBelow));
             const rightPx = Math.max(8, Math.round(window.innerWidth - r.right));
             topControls.style.top = topPx + 'px';
